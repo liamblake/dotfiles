@@ -1,4 +1,4 @@
-\ProvidesPackage{tdepot}[30/03/2021]
+\ProvidesPackage{lb_base}[30/03/2021]
 
 % Packages which I almost always find useful
 \RequirePackage{bm}
@@ -19,3 +19,14 @@
 \newmdtheoremenv{defn}{Definition}
 \newmdtheoremenv{result}{Result}
 \newmdtheoremenv{corollary}{Corollary}
+
+% Bracketed fractions
+\newcommand{\bfrac}[2]{\left(\frac{#1}{#2}\right)}
+
+
+% Vector calculus operators
+\newcommand{\vder}{\nabla} 			% Gradient
+\newcommand{\vdiv}{\vder \dotp}		% Divergence
+\newcommand{\curl}{\vder \times}    % Curl
+
+% Vector integrals
