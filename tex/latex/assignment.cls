@@ -7,8 +7,6 @@
 \RequirePackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
 \RequirePackage{enumitem}
 
-% Sans serif
-\renewcommand{\familydefault}{\sfdefault}
 
 % No indents on new paragraphs
 \setlength\parindent{0pt}
