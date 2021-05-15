@@ -1,0 +1,40 @@
+\ProvidesPackage{lb_base}[30/03/2021]
+
+% Packages which I almost always find useful
+\RequirePackage{bm}
+\RequirePackage{commath}
+
+% Provides warnings if labels are unused
+\RequirePackage{refcheck}
+\norefnames
+\nocitenames
+
+% Allow numbering of individuals lines in an align env
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+% Numeric sets
+\newcommand{\R}{\mathbb{R}}		% Real numbers
+\newcommand{\Z}{\mathbb{Z}}		% Integers
+\newcommand{\N}{\mathbb{N}}		% Natural numbers
+\newcommand{\Q}{\mathbb{Q}}		% Rational numbers
+\newcommand{\C}{\mathbb{C}}		% Complex numbers
+
+
+% Nice boxed theorem environments
+\RequirePackage{mdframed}
+\newmdtheoremenv{theorem}{Theorem}[subsection]
+\newmdtheoremenv{defn}{Definition}
+\newmdtheoremenv{result}{Result}
+\newmdtheoremenv{corollary}{Corollary}
+\newmdtheoremenv{example}{Example}[section]
+
+% Bracketed fractions
+\newcommand{\bfrac}[2]{\left(\frac{#1}{#2}\right)}
+
+
+% Vector calculus operators
+\newcommand{\vder}{\nabla} 			% Gradient
+\newcommand{\vdiv}{\vder \dotp}		% Divergence
+\newcommand{\curl}{\vder \times}    % Curl
+
+% Vector integrals
