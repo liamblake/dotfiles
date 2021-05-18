@@ -1,0 +1,166 @@
+---
+title: "Probability Distributions"
+output: pdf_document
+header-includes:
+  - \usepackage{lb_base_rmd}
+  - \usepackage{lb_statistics}
+  - \usepackage{array}
+  - \usepackage{xcolor}
+  - \usepackage{multicol}
+  - \usepackage{multirow}
+  - \newcommand{\hideFromPandoc}[1]{#1}
+  - \hideFromPandoc{
+      \let\Begin\begin
+      \let\End\end
+    }
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(fig.pos = "!H", out.extra = "", fig.height=3.5)
+
+pacman::p_load(ggplot2)
+
+# How many samples to use for each distribution plot
+n = 1e5
+
+# To visualise a discrete distribution
+plot_disc <- function(values, dist) {
+  ggplot() + geom_col(fill = "blue", alpha=0.5, aes(x = values, y = dist(values)), data = NULL) +
+    theme(axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+}
+```
+
+\renewcommand{\arraystretch}{1.5}
+\setlength\columnsep{5cm}
+
+\newenvironment{disttab}{%
+  \begin{tabular}{>{\color{cyan}}lp{5cm}}
+  }
+  {
+  \end{tabular}
+  }
+
+
+### (Discrete) Uniform
+\Begin{multicols}{2}
+
+Each integer value in a specified range is assigned the same value.
+\begin{disttab}
+\multirow{2}{*}{Parameters} & lower bound \(a \in \Z\), \\
+& upper bound \(b \in \Z\) s.t. \(a < b\) \\
+Possible values & \(\set{a, a + 1, \hdots, b - 1, b}\) \\
+Notation & \(U(a,b)\) \\
+Probability function & \(p(x) = \frac{1}{b - a + 1}\) \\
+Expectation & \(\frac{a + b}{2}\) \\
+Variance & \(\frac{(b-a)(b - a + 2)}{12}\) \\
+MGF & \(M(t) = \frac{1}{b - a + 1}\sum_{k=a}^b{e^{kt}}\) \\
+\end{disttab}
+
+\columnbreak
+
+```{r}
+plot_disc(seq(0,10, by=1), function(x) {return(numeric(length(x)) + 1/11)})
+```
+
+\End{multicols}
+
+\vspace{1cm}
+### Bernoulli
+\Begin{multicols}{2}
+
+Represents the success of a single experiment as a binary outcome.
+\begin{disttab}
+Parameters & probability of success \(0 \leq p \leq 1\) \\
+Possible values & \(\set{0,1}\) \\
+Notation & \(\Bern{p}\) \\
+Probability function & \(p(x) = p^x(1-p)^{1-x}\) \\
+Expectation & \(p\) \\
+Variance & \(p(1-p)\) \\
+MGF & \(M(t) = 1 + p\left(e^t - 1\right)\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+plot_disc(c(0,1), function(x){return(0.75*as.numeric(x == 1) + 0.25*as.numeric(x == 0))})
+```
+
+\End{multicols}
+
+\clearpage
+
+### Binomial
+\Begin{multicols}{2}
+Represents the number of successes in a fixed number of independent and repeated trials of the same Bernoulli experiment. 
+
+\begin{disttab}
+\multirow{2}{*}{Parameters} & number of trials \(n \in \N\), \\
+& probability of success on a single trial \(0 \leq p \leq 1\) \\
+Possible values & \(\set{0,1,2,\hdots,n}\) \\
+Notation & \(\Bin{n,p}\) \\
+Probability function & \(p(x) = {n\choose x}p^x(1-p)^{n-x}\) \\
+Expectation & \(np\) \\
+Variance & \(np(1-p)\) \\
+MGF & \(M(t) = \left[1 + p\left(e^t - 1\right)\right]^n\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+plot_disc(seq(0,10), function(x) {return(dbinom(x,p=1/3,size=10))})
+```
+
+\End{multicols}
+
+#### Related Distributions
+
+* If \(X \isBin{n,p}\), then 
+  \[
+  X = \sum_{i=1}^n{X_i},
+  \]
+  where the \(X_i\) are independent and identically distributed random variables with probability \(p\) of success.
+
+
+### Hypergeometric
+
+\Begin{multicols}{2}
+Represents the number of when drawing a fixed number of samples from a population containing a known number of successes.
+\begin{disttab}
+Possible values & \(\set{\max\set{0, n - (n- (N-k))},\hdots,\min\set{n,k}}\) \\
+\multirow{3}{*}{Parameters} & size of population \(N \in \N\), \\
+& number of successes in population \(k\in \N\), \\
+& number of samples drawn \(n \in \N\)
+Notation & \(\HypGeo{N,k,n}\) \\
+Probability function & \(p(x) = \frac{{k\choose x}{N-k\choose n-x}}{{N\choose n}}\) \\
+Expectation & \(\frac{nk}{N}\) \\
+Variance & \(n\bfrac{k}{N}\bfrac{N-k}{N}\bfrac{N-n}{N-1}\) \\
+MGF & No useful expression
+\end{disttab}
+
+\columnbreak
+
+```{r}
+plot_disc(seq(0,20), function(x) {return(dhyper(x, m = 33, n = 67, k=20))})
+```
+
+\End{multicols}
+
+
+
+
+## Continuous
+
+
+# Multivariate
+
+
+## Discrete
+
+
+## Continuous
