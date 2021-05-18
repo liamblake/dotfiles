@@ -1,0 +1,42 @@
+\ProvidesPackage{lb_statistics}[30/03/2021]
+
+% Dependencies
+
+% Conditional probability
+\newcommand{\conp}[2]{P\left(#1\,\middle|\,#2\right)}
+
+% Statistical operators
+\newcommand{\var}[1]{\operatorname{var} \left(#1\right)}
+\newcommand{\avg}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\cov}[1]{\operatorname{cov} \left(#1\right)}
+\newcommand{\sd}[1]{\operatorname{sd} \left(#1\right)}
+\newcommand{\cor}[1]{\operatorname{cor} \left(#1\right)}
+\newcommand{\mse}[2]{\operatorname{MSE}_{\,#1} \left(#2\right)}
+\newcommand{\bias}[2]{b_{\,#1}\left(#2\right)}
+
+% Likelihood theory
+\newcommand{\loglik}[2]{\ell\left(#1\,;\,#2\right)}
+\newcommand{\score}[2]{\mathcal{U}\left(#1\,;\,#2\right)}
+\newcommand{\finfo}[1]{\mathcal{I}\left(#1\right)}
+
+
+% Distributions
+\newcommand{\Dist}[2]{#1\left(#2\right)}
+
+% Without \sim
+\newcommand{\Gauss}[1]{\Dist{\mathcal{N}}{#1}}
+\newcommand{\Bin}[1]{\Dist{\mathrm{Bin}}{#1}}
+\newcommand{\Geom}[1]{\Dist{\mathrm{Geom}}{#1}}
+\newcommand{\Bern}[1]{\Dist{\mathrm{Bern}}{#1}}
+\newcommand{\Exp}[1]{\Dist{\mathrm{Exp}}{#1}}
+\newcommand{\Pois}[1]{\Dist{\mathrm{Po}}{#1}}
+\newcommand{\HypGeo}[1]{\Dist{\mathrm{Hypergeometric}}{#1}}
+\newcommand{\Uniform}[1]{\Dist{\mathrm{U}}{#1}}
+\newcommand{\StdGauss}{\Gauss{0,1}}
+
+% With \sim
+\newcommand{\isPois}[1]{\sim\Pois{#1}}
+\newcommand{\isBin}[1]{\sim\Bin{#1}}
+\newcommand{\isGeom}[1]{\sim\Geom{#1}}
+\newcommand{\isGauss}[1]{\sim\Gauss{#1}}
+\newcommand{\isStdGauss}{\sim\StdGauss}

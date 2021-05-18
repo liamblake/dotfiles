@@ -3,7 +3,26 @@
 % Packages which I almost always find useful
 \RequirePackage{bm}
 \RequirePackage{commath}
+\RequirePackage{enumitem}
 
+
+%% OPTIONS %%
+
+% Option for serif font
+\DeclareOption{sans}{\renewcommand{\familydefault}{\sfdefault}}
+
+\ProcessOptions\relax
+
+
+% Provides warnings if labels are unused
+\RequirePackage{refcheck}
+\norefnames
+\nocitenames
+
+
+
+% Allow numbering of individuals lines in an align env
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 
 % Numeric sets
 \newcommand{\R}{\mathbb{R}}		% Real numbers
@@ -14,11 +33,12 @@
 
 
 % Nice boxed theorem environments
-\RequirePackage{mdframe}
+\RequirePackage{mdframed}
 \newmdtheoremenv{theorem}{Theorem}[subsection]
 \newmdtheoremenv{defn}{Definition}
 \newmdtheoremenv{result}{Result}
 \newmdtheoremenv{corollary}{Corollary}
+\newmdtheoremenv{example}{Example}[section]
 
 % Bracketed fractions
 \newcommand{\bfrac}[2]{\left(\frac{#1}{#2}\right)}
@@ -30,3 +50,7 @@
 \newcommand{\curl}{\vder \times}    % Curl
 
 % Vector integrals
+
+
+% Provide reasoning in a \text env alongside a line of maths
+\newcommand{\rea}[1]{\qquad \qquad \left(\text{#1}\right)}
