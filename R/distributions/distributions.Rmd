@@ -19,7 +19,7 @@ header-includes:
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 knitr::opts_chunk$set(fig.pos = "!H", out.extra = "", fig.height=3.5)
 
-pacman::p_load(ggplot2)
+pacman::p_load(ggplot2, ggfortify)
 
 # How many samples to use for each distribution plot
 n = 1e5
@@ -40,7 +40,7 @@ plot_disc <- function(values, dist) {
 \setlength\columnsep{5cm}
 
 \newenvironment{disttab}{%
-  \begin{tabular}{>{\color{cyan}}lp{5cm}}
+  \begin{tabular}{>{\color{cyan}}lp{6cm}}
   }
   {
   \end{tabular}
@@ -60,6 +60,7 @@ Probability function & \(p(x) = \frac{1}{b - a + 1}\) \\
 Expectation & \(\frac{a + b}{2}\) \\
 Variance & \(\frac{(b-a)(b - a + 2)}{12}\) \\
 MGF & \(M(t) = \frac{1}{b - a + 1}\sum_{k=a}^b{e^{kt}}\) \\
+Kernel & \(1\)
 \end{disttab}
 
 \columnbreak
@@ -82,7 +83,8 @@ Notation & \(\Bern{p}\) \\
 Probability function & \(p(x) = p^x(1-p)^{1-x}\) \\
 Expectation & \(p\) \\
 Variance & \(p(1-p)\) \\
-MGF & \(M(t) = 1 + p\left(e^t - 1\right)\)
+MGF & \(M(t) = 1 + p\left(e^t - 1\right)\) \\
+Kernel & \(p^x(1-p)^{-x}\)
 \end{disttab}
 
 \columnbreak
@@ -107,7 +109,8 @@ Notation & \(\Bin{n,p}\) \\
 Probability function & \(p(x) = {n\choose x}p^x(1-p)^{n-x}\) \\
 Expectation & \(np\) \\
 Variance & \(np(1-p)\) \\
-MGF & \(M(t) = \left[1 + p\left(e^t - 1\right)\right]^n\)
+MGF & \(M(t) = \left[1 + p\left(e^t - 1\right)\right]^n\) \\
+Kernel & \({n\choose x}p^x(1-p)^{-x}\)
 \end{disttab}
 
 \columnbreak
@@ -124,7 +127,7 @@ plot_disc(seq(0,10), function(x) {return(dbinom(x,p=1/3,size=10))})
   \[
   X = \sum_{i=1}^n{X_i},
   \]
-  where the \(X_i\) are independent and identically distributed random variables with probability \(p\) of success.
+  where the \(X_i \isBern{p}\) independently.
 
 
 ### Hypergeometric
@@ -135,12 +138,13 @@ Represents the number of when drawing a fixed number of samples from a populatio
 Possible values & \(\set{\max\set{0, n - (n- (N-k))},\hdots,\min\set{n,k}}\) \\
 \multirow{3}{*}{Parameters} & size of population \(N \in \N\), \\
 & number of successes in population \(k\in \N\), \\
-& number of samples drawn \(n \in \N\)
+& number of samples drawn \(n \in \N\) \\
 Notation & \(\HypGeo{N,k,n}\) \\
 Probability function & \(p(x) = \frac{{k\choose x}{N-k\choose n-x}}{{N\choose n}}\) \\
 Expectation & \(\frac{nk}{N}\) \\
 Variance & \(n\bfrac{k}{N}\bfrac{N-k}{N}\bfrac{N-n}{N-1}\) \\
-MGF & No useful expression
+MGF & No useful expression \\
+Kernel & \({k\choose x}{N-k\choose n-x}\)
 \end{disttab}
 
 \columnbreak
@@ -151,11 +155,205 @@ plot_disc(seq(0,20), function(x) {return(dhyper(x, m = 33, n = 67, k=20))})
 
 \End{multicols}
 
+\clearpage
 
+### Poisson
+
+\Begin{multicols}{2}
+Represents the number of events occuring in a fixed interval.
+\begin{disttab}
+Possible values & \(\set{0,1,2,\hdots}\) \\
+\multirow{1}{*}{Parameters} & average number of events in interval \(\lambda > 0\), \\
+Notation & \(\Pois{\lambda}\) \\
+Probability function & \(p(x) = \frac{e^{-\lambda}\lambda^{x}}{x!}\) \\
+Expectation & \(\lambda\) \\
+Variance & \(\lambda\) \\
+MGF & \(M(t) = e^{\lambda\left(e^t - 1\right)}\) \\
+Kernel & \(\frac{\lambda^{x}}{x!}\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+plot_disc(seq(0,15), function(x) {return(dpois(x, lambda = 5))})
+```
+
+\End{multicols}
+
+
+### Geometric
+
+\Begin{multicols}{2}
+Represents the number of failed Bernoulli trials preceeding the first success.
+\begin{disttab}
+\multirow{1}{*}{Parameters} & probability of success on a single trial \(0 \leq p \leq 1\), \\
+Possible values & \(\set{0,1,2,\hdots}\) \\
+Notation & \(\Geom{p}\) \\
+Probability function & \(p(x) = (1-p)^xp\) \\
+Expectation & \(\frac{1-p}{p}\) \\
+Variance & \(\frac{1-p}{p^2}\) \\
+MGF & \(M(t) = \frac{p}{1 - (1-p)e^t}\) for \(t < -\ln(1-p)\) \\
+Kernel & \((1-p)^x\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+plot_disc(seq(0,20), function(x) {return(dgeom(x, prob = 0.25))})
+```
+
+\End{multicols}
+
+\clearpage
+
+### Geometric (alternative)
+
+\Begin{multicols}{2}
+Represents the position of the first success in a sequence of Bernoulli trials.
+\begin{disttab}
+\multirow{1}{*}{Parameters} & probability of success on a single trial \(0 \leq p \leq 1\), \\
+Possible values & \(\set{1,2,\hdots}\) \\
+Notation & \(\Geom{p}\) \\
+Probability function & \(p(x) = (1-p)^{x-1}p\) \\
+Expectation & \(\frac1p\) \\
+Variance & \(\frac{1-p}{p^2}\) \\
+MGF & \(M(t) = \frac{pe^t}{1 - (1-p)e^t}\) for \(t < -\ln(1-p)\) \\
+Kernel & \((1-p)^{x}\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+plot_disc(seq(1,20), function(x) {return(dgeom(x-1, prob = 0.25))})
+```
+
+\End{multicols}
+
+
+
+### Negative Binomial
+
+\Begin{multicols}{2}
+Represents the number of Bernoulli trials preceeding the \(r\)th success.
+\begin{disttab}
+\multirow{2}{*}{Parameters} & number of desired successes \(r \in \N\), \\ 
+& probability of success on a single trial \(0 \leq p \leq 1\), \\
+Possible values & \(\set{r,r+1,\hdots}\) \\
+Notation & \(\NegBin{r,p}\) \\
+Probability function & \(p(x) = {x-1 \choose r-1}(1-p)^{x-r}p^r\) \\
+Expectation & \(\frac{r}{p}\) \\
+Variance & \(\frac{r(1-p)}{p^2}\) \\
+MGF & \(M(t) = \left[\frac{pe^t}{1 - (1-p)e^t}\right]^r\) for \(t < -\ln{p}\) \\
+Kernel & \({x-1 \choose r-1}(1-p)^{x}\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+plot_disc(seq(5,40), function(x) {return(dnbinom(x, size = 5, prob = 0.25))})
+```
+
+\End{multicols}
+
+#### Related Distributions
+* If \(X \isNegBin{r,p}\), then 
+  \[
+  X = \sum_{i=1}^n{X_i},
+  \]
+  where the \(X_i \isGeom{p}\) independently.
+
+
+\clearpage
+
+### Negatve Binomial (Alternative)
+
+\Begin{multicols}{2}
+Represents the number of failures preceeding the \(r\)th success in a sequence of Bernoulli trials.
+\begin{disttab}
+\multirow{2}{*}{Parameters} & number of desired successes \(r \in \N\), \\ 
+& probability of success on a single trial \(0 \leq p \leq 1\), \\
+Possible values & \(\set{0,1,2,\hdots}\) \\
+Notation & \(\NegBin{r,p}\) \\
+Probability function & \(p(x) = {x+r-1 \choose x}(1-p)^{x}p^r\) \\
+Expectation & \(\frac{r(1-p)}{p}\) \\
+Variance & \(\frac{r(1-p)}{p^2}\) \\
+MGF & \(M(t) = \left[\frac{p}{1 - (1-p)e^t}\right]^r\) for \(t < -\ln{p}\) \\
+Kernel & \({x+r-1 \choose x}(1-p)^{x}\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+plot_disc(seq(5,40), function(x) {return(dnbinom(x, size = 5, prob = 0.25))})
+```
+
+\End{multicols}
 
 
 ## Continuous
 
+### (Continuous) Uniform
+\Begin{multicols}{2}
+
+Each value in a specified interval has the same probability density.
+\begin{disttab}
+\multirow{2}{*}{Parameters} & lower bound \(a \in \R\), \\
+& upper bound \(b \in \R\) s.t. \(a < b\) \\
+Possible values & \((a,b)\) \\
+Notation & \(\Uniform{a,b}\) \\
+Probability density function & \(f(x) = \frac{1}{b - a}\) \\
+Cumulative distribution function & \(F(x) = \begin{cases}0, & \text{if } x \leq a, \\ \frac{x-a}{b-a}, & \text{if } a < x < b, \\ 1,& \text{if } b \leq x.\end{cases}\) \\
+Expectation & \(\frac{a + b}{2}\) \\
+Variance & \(\frac{(b-a)^2}{12}\) \\
+MGF & \(M(t) = \begin{cases}1, & \text{if } t = 0, \\ \frac{e^{tb}-e^{ta}}{t(b-a)}, & \text{if } t \neq 0.\end{cases}\) \\
+Kernel & \(1\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+ggdistribution(dunif, seq(0,10, by=1), min = 0, max = 10, colour = "blue", fill = "blue", alpha=0.5) +
+    theme(axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+```
+
+\End{multicols}
+
+\clearpage
+
+### Exponential
+\Begin{multicols}{2}
+
+Represents the waiting time until an event occurs.
+\begin{disttab}
+\multirow{1}{*}{Parameters} & rate of events \(\lambda > 0\) \\
+Possible values & \((0,\infty)\) \\
+Notation & \(\Exp{a,b}\) \\
+Probability density function & \(f(x) = \lambda e^{-\lambda x}\) \\
+Cumulative distribution function & \(F(x) = \begin{cases}0, & \text{if } x \leq 0, \\ 1 - e^{-\lambda x}, & \text{if } x > 0.\end{cases}\) \\
+Expectation & \(\frac{1}{\lambda}\) \\
+Variance & \(\frac{1}{\lambda^2}\) \\
+MGF & \(M(t) = \frac{\lambda}{\lambda - t}\) for \(t < \lambda\) \\
+Kernel & \(e^{-\lambda x}\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+ggdistribution(dexp, seq(0,5, by=0.1), rate=1, colour = "blue", fill = "blue", alpha=0.5) +
+    theme(axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+```
+
+\End{multicols}
 
 # Multivariate
 
