@@ -332,7 +332,7 @@ Represents the waiting time until an event occurs.
 \begin{disttab}
 \multirow{1}{*}{Parameters} & rate of events \(\lambda > 0\) \\
 Possible values & \((0,\infty)\) \\
-Notation & \(\Exp{a,b}\) \\
+Notation & \(\Exp{\lambda}\) \\
 Probability density function & \(f(x) = \lambda e^{-\lambda x}\) \\
 Cumulative distribution function & \(F(x) = \begin{cases}0, & \text{if } x \leq 0, \\ 1 - e^{-\lambda x}, & \text{if } x > 0.\end{cases}\) \\
 Expectation & \(\frac{1}{\lambda}\) \\
@@ -354,6 +354,85 @@ ggdistribution(dexp, seq(0,5, by=0.1), rate=1, colour = "blue", fill = "blue", a
 ```
 
 \End{multicols}
+
+
+
+### Exponential (Alternative)
+\Begin{multicols}{2}
+
+Characterised by average time until the first event \(\beta = 1/\lambda\).
+\begin{disttab}
+\multirow{1}{*}{Parameters} & average time until event \(\beta > 0\) \\
+Possible values & \((0,\infty)\) \\
+Notation & \(\Exp{\beta}\) \\
+Probability density function & \(f(x) = \frac{1}{\beta}e^{-\frac{x}{\beta}}\) \\
+Cumulative distribution function & \(F(x) = \begin{cases}0, & \text{if } x \leq 0, \\ 1 - e^{-\frac{x}{\beta}}, & \text{if } x > 0.\end{cases}\) \\
+Expectation & \(\beta\) \\
+Variance & \(\beta^2\) \\
+MGF & \(M(t) = \frac{1}{1 - \beta t}\) for \(t < \frac1\beta\) \\
+Kernel & \(e^{-\frac{x}{\beta}}\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+ggdistribution(dexp, seq(0,5, by=0.1), rate=1, colour = "blue", fill = "blue", alpha=0.5) +
+    theme(axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+```
+
+\End{multicols}
+
+
+### Gamma
+\Begin{multicols}{2}
+
+Generalisation of the exponential distribution. For integer shape parameter, represents the waiting time until the \(r\)th event.
+\begin{disttab}
+\multirow{2}{*}{Parameters} & shape \(r>0\) \\
+& scale \(\lambda > 0\) \\
+Possible values & \((0,\infty)\) \\
+Notation & \(\GamDist{a,b}\) \\
+Probability density function & \(f(x) = \frac{\lambda^r}{\Gamma(r)}x^{r-1}e^{-\lambda x}\) \\
+Cumulative distribution function & no simple expression \\
+Expectation & \(\frac{r}{\lambda}\) \\
+Variance & \(\frac{r}{\lambda^2}\) \\
+MGF & \(M(t) = \bfrac{\lambda}{\lambda - t}^r\) for \(t < \lambda\) \\
+Kernel & \(x^{r-1}e^{-\lambda x}\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+ggdistribution(dgamma, seq(0,15, by=0.1), shape=5, rate=1, colour = "blue", fill = "blue", alpha=0.5) +
+    theme(axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+```
+
+\End{multicols}
+
+#### Properties
+
+* If \(X \isGamma{r,\lambda}\), then for any \(k > 0\), \(kX \isGamma{r,\frac{\lambda}{k}}\)
+
+#### Related Distributions
+
+* If \(r \in \N\) and \(X \isGamma{r,\lambda}\), then
+\[
+X = \sum_{i=1}^n{X_i},
+\]
+where \(X_i \isExp{\lambda}\) independently.
+
+
+
 
 # Multivariate
 
