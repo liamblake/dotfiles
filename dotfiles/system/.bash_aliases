@@ -6,3 +6,5 @@ alias dev="cd $HOME/dev"
 alias dotfiles="cd $HOME/dev/useful/dotfiles"
 alias dbr="cd $HOME/Dropbox"
 alias uni="cd $HOME/Dropbox/university"
+
+alias mail="thunderbird"
