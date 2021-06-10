@@ -1,6 +1,7 @@
 \ProvidesPackage{lb_base}[30/03/2021]
 
 % Packages which I almost always find useful
+\RequirePackage{mathtools}
 \RequirePackage{bm}
 \RequirePackage{commath}
 \RequirePackage{enumitem}
@@ -10,7 +11,6 @@
 
 % Option for serif font
 \DeclareOption{sans}{\renewcommand{\familydefault}{\sfdefault}}
-
 \ProcessOptions\relax
 
 
@@ -30,15 +30,6 @@
 \newcommand{\N}{\mathbb{N}}		% Natural numbers
 \newcommand{\Q}{\mathbb{Q}}		% Rational numbers
 \newcommand{\C}{\mathbb{C}}		% Complex numbers
-
-
-% Nice boxed theorem environments
-\RequirePackage{mdframed}
-\newmdtheoremenv{theorem}{Theorem}[subsection]
-\newmdtheoremenv{defn}{Definition}
-\newmdtheoremenv{result}{Result}
-\newmdtheoremenv{corollary}{Corollary}
-\newmdtheoremenv{example}{Example}[section]
 
 % Bracketed fractions
 \newcommand{\bfrac}[2]{\left(\frac{#1}{#2}\right)}
