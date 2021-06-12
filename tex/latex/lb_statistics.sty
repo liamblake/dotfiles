@@ -35,6 +35,8 @@
 \newcommand{\StdGauss}{\Gauss{0,1}}
 \newcommand{\NegBin}[1]{\Dist{\mathrm{NB}}{#1}}
 \newcommand{\GamDist}[1]{\Dist{\mathrm{Gamma}}{#1}}
+\newcommand{\BetaDist}[1]{\Dist{\mathrm{Beta}}{#1}}
+\newcommand{\Cauchy}[1]{\Dist{\mathrm{Cauchy}}{#1}}
 
 % With \sim
 \newcommand{\isBern}[1]{\sim\Bern{#1}}
@@ -47,6 +49,19 @@
 \newcommand{\isUniform}[1]{\sim\Uniform{#1}}
 \newcommand{\isGamma}[1]{\sim\GamDist{#1}}
 \newcommand{\isExp}[1]{\sim\Exp{#1}}
+\newcommand{\isBeta}[1]{\sim\BetaDist{#1}}
+\newcommand{\isCauchy}[1]{\sim\Cauchy{#1}}
+
+% Weirder notation using subscripts
+\newcommand{\ChiSq}[1]{\chi^2_{#1}}
+\newcommand{\FDist}[1]{F_{#1}}
+\newcommand{\TDist}[2]{t_{#1}\left(#2\right)}
+\newcommand{\StdT}[1]{t_{#1}}
+
+\newcommand{\isChiSq}[1]{\sim\ChiSq{#1}}
+\newcommand{\isF}[1]{\sim\FDist{#1}}
+\newcommand{\isT}[2]{\sim\TDist{#1}{#2}}
+\newcommand{\isStdT}[1]{\sim\StdT{#1}}
 
 % Hypothesis tests
 \newcommand{\hypothesis}[1]{%

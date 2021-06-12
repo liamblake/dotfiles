@@ -431,6 +431,260 @@ X = \sum_{i=1}^n{X_i},
 \]
 where \(X_i \isExp{\lambda}\) independently.
 
+* If \(X \isChiSq{r}\), then \(X \isGamma{\frac{r}{2}, \frac12}\).
+
+
+
+### Beta
+\Begin{multicols}{2}
+
+Represents a random variable which is positive and bounded. Useful for modelling proportions and percentages.
+\begin{disttab}
+\multirow{2}{*}{Parameters} & shape \(\alpha>0\) \\
+& shape \(\beta > 0\) \\
+Possible values & \((0,1)\) \\
+Notation & \(\BetaDist{a,b}\) \\
+Probability density function & \(f(x) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}\) \\
+Cumulative distribution function & no simple expression \\
+Expectation & \(\frac{\alpha}{\alpha + \beta}\) \\
+Variance & \(\frac{\alpha\beta}{(\alpha+\beta+1)(\alpha+\beta)^2}\) \\
+MGF & exists but no simple expression \\
+Kernel & \(x^{\alpha-1}(1-x)^{\beta-1}\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+ggdistribution(dbeta, seq(0,1, by=0.01), shape1=3, shape2=6, colour = "blue", fill = "blue", alpha=0.5) +
+    theme(axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+```
+
+\End{multicols}
+
+#### Related Distributions
+
+* If \(X \isGamma{\alpha,\lambda}\) and \(Y \isGamma{\beta,\lambda}\) independently, then \(\frac{X}{X + Y} \isBeta{\alpha,\beta}\).
+
+* The Beta distribution can be generalised to any bounded interval \([a,b]\), with properties
+
+  - 
+  
+  
+  
+
+### Normal
+\Begin{multicols}{2}
+
+The classic bell-shaped curve.
+\begin{disttab}
+\multirow{2}{*}{Parameters} & mean \(\mu \in \R\) \\
+& variance \(\sigma^2 > 0\) \\
+Possible values & \(\R\) \\
+Notation & \(\Gauss{\mu,\sigma^2}\) \\
+Probability density function & \(f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\) \\
+Cumulative distribution function & no simple expression \\
+Expectation & \(\mu\) \\
+Variance & \(\sigma^2\) \\
+MGF & \(e^{\mu t + \frac{\sigma^2t^2}{2}}\) \\
+Kernel & \(e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+ggdistribution(dnorm, seq(-3,3, by=0.1), colour = "blue", fill = "blue", alpha=0.5) +
+    theme(axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+```
+
+\End{multicols}
+
+
+### \(\chi^2\)
+\Begin{multicols}{2}
+
+The sum of the squares of \(n\) independent standard normal random variables. 
+\begin{disttab}
+\multirow{1}{*}{Parameters} & degrees of freedom \(n \in \N\) \\
+Possible values & \((0,\infty)\) if \(n = 1\); \([0,\infty)\) otherwise \\
+Notation & \(\ChiSq{n}\) \\
+Probability density function & \(f(x) = \frac{1}{2^{n/2}\Gamma\bfrac{n}{2}}x^{\frac{n}{2}-1}e^{-\frac{x}{2}}\) \\
+Cumulative distribution function & \(F(x) = \begin{cases}0, & \text{if } x \leq 0, \\ \frac{1}{\Gamma\bfrac{n}{2}}\int_{0}^{x/2}{t^{\frac{n}{2} - 1}e^{-\frac{t}{2}}\dif t}. & \text{if } x > 0\end{cases}\) \\
+Expectation & \(n\) \\
+Variance & \(2n\) \\
+MGF & \((1-2t)^{-\frac{n}{2}}\) \\
+Kernel & \(x^{\frac{n}{2}-1}e^{-\frac{x}{2}}\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+ggdistribution(dchisq, seq(0,25, by=0.1), df=10, colour = "blue", fill = "blue", alpha=0.5) +
+    theme(axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+```
+
+\End{multicols}
+
+#### Related Distributions
+
+* If \(X \isChiSq{n}\), then 
+\[
+X = \sum_{i=1}^{n}{Z_i^2},
+\]
+where \(Z_i \isStdGauss\) independently.
+
+* If \(X \isChiSq{r}\), then \(X \isGamma{\frac{r}{2}, \frac12}\).
+
+* If \(Y \isF{\nu_1, \nu_2}\), then \(\lim_{\nu_2\to\infty}\nu_1Y \isChiSq{\nu_1}\).
+
+
+### Cauchy
+The ratio of two independent, identically distributed and central normal random variables.
+
+\Begin{multicols}{2}
+
+The sum of the squares of \(n\) independent standard normal random variables. 
+\begin{disttab}
+\multirow{2}{*}{Parameters} & location \(\mu \in \R\) \\
+& scale \(\sigma > 0\) \\
+Possible values & \(\R\) \\
+Notation & \(\Cauchy{\mu,\sigma}\) \\
+Probability density function & \(f(x) = \frac{1}{\pi\sigma\left(1 + \frac{2(x - \mu)}{\sigma}\right)}\) \\
+Cumulative distribution function & \(F(x) = \begin{cases}0, & \text{if } x \leq 0, \\ \frac12 + \frac1\pi\arctan\bfrac{x - \mu}{\sigma}, & \text{if } x > 0\end{cases}\) \\
+Expectation & does not exist \\
+Variance & does not exist \\
+MGF & does not exist \\
+Kernel & \(\sigma + 2(x-\mu)\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+ggdistribution(dcauchy, seq(-5,5, by=0.1), colour = "blue", fill = "blue", alpha=0.5) +
+    theme(axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+```
+
+\End{multicols}
+
+#### Related Distributions
+
+* If \(Z_1, Z_2 \isStdGauss\) independently, then \(Z_1/Z_2 \isCauchy{0,1}\).
+
+* If \(X \isCauchy{\mu,\sigma}\) then \(X \isT{n}{\mu,\sigma}\).
+
+
+### \(t\)
+\Begin{multicols}{2}
+
+The ratio of a standard normal random variable and \(\chi^2\) random variable.
+\begin{disttab}
+\multirow{3}{*}{Parameters} & location \(\mu \in \R\) \\
+& scale \(\sigma > 0\) \\
+& degrees of freedom \(\nu \in \N\) \\
+Possible values & \((0,\infty)\) if \(n = 1\); \([0,\infty)\) otherwise \\
+Notation & \(\TDist{n}{\mu,\sigma^2}\) \\
+Probability density function & \(f(x) = \frac{\Gamma\bfrac{\nu+1}{2}}{\Gamma\bfrac{\nu}{2}\sigma\sqrt{\pi\nu}}\left[1 + \frac1\nu\bfrac{x-\mu}{\sigma}^2\right]^{-\frac{\nu+1}{2}}\) \\
+Cumulative distribution function & no simple expression \\
+Expectation & \(\mu\) for \(\nu\geq 2\) \\
+Variance & \(\frac{\sigma^2\nu}{\nu-2}\) for \(\nu\leq 3\) \\
+MGF & does not exist \\
+Kernel & \(\left[1 + \frac1\nu\bfrac{x-\mu}{\sigma}^2\right]^{-\frac{\nu+1}{2}}\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+ggdistribution(dt, seq(-5,5, by=0.1), df=10, colour = "blue", fill = "blue", alpha=0.5) +
+    theme(axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+```
+
+\End{multicols}
+
+#### Related Distributions
+
+* If \(Z\isStdGauss\) and \(W\isChiSq{\nu}\) independently, then 
+\[
+\mu + \sigma\frac{Z}{\sqrt{\frac{W}{\nu}}} \isT{\nu}{\mu,\sigma^2}.
+\]
+
+
+### \(F\)
+\Begin{multicols}{2}
+
+The ratio of the sample variance of two normal random variables.
+\begin{disttab}
+\multirow{2}{*}{Parameters} & degrees of freedom \(\nu_1 \in \N\) \\
+& degrees of freedom \(\nu_2 \in \N\) \\
+Possible values & \((0,\infty)\) \\
+Notation & \(\FDist{n}{\mu,\sigma^2}\) \\
+Probability density function & \(f(x) = \frac{\Gamma\bfrac{\nu_1\nu_2}{2}\nu_1^{\nu_1/2}\nu_2^{\nu_2}x^{\nu_1/2 - 1}}{\Gamma\bfrac{\nu_1}{2}\Gamma{\nu_2}{2}\left(\nu_1x + \nu_2\right)^{\frac{\nu_1 + \nu_2}{2}}}\) \\
+Cumulative distribution function & no simple expression \\
+Expectation & \(\frac{\nu_2}{\nu_2 - 2}\) for \(\nu\geq 2\) \\
+Variance & \(\frac{2\nu_2^2(\nu_1 + \nu_2 - 2)}{\nu_1(\nu_2 - 2)^2(\nu_2 - 4)}\) for \(\nu\geq 4\) \\
+MGF & does not exist \\
+Kernel & \(\frac{x^{\nu_1/2 - 1}}{\left(\nu_1x + \nu_2\right)^{\frac{\nu_1 + \nu_2}{2}}}\)
+\end{disttab}
+
+\columnbreak
+
+```{r}
+ggdistribution(df, seq(0,5, by=0.01), df1=10, df2 = 8, colour = "blue", fill = "blue", alpha=0.5) +
+    theme(axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+```
+
+\End{multicols}
+
+
+#### Related Distributions
+
+* If \(U \isChiSq{\nu_1}\) and \(V\isChiSq{\nu_2}\) independently, then
+\[
+\frac{U/\nu_1}{V/\nu_2} \isF{\nu_1, \nu_2}.
+\]
+
+* If \(X_1 \isGamma{\alpha_1,\beta_1}\) and \(X_2\isGamma{\alpha_2,\beta_2}\) independently, then
+\[
+\frac{\alpha_1\beta_1X_1}{\alpha_2\beta_2X_2} \isF{2\alpha_1, 2\alpha_2}.
+\]
+
+* If \(X \isBeta{\alpha/2, \beta/2}\) then 
+\[
+\frac{\beta X}{\alpha(1 - X)} \isF{\alpha,\beta}.
+\]
+
+* If \(X \isStdT{\nu}\), then \(X^2 \isF{1,\nu}\).
+
+
+
 
 
 
