@@ -1,0 +1,21 @@
+\ProvidesPackage{lb_theory}[10/06/2021]
+
+\RequirePackage{amsthm}
+
+% TODO: Add options to specify the numbering schemes
+
+% Nice boxed theorem environments
+\RequirePackage{mdframed}
+\newmdtheoremenv{theorem}{Theorem}[subsection]
+\newmdtheoremenv{defn}{Definition}
+\newmdtheoremenv{result}{Result}
+\newmdtheoremenv{corollary}{Corollary}
+\newmdtheoremenv{example}{Example}[section]
+\newmdtheoremenv{lemma}{Lemma}
+
+% Proof environment, ended with box
+\renewenvironment{proof}{%
+    \noindent{\bfseries Proof.}\hspace{0.5em}
+    }{%
+    \ \null  \hfill $\square$ \par
+    }
