@@ -1,3 +1,6 @@
+# Evnironment variables
+source $(pwd)/system/.env
+
 # System symlinks
 ln -si $(pwd)/system/.bash_aliases "$HOME"
 
