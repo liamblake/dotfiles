@@ -1,6 +1,7 @@
 \ProvidesPackage{lb_base_rmd}[30/03/2021]
 
 % Packages which I almost always find useful
+\RequirePackage{mathtools}
 \RequirePackage{bm}
 \RequirePackage{commath}
 \RequirePackage{enumitem}
@@ -15,10 +16,13 @@
 
 
 % Provides warnings if labels are unused
-\RequirePackage{refcheck}
-\norefnames
-\nocitenames
-
+% Ref check is optional for RMD, can cause lots of garbage warnings due to each header automatically recieving a label.
+\DeclareOption{refcheck}{%
+	\RequirePackage{refcheck}
+	\norefnames
+	\nocitenames
+}
+\ProcessOptions\relax
 
 
 % Allow numbering of individuals lines in an align env
@@ -32,14 +36,6 @@
 % knitR has it's own definition for \C, so we need to call the following something else to use this style file in Rmarkdown
 \newcommand{\CN}{\mathbb{C}}		% Complex numbers
 
-
-% Nice boxed theorem environments
-\RequirePackage{mdframed}
-\newmdtheoremenv{theorem}{Theorem}[subsection]
-\newmdtheoremenv{defn}{Definition}
-\newmdtheoremenv{result}{Result}
-\newmdtheoremenv{corollary}{Corollary}
-\newmdtheoremenv{example}{Example}[section]
 
 % Bracketed fractions
 \newcommand{\bfrac}[2]{\left(\frac{#1}{#2}\right)}
@@ -55,3 +51,7 @@
 
 % Provide reasoning in a \text env alongside a line of maths
 \newcommand{\rea}[1]{\qquad \qquad \left(\text{#1}\right)}
+
+% argmax and argmin
+\DeclareMathOperator{\argmax}{argmax}
+\DeclareMathOperator{\argmin}{argmin}

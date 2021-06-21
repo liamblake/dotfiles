@@ -45,6 +45,13 @@ plot_disc <- function(values, dist) {
   {
   \end{tabular}
   }
+  
+\newenvironment{mdisttab}{%
+  \begin{tabular}{>{\color{cyan}}ll}
+  }
+  {
+  \end{tabular}
+  }
 
 
 ### (Discrete) Uniform
@@ -265,7 +272,7 @@ plot_disc(seq(5,40), function(x) {return(dnbinom(x, size = 5, prob = 0.25))})
 
 \clearpage
 
-### Negatve Binomial (Alternative)
+### Negative Binomial (Alternative)
 
 \Begin{multicols}{2}
 Represents the number of failures preceeding the \(r\)th success in a sequence of Bernoulli trials.
@@ -289,7 +296,7 @@ plot_disc(seq(5,40), function(x) {return(dnbinom(x, size = 5, prob = 0.25))})
 
 \End{multicols}
 
-
+\clearpage
 ## Continuous
 
 ### (Continuous) Uniform
@@ -323,8 +330,6 @@ ggdistribution(dunif, seq(0,10, by=1), min = 0, max = 10, colour = "blue", fill 
 
 \End{multicols}
 
-\clearpage
-
 ### Exponential
 \Begin{multicols}{2}
 
@@ -356,7 +361,7 @@ ggdistribution(dexp, seq(0,5, by=0.1), rate=1, colour = "blue", fill = "blue", a
 \End{multicols}
 
 
-
+\clearpage
 ### Exponential (Alternative)
 \Begin{multicols}{2}
 
@@ -387,7 +392,7 @@ ggdistribution(dexp, seq(0,5, by=0.1), rate=1, colour = "blue", fill = "blue", a
 
 \End{multicols}
 
-
+\clearpage
 ### Gamma
 \Begin{multicols}{2}
 
@@ -434,6 +439,7 @@ where \(X_i \isExp{\lambda}\) independently.
 * If \(X \isChiSq{r}\), then \(X \isGamma{\frac{r}{2}, \frac12}\).
 
 
+\clearpage
 
 ### Beta
 \Begin{multicols}{2}
@@ -472,7 +478,6 @@ ggdistribution(dbeta, seq(0,1, by=0.01), shape1=3, shape2=6, colour = "blue", fi
 
 * The Beta distribution can be generalised to any bounded interval \([a,b]\), with properties
 
-  - 
   
   
   
@@ -509,6 +514,7 @@ ggdistribution(dnorm, seq(-3,3, by=0.1), colour = "blue", fill = "blue", alpha=0
 \End{multicols}
 
 
+\clearpage
 ### \(\chi^2\)
 \Begin{multicols}{2}
 
@@ -518,7 +524,7 @@ The sum of the squares of \(n\) independent standard normal random variables.
 Possible values & \((0,\infty)\) if \(n = 1\); \([0,\infty)\) otherwise \\
 Notation & \(\ChiSq{n}\) \\
 Probability density function & \(f(x) = \frac{1}{2^{n/2}\Gamma\bfrac{n}{2}}x^{\frac{n}{2}-1}e^{-\frac{x}{2}}\) \\
-Cumulative distribution function & \(F(x) = \begin{cases}0, & \text{if } x \leq 0, \\ \frac{1}{\Gamma\bfrac{n}{2}}\int_{0}^{x/2}{t^{\frac{n}{2} - 1}e^{-\frac{t}{2}}\dif t}. & \text{if } x > 0\end{cases}\) \\
+Cumulative distribution function & \mbox{\(F(x) = \begin{cases}0, & \text{if } x \leq 0, \\ \frac{1}{\Gamma\bfrac{n}{2}}\int_{0}^{x/2}{t^{\frac{n}{2} - 1}e^{-\frac{t}{2}}\dif t}. & \text{if } x > 0\end{cases}\)} \\
 Expectation & \(n\) \\
 Variance & \(2n\) \\
 MGF & \((1-2t)^{-\frac{n}{2}}\) \\
@@ -552,6 +558,7 @@ where \(Z_i \isStdGauss\) independently.
 * If \(Y \isF{\nu_1, \nu_2}\), then \(\lim_{\nu_2\to\infty}\nu_1Y \isChiSq{\nu_1}\).
 
 
+\clearpage
 ### Cauchy
 The ratio of two independent, identically distributed and central normal random variables.
 
@@ -564,7 +571,7 @@ The sum of the squares of \(n\) independent standard normal random variables.
 Possible values & \(\R\) \\
 Notation & \(\Cauchy{\mu,\sigma}\) \\
 Probability density function & \(f(x) = \frac{1}{\pi\sigma\left(1 + \frac{2(x - \mu)}{\sigma}\right)}\) \\
-Cumulative distribution function & \(F(x) = \begin{cases}0, & \text{if } x \leq 0, \\ \frac12 + \frac1\pi\arctan\bfrac{x - \mu}{\sigma}, & \text{if } x > 0\end{cases}\) \\
+Cumulative distribution function & \mbox{\(F(x) = \begin{cases}0, & \text{if } x \leq 0, \\ \frac12 + \frac1\pi\arctan\bfrac{x - \mu}{\sigma}, & \text{if } x > 0\end{cases}\)} \\
 Expectation & does not exist \\
 Variance & does not exist \\
 MGF & does not exist \\
@@ -592,6 +599,7 @@ ggdistribution(dcauchy, seq(-5,5, by=0.1), colour = "blue", fill = "blue", alpha
 * If \(X \isCauchy{\mu,\sigma}\) then \(X \isT{n}{\mu,\sigma}\).
 
 
+\clearpage
 ### \(t\)
 \Begin{multicols}{2}
 
@@ -632,6 +640,7 @@ ggdistribution(dt, seq(-5,5, by=0.1), df=10, colour = "blue", fill = "blue", alp
 \]
 
 
+\clearpage
 ### \(F\)
 \Begin{multicols}{2}
 
@@ -687,11 +696,91 @@ ggdistribution(df, seq(0,5, by=0.01), df1=10, df2 = 8, colour = "blue", fill = "
 
 
 
-
+\clearpage
 # Multivariate
-
 
 ## Discrete
 
+### Trinomial
+A generalisation of the binomial distribution to 3 possible outcomes.
+
+\begin{mdisttab}
+\multirow{2}{*}{Parameters} & number of trials \(n \in \N\) \\
+& probabilities of success \(\pi_1, \pi_2 > 0\) such that \(\pi_1 + \pi_2 < 1\) \\
+Possible values & \(x_1,x_2 \in \set{0,1,\hdots,n}\) such that \(x_1 + x_2 \leq n\) \\
+Notation & \(\Trinom{n,\pi_1,\pi_2}\) \\
+Probability function & \mbox{\(p(x_1,x_2) = \frac{n!}{x_1!x_2!(n-x_1-x_2)!}\pi_1^{x_1}\pi_2^{x_2}(1 - \pi_1 - \pi_2)^{n - \pi_1 - \pi_2}\)} \\
+Expectation & \(\avg{X_i} = n\pi_i\) \\
+Variance & \(\var{X_i} = n\pi_i(1 - \pi_i)\) \\
+Covariance & \(\cov{X_1,X_2} = -n\pi_1\pi_2\) \\
+\multirow{2}{*}{Marginal} & \(X_1 \isBin{n,\pi_1}\) \\
+& \(X_2 \isBin{n,\pi_2}\) \\
+\multirow{2}{*}{Conditional} & \(X_1\,|\,X_2 = x_2 \isBin{n-x_2,\frac{\pi_1}{1-\pi_2}}\) \\
+& \(X_2\,|\,X_1 = x_1 \isBin{n-x_1,\frac{\pi_2}{1-\pi_1}}\) \\
+\end{mdisttab}
+
+
+### Multinomial
+Generalisation of the binomial distribution to \(r\) possible outcomes.
+
+\begin{mdisttab}
+\multirow{2}{*}{Parameters} & number of trials \(n \in \N\) \\
+& probabilities of success \(\bm{\pi} = (\pi_1,\hdots,\pi_r\) such that \(\pi_i \geq 0\) and \(\sum_{i=1}^r{\pi_i} = n\) \\
+Possible values & \(x_1,\hdots,x_r \in \set{0,1,\hdots,n}\) such that \(\sum_{i=1}^r{x_i} = n\) \\
+Notation & \(\Multinom{r}{n,\bm{\pi}}\) \\
+Probability function & \mbox{\(p(x_1,\hdots,x_r) = \frac{n!}{x_1!\cdots x_r!}\pi_1^{x_1}\cdots\pi_r^{x_r}\)} \\
+Expectation & \(\avg{X_i} = n\pi_i\) \\
+Variance & \(\var{X_i} = n\pi_i(1 - \pi_i)\) \\
+Covariance & \(\cov{X_i,X_j} = -n\pi_i\pi_j\) for \(i \neq j\) \\
+\end{mdisttab}
+
 
 ## Continuous
+
+### Uniform on Unit Square
+A bivariate extension of the univariate (continuous) uniform distribution.
+
+\begin{mdisttab}
+\multirow{1}{*}{Parameters} & none \\
+Possible values & \(0 < x_1,x_2 < 1\) \\
+Probability density function & \mbox{\(f(x_1,x_2) = 1\)} \\
+\end{mdisttab}
+
+### Uniform on Unit Circle
+Another bivariate extension of the univariate (continuous) uniform distribution.
+
+\begin{mdisttab}
+\multirow{1}{*}{Parameters} & none \\
+Possible values & \(-1 < x_1,x_2 < 1\) such that \(x_1^2 + x_2^2 < 1\) \\
+Probability density function & \mbox{\(f(x_1,x_2) = \frac1\pi\)} \\
+\end{mdisttab}
+
+
+### Dirichlet
+Generalisation of the Beta distribution.
+
+\begin{mdisttab}
+\multirow{1}{*}{Parameters} & \(\alpha_1,\hdots,\alpha_{r+1} > 0\) \\
+Possible values & \(x_1,\hdots,x_r > 0\) such that \(\sum_{i=1}^r{x_i} < 1\) \\
+Notation & \(\Dir{\bm{\alpha}}\) \\
+Probability density function & \mbox{\(f(x_1,\hdots,x_r) =\frac{\Gamma\left(\alpha_1 + \cdots + \alpha_{r+1}\right)}{\Gamma(\alpha_1)\cdots\Gamma(\alpha_{r+1})}\prod_{i=1}^r{x_i^{\alpha_i-1}}\)} \\
+Expectation & \(\avg{X_i} = \frac{\alpha_i}{\alpha_0}\) \\
+Variance & \(\var{X_i} = \frac{\alpha_i(\alpha_0 - \alpha_i)}{\alpha_0^2(\alpha_0 + 1)}\) \\
+Covariance & \(\cov{X_1,X_2} = -\frac{\alpha_i\alpha_j}{\alpha_0^2(\alpha_0 + 1)}\) where \(\alpha_0 = \sum_{i=1}^{r+1}{\alpha_i}\) \\
+\multirow{1}{*}{Marginal} & \(X_i \isBeta{\alpha_i,\alpha_0 - \alpha_i}\) \\
+\end{mdisttab}
+
+
+### Multivariate Normal
+Generalisation of the normal distribution.
+
+\begin{mdisttab}
+\multirow{2}{*}{Parameters} & mean \(\bm{\mu} \in \R^r\) \\
+& non-negative definite variance matrix \(\Sigma\) \\
+Possible values & \(\bm{x}\in\R^r\) \\
+Notation & \(\mathcal{N}_r\left(\bm{\mu},\Sigma\right)\) \\
+Probability density function & \mbox{\(p(\bm{x}) = (2\pi)^{-\frac{r}{2}}\abs{\Sigma}^{-\frac12}e^{-\frac12(\bm{x} - \bm{\mu})^T\Sigma^{-1}(\bm{x} - \bm{\mu})}\)} \\
+Expectation & \(\avg{\bm{X}} = \bm{\mu}\) \\
+Variance & \(\var{\bm{X}} = \Sigma\) \\
+MGF & \(e^{\bm{t}^T\bm{\mu} + \frac12\bm{t}^T\Sigma\bm{t}}\) \\
+\end{mdisttab}

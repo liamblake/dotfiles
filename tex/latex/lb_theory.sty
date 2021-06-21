@@ -1,17 +1,46 @@
 \ProvidesPackage{lb_theory}[10/06/2021]
 
 \RequirePackage{amsthm}
+\RequirePackage[framemethod=TikZ]{mdframed}
 
 % TODO: Add options to specify the numbering schemes
 
 % Nice boxed theorem environments
-\RequirePackage{mdframed}
-\newmdtheoremenv{theorem}{Theorem}[subsection]
-\newmdtheoremenv{defn}{Definition}
-\newmdtheoremenv{result}{Result}
-\newmdtheoremenv{corollary}{Corollary}
-\newmdtheoremenv{example}{Example}[section]
-\newmdtheoremenv{lemma}{Lemma}
+
+\mdtheorem{theorem}{Theorem}[subsection]
+\mdtheorem{defn}{Definition}
+\mdtheorem{result}{Result}
+\mdtheorem{corollary}{Corollary}
+\mdtheorem{example}{Example}[section]
+\mdtheorem{lemma}{Lemma}
+
+% Option for fancier theorem, definition
+\DeclareOption{fancythm}{%
+    \newcounter{theo}[subsection]\setcounter{theo}{0}
+    \renewcommand{\thetheo}{\arabic{section}.\arabic{subsection}.\arabic{theo}}
+    \renewenvironment{\theorem}[2][]{%
+    \refstepcounter{theo}%
+    \ifstrempty{#1}%
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=blue!20]
+    {\strut Theorem~\thetheo};}}
+    }%
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=blue!20]
+    {\strut Theorem~\thetheo:~#1};}}%
+    }%
+    \mdfsetup{innertopmargin=10pt,linecolor=blue!20,%
+    linewidth=2pt,topline=true,%
+    frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+    }
+    \begin{mdframed}[]\relax%
+    \label{#2}}{\end{mdframed}}
+}
+\ProcessOptions\relax
 
 % Proof environment, ended with box
 \renewenvironment{proof}{%
