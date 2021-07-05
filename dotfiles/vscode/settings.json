@@ -1,4 +1,9 @@
 {
+    // General settings
+    "git.autofetch": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Dracula",
+    // Python settings
     "python.formatting.provider": "black",
     "[python]": {
         "editor.formatOnSave": true,
