@@ -2,7 +2,7 @@
 source $(pwd)/system/.env
 
 # Bash aliases
-ln -si $(pwd)/system/.bash_aliases "$HOME"
+ln -si $(pwd)/system/.bashrc "$HOME"
 
 # Create links in .config/dir
 for dir in "git" "terminator"
