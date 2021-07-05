@@ -11,5 +11,9 @@
             "source.organizeImports": true
         }
     },
-    "python.linting.flake8Enabled": true
+    "python.linting.flake8Enabled": true,
+    "gitlens.codeLens.enabled": false,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    }
 }
