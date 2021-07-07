@@ -71,19 +71,15 @@ show_virtual_env() {
   fi
 }
 export -f show_virtual_env
-PS1='$(show_virtual_env)'$PS1
 
 eval "$(direnv hook bash)"
 
+# Git branch prompt
+source ~/.config/git/.git-prompt.sh
+
+# PS1
+PS1='$(show_virtual_env) '$PS1
+#export PS1='$(show_virtual_env) [\u@\h \W (__git_ps1 " (%s)")\$ ' 
 
 # Aliases
-alias venv="source venv/bin/activate"
-alias codehere="code -n ."
-
-# Commonly used directories - assumes dev dir is in home
-alias dev="cd $HOME/dev"
-alias dotfiles="cd $HOME/dev/useful/dotfiles"
-alias dbr="cd $HOME/Dropbox"
-alias uni="cd $HOME/Dropbox/university"
-
-alias mail="thunderbird"
+. ~/.bash_aliases

@@ -1,8 +1,16 @@
 # Evnironment variables
 source $(pwd)/system/.env
 
-# Bash aliases
-ln -si $(pwd)/system/.bashrc "$HOME"
+# Bash configs
+for dir in $(ls -a bash/)
+do
+    if [ $dir -eq "." -or$dir -eq ".."]
+    then
+        continue
+    fi
+
+    ln -si $(pwd)/bash/$dir "$HOME"/
+done
 
 # Create links in .config/dir
 for dir in "git" "terminator"
