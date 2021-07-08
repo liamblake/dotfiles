@@ -75,3 +75,8 @@ unset color_prompt
 
 # Aliases
 . ~/.bash_aliases
+
+# Local aliases
+if [ -f ~/.local_bash_aliases ]; then
+    . ~/.local_bash_aliases
+fi
