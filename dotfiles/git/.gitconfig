@@ -1,12 +1,11 @@
-[user]
-    email = liamlemblake@gmail.com
-    name = Liam Blake
-
-[github]
-    user = LiamBlake
-
 [core]
     editor = code
 
 [merge]
     tool = code
+
+[alias]
+    st = "status -s -b"
+    co = "checkout"
+    cb = "checkout -b"
+    cm = "commit -m"

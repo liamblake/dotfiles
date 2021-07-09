@@ -2,19 +2,15 @@
 source $(pwd)/system/.env
 
 # Bash configs
-for dir in $(ls -a bash/)
-do
-    if [ $dir -eq "." -or$dir -eq ".."]
-    then
-        continue
-    fi
-
+for dir in ".bash_aliases" ".bashrc"; do
     ln -si $(pwd)/bash/$dir "$HOME"/
 done
 
+# Git config
+ln -si $(pwd)/git/.gitconfig "$HOME"/
+
 # Create links in .config/dir
-for dir in "git" "terminator"
-do 
+for dir in "git" "terminator"; do
     ln -si $(pwd)/$dir "$HOME"/.config/
 done
 
