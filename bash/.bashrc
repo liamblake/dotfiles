@@ -57,7 +57,7 @@ eval "$(direnv hook bash)"
 source ~/.config/git/.git-prompt.sh
 
 # Add bin to path
-export PATH = "$(pwd)/bin:$PATH"
+export PATH="$(pwd)/bin:$PATH"
 
 # Set PS1, dependent on whether the shell has colour support.
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -76,3 +76,6 @@ fi
 if [ -f ~/.local_bash_aliases ]; then
     . ~/.local_bash_aliases
 fi
+
+# Env vars
+export EDITOR="code"
