@@ -1,0 +1,11 @@
+[core]
+    editor = code
+
+[merge]
+    tool = code
+
+[alias]
+    st = "status -s -b"
+    co = "checkout"
+    cb = "checkout -b"
+    cm = "commit -m"

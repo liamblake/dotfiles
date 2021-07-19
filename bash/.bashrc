@@ -56,6 +56,9 @@ eval "$(direnv hook bash)"
 # Git branch prompt
 source ~/.config/git/.git-prompt.sh
 
+# Add bin to path
+export PATH = "$(pwd)/bin:$PATH"
+
 # Set PS1, dependent on whether the shell has colour support.
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
   # We have color support; assume it's compliant with Ecma-48
