@@ -3,7 +3,7 @@
     "git.autofetch": true,
     "workbench.iconTheme": "material-icon-theme",
     "workbench.colorTheme": "Dracula",
-    // Those pesky Windows line endings
+    // Eliminate those pesky Windows line endings
     "files.eol": "\n",
     // Python settings
     "python.formatting.provider": "black",
@@ -14,6 +14,7 @@
         }
     },
     "python.linting.flake8Enabled": true,
+    // Extension settings
     "gitlens.codeLens.enabled": false,
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"

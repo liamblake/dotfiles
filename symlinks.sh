@@ -1,9 +1,3 @@
-# Evnironment variables
-source $(pwd)/config/system/.env
-
-# Git config
-ln -si $(pwd)/git/.gitconfig "$HOME"/
-
 # Create links in .config/dir
 for dir in "git" "terminator"; do
     ln -si $(pwd)/config/$dir "$HOME"/.config/
@@ -11,6 +5,9 @@ done
 
 
 ### The following symlinks behave differently ###
+# Git config
+ln -si $(pwd)/git/.gitconfig "$HOME"/
+
 # Bash configs
 for dir in ".bash_aliases" ".bashrc"; do
     ln -si $(pwd)/bash/$dir "$HOME"/
