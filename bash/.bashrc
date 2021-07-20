@@ -77,3 +77,5 @@ fi
 
 # Env vars
 export EDITOR="code"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

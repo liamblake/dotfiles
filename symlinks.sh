@@ -3,7 +3,6 @@ for dir in "git" "terminator"; do
     ln -si $(pwd)/config/$dir "$HOME"/.config/
 done
 
-
 ### The following symlinks behave differently ###
 # Git config
 ln -si $(pwd)/git/.gitconfig "$HOME"/
@@ -21,3 +20,6 @@ ln -si $(pwd)/vscode/settings.json "$HOME"/.config/Code/User/
 mkdir -p "$HOME/texmf/tex/latex/"
 ln -si $(pwd)/tex/latex/* "$HOME/texmf/tex/latex/"
 # Only symlinking the files and not the full directory prevents any clutter from locally installed packages.
+
+# Install .fzf
+source $(pwd)/ext/fzf/install --completion --key-bindings --all
