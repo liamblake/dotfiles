@@ -63,6 +63,11 @@ if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
   # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
   # a case would tend to support setf rather than setaf.)
   PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]$(show_virtual_env) \[\033[01;34m\]\w\[\033[01;35m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
+
+  # Colour for directories when ls
+  LS_COLORS=$LS_COLORS:'di=1;33:'
+  export LS_COLORS
+
 else
   PS1='${debian_chroot:+($debian_chroot)}$(show_virtual_env) \w(__git_ps1 " (%s)")\$ '
 fi
