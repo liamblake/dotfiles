@@ -53,9 +53,6 @@ export -f show_virtual_env
 
 eval "$(direnv hook bash)"
 
-# Git branch prompt
-source ~/.config/git/.git-prompt.sh
-
 # Add bin to path
 export PATH="$(pwd)/bin:$PATH"
 
@@ -72,9 +69,9 @@ fi
 # Aliases
 . ~/.bash_aliases
 
-# Local aliases
-if [ -f ~/.local_bash_aliases ]; then
-    . ~/.local_bash_aliases
+# Local configuration - overwrites any conflicts here
+if [ -f ~/.bashrc.local ]; then
+    . ~/.bashrc.local
 fi
 
 # Env vars
