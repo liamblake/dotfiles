@@ -12,6 +12,9 @@ for dir in ".bash_aliases" ".bashrc"; do
     ln -si $(pwd)/bash/$dir "$HOME"/
 done
 
+# .inputrc
+ln -si $(pwd)/config/system/.inputrc "$HOME"/
+
 # VSCode setup
 mkdir -p "$HOME"/.config/Code/User/
 ln -si $(pwd)/vscode/settings.json "$HOME"/.config/Code/User/
