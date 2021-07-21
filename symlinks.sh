@@ -17,7 +17,7 @@ ln -si $(pwd)/config/system/.inputrc "$HOME"/
 
 # VSCode setup
 mkdir -p "$HOME"/.config/Code/User/
-ln -si $(pwd)/vscode/settings.json "$HOME"/.config/Code/User/
+ln -si $(pwd)/.config/vscode/settings.json "$HOME"/.config/Code/User/
 
 # TeX style files
 mkdir -p "$HOME/texmf/tex/latex/"
