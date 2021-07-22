@@ -24,9 +24,6 @@ mkdir -p "$HOME/texmf/tex/latex/"
 ln -si $(pwd)/tex/latex/* "$HOME/texmf/tex/latex/"
 # Only symlinking the files and not the full directory prevents any clutter from locally installed packages.
 
-# IPython profile
-ln -si $(pwd)/python/.ipython/profile_default/ipython_config.py "$HOME/.ipython/profile_default/"
-
 # Jupyter config
 ln -si $(pwd)/config/.jupyter/jupyter_notebook_config.py "$HOME/.jupyter/"
 
