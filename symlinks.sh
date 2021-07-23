@@ -2,7 +2,7 @@
 mkdir -p "$HOME/.config"
 
 # Create links in .config/dir
-for dir in "git" "terminator"; do
+for dir in "git" "tmuxinator"; do
     ln -si $(pwd)/config/$dir "$HOME"/.config/
 done
 
@@ -27,9 +27,6 @@ ln -si $(pwd)/tex/latex/* "$HOME/texmf/tex/latex/"
 # Jupyter config
 ln -si $(pwd)/config/.jupyter/jupyter_notebook_config.py "$HOME/.jupyter/"
 
-# Install .fzf
-source $(pwd)/ext/fzf/install --completion --key-bindings --all
-
 # tmux setup
 # TPM setup
 if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
@@ -44,3 +41,6 @@ tmux new -d -s __noop >/dev/null 2>&1 || true
 tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.tmux/plugins"
 "$HOME"/.tmux/plugins/tpm/bin/install_plugins || true
 tmux kill-session -t __noop >/dev/null 2>&1 || true
+
+# Install .fzf
+source $(pwd)/ext/fzf/install --completion --key-bindings --all
