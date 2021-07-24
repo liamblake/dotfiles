@@ -3,7 +3,6 @@ alias codehere="code -n ."
 
 # Commonly used directories - assumes dev dir is in home
 alias dev="cd $HOME/dev"
-alias dotfiles="cd $HOME/dev/dotfiles"
 alias dbx="cd $HOME/Dropbox"
 alias uni="cd $HOME/Dropbox/university"
 

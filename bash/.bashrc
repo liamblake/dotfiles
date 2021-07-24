@@ -57,11 +57,13 @@ eval "$(direnv hook bash)"
 # Add bin to path
 export PATH="$(pwd)/bin:$PATH"
 
-# Set PS1, dependent on whether the shell has colour support.
+# Check if colour support
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
   # We have color support; assume it's compliant with Ecma-48
   # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-  # a case would tend to support setf rather than setaf.)
+  # a case would tend to support setf rather than setaf. 
+
+  # Prompt
   PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]$(show_virtual_env) \[\033[01;34m\]\w\[\033[01;35m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
 
   # Colour for directories when ls

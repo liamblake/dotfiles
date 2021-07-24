@@ -1,3 +1,12 @@
+create_home_symlink() {
+  SRC=$1
+  TARGET=$2
+  ln -si $SRC $TARGET
+}
+
+# Symlink to dotfiles in home for easy access
+ln -s $(pwd)/. "$HOME"/dotfiles
+
 # Make .config dir if it doesn't already exist
 mkdir -p "$HOME/.config"
 
@@ -15,6 +24,11 @@ done
 # .inputrc
 ln -si $(pwd)/config/system/.inputrc "$HOME"/
 
+# zsh
+ln -si $(pwd)/config/zsh/.zshrc "$HOME"/
+# Dracula theme
+ln -si $(pwd)/ext/zsh-dracula/dracula.zsh-theme "$HOME"/.oh-my-zsh/themes/dracula.zsh-theme
+
 # VSCode setup
 mkdir -p "$HOME"/.config/Code/User/
 ln -si $(pwd)/config/vscode/settings.json "$HOME"/.config/Code/User/
@@ -23,9 +37,6 @@ ln -si $(pwd)/config/vscode/settings.json "$HOME"/.config/Code/User/
 mkdir -p "$HOME/texmf/tex/latex/"
 ln -si $(pwd)/tex/latex/* "$HOME/texmf/tex/latex/"
 # Only symlinking the files and not the full directory prevents any clutter from locally installed packages.
-
-# Jupyter config
-ln -si $(pwd)/config/.jupyter/jupyter_notebook_config.py "$HOME/.jupyter/"
 
 # tmux setup
 # TPM setup
