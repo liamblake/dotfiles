@@ -24,8 +24,6 @@ create_home_symlink config/system/.inputrc .
 # zsh
 create_home_symlink config/zsh/.zshrc .
 create_home_symlink config/zsh/.zshenv .
-# Dracula theme
-create_home_symlink ext/zsh-dracula/dracula.zsh-theme .oh-my-zsh/themes/dracula.zsh-theme
 
 # VSCode setup
 mkdir -p "$HOME"/.config/Code/User/

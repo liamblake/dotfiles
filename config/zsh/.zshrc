@@ -1,3 +1,6 @@
+# Add bin to path
+path+=("$(pwd)/bin")
+export PATH
 # Aliases - use bash aliases
 source "$HOME/.bash_aliases"
 
@@ -7,6 +10,16 @@ source "$HOME/.bash_aliases"
 
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="dracula"
+# Prompt
+show_virtual_env() {
+  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+    echo "($(basename $VIRTUAL_ENV))"
+  fi
+}
+
+source ~/dev/dotfiles/bin/.git-prompt.sh
+setopt PROMPT_SUBST ; PS1='%F{blue}$(show_virtual_env)%F{171}%B%~ %F{041}$(__git_ps1 "(%s)")%F{123}> %f%b'
 
 source $ZSH/oh-my-zsh.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

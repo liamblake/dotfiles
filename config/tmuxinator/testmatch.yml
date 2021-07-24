@@ -47,5 +47,5 @@ windows:
       # synchronize: after
       panes:
         - cd build
-        - venv/bin/activate
+        - venv
         - code . && git fetch && git status
