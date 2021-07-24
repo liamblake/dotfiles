@@ -1,41 +1,39 @@
 create_home_symlink() {
   SRC=$1
   TARGET=$2
-  ln -si $SRC $TARGET
+  ln -si $(pwd)/$SRC "$HOME"/$TARGET
 }
-
-# Symlink to dotfiles in home for easy access
-ln -s $(pwd)/. "$HOME"/dotfiles
 
 # Make .config dir if it doesn't already exist
 mkdir -p "$HOME/.config"
 
 # Create links in .config/dir
 for dir in "git" "tmuxinator"; do
-    ln -si $(pwd)/config/$dir "$HOME"/.config/
+    create_home_symlink config/$dir .config/
 done
 
 ### The following symlinks behave differently ###
 # Bash configs
 for dir in ".bash_aliases" ".bashrc"; do
-    ln -si $(pwd)/bash/$dir "$HOME"/
+    create_home_symlink bash/$dir .
 done
 
 # .inputrc
-ln -si $(pwd)/config/system/.inputrc "$HOME"/
+create_home_symlink config/system/.inputrc .
 
 # zsh
-ln -si $(pwd)/config/zsh/.zshrc "$HOME"/
+create_home_symlink config/zsh/.zshrc .
+create_home_symlink config/zsh/.zshenv .
 # Dracula theme
-ln -si $(pwd)/ext/zsh-dracula/dracula.zsh-theme "$HOME"/.oh-my-zsh/themes/dracula.zsh-theme
+create_home_symlink ext/zsh-dracula/dracula.zsh-theme .oh-my-zsh/themes/dracula.zsh-theme
 
 # VSCode setup
 mkdir -p "$HOME"/.config/Code/User/
-ln -si $(pwd)/config/vscode/settings.json "$HOME"/.config/Code/User/
+create_home_symlink config/vscode/settings.json .config/Code/User/
 
 # TeX style files
 mkdir -p "$HOME/texmf/tex/latex/"
-ln -si $(pwd)/tex/latex/* "$HOME/texmf/tex/latex/"
+create_home_symlink tex/latex/* texmf/tex/latex/
 # Only symlinking the files and not the full directory prevents any clutter from locally installed packages.
 
 # tmux setup
@@ -45,7 +43,7 @@ if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
 fi
 
 
-ln -si $(pwd)/tmux/tmux.conf "$HOME"/.tmux.conf
+create_home_symlink tmux/tmux.conf .tmux.conf
 
 # Taken from https://github.com/samoshkin/tmux-config/blob/master/install.sh
 tmux new -d -s __noop >/dev/null 2>&1 || true 
@@ -55,3 +53,8 @@ tmux kill-session -t __noop >/dev/null 2>&1 || true
 
 # Install .fzf
 source $(pwd)/ext/fzf/install --completion --key-bindings --all
+
+# If dev isn't already in home, add a symlink
+if [ ! -d "$HOME"/dev ]; then
+  create_home_symlink /../../dev/ .
+fi
