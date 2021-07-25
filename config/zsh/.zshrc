@@ -23,3 +23,6 @@ setopt PROMPT_SUBST ; PS1='%F{blue}$(show_virtual_env)%F{171}%B%~ %F{041}$(__git
 source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Enable direnv
+eval "$(direnv hook zsh)"
