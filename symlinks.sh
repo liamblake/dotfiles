@@ -27,7 +27,10 @@ create_home_symlink config/zsh/.zshenv .
 
 # VSCode setup
 mkdir -p "$HOME"/.config/Code/User/
-create_home_symlink config/vscode/settings.json .config/Code/User/
+# TODO: Replace this with a ls
+for dir in "settings.json" "keybindings.json"; do
+  create_home_symlink config/vscode/$dir .config/Code/User/
+done
 
 # TeX style files
 mkdir -p "$HOME/texmf/tex/latex/"
