@@ -18,11 +18,13 @@ show_virtual_env() {
 }
 
 source ~/dev/dotfiles/bin/.git-prompt.sh
-# Enable direnv
 eval "$(direnv hook zsh)"
 
 setopt PROMPT_SUBST ; PS1='%F{123}$(show_virtual_env) %F{171}%B%~ %F{041}$(__git_ps1 "(%s)")%F{123}> %f%b'
 
 source $ZSH/oh-my-zsh.sh
+
+# Plugins
+plugins=(zsh-syntax-highlighting)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

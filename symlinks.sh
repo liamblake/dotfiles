@@ -25,6 +25,12 @@ create_home_symlink config/system/.inputrc .
 create_home_symlink config/zsh/.zshrc .
 create_home_symlink config/zsh/.zshenv .
 
+# Link plugins to oh-my-zsh dir
+for dir in $(ls config/zsh/plugins/); do
+  create_home_symlink config/zsh/plugins/$dir .oh-my-zsh/plugins/
+done
+
+
 # VSCode setup
 mkdir -p "$HOME"/.config/Code/User/
 # TODO: Replace this with a ls
