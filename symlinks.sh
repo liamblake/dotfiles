@@ -8,7 +8,7 @@ create_home_symlink() {
 mkdir -p "$HOME/.config"
 
 # Create links in .config/dir
-for dir in "git" "tmuxinator"; do
+for dir in "git" "tmuxinator" "nvim"; do
     create_home_symlink config/$dir .config/
 done
 
