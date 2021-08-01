@@ -10,4 +10,7 @@ REM Git
 REM TODO
 
 REM VSCode
+mklink /D %USERPROFILE%\AppData\Roaming\Code\User %DOTFILES%\config\vscode
+
+REM LaTeX style files
 REM TODO

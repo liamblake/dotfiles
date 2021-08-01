@@ -1,1 +1,5 @@
 config/nvim/plugin
+
+# VSCode
+config/vscode/globalStorage
+config/vscode/workspaceStorage
