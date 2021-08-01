@@ -1,3 +1,6 @@
+# Absolute path of root of dotfiles
+DOTFILES_ROOT=dirname "$(realpath $0)" | sed 's|\(.*\)/.*|\1|'
+
 create_home_symlink() {
   SRC=$1
   TARGET=$2
