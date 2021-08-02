@@ -9,9 +9,7 @@ vim.o.number = true
 vim.g.mapleader = ' '
 
 require('plugins')
-require('tree_config')
-require('treesitter_config')
-require('lsp_config')
+require('lsp')
 
 -- Set colourscheme
 vim.opt.termguicolors = true

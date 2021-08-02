@@ -13,4 +13,6 @@ REM VSCode
 mklink /D %USERPROFILE%\AppData\Roaming\Code\User %DOTFILES%\config\vscode
 
 REM LaTeX style files
-REM TODO
+REM Assumes a MiKTeX installation
+REM TODO: Automatically detect version?
+for %%f in (%DOTFILES%\tex\latex\*) do mklink /D %USERPROFILE%\AppData\Roaming\MiKTeX\2.9\tex\latex\%%~nxi %%f

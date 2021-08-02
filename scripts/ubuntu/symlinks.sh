@@ -1,45 +1,49 @@
 # Absolute path of root of dotfiles
-DOTFILES_ROOT=dirname "$(realpath $0)" | sed 's|\(.*\)/.*|\1|'
+SCRIPT=$(readlink -f "$0")
+DOTFILES_ROOT=$(dirname "$SCRIPT")/../../
+echo $DOTFILES_ROOT
 
 create_home_symlink() {
   SRC=$1
   TARGET=$2
-  ln -si $(pwd)/$SRC "$HOME"/$TARGET
+  ln -si $DOTFILES_ROOT/$SRC $HOME/$TARGET
+}
+
+loop_dir_symlink() {
+  DIR=$DOTFILES_ROOT/$1
+  TARGET=$2
+  for f in $(ls $DIR); do
+    create_home_symlink $DIR/$f $TARGET
+  done
 }
 
 # Make .config dir if it doesn't already exist
 mkdir -p "$HOME/.config"
 
 # Create links in .config/dir
+# TODO: Move more files to .config, will reduce repetition in this file.
 for dir in "git" "tmuxinator" "nvim"; do
     create_home_symlink config/$dir .config/
 done
 
 ### The following symlinks behave differently ###
 # Bash configs
-for dir in ".bash_aliases" ".bashrc"; do
-    create_home_symlink bash/$dir .
-done
+loop_dir_symlink bash/ .
 
 # .inputrc
 create_home_symlink config/system/.inputrc .
 
 # zsh
-create_home_symlink config/zsh/.zshrc .
-create_home_symlink config/zsh/.zshenv .
+create_home_symlink zsh/.zshrc .
+create_home_symlink zsh/.zshenv .
 
 # Link plugins to oh-my-zsh dir
-for dir in $(ls config/zsh/plugins/); do
-  create_home_symlink config/zsh/plugins/$dir .oh-my-zsh/plugins/
-done
-
+mkdir -p "$HOME"/.config/zsg/plugins
+loop_dir_symlink zsh/plugins/ .oh-my-zsh/plugins/
 
 # VSCode setup
 mkdir -p "$HOME"/.config/Code/User/
-# TODO: Replace this with a ls
-for dir in "settings.json" "keybindings.json"; do
-  create_home_symlink config/vscode/$dir .config/Code/User/
-done
+loop_dir_symlink config/vscode/ .config/Code/User/
 
 # TeX style files
 mkdir -p "$HOME/texmf/tex/latex/"
