@@ -9,6 +9,14 @@ create_home_symlink() {
   ln -si $DOTFILES_ROOT/$SRC $HOME/$TARGET
 }
 
+loop_dir_symlink() {
+  DIR=$DOTFILES_ROOT/$1
+  TARGET=$2
+  for f in $(ls $DIR); do
+    create_home_symlink $DIR/$f $TARGET
+  done
+}
+
 # Make .config dir if it doesn't already exist
 mkdir -p "$HOME/.config"
 
@@ -20,9 +28,7 @@ done
 
 ### The following symlinks behave differently ###
 # Bash configs
-for dir in ".bash_aliases" ".bashrc"; do
-    create_home_symlink bash/$dir .
-done
+loop_dir_symlink bash/ .
 
 # .inputrc
 create_home_symlink config/system/.inputrc .
@@ -33,17 +39,11 @@ create_home_symlink zsh/.zshenv .
 
 # Link plugins to oh-my-zsh dir
 mkdir -p "$HOME"/.config/zsg/plugins
-for dir in $(ls config/zsh/plugins/); do
-  create_home_symlink zsh/plugins/$dir .oh-my-zsh/plugins/
-done
-
+loop_dir_symlink zsh/plugins/ .oh-my-zsh/plugins/
 
 # VSCode setup
 mkdir -p "$HOME"/.config/Code/User/
-# TODO: Replace this with a ls
-for dir in "settings.json" "keybindings.json"; do
-  create_home_symlink config/vscode/$dir .config/Code/User/
-done
+loop_dir_symlink config/vscode/ .config/Code/User/
 
 # TeX style files
 mkdir -p "$HOME/texmf/tex/latex/"
