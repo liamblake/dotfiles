@@ -1,16 +1,19 @@
 # Absolute path of root of dotfiles
-DOTFILES_ROOT=dirname "$(realpath $0)" | sed 's|\(.*\)/.*|\1|'
+SCRIPT=$(readlink -f "$0")
+DOTFILES_ROOT=$(dirname "$SCRIPT")/../../
+echo $DOTFILES_ROOT
 
 create_home_symlink() {
   SRC=$1
   TARGET=$2
-  ln -si $(pwd)/$SRC "$HOME"/$TARGET
+  ln -si $DOTFILES_ROOT/$SRC $HOME/$TARGET
 }
 
 # Make .config dir if it doesn't already exist
 mkdir -p "$HOME/.config"
 
 # Create links in .config/dir
+# TODO: Move more files to .config, will reduce repetition in this file.
 for dir in "git" "tmuxinator" "nvim"; do
     create_home_symlink config/$dir .config/
 done
@@ -25,12 +28,13 @@ done
 create_home_symlink config/system/.inputrc .
 
 # zsh
-create_home_symlink config/zsh/.zshrc .
-create_home_symlink config/zsh/.zshenv .
+create_home_symlink zsh/.zshrc .
+create_home_symlink zsh/.zshenv .
 
 # Link plugins to oh-my-zsh dir
+mkdir -p "$HOME"/.config/zsg/plugins
 for dir in $(ls config/zsh/plugins/); do
-  create_home_symlink config/zsh/plugins/$dir .oh-my-zsh/plugins/
+  create_home_symlink zsh/plugins/$dir .oh-my-zsh/plugins/
 done
 
 
