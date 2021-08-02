@@ -4,6 +4,9 @@ export PATH
 # Aliases - use bash aliases
 source "$HOME/.bash_aliases"
 
+# No globbing when calling pip
+alias pip='noglob pip'
+
 #
 # oh-my-zsh config
 # 
