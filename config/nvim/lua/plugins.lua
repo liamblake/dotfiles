@@ -27,7 +27,8 @@ end
 packer.startup(function()
 	local use = use
   -- Themes
-	use "Mofiqul/dracula.nvim"
+	--use "Mofiqul/dracula.nvim"
+  use 'marko-cerovac/material.nvim'
 
 	-- LSP
 	use "neovim/nvim-lspconfig"
@@ -45,6 +46,15 @@ packer.startup(function()
   -- Typing helps
   use "steelsojka/pears.nvim"
 
+  -- Git blame
+  use {
+    "APZelos/blamer.nvim",
+    config = function()
+      vim.g.blamer_enabled = 1
+      vim.g.blamer_delay = 500
+    end
+  }
+
 	-- Telescope
 	use{
 		"nvim-telescope/telescope.nvim",
@@ -56,44 +66,52 @@ packer.startup(function()
 	use "kyazdani42/nvim-web-devicons"
   use "simrat39/symbols-outline.nvim"
 
-	-- Buffer
-	use "akinsho/nvim-bufferline.lua"
-  use {'datwaft/bubbly.nvim', config = function()
-    -- Here you can add the configuration for the plugin
-    vim.g.bubbly_palette = {
-      background = "#34343c",
-      foreground = "#c5cdd9",
-      black = "#3e4249",
-      red = "#ec7279",
-      green = "#a0c980",
-      yellow = "#deb974",
-      blue = "#6cb6eb",
-      purple = "#d38aea",
-      cyan = "#5dbbc1",
-      white = "#c5cdd9",
-      lightgrey = "#57595e",
-      darkgrey = "#404247",
-    }
-    vim.g.bubbly_statusline = {
-      'mode',
+	-- Bubbles
+  -- use {'datwaft/bubbly.nvim', config = function()
+  --   -- Here you can add the configuration for the plugin
+  --   vim.g.bubbly_palette = {
+  --     -- Dracula colour palette: https://draculatheme.com/contribute
+  --     background = "#303030",
+  --     foreground = "#f8f8f2",
+  --     black = "#303030",
+  --     current = "#44475a",
+  --     comment = "#6272a4",
+  --     cyan = "#8be9fd",
+  --     green = "#50fa7b",
+  --     orange = "#ffb86c",
+  --     pink = "#ff79c6",
+  --     purple = "#bd93f9",
+  --     red = "#ff5555",
+  --     yellow = "#f1fa8c"
+  --   }
+  --   vim.g.bubbly_statusline = {
+  --     'mode',
 
-      'truncate',
+  --     'path',
+  --     'branch',
 
-      'path',
-      'branch',
-      'signify',
-      'coc',
+  --     'divisor',
 
-      'divisor',
+  --     'filetype',
+  --     'progress',
+  --   }
+  --   vim.g.bubbly_colors = {
 
-      'filetype',
-      'progress',
-    }
-  end}
+  --   }
+  -- end}
 
 	-- Autoformatting and other actions on save
 	use "mhartington/formatter.nvim"
 end)
+
+-- Treesitter
+require('nvim-treesitter.configs').setup {
+  ensure_installed = {"bash", "c", "cpp", "python", "julia", "rust"},
+  highlight = {
+    enable=true,
+    additional_vim_regex_highlighting = false,
+  }
+}
 
 -- Formatters
 require('formatter').setup({
@@ -122,17 +140,6 @@ require('formatter').setup({
     }
   }
 })
-
--- Treesitter
-require('nvim-treesitter.configs').setup {
-  -- one of "all", "language", or a list of languages
-  ensure_installed = {"bash", "c", "cpp", "python", "julia", "rust"}
-}
-
-key_mapper('n', '<C-p>', ':lua require"telescope.builtin".find_files()<CR>')
-key_mapper('n', '<leader>fs', ':lua require"telescope.builtin".live_grep()<CR>')
-key_mapper('n', '<leader>fh', ':lua require"telescope.builtin".help_tags()<CR>')
-key_mapper('n', '<leader>fb', ':lua require"telescope.builtin".buffers()<CR>')
 
 -- Format on save
 vim.api.nvim_exec([[
@@ -166,8 +173,6 @@ vim.g.nvim_tree_disable_window_picker = 1
 vim.g.nvim_tree_hijack_cursor = 0 
 vim.g.nvim_tree_icon_padding = ' ' 
 vim.g.nvim_tree_update_cwd = 1
-
-key_mapper('n', '<C-b>', ':NvimTreeToggle<CR>')
 
 -- Bracket pairing
 require("pears").setup()
@@ -222,4 +227,3 @@ vim.g.symbols_outline = {
   }
 }
 
-key_mapper("n", "<C-n>", ":SymbolsOutline")

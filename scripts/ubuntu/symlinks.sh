@@ -1,6 +1,6 @@
 # Absolute path of root of dotfiles
 SCRIPT=$(readlink -f "$0")
-DOTFILES_ROOT=$(dirname "$SCRIPT")/../../
+DOTFILES_ROOT=$(dirname "$SCRIPT")/../..
 echo $DOTFILES_ROOT
 
 create_home_symlink() {
@@ -10,9 +10,9 @@ create_home_symlink() {
 }
 
 loop_dir_symlink() {
-  DIR=$DOTFILES_ROOT/$1
+  DIR=$1
   TARGET=$2
-  for f in $(ls $DIR); do
+  for f in $(ls $DOTFILES_ROOT/$DIR); do
     create_home_symlink $DIR/$f $TARGET
   done
 }

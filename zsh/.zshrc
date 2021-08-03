@@ -1,5 +1,7 @@
 # Add bin to path
 path+=("$(pwd)/bin")
+path+=("$HOME/.cargo/bin")
+
 export PATH
 # Aliases - use bash aliases
 source "$HOME/.bash_aliases"

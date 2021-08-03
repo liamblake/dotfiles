@@ -1,5 +1,3 @@
-require('helpers')
-
 local vim = vim
 
 vim.o.syntax = 'on'
@@ -10,9 +8,11 @@ vim.g.mapleader = ' '
 
 require('plugins')
 require('lsp')
+require('keymappings')
 
 -- Set colourscheme
 vim.opt.termguicolors = true
-require("bufferline").setup{}
 
-vim.cmd("colorscheme dracula")
+vim.g.material_style = "palenight"
+vim.cmd("colorscheme material")
+require('material').set()

@@ -24,7 +24,7 @@
     "notebook.cellToolbarLocation": {
         "default": "right",
         "jupyter-notebook": "left"
-    }
+    },
     // LaTeX Workshop
     "[latex]": {
         "editor.formatOnSave": false,
