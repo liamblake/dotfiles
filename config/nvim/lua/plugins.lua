@@ -26,9 +26,8 @@ end
 -- - startup and add configure plugins
 packer.startup(function()
 	local use = use
-  -- Themes
-	--use "Mofiqul/dracula.nvim"
-  use 'marko-cerovac/material.nvim'
+  -- Theme
+	use "Mofiqul/dracula.nvim"
 
 	-- LSP
 	use "neovim/nvim-lspconfig"
@@ -67,38 +66,35 @@ packer.startup(function()
   use "simrat39/symbols-outline.nvim"
 
 	-- Bubbles
-  -- use {'datwaft/bubbly.nvim', config = function()
-  --   -- Here you can add the configuration for the plugin
-  --   vim.g.bubbly_palette = {
-  --     -- Dracula colour palette: https://draculatheme.com/contribute
-  --     background = "#303030",
-  --     foreground = "#f8f8f2",
-  --     black = "#303030",
-  --     current = "#44475a",
-  --     comment = "#6272a4",
-  --     cyan = "#8be9fd",
-  --     green = "#50fa7b",
-  --     orange = "#ffb86c",
-  --     pink = "#ff79c6",
-  --     purple = "#bd93f9",
-  --     red = "#ff5555",
-  --     yellow = "#f1fa8c"
-  --   }
-  --   vim.g.bubbly_statusline = {
-  --     'mode',
+  use {'datwaft/bubbly.nvim', config = function()
+    -- Here you can add the configuration for the plugin
+    vim.g.bubbly_palette = {
+      -- Dracula colour palette: https://draculatheme.com/contribute
+      background = "#F8F8F2",
+      foreground = "#f8f8f2",
+      black = "#F8F8F2",
+      current = "#44475a",
+      comment = "#6272a4",
+      cyan = "#8be9fd",
+      green = "#50fa7b",
+      orange = "#ffb86c",
+      pink = "#ff79c6",
+      purple = "#bd93f9",
+      red = "#ff5555",
+      yellow = "#f1fa8c"
+    }
+    vim.g.bubbly_statusline = {
+      'mode',
 
-  --     'path',
-  --     'branch',
+      'path',
+      'branch',
 
-  --     'divisor',
+      'divisor',
 
-  --     'filetype',
-  --     'progress',
-  --   }
-  --   vim.g.bubbly_colors = {
-
-  --   }
-  -- end}
+      'filetype',
+      'progress',
+    }
+  end}
 
 	-- Autoformatting and other actions on save
 	use "mhartington/formatter.nvim"
@@ -173,6 +169,12 @@ vim.g.nvim_tree_disable_window_picker = 1
 vim.g.nvim_tree_hijack_cursor = 0 
 vim.g.nvim_tree_icon_padding = ' ' 
 vim.g.nvim_tree_update_cwd = 1
+vim.g.nvim_tree_show_icons = {
+  git = 0,
+  folders = 1,
+  files = 1,
+  folder_arrows = 1
+}
 
 -- Bracket pairing
 require("pears").setup()
