@@ -6,6 +6,9 @@ set DOTFILES=%~dp0..\..
 REM Neovim
 mklink /D %USERPROFILE%\AppData\Local\nvim %DOTFILES%\config\nvim
 
+REM Alacritty
+mklink /D %USERPROFILE%\AppData\alacritty %DOTFILES%\config\alacritty
+
 REM Git
 REM TODO
 
