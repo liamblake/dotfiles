@@ -1,5 +1,4 @@
 -- Plugin setup, from https://bryankegley.me/posts/nvim-getting-started/
-local vim = vim
 local execute = vim.api.nvim_command
 local fn = vim.fn
 -- ensure that packer is installed
@@ -49,6 +48,7 @@ packer.startup(function()
   use {
     "APZelos/blamer.nvim",
     config = function()
+      local vim = vim
       vim.g.blamer_enabled = 1
       vim.g.blamer_delay = 500
     end
@@ -67,10 +67,11 @@ packer.startup(function()
 
 	-- Bubbles
   use {'datwaft/bubbly.nvim', config = function()
+    local vim = vim
     -- Here you can add the configuration for the plugin
     vim.g.bubbly_palette = {
       -- Dracula colour palette: https://draculatheme.com/contribute
-      background = "#F8F8F2",
+      background = "#44475a",
       foreground = "#f8f8f2",
       black = "#F8F8F2",
       current = "#44475a",
@@ -86,15 +87,47 @@ packer.startup(function()
     vim.g.bubbly_statusline = {
       'mode',
 
-      'path',
       'branch',
 
       'divisor',
 
+	'builtinlsp',
       'filetype',
       'progress',
     }
+    vim.g.bubbly_colors = {
+	    default = "pink",
+	    mode = {
+		    normal = "pink",
+		    insert = "cyan",
+		    visual = "green",
+		    visualblock = "green",
+		    command = "orange",
+		    terminal = "purple",
+		    replace = "red",
+	    },
+
+	    branch = 'purple',
+
+	    builtinlsp = {
+		    diagnostic_count = {
+			    error = "red",
+			    warning = "yellow",
+		    },
+	    },
+	    filetype = "orange",
+
+    }
+    vim.g.bubbly_tabline = 0
+    vim.g.bubbly_filter = {
+	    filetype = {
+		    "nvimtree",
+	    },
+    }
   end}
+
+  -- Bufferline
+  use {'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons'}
 
 	-- Autoformatting and other actions on save
 	use "mhartington/formatter.nvim"
@@ -117,7 +150,7 @@ require('formatter').setup({
       -- black and isort
       function()
         return {
-          exe = {"black", "isort"},
+          exe = {"black && isort"},
           args = {},
           stdin = true,
         }
@@ -229,3 +262,5 @@ vim.g.symbols_outline = {
   }
 }
 
+-- Bufferline
+require("bufferline").setup{}
