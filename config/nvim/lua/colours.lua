@@ -42,9 +42,15 @@ local highlight = function(group, fg, bg, attr, sp)
     vim.api.nvim_command("highlight " .. group .. " ".. fg .. " " .. bg .. " ".. attr .. " " .. sp)
 end
 
+-- Set colourscheme
+vim.opt.termguicolors = true
+
+vim.g.edge_style = "neon"
+vim.cmd("colorscheme edge")
+
 -- NvimTree
-highlight("NvimTreeRootFolder", "#90A4AE", nil, 'bold', nil)
-highlight("NvimTreeNormal ", nil, vs_colours.bg, nil, nil)
+highlight("NvimTreeRootFolder", vs_colours.white, colors.bg, 'bold', nil)
+highlight("NvimTreeNormal ", vs_colours.white, vs_colours.bg, nil, nil)
 highlight("NvimTreeGitDirty", vs_colours.blue, nil, nil, nil)
 highlight("NvimTreeGitNew", vs_colours.green, nil, nil, nil)
 highlight("NvimTreeImageFile", colors.pink, nil, nil, nil)

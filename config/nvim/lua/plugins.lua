@@ -26,7 +26,7 @@ end
 packer.startup(function()
 	local use = use
   -- Theme
-	use "Mofiqul/dracula.nvim"
+  use "sainnhe/edge"
 
 	-- LSP
 	use "neovim/nvim-lspconfig"

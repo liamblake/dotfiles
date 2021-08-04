@@ -10,9 +10,4 @@ require('plugins')
 require('lsp')
 require('keymappings')
 
-
--- Set colourscheme
-vim.opt.termguicolors = true
-vim.cmd("colorscheme dracula")
-
 require('colours')
