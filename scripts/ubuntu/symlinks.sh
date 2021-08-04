@@ -12,7 +12,7 @@ create_home_symlink() {
 loop_dir_symlink() {
   DIR=$1
   TARGET=$2
-  for f in $(ls $DOTFILES_ROOT/$DIR); do
+  for f in $(ls $DOTFILES_ROOT/$  DIR); do
     create_home_symlink $DIR/$f $TARGET
   done
 }
