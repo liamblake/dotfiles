@@ -16,9 +16,8 @@ packer.init{
 
 -- Language servers
 install_lsp_servers = function()
-  local language_servers = {"cmake", "cpp", "latex", "lua", "python"}
-  for _, server in pairs(language_servers) do
-      require('lspinstall').install_server(server)
+  for lang in {"cmake", "cpp", "html", "latex", "lua", "python", "typescript"} do
+      require('lspinstall').install_server(lang)
   end
 end
 
@@ -44,16 +43,6 @@ packer.startup(function()
 
   -- Typing helps
   use "steelsojka/pears.nvim"
-
-  -- Git blame
-  use {
-    "APZelos/blamer.nvim",
-    config = function()
-      local vim = vim
-      vim.g.blamer_enabled = 1
-      vim.g.blamer_delay = 500
-    end
-  }
 
 	-- Telescope
 	use{
@@ -95,7 +84,7 @@ packer.startup(function()
   
         'divisor',
   
-    'builtinlsp',
+        'builtinlsp.diagnostic_count',
         'filetype',
         'progress',
       }
@@ -135,6 +124,20 @@ packer.startup(function()
 
 	-- Autoformatting and other actions on save
 	use "mhartington/formatter.nvim"
+
+  -- Git integration
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
+    config = function()
+      require('gitsigns').setup {
+        current_line_blame = true,
+        current_line_blame_delay = 250,
+      }
+    end
+  }
 end)
 
 -- Treesitter
@@ -276,7 +279,7 @@ vim.g.symbols_outline = {
 
 -- Bufferline
 require("bufferline").setup{}
-vim.g.airline_powerline_fonts = 1
+-- vim.g.airline_powerline_fonts = 1
 
 -- Telescope
 require("telescope").setup{
