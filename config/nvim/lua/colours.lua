@@ -46,7 +46,7 @@ end
 vim.opt.termguicolors = true
 
 vim.g.edge_style = "neon"
-vim.cmd("colorscheme edge")
+vim.cmd("colorscheme dracula")
 
 -- NvimTree
 highlight("NvimTreeRootFolder", vs_colours.white, colors.bg, 'bold', nil)

@@ -26,6 +26,7 @@ end
 packer.startup(function()
 	local use = use
   -- Theme
+  use "Mofiqul/dracula.nvim"
   use "sainnhe/edge"
 
 	-- LSP
@@ -65,69 +66,72 @@ packer.startup(function()
 	use "kyazdani42/nvim-web-devicons"
   use "simrat39/symbols-outline.nvim"
 
+  -- Status bar
+  --use "vim-airline/vim-airline"
+
 	-- Bubbles
-  use {'datwaft/bubbly.nvim', config = function()
-    local vim = vim
-    -- Here you can add the configuration for the plugin
-    vim.g.bubbly_palette = {
-      -- Dracula colour palette: https://draculatheme.com/contribute
-      background = "#44475a",
-      foreground = "#f8f8f2",
-      black = "#F8F8F2",
-      current = "#44475a",
-      comment = "#6272a4",
-      cyan = "#8be9fd",
-      green = "#50fa7b",
-      orange = "#ffb86c",
-      pink = "#ff79c6",
-      purple = "#bd93f9",
-      red = "#ff5555",
-      yellow = "#f1fa8c"
-    }
-    vim.g.bubbly_statusline = {
-      'mode',
-
-      'branch',
-
-      'divisor',
-
-	'builtinlsp',
-      'filetype',
-      'progress',
-    }
-    vim.g.bubbly_colors = {
-	    default = "pink",
-	    mode = {
-		    normal = "pink",
-		    insert = "cyan",
-		    visual = "green",
-		    visualblock = "green",
-		    command = "orange",
-		    terminal = "purple",
-		    replace = "red",
-	    },
-
-	    branch = 'purple',
-
-	    builtinlsp = {
-		    diagnostic_count = {
-			    error = "red",
-			    warning = "yellow",
-		    },
-	    },
-	    filetype = "orange",
-
-    }
-    vim.g.bubbly_tabline = 0
-    vim.g.bubbly_filter = {
-	    filetype = {
-		    "nvimtree",
-	    },
-    }
-  end}
-
-  -- Bufferline
-  use {'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons'}
+    use {'datwaft/bubbly.nvim', config = function()
+      local vim = vim
+      -- Here you can add the configuration for the plugin
+      vim.g.bubbly_palette = {
+        -- Dracula colour palette: https://draculatheme.com/contribute
+        background = "#44475a",
+        foreground = "#f8f8f2",
+        black = "#F8F8F2",
+        current = "#44475a",
+        comment = "#6272a4",
+        cyan = "#8be9fd",
+        green = "#50fa7b",
+        orange = "#ffb86c",
+        pink = "#ff79c6",
+        purple = "#bd93f9",
+        red = "#ff5555",
+        yellow = "#f1fa8c"
+      }
+      vim.g.bubbly_statusline = {
+        'mode',
+  
+        'branch',
+  
+        'divisor',
+  
+    'builtinlsp',
+        'filetype',
+        'progress',
+      }
+      vim.g.bubbly_colors = {
+        default = "pink",
+        mode = {
+          normal = "pink",
+          insert = "cyan",
+          visual = "green",
+          visualblock = "green",
+          command = "orange",
+          terminal = "purple",
+          replace = "red",
+        },
+  
+        branch = 'purple',
+  
+        builtinlsp = {
+          diagnostic_count = {
+            error = "red",
+            warning = "yellow",
+          },
+        },
+        filetype = "orange",
+  
+      }
+      vim.g.bubbly_tabline = 0
+      vim.g.bubbly_filter = {
+        filetype = {
+          "nvimtree",
+        },
+      }
+    end}
+  
+  --   -- Bufferline
+    use {'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons'}
 
 	-- Autoformatting and other actions on save
 	use "mhartington/formatter.nvim"
@@ -147,10 +151,18 @@ require('formatter').setup({
   logging = false,
   filetype = {
     python = {
-      -- black and isort
+      -- black
       function()
         return {
-          exe = {"black && isort"},
+          exe = {"black"},
+          args = {},
+          stdin = true,
+        }
+      end,
+      -- isort
+      function()
+        return {
+          exe = {"isort"},
           args = {},
           stdin = true,
         }
@@ -264,3 +276,9 @@ vim.g.symbols_outline = {
 
 -- Bufferline
 require("bufferline").setup{}
+vim.g.airline_powerline_fonts = 1
+
+-- Telescope
+require("telescope").setup{
+  file_ignore_patterns = {"venv/*.*"}
+}
