@@ -25,8 +25,9 @@ end
 packer.startup(function()
 	local use = use
   -- Theme
-  use "Mofiqul/dracula.nvim"
+  -- use "Mofiqul/dracula.nvim"
   use "sainnhe/edge"
+  use "dracula/vim"
 
 	-- LSP
 	use "neovim/nvim-lspconfig"
@@ -282,6 +283,4 @@ require("bufferline").setup{}
 -- vim.g.airline_powerline_fonts = 1
 
 -- Telescope
-require("telescope").setup{
-  file_ignore_patterns = {"venv/*.*"}
-}
+require("telescope").setup{}
