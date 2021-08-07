@@ -11,7 +11,7 @@ alias pip='noglob pip'
 
 #
 # oh-my-zsh config
-# 
+#
 
 export ZSH=$HOME/.oh-my-zsh
 

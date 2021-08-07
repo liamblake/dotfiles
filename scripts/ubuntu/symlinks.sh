@@ -59,7 +59,7 @@ fi
 create_home_symlink tmux/tmux.conf .tmux.conf
 
 # Taken from https://github.com/samoshkin/tmux-config/blob/master/install.sh
-tmux new -d -s __noop >/dev/null 2>&1 || true 
+tmux new -d -s __noop >/dev/null 2>&1 || true
 tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.tmux/plugins"
 "$HOME"/.tmux/plugins/tpm/bin/install_plugins || true
 tmux kill-session -t __noop >/dev/null 2>&1 || true
