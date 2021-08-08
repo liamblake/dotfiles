@@ -163,7 +163,8 @@ require("pears").setup()
 
 -- NvimTree
 vim.g.nvim_tree_side = "left"
-vim.g.nvim_tree_width = 40
+vim.g.nvim_tree_width = 50
+vim.g.nvim_tree_ignore = {".git", "$null"}
 vim.g.nvim_tree_gitignore = 1
 vim.g.nvim_tree_auto_open = 1
 vim.g.nvim_tree_auto_close = 0
