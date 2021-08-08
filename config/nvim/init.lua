@@ -10,4 +10,9 @@ require("plugins")
 require("lsp")
 require("keymappings")
 
-require("colours")
+vim.opt.termguicolors = true
+
+-- Colourscheme
+vim.g.dracula_italic = 0
+vim.g.dracula_colorterm = 0
+vim.cmd("colorscheme dracula")

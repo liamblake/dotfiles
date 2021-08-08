@@ -22,12 +22,12 @@ install_lsp_servers = function()
 end
 
 -- - startup and add configure plugins
-packer.startup(function()
-	local use = use
+packer.startup(function(use)
+	-- Packer can manage itself
+	use("wbthomason/packer.nvim")
+
 	-- Theme
-	-- use "Mofiqul/dracula.nvim"
-	use("sainnhe/edge")
-	use("dracula/vim")
+	use("LiamBlake/dracula-vim")
 
 	-- LSP
 	use("neovim/nvim-lspconfig")
@@ -44,6 +44,7 @@ packer.startup(function()
 
 	-- Typing helps
 	use("steelsojka/pears.nvim")
+	use("tpope/vim-commentary")
 
 	-- Telescope
 	use({
@@ -54,78 +55,20 @@ packer.startup(function()
 	-- Directory tree
 	use("kyazdani42/nvim-tree.lua")
 	use("kyazdani42/nvim-web-devicons")
+
+	-- Symbol outline
 	use("simrat39/symbols-outline.nvim")
 
-	-- Status bar
-	--use "vim-airline/vim-airline"
-
-	-- Bubbles
+	-- Status line
 	use({
-		"datwaft/bubbly.nvim",
-		config = function()
-			local vim = vim
-			-- Here you can add the configuration for the plugin
-			vim.g.bubbly_palette = {
-				-- Dracula colour palette: https://draculatheme.com/contribute
-				background = "#44475a",
-				foreground = "#f8f8f2",
-				black = "#F8F8F2",
-				current = "#44475a",
-				comment = "#6272a4",
-				cyan = "#8be9fd",
-				green = "#50fa7b",
-				orange = "#ffb86c",
-				pink = "#ff79c6",
-				purple = "#bd93f9",
-				red = "#ff5555",
-				yellow = "#f1fa8c",
-			}
-			vim.g.bubbly_statusline = {
-				"mode",
-
-				"branch",
-
-				"divisor",
-
-				"builtinlsp.diagnostic_count",
-				"filetype",
-				"progress",
-			}
-			vim.g.bubbly_colors = {
-				default = "pink",
-				mode = {
-					normal = "pink",
-					insert = "cyan",
-					visual = "green",
-					visualblock = "green",
-					command = "orange",
-					terminal = "purple",
-					replace = "red",
-				},
-
-				branch = "purple",
-
-				builtinlsp = {
-					diagnostic_count = {
-						error = "red",
-						warning = "yellow",
-					},
-				},
-				filetype = "orange",
-			}
-			vim.g.bubbly_tabline = 0
-			vim.g.bubbly_filter = {
-				filetype = {
-					"nvimtree",
-				},
-			}
-		end,
+		"hoob3rt/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
 
-	--   -- Bufferline
+	-- Bufferline
 	use({ "akinsho/nvim-bufferline.lua", requires = "kyazdani42/nvim-web-devicons" })
 
-	-- Autoformatting and other actions on save
+	-- Formatting
 	use("mhartington/formatter.nvim")
 
 	-- Git integration
@@ -141,6 +84,12 @@ packer.startup(function()
 			})
 		end,
 	})
+
+	-- Autocompletions
+	use("hrsh7th/nvim-compe")
+
+	-- Snippets
+	--use("sirver/ultisnips")
 end)
 
 -- Treesitter
@@ -209,17 +158,20 @@ augroup END
 	true
 )
 
--- Tree
+-- Bracket pairing
+require("pears").setup()
+
+-- NvimTree
 vim.g.nvim_tree_side = "left"
 vim.g.nvim_tree_width = 40
-vim.g.nvim_tree_gitignore = 0
+vim.g.nvim_tree_gitignore = 1
 vim.g.nvim_tree_auto_open = 1
-vim.g.nvim_tree_auto_close = 1
+vim.g.nvim_tree_auto_close = 0
 vim.g.nvim_tree_quit_on_open = 1
 vim.g.nvim_tree_follow = 1
 vim.g.nvim_tree_indent_markers = 1
-vim.g.nvim_tree_hide_dotfiles = 1
-vim.g.nvim_tree_git_hl = 0
+vim.g.nvim_tree_hide_dotfiles = 0
+vim.g.nvim_tree_git_hl = 1
 vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_root_folder_modifier = ":~"
 vim.g.nvim_tree_tab_open = 1
@@ -239,9 +191,6 @@ vim.g.nvim_tree_show_icons = {
 	files = 1,
 	folder_arrows = 1,
 }
-
--- Bracket pairing
-require("pears").setup()
 
 -- Symbols outline
 vim.g.symbols_outline = {
@@ -294,8 +243,30 @@ vim.g.symbols_outline = {
 }
 
 -- Bufferline
-require("bufferline").setup({})
--- vim.g.airline_powerline_fonts = 1
+require("bufferline").setup({
+	options = {
+		numbers = "ordinal",
+		diagnostics = "nvim_lsp",
+		show_buffer_icons = true,
+		show_buffer_close_icons = false,
+	},
+})
+
+-- Status line
+require("lualine").setup({
+	options = { theme = "dracula" },
+	sections = {
+		lualine_a = { "mode" },
+		lualine_b = { "branch" },
+		lualine_c = { "filename" },
+		lualine_x = { "filetype" },
+		lualine_y = { "progress" },
+		lualine_z = { "location" },
+	},
+})
 
 -- Telescope
 require("telescope").setup({})
+
+-- Snippets
+vim.g.UltiSnipsSnippetDirectories = "snippets"

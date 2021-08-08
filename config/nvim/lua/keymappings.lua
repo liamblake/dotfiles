@@ -26,4 +26,4 @@ key_mapper("n", "<leader>fb", ':lua require"telescope.builtin".buffers()<CR>')
 key_mapper("n", "<C-b>", ":NvimTreeToggle<CR>")
 
 -- Toggle symbol outline
-key_mapper("n", "<C-n>", ":SymbolsOutline")
+key_mapper("n", "<C-S>", ":SymbolsOutline")
