@@ -1,6 +1,0 @@
-[submodule "ext/fzf"]
-	path = ext/fzf
-	url = https://github.com/junegunn/fzf.git
-[submodule "ext/fonts"]
-	path = ext/fonts
-	url = https://github.com/powerline/fonts.git
