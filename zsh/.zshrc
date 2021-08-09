@@ -1,5 +1,6 @@
 # Add bin to path
 path+=("$(pwd)/bin")
+path+=("$HOME/.local/bin")
 path+=("$HOME/.cargo/bin")
 
 export PATH

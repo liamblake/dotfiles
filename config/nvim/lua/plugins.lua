@@ -45,6 +45,7 @@ packer.startup(function(use)
 	-- Typing helps
 	use("steelsojka/pears.nvim")
 	use("tpope/vim-commentary")
+	use("tpope/vim-surround")
 
 	-- Telescope
 	use({
@@ -163,7 +164,7 @@ require("pears").setup()
 
 -- NvimTree
 vim.g.nvim_tree_side = "left"
-vim.g.nvim_tree_width = 50
+vim.g.nvim_tree_width = 40
 vim.g.nvim_tree_ignore = {".git", "$null"}
 vim.g.nvim_tree_gitignore = 1
 vim.g.nvim_tree_auto_open = 1
@@ -267,7 +268,9 @@ require("lualine").setup({
 })
 
 -- Telescope
-require("telescope").setup({})
+require("telescope").setup({
+	file_ignore_patterns = {"venv"}
+})
 
 -- Snippets
 vim.g.UltiSnipsSnippetDirectories = "snippets"

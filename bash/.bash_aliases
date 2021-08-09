@@ -1,4 +1,3 @@
-alias venv="source venv/bin/activate"
 alias codehere="code -n ."
 
 # Commonly used directories - assumes dev dir is in home
