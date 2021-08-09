@@ -45,6 +45,11 @@ windows:
       root: ~/dev/radreport/radreport-backend
       panes:
         - nvim
+  - repo:
+      layout: tiled
+      panes:
+        - cd radreport-backend
+        - cd radreport-frontend
         - git fetch && git status
   - servers:
       layout: tiled
