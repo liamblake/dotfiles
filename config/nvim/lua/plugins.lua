@@ -46,6 +46,7 @@ packer.startup(function(use)
 	use("steelsojka/pears.nvim")
 	use("tpope/vim-commentary")
 	use("tpope/vim-surround")
+	use("tpope/vim-fugitive")
 
 	-- Telescope
 	use({
@@ -90,7 +91,7 @@ packer.startup(function(use)
 	use("hrsh7th/nvim-compe")
 
 	-- Snippets
-	--use("sirver/ultisnips")
+	use("sirver/ultisnips")
 end)
 
 -- Treesitter
@@ -165,7 +166,7 @@ require("pears").setup()
 -- NvimTree
 vim.g.nvim_tree_side = "left"
 vim.g.nvim_tree_width = 40
-vim.g.nvim_tree_ignore = {".git", "$null"}
+vim.g.nvim_tree_ignore = { ".git", "$null" }
 vim.g.nvim_tree_gitignore = 1
 vim.g.nvim_tree_auto_open = 1
 vim.g.nvim_tree_auto_close = 0
@@ -269,8 +270,44 @@ require("lualine").setup({
 
 -- Telescope
 require("telescope").setup({
-	file_ignore_patterns = {"venv"}
+	file_ignore_patterns = { "venv" },
 })
 
 -- Snippets
 vim.g.UltiSnipsSnippetDirectories = "snippets"
+vim.g.UltiSnipsExpandTrigger = "<tab>"
+
+-- Completions
+require("compe").setup({
+	enabled = true,
+	autocomplete = true,
+	debug = false,
+	min_length = 1,
+	preselect = "enable",
+	throttle_time = 80,
+	source_timeout = 200,
+	resolve_timeout = 800,
+	incomplete_delay = 400,
+	max_abbr_width = 100,
+	max_kind_width = 100,
+	max_menu_width = 100,
+	documentation = {
+		border = { "", "", "", " ", "", "", "", " " }, -- the border option is the same as `|help nvim_open_win|`
+		winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
+		max_width = 120,
+		min_width = 60,
+		max_height = math.floor(vim.o.lines * 0.1),
+		min_height = 1,
+	},
+
+	source = {
+		path = true,
+		buffer = true,
+		calc = true,
+		nvim_lsp = true,
+		nvim_lua = true,
+		vsnip = true,
+		ultisnips = true,
+		luasnip = true,
+	},
+})

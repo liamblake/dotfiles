@@ -6,6 +6,8 @@ vim.o.number = true
 -- Set spacebar to be map leader
 vim.g.mapleader = " "
 
+vim.o.completeopt = "menuone,noselect"
+
 require("plugins")
 require("lsp")
 require("keymappings")
