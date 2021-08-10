@@ -92,6 +92,9 @@ packer.startup(function(use)
 
 	-- Snippets
 	use("sirver/ultisnips")
+
+	-- Additional linters
+	use("mfussenegger/nvim-lint")
 end)
 
 -- Treesitter
@@ -311,3 +314,13 @@ require("compe").setup({
 		luasnip = true,
 	},
 })
+
+-- Linters
+require("lint").linters_by_ft = {
+	python = {"flake8", "mypy"}
+}
+vim.api.nvim_exec(
+	[[
+		au BufWritePost <buffer> lua require('lint').try_lint()
+	]], true
+)

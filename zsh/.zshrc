@@ -1,5 +1,5 @@
 # Add bin to path
-path+=("$(pwd)/bin")
+path+=("$HOME/dev/dotfiles/bin")
 path+=("$HOME/.local/bin")
 path+=("$HOME/.cargo/bin")
 
