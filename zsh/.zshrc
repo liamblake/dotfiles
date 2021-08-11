@@ -28,6 +28,9 @@ eval "$(direnv hook zsh)"
 
 setopt PROMPT_SUBST ; PS1='%F{123}$(show_virtual_env) %F{171}%B%~ %F{041}$(__git_ps1 "(%s)")%F{123}> %f%b'
 
+# zoxide
+eval "$(zoxide init zsh)"
+
 source $ZSH/oh-my-zsh.sh
 
 # Plugins
