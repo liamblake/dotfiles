@@ -22,7 +22,7 @@ mkdir -p "$HOME/.config"
 
 # Create links in .config/dir
 # TODO: Move more files to .config, will reduce repetition in this file.
-for dir in "git" "tmuxinator" "nvim" "alacritty"; do
+for dir in "git" "tmuxinator" "nvim" "alacritty" "ranger"; do
     create_home_symlink config/$dir .config/
 done
 
