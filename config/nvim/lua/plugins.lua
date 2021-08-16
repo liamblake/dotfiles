@@ -95,6 +95,9 @@ packer.startup(function(use)
 
 	-- Additional linters
 	use("mfussenegger/nvim-lint")
+
+	-- Better TeX support
+	use("lervag/vimtex")
 end)
 
 -- Treesitter
@@ -277,7 +280,6 @@ require("telescope").setup({
 })
 
 -- Snippets
-vim.g.UltiSnipsSnippetDirectories = "snippets"
 vim.g.UltiSnipsExpandTrigger = "<tab>"
 
 -- Completions
