@@ -11,3 +11,7 @@ alias mail="thunderbird"
 alias editdot="code -n $HOME/dev/dotfiles"
 
 alias mux=tmuxinator
+
+# Commonly used commands
+alias g="git"
+alias r="ranger"

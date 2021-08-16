@@ -9,4 +9,5 @@
     co = "checkout"
     cb = "checkout -b"
     cm = "commit -m"
+    cam = "commit -a -m"
     sc = "switch -c"
