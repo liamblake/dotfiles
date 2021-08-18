@@ -263,7 +263,7 @@ require("bufferline").setup({
 
 -- Status line
 require("lualine").setup({
-	options = { theme = "dracula" },
+	options = { theme = "nightfly" },
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch" },
@@ -273,12 +273,6 @@ require("lualine").setup({
 		lualine_z = { "location" },
 	},
 })
-
--- Telescope
-require("telescope").setup({
-	file_ignore_patterns = { "venv" },
-})
-
 -- Snippets
 vim.g.UltiSnipsExpandTrigger = "<tab>"
 

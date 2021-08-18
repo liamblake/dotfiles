@@ -80,4 +80,5 @@
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "editor.fontSize": 15,
 }

@@ -1,5 +1,6 @@
 [core]
     editor = code
+	autocrlf = input
 
 [merge]
     tool = code
