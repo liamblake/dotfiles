@@ -26,8 +26,18 @@ packer.startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
 
-	-- Theme
+	-- Theme and visuals
 	use("LiamBlake/dracula-vim")
+	use({
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require("indent_blankline").setup({
+				char = "|",
+				buftype_exclude = {"terminal"},
+				use_treesitter = true,
+			})
+		end
+	})
 
 	-- LSP
 	use("neovim/nvim-lspconfig")
