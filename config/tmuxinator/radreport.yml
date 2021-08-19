@@ -31,7 +31,7 @@ root: ~/dev/radreport
 # tmux_command: byobu
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-startup_window: repo
+startup_window: terminal
 
 # Specifies (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
 startup_pane: 3
@@ -40,12 +40,17 @@ startup_pane: 3
 # attach: false
 
 windows:
-  - editor:
+  - backend:
       layout: main-horizontal
       root: ~/dev/radreport/radreport-backend
       panes:
         - nvim
-  - repo:
+  - frontend:
+      layout: main-horizontal
+      root: ~/dev/radreport/radreport-frontend
+      panes:
+        - nvim
+  - terminal:
       layout: tiled
       panes:
         - cd radreport-backend
@@ -58,6 +63,6 @@ windows:
       # synchronize: after
       panes:
         - cd radreport-backend && direnv exec . flask run
-        - cd radreport-backend && direnv exec . jupyter lab
+        - cd radreport-backend && echo "run jupyter-lab to start"
         - cd radreport-frontend && npm start
         - cd ~/elasticsearch-7.13.2 && bin/elasticsearch

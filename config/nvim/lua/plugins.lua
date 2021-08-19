@@ -98,7 +98,44 @@ packer.startup(function(use)
 	})
 
 	-- Autocompletions
-	use("hrsh7th/nvim-compe")
+	use({
+		"hrsh7th/nvim-compe",
+		config = function()
+			require("compe").setup({
+			enabled = true,
+			autocomplete = true,
+			debug = false,
+			min_length = 1,
+			preselect = "enable",
+			throttle_time = 80,
+			source_timeout = 200,
+			resolve_timeout = 800,
+			incomplete_delay = 400,
+			max_abbr_width = 100,
+			max_kind_width = 100,
+			max_menu_width = 100,
+			documentation = {
+				border = { "", "", "", " ", "", "", "", " " }, -- the border option is the same as `|help nvim_open_win|`
+				winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
+				max_width = 120,
+				min_width = 60,
+				max_height = math.floor(vim.o.lines * 0.1),
+				min_height = 1,
+			},
+
+			source = {
+				path = true,
+				buffer = true,
+				calc = true,
+				nvim_lsp = true,
+				nvim_lua = true,
+				vsnip = true,
+				ultisnips = true,
+				luasnip = true,
+				},
+			})
+		end
+	})
 
 	-- Snippets
 	use("sirver/ultisnips")
@@ -127,17 +164,17 @@ require("formatter").setup({
 			-- black
 			function()
 				return {
-					exe = { "black" },
+					exe = "black",
 					args = {},
-					stdin = true,
+					stdin = false,
 				}
 			end,
 			-- isort
 			function()
 				return {
-					exe = { "isort" },
+					exe = "isort",
 					args = {},
-					stdin = true,
+					stdin = false,
 				}
 			end,
 		},
@@ -184,7 +221,7 @@ vim.g.nvim_tree_side = "left"
 vim.g.nvim_tree_width = 40
 vim.g.nvim_tree_ignore = { ".git", "$null" }
 vim.g.nvim_tree_gitignore = 1
-vim.g.nvim_tree_auto_open = 1
+vim.g.nvim_tree_auto_open = 0
 vim.g.nvim_tree_auto_close = 0
 vim.g.nvim_tree_quit_on_open = 1
 vim.g.nvim_tree_follow = 1
@@ -285,41 +322,6 @@ require("lualine").setup({
 })
 -- Snippets
 vim.g.UltiSnipsExpandTrigger = "<tab>"
-
--- Completions
-require("compe").setup({
-	enabled = true,
-	autocomplete = true,
-	debug = false,
-	min_length = 1,
-	preselect = "enable",
-	throttle_time = 80,
-	source_timeout = 200,
-	resolve_timeout = 800,
-	incomplete_delay = 400,
-	max_abbr_width = 100,
-	max_kind_width = 100,
-	max_menu_width = 100,
-	documentation = {
-		border = { "", "", "", " ", "", "", "", " " }, -- the border option is the same as `|help nvim_open_win|`
-		winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
-		max_width = 120,
-		min_width = 60,
-		max_height = math.floor(vim.o.lines * 0.1),
-		min_height = 1,
-	},
-
-	source = {
-		path = true,
-		buffer = true,
-		calc = true,
-		nvim_lsp = true,
-		nvim_lua = true,
-		vsnip = true,
-		ultisnips = true,
-		luasnip = true,
-	},
-})
 
 -- Linters
 require("lint").linters_by_ft = {
