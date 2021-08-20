@@ -6,7 +6,13 @@ vim.o.number = true
 -- Set spacebar to be map leader
 vim.g.mapleader = " "
 
-vim.o.completeopt = "menuone,noselect"
+vim.o.completeopt = "menuone,noselect,preview"
+
+vim.o.relativenumber = true
+vim.o.scrolloff = 5
+
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 require("plugins")
 require("lsp")

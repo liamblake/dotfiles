@@ -62,6 +62,7 @@ packer.startup(function(use)
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
+		config = require("telescope_config").setup()
 	})
 
 	-- Directory tree
@@ -149,7 +150,7 @@ end)
 
 -- Treesitter
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "bash", "c", "cpp", "python", "julia", "rust" },
+	ensure_installed = { "bash", "c", "cpp", "python", "julia", "rust", "typescript" },
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = false,

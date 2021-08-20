@@ -1,7 +1,13 @@
 local M = {}
 
 M.setup = function()
-
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = require('telescope.actions').close
+      },
+    },
+  }
 end
 
 M.project_files = function()

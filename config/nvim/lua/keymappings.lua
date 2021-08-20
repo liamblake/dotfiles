@@ -17,13 +17,14 @@ key_mapper("n", "<leader>af", ":lua vim.lsp.buf.code_action()<CR>")
 key_mapper("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
 
 -- Telescope searches
-key_mapper("n", "<C-p>", ':lua require"telescope-config".project_files()<CR>')
+key_mapper("n", "<C-p>", ':lua require"telescope_config".project_files()<CR>')
 key_mapper("n", "<leader>fs", ':lua require"telescope.builtin".live_grep()<CR>')
 key_mapper("n", "<leader>fh", ':lua require"telescope.builtin".help_tags()<CR>')
 key_mapper("n", "<leader>fb", ':lua require"telescope.builtin".buffers()<CR>')
+key_mapper("n", "<C-s>", ':lua require"telescope.builtin".treesitter()<CR>')
 
 -- Toggle tree
 key_mapper("n", "<C-b>", ":NvimTreeToggle<CR>")
 
 -- Toggle symbol outline
-key_mapper("n", "<C-S>", ":SymbolsOutline")
+key_mapper("n", "<C-x>", ":SymbolsOutline<CR>")
