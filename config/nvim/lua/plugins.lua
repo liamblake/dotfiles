@@ -27,16 +27,16 @@ packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- Theme and visuals
-	use("LiamBlake/dracula-vim")
+	use("dracula/vim")
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
 			require("indent_blankline").setup({
 				char = "|",
-				buftype_exclude = {"terminal"},
+				buftype_exclude = { "terminal" },
 				use_treesitter = true,
 			})
-		end
+		end,
 	})
 
 	-- LSP
@@ -46,6 +46,12 @@ packer.startup(function(use)
 		"kabouzeid/nvim-lspinstall",
 		config = function()
 			vim.cmd([[command! InstallLspServers execute 'lua install_lsp_servers()']])
+		end,
+	})
+	use({
+		"ray-x/lsp_signature.nvim",
+		config = function()
+			require("lsp_signature").setup()
 		end,
 	})
 
@@ -62,7 +68,7 @@ packer.startup(function(use)
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
-		config = require("telescope_config").setup()
+		config = require("config.telescope").setup(),
 	})
 
 	-- Directory tree
@@ -82,7 +88,7 @@ packer.startup(function(use)
 	use({ "akinsho/nvim-bufferline.lua", requires = "kyazdani42/nvim-web-devicons" })
 
 	-- Formatting
-	use("mhartington/formatter.nvim")
+	use({ "mhartington/formatter.nvim", config = require("config.formatter").setup() })
 
 	-- Git integration
 	use({
@@ -101,41 +107,7 @@ packer.startup(function(use)
 	-- Autocompletions
 	use({
 		"hrsh7th/nvim-compe",
-		config = function()
-			require("compe").setup({
-			enabled = true,
-			autocomplete = true,
-			debug = false,
-			min_length = 1,
-			preselect = "enable",
-			throttle_time = 80,
-			source_timeout = 200,
-			resolve_timeout = 800,
-			incomplete_delay = 400,
-			max_abbr_width = 100,
-			max_kind_width = 100,
-			max_menu_width = 100,
-			documentation = {
-				border = { "", "", "", " ", "", "", "", " " }, -- the border option is the same as `|help nvim_open_win|`
-				winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
-				max_width = 120,
-				min_width = 60,
-				max_height = math.floor(vim.o.lines * 0.1),
-				min_height = 1,
-			},
-
-			source = {
-				path = true,
-				buffer = true,
-				calc = true,
-				nvim_lsp = true,
-				nvim_lua = true,
-				vsnip = true,
-				ultisnips = true,
-				luasnip = true,
-				},
-			})
-		end
+		config = require("config.compe").setup(),
 	})
 
 	-- Snippets
@@ -156,63 +128,6 @@ require("nvim-treesitter.configs").setup({
 		additional_vim_regex_highlighting = false,
 	},
 })
-
--- Formatters
-require("formatter").setup({
-	logging = false,
-	filetype = {
-		python = {
-			-- black
-			function()
-				return {
-					exe = "black",
-					args = {},
-					stdin = false,
-				}
-			end,
-			-- isort
-			function()
-				return {
-					exe = "isort",
-					args = {},
-					stdin = false,
-				}
-			end,
-		},
-		cpp = {
-			-- clang-format
-			function()
-				return {
-					exe = "clang-format",
-					args = { "--assume-filename", vim.api.nvim_buf_get_name(0) },
-					stdin = true,
-					cwd = vim.fn.expand("%:p:h"), -- Run clang-format in cwd of the file.
-				}
-			end,
-		},
-		lua = {
-			-- stylua
-			function()
-				return {
-					exe = "stylua",
-					args = {},
-					stdin = true,
-				}
-			end,
-		},
-	},
-})
-
--- Format on save
-vim.api.nvim_exec(
-	[[
-augroup FormatAutogroup
-  autocmd!
-  autocmd BufWritePost *.py,*.cpp,*.hpp,*.h FormatWrite
-augroup END
-]],
-	true
-)
 
 -- Bracket pairing
 require("pears").setup()
@@ -306,6 +221,7 @@ require("bufferline").setup({
 		diagnostics = "nvim_lsp",
 		show_buffer_icons = true,
 		show_buffer_close_icons = false,
+		offsets = { { filetype = "NvimTree", text = "File Explorer", highlight = "Directory", text_align = "center" } },
 	},
 })
 
@@ -326,10 +242,11 @@ vim.g.UltiSnipsExpandTrigger = "<tab>"
 
 -- Linters
 require("lint").linters_by_ft = {
-	python = {"flake8", "mypy"}
+	python = { "flake8", "mypy" },
 }
 vim.api.nvim_exec(
 	[[
 		au BufWritePost <buffer> lua require('lint').try_lint()
-	]], true
+	]],
+	true
 )
