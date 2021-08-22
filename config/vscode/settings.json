@@ -81,4 +81,5 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.fontSize": 15,
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
 }

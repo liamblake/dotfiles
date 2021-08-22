@@ -3,9 +3,6 @@ function key_mapper(mode, key, result)
 	vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
 end
 
--- Tab through buffer
-key_mapper("n", "<C-Tab>", ":bn<CR>")
-
 -- LSP
 key_mapper("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
 key_mapper("n", "gD", ":lua vim.lsp.buf.declaration()<CR>")
@@ -23,11 +20,11 @@ key_mapper("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
 key_mapper("n", "<C-p>", ':lua require"config.telescope".project_files()<CR>')
 key_mapper("n", "<leader>fs", ':lua require"telescope.builtin".live_grep()<CR>')
 key_mapper("n", "<leader>fh", ':lua require"telescope.builtin".help_tags()<CR>')
-key_mapper("n", "<leader>fb", ':lua require"telescope.builtin".buffers()<CR>')
+key_mapper("n", "<C-TAB>", ':lua require"telescope.builtin".buffers()<CR>')
 key_mapper("n", "<C-s>", ':lua require"telescope.builtin".treesitter()<CR>')
 
 -- Toggle tree
-key_mapper("n", "<C-b>", ":NvimTreeToggle<CR>")
+key_mapper("n", "<C-b>", ':lua require"config.tree".toggle()<CR>')
 
 -- Toggle symbol outline
 key_mapper("n", "<C-x>", ":SymbolsOutline<CR>")

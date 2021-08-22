@@ -1,3 +1,9 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+
+endglobal
+
 snippet article "Document class" b
 \documentclass[12pt]{article}
 
@@ -12,4 +18,14 @@ snippet article "Document class" b
 
 $0
 \end{document}
+endsnippet
+
+context "math()"
+snippet bm "Bold math" i
+\bm{$1}
+endsnippet
+
+context "!math()"
+snippet bf "Bold text" i
+\textbf{$1}
 endsnippet

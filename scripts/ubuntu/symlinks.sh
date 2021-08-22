@@ -46,8 +46,8 @@ mkdir -p "$HOME"/.config/Code/User/
 loop_dir_symlink config/vscode/ .config/Code/User/
 
 # TeX style files
-mkdir -p "$HOME/texmf/tex/latex/"
-create_home_symlink tex/latex/* texmf/tex/latex/
+mkdir -p "$HOME/.miktex/texmfs/install/tex/latex/"
+create_home_symlink tex/latex/* /.miktex/texmfs/install/tex/latex/
 # Only symlinking the files and not the full directory prevents any clutter from locally installed packages.
 
 # tmux setup

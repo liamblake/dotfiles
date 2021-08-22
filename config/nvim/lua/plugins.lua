@@ -54,6 +54,7 @@ packer.startup(function(use)
 			require("lsp_signature").setup()
 		end,
 	})
+	use("onsails/lspkind-nvim")
 
 	-- Syntax highlightings
 	use("nvim-treesitter/nvim-treesitter")
@@ -71,8 +72,14 @@ packer.startup(function(use)
 		config = require("config.telescope").setup(),
 	})
 
+	-- Tabline
+	use({
+		"romgrk/barbar.nvim",
+		requires = { "kyazdani42/nvim-web-devicons" },
+	})
+
 	-- Directory tree
-	use("kyazdani42/nvim-tree.lua")
+	use({ "kyazdani42/nvim-tree.lua", config = require("config.tree").config() })
 	use("kyazdani42/nvim-web-devicons")
 
 	-- Symbol outline
@@ -83,9 +90,6 @@ packer.startup(function(use)
 		"hoob3rt/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
-
-	-- Bufferline
-	use({ "akinsho/nvim-bufferline.lua", requires = "kyazdani42/nvim-web-devicons" })
 
 	-- Formatting
 	use({ "mhartington/formatter.nvim", config = require("config.formatter").setup() })
@@ -116,13 +120,21 @@ packer.startup(function(use)
 	-- Additional linters
 	use("mfussenegger/nvim-lint")
 
-	-- Better TeX support
-	use("lervag/vimtex")
+	-- Language-specific support
+	use({
+		"lervag/vimtex",
+		config = function()
+			vim.g.vimtex_compiler_latexmk = { build_dir = "build", continuous = true }
+		end,
+	})
+
+	-- Integrated terminals
+	use("akinsho/nvim-toggleterm.lua")
 end)
 
 -- Treesitter
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "bash", "c", "cpp", "python", "julia", "rust", "typescript" },
+	ensure_installed = { "bash", "c", "cpp", "python", "julia", "latex", "rust", "typescript" },
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = false,
@@ -130,39 +142,10 @@ require("nvim-treesitter.configs").setup({
 })
 
 -- Bracket pairing
-require("pears").setup()
-
--- NvimTree
-vim.g.nvim_tree_side = "left"
-vim.g.nvim_tree_width = 40
-vim.g.nvim_tree_ignore = { ".git", "$null" }
-vim.g.nvim_tree_gitignore = 1
-vim.g.nvim_tree_auto_open = 0
-vim.g.nvim_tree_auto_close = 0
-vim.g.nvim_tree_quit_on_open = 1
-vim.g.nvim_tree_follow = 1
-vim.g.nvim_tree_indent_markers = 1
-vim.g.nvim_tree_hide_dotfiles = 0
-vim.g.nvim_tree_git_hl = 1
-vim.g.nvim_tree_highlight_opened_files = 1
-vim.g.nvim_tree_root_folder_modifier = ":~"
-vim.g.nvim_tree_tab_open = 1
-vim.g.nvim_tree_auto_resize = 0
-vim.g.nvim_tree_disable_netrw = 0
-vim.g.nvim_tree_hijack_netrw = 0
-vim.g.nvim_tree_add_trailing = 1
-vim.g.nvim_tree_group_empty = 1
-vim.g.nvim_tree_lsp_diagnostics = 1
-vim.g.nvim_tree_disable_window_picker = 1
-vim.g.nvim_tree_hijack_cursor = 0
-vim.g.nvim_tree_icon_padding = " "
-vim.g.nvim_tree_update_cwd = 1
-vim.g.nvim_tree_show_icons = {
-	git = 0,
-	folders = 1,
-	files = 1,
-	folder_arrows = 1,
-}
+require("pears").setup(function(conf)
+	conf.pair("\\[", { close = "\\]", filetypes = { "tex" } })
+	conf.pair("\\(", { close = "\\)", filetypes = { "tex" } })
+end)
 
 -- Symbols outline
 vim.g.symbols_outline = {
@@ -214,28 +197,21 @@ vim.g.symbols_outline = {
 	},
 }
 
--- Bufferline
-require("bufferline").setup({
-	options = {
-		numbers = "ordinal",
-		diagnostics = "nvim_lsp",
-		show_buffer_icons = true,
-		show_buffer_close_icons = false,
-		offsets = { { filetype = "NvimTree", text = "File Explorer", highlight = "Directory", text_align = "center" } },
-	},
-})
-
 -- Status line
 require("lualine").setup({
-	options = { theme = "nightfly" },
+	options = { theme = "dracula", section_separators = { "", "" }, component_separators = { "|", "|" } },
 	sections = {
 		lualine_a = { "mode" },
-		lualine_b = { "branch" },
+		lualine_b = { "branch", "diff" },
 		lualine_c = { "filename" },
 		lualine_x = { "filetype" },
 		lualine_y = { "progress" },
 		lualine_z = { "location" },
 	},
+	tabline = {
+		lualine_a = { "filename" },
+	},
+	extensions = { "nvim-tree" },
 })
 -- Snippets
 vim.g.UltiSnipsExpandTrigger = "<tab>"
