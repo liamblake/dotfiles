@@ -1,5 +1,9 @@
 local M = {}
 
+M.fmt_prettier = function()
+	return { exe = "prettier --write", args = {}, stdin = false }
+end
+
 M.setup = function()
 	require("formatter").setup({
 		logging = false,
@@ -53,6 +57,18 @@ M.setup = function()
 					}
 				end,
 			},
+			typescript = {
+				-- Prettier
+				fmt_prettier,
+			},
+			html = {
+				-- Prettier
+				fmt_prettier,
+			},
+			css = {
+				-- Prettier
+				fmt_prettier,
+			},
 		},
 	})
 end
@@ -62,7 +78,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.py,*.cpp,*.hpp,*.h,*.lua,*.tex,*.bib,*.sty FormatWrite
+  autocmd BufWritePost *.py,*.cpp,*.hpp,*.h,*.lua,*.tex,*.bib,*.sty,*.ts FormatWrite
 augroup END
 ]],
 	true

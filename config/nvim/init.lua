@@ -13,8 +13,11 @@ vim.o.completeopt = "menuone,noselect,preview"
 vim.o.relativenumber = true
 vim.o.scrolloff = 5
 
+-- Search options
 vim.o.ignorecase = true
 vim.o.smartcase = true
+
+vim.o.mouse = "a"
 
 require("plugins")
 require("lsp")

@@ -218,7 +218,7 @@ vim.g.UltiSnipsExpandTrigger = "<tab>"
 
 -- Linters
 require("lint").linters_by_ft = {
-	python = { "flake8", "mypy" },
+	python = { "flake8" },
 }
 vim.api.nvim_exec(
 	[[
