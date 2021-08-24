@@ -19,6 +19,8 @@ vim.o.smartcase = true
 
 vim.o.mouse = "a"
 
+vim.o.updatetime = 300
+
 require("plugins")
 require("lsp")
 require("keymappings")

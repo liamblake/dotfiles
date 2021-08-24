@@ -128,8 +128,8 @@ packer.startup(function(use)
 		end,
 	})
 
-	-- Integrated terminals
-	use("akinsho/nvim-toggleterm.lua")
+	-- Ranger support
+	use("kevinhwang91/rnvimr")
 end)
 
 -- Treesitter
@@ -203,7 +203,7 @@ require("lualine").setup({
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch", "diff" },
-		lualine_c = { "filename" },
+		lualine_c = { { "filename", path = 1 } },
 		lualine_x = { "filetype" },
 		lualine_y = { "progress" },
 		lualine_z = { "location" },

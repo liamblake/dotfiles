@@ -40,16 +40,11 @@ startup_pane: 3
 # attach: false
 
 windows:
-  - backend:
+  - editor:
       layout: main-horizontal
-      root: ~/dev/radreport/radreport-backend
+      root: ~/dev/radreport
       panes:
-        - nvim
-  - frontend:
-      layout: main-horizontal
-      root: ~/dev/radreport/radreport-frontend
-      panes:
-        - nvim
+        - source radreport-backend/venv/bin/activate && nvim
   - terminal:
       layout: tiled
       panes:
