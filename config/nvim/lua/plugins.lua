@@ -28,11 +28,12 @@ packer.startup(function(use)
 
 	-- Theme and visuals
 	use("dracula/vim")
+	use("folke/tokyonight.nvim")
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
 			require("indent_blankline").setup({
-				char = "|",
+				char = "│",
 				buftype_exclude = { "terminal" },
 				use_treesitter = true,
 			})
