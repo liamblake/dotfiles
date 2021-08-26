@@ -30,6 +30,18 @@ packer.startup(function(use)
 	use("dracula/vim")
 	use("folke/tokyonight.nvim")
 	use({
+		"Pocco81/Catppuccino.nvim",
+		config = function()
+			local catppuccino = require("catppuccino")
+			catppuccino.setup({
+				colorscheme = "neon_latte",
+				transparency = true,
+				integrations = { indent_blankline = true, barbar = true },
+			})
+		end,
+	})
+
+	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
 			require("indent_blankline").setup({
@@ -200,13 +212,20 @@ vim.g.symbols_outline = {
 
 -- Status line
 require("lualine").setup({
-	options = { theme = "dracula", section_separators = { "", "" }, component_separators = { "|", "|" } },
+	options = { theme = "tokyonight", section_separators = { "", "" }, component_separators = { "|", "|" } },
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch", "diff" },
 		lualine_c = { { "filename", path = 1 } },
-		lualine_x = { "filetype" },
-		lualine_y = { "progress" },
+		lualine_x = {
+			{
+				"diagnostics",
+				sources = { "nvim_lsp" },
+				-- displays diagnostics from defined severity
+				sections = { "error", "warn", "info", "hint" },
+			},
+		},
+		lualine_y = { "filetype" },
 		lualine_z = { "location" },
 	},
 	tabline = {

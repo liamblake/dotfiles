@@ -61,3 +61,7 @@ windows:
         - cd radreport-backend && echo "run jupyter-lab to start"
         - cd radreport-frontend && npm start
         - cd ~/elasticsearch-7.13.2 && bin/elasticsearch
+  - monitor:
+      layout: main-horizontal
+      panes:
+        - btm

@@ -29,6 +29,6 @@ vim.opt.termguicolors = true
 
 -- Colourscheme
 vim.g.dracula_colorterm = 0
-vim.cmd("colorscheme dracula")
+vim.cmd("colorscheme dracula") --catppuccino")
 
 require("colours")
