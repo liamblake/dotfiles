@@ -1,3 +1,5 @@
+vim.cmd("colorscheme catppuccino")
+
 -- Custom plugin colours
 -- Telescope
 vim.cmd("hi! link TelescopePromptBorder DraculaGreen")

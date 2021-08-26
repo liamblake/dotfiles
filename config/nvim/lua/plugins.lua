@@ -27,17 +27,22 @@ packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- Theme and visuals
-	use("dracula/vim")
-	use("folke/tokyonight.nvim")
+	-- use("dracula/vim")
+	-- use("folke/tokyonight.nvim")
 	use({
 		"Pocco81/Catppuccino.nvim",
 		config = function()
 			local catppuccino = require("catppuccino")
 			catppuccino.setup({
 				colorscheme = "neon_latte",
-				transparency = true,
-				integrations = { indent_blankline = true, barbar = true },
+				-- transparency = true,
+				integrations = { indent_blankline = true, barbar = true, telescope = true },
+			}, {
+				bg = "#24283b",
+				green = "#97c374",
 			})
+
+			catppuccino.load()
 		end,
 	})
 
@@ -143,6 +148,20 @@ packer.startup(function(use)
 
 	-- Ranger support
 	use("kevinhwang91/rnvimr")
+
+	-- Focus
+	use({
+		"folke/zen-mode.nvim",
+		config = function()
+			require("zen-mode").setup({})
+		end,
+	})
+	use({
+		"folke/twilight.nvim",
+		config = function()
+			require("twilight").setup({})
+		end,
+	})
 end)
 
 -- Treesitter
@@ -212,7 +231,7 @@ vim.g.symbols_outline = {
 
 -- Status line
 require("lualine").setup({
-	options = { theme = "tokyonight", section_separators = { "", "" }, component_separators = { "|", "|" } },
+	options = { theme = "dracula", section_separators = { "", "" }, component_separators = { "|", "|" } },
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch", "diff" },
