@@ -1,4 +1,6 @@
-vim.cmd("colorscheme catppuccino")
+vim.g.tokyonight_style = "storm"
+vim.g.tokyonight_italic_keywords = false
+vim.cmd("colorscheme tokyonight")
 
 -- Custom plugin colours
 -- Telescope

@@ -27,8 +27,8 @@ packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- Theme and visuals
-	-- use("dracula/vim")
-	-- use("folke/tokyonight.nvim")
+	use("dracula/vim")
+	use("folke/tokyonight.nvim")
 	use({
 		"Pocco81/Catppuccino.nvim",
 		config = function()
@@ -42,7 +42,7 @@ packer.startup(function(use)
 				green = "#97c374",
 			})
 
-			catppuccino.load()
+			-- catppuccino.load()
 		end,
 	})
 
@@ -53,6 +53,20 @@ packer.startup(function(use)
 				char = "│",
 				buftype_exclude = { "terminal" },
 				use_treesitter = true,
+			})
+		end,
+	})
+
+	use({
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("todo-comments").setup({
+				highlight = {
+					-- Only highlight the keyword and not the space around it
+					keyword = "bg",
+				},
+				search = { pattern = [[\b(KEYWORDS)]] },
 			})
 		end,
 	})
@@ -80,8 +94,6 @@ packer.startup(function(use)
 	-- Typing helps
 	use("steelsojka/pears.nvim")
 	use("tpope/vim-commentary")
-	use("tpope/vim-surround")
-	use("tpope/vim-fugitive")
 
 	-- Telescope
 	use({
@@ -120,8 +132,11 @@ packer.startup(function(use)
 		},
 		config = function()
 			require("gitsigns").setup({
-				current_line_blame = true,
-				current_line_blame_delay = 250,
+				current_line_blame = false,
+				current_line_blame_opts = {
+					delay = 250,
+					virt_text_post = "right_align",
+				},
 			})
 		end,
 	})
@@ -153,13 +168,7 @@ packer.startup(function(use)
 	use({
 		"folke/zen-mode.nvim",
 		config = function()
-			require("zen-mode").setup({})
-		end,
-	})
-	use({
-		"folke/twilight.nvim",
-		config = function()
-			require("twilight").setup({})
+			require("zen-mode").setup({ window = { width = 0.85, height = 1 }, plugins = { tmux = { enabled = true } } })
 		end,
 	})
 end)
@@ -231,7 +240,7 @@ vim.g.symbols_outline = {
 
 -- Status line
 require("lualine").setup({
-	options = { theme = "dracula", section_separators = { "", "" }, component_separators = { "|", "|" } },
+	options = { theme = "tokyonight", section_separators = { "", "" }, component_separators = { "|", "|" } },
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch", "diff" },
