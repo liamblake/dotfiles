@@ -161,9 +161,6 @@ packer.startup(function(use)
 		end,
 	})
 
-	-- Ranger support
-	use("kevinhwang91/rnvimr")
-
 	-- Focus
 	use({
 		"folke/zen-mode.nvim",
@@ -171,6 +168,9 @@ packer.startup(function(use)
 			require("zen-mode").setup({ window = { width = 0.85, height = 1 }, plugins = { tmux = { enabled = true } } })
 		end,
 	})
+
+	-- Zoxide integration
+	use("nanotee/zoxide.vim")
 end)
 
 -- Treesitter

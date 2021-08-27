@@ -21,6 +21,9 @@ vim.o.mouse = "a"
 
 vim.o.updatetime = 300
 
+-- Spelling local
+vim.o.spelllang = "en_au"
+
 require("plugins")
 require("lsp")
 require("keymappings")
