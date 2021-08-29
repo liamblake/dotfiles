@@ -1,6 +1,7 @@
 {
     // General settings
     "git.autofetch": true,
+    "editor.formatOnSave": true,
     // Theme
     "workbench.iconTheme": "material-icon-theme",
     "workbench.colorTheme": "Dracula",
@@ -9,7 +10,6 @@
     // Python settings
     "python.formatting.provider": "black",
     "[python]": {
-        "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
         }

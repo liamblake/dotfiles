@@ -29,6 +29,7 @@ packer.startup(function(use)
 	-- Theme and visuals
 	use("dracula/vim")
 	use("folke/tokyonight.nvim")
+	use("sainnhe/edge")
 	use({
 		"Pocco81/Catppuccino.nvim",
 		config = function()
@@ -89,10 +90,10 @@ packer.startup(function(use)
 	use("onsails/lspkind-nvim")
 
 	-- Syntax highlightings
-	use("nvim-treesitter/nvim-treesitter")
+	use({ "nvim-treesitter/nvim-treesitter", config = require("config.treesitter").setup() })
 
 	-- Typing helps
-	use("steelsojka/pears.nvim")
+	use({ "windwp/nvim-autopairs", config = require("config.autopairs").setup() })
 	use("tpope/vim-commentary")
 
 	-- Telescope
@@ -171,21 +172,6 @@ packer.startup(function(use)
 
 	-- Zoxide integration
 	use("nanotee/zoxide.vim")
-end)
-
--- Treesitter
-require("nvim-treesitter.configs").setup({
-	ensure_installed = { "bash", "c", "cpp", "python", "julia", "latex", "rust", "typescript" },
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = false,
-	},
-})
-
--- Bracket pairing
-require("pears").setup(function(conf)
-	conf.pair("\\[", { close = "\\]", filetypes = { "tex" } })
-	conf.pair("\\(", { close = "\\)", filetypes = { "tex" } })
 end)
 
 -- Symbols outline

@@ -1,6 +1,7 @@
 vim.g.tokyonight_style = "storm"
 vim.g.tokyonight_italic_keywords = false
-vim.cmd("colorscheme tokyonight")
+vim.g.edge_style = "aura"
+vim.cmd("colorscheme edge")
 
 -- Custom plugin colours
 -- Telescope
