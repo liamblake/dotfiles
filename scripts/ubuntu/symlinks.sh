@@ -22,7 +22,7 @@ mkdir -p "$HOME/.config"
 
 # Create links in .config/dir
 # TODO: Move more files to .config, will reduce repetition in this file.
-for dir in "git" "tmuxinator" "nvim" "alacritty" "ranger"; do
+for dir in "git" "tmuxinator" "nvim" "alacritty" "ranger" "i3" "i3status"; do
     create_home_symlink config/$dir .config/
 done
 
@@ -47,7 +47,7 @@ loop_dir_symlink config/vscode/ .config/Code/User/
 
 # TeX style files
 mkdir -p "$HOME/.miktex/texmfs/install/tex/latex/"
-create_home_symlink tex/latex/* /.miktex/texmfs/install/tex/latex/
+create_home_symlink tex/latex/* .miktex/texmfs/install/tex/latex/
 # Only symlinking the files and not the full directory prevents any clutter from locally installed packages.
 
 # tmux setup
