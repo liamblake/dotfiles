@@ -97,7 +97,6 @@ packer.startup(function(use)
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
-		config = require("config.telescope").setup(),
 	})
 
 	-- Tabline
@@ -299,3 +298,4 @@ require("config.formatter").setup()
 require("config.compe").setup()
 require("config.treesitter").setup()
 require("config.autopairs").setup()
+require("config.telescope").setup()

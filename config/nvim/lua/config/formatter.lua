@@ -4,6 +4,14 @@ M.fmt_prettier = function()
 	return { exe = "prettier --write", args = {}, stdin = false }
 end
 
+M.fmt_latexindent = function()
+	return {
+		exe = "latexindent",
+		args = {},
+		stdin = true,
+	}
+end
+
 M.setup = function()
 	require("formatter").setup({
 		logging = false,
@@ -49,25 +57,27 @@ M.setup = function()
 			},
 			tex = {
 				-- latexindent
-				function()
-					return {
-						exe = "latexindent",
-						args = {},
-						stdin = true,
-					}
-				end,
+				M.fmt_latexindent,
+			},
+			bib = {
+				-- latexindent
+				M.fmt_latexindent,
+			},
+			sty = {
+				-- latexindent
+				M.fmt_latexindent,
 			},
 			typescript = {
 				-- Prettier
-				fmt_prettier,
+				M.fmt_prettier,
 			},
 			html = {
 				-- Prettier
-				fmt_prettier,
+				M.fmt_prettier,
 			},
 			css = {
 				-- Prettier
-				fmt_prettier,
+				M.fmt_prettier,
 			},
 		},
 	})

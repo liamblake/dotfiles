@@ -38,10 +38,15 @@
 % Bracketed fractions
 \newcommand{\bfrac}[2]{\left(\frac{#1}{#2}\right)}
 
+% Smaller dot operator for dot product, etc.
+\makeatletter
+\newcommand*\dotp{\mathpalette\dotp@{.5}}
+\newcommand*\dotp@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
 
 % Vector calculus operators
-\newcommand{\vder}{\nabla} 			% Gradient
-\newcommand{\vdiv}{\vder \dotp}		% Divergence
+\newcommand{\vder}{\nabla}					% Gradient
+\newcommand{\vdiv}{\vder \dotp}			% Divergence
 \newcommand{\curl}{\vder \times}    % Curl
 
 % Vector integrals
@@ -53,3 +58,6 @@
 % argmax and argmin
 \DeclareMathOperator{\argmax}{argmax}
 \DeclareMathOperator{\argmin}{argmin}
+
+% Transpose operator with \T
+\newcommand{\T}{^{\intercal}}
