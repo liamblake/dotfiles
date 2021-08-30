@@ -12,6 +12,8 @@ M.setup = function()
 		-- LaTeX
 		Rule("/(", "/)", { "latex" }):with_cr(cond.none()),
 		Rule("/[", "/]", { "latex" }),
+		-- Python
+		Rule('"""', '"""', { "python" }),
 	})
 end
 

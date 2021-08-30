@@ -28,6 +28,3 @@ key_mapper("n", "<C-b>", ':lua require"config.tree".toggle()<CR>')
 
 -- Toggle symbol outline
 key_mapper("n", "<C-x>", ":SymbolsOutline<CR>")
-
--- Open Ranger
-key_mapper("n", "<C-r>", ":RnvimrToggle<CR>")

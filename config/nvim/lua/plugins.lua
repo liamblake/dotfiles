@@ -29,23 +29,24 @@ packer.startup(function(use)
 	-- Theme and visuals
 	use("dracula/vim")
 	use("folke/tokyonight.nvim")
-	use("sainnhe/edge")
-	use({
-		"Pocco81/Catppuccino.nvim",
-		config = function()
-			local catppuccino = require("catppuccino")
-			catppuccino.setup({
-				colorscheme = "neon_latte",
-				-- transparency = true,
-				integrations = { indent_blankline = true, barbar = true, telescope = true },
-			}, {
-				bg = "#24283b",
-				green = "#97c374",
-			})
+	-- use("sainnhe/edge")
+	use("sainnhe/sonokai")
+	-- use({
+	-- 	"Pocco81/Catppuccino.nvim",
+	-- 	config = function()
+	-- 		local catppuccino = require("catppuccino")
+	-- 		catppuccino.setup({
+	-- 			colorscheme = "neon_latte",
+	-- 			-- transparency = true,
+	-- 			integrations = { indent_blankline = true, barbar = true, telescope = true },
+	-- 		}, {
+	-- 			bg = "#24283b",
+	-- 			green = "#97c374",
+	-- 		})
 
-			-- catppuccino.load()
-		end,
-	})
+	-- 		-- catppuccino.load()
+	-- 	end,
+	-- })
 
 	use({
 		"lukas-reineke/indent-blankline.nvim",
@@ -89,12 +90,8 @@ packer.startup(function(use)
 	})
 	use("onsails/lspkind-nvim")
 
-	-- Syntax highlightings
-	use({ "nvim-treesitter/nvim-treesitter", config = require("config.treesitter").setup() })
-
-	-- Typing helps
-	use({ "windwp/nvim-autopairs", config = require("config.autopairs").setup() })
 	use("tpope/vim-commentary")
+	use("tpope/vim-surround")
 
 	-- Telescope
 	use({
@@ -110,7 +107,7 @@ packer.startup(function(use)
 	})
 
 	-- Directory tree
-	use({ "kyazdani42/nvim-tree.lua", config = require("config.tree").config() })
+	use({ "kyazdani42/nvim-tree.lua" })
 	use("kyazdani42/nvim-web-devicons")
 
 	-- Symbol outline
@@ -123,7 +120,7 @@ packer.startup(function(use)
 	})
 
 	-- Formatting
-	use({ "mhartington/formatter.nvim", config = require("config.formatter").setup() })
+	use({ "mhartington/formatter.nvim" })
 
 	-- Git integration
 	use({
@@ -145,7 +142,6 @@ packer.startup(function(use)
 	-- Autocompletions
 	use({
 		"hrsh7th/nvim-compe",
-		config = require("config.compe").setup(),
 	})
 
 	-- Snippets
@@ -172,6 +168,12 @@ packer.startup(function(use)
 
 	-- Zoxide integration
 	use("nanotee/zoxide.vim")
+
+	-- Syntax highlightings
+	use({ "nvim-treesitter/nvim-treesitter" })
+
+	-- Typing helps
+	use({ "windwp/nvim-autopairs" })
 end)
 
 -- Symbols outline
@@ -260,3 +262,40 @@ vim.api.nvim_exec(
 	]],
 	true
 )
+
+-- NvimTree
+vim.g.nvim_tree_side = "left"
+vim.g.nvim_tree_width = 40
+vim.g.nvim_tree_ignore = { ".git", "$null" }
+vim.g.nvim_tree_gitignore = 1
+vim.g.nvim_tree_auto_open = 0
+vim.g.nvim_tree_auto_close = 0
+vim.g.nvim_tree_quit_on_open = 1
+vim.g.nvim_tree_follow = 1
+vim.g.nvim_tree_indent_markers = 1
+vim.g.nvim_tree_hide_dotfiles = 0
+vim.g.nvim_tree_git_hl = 1
+vim.g.nvim_tree_highlight_opened_files = 1
+vim.g.nvim_tree_root_folder_modifier = ":~"
+vim.g.nvim_tree_tab_open = 1
+vim.g.nvim_tree_auto_resize = 0
+vim.g.nvim_tree_disable_netrw = 0
+vim.g.nvim_tree_hijack_netrw = 0
+vim.g.nvim_tree_add_trailing = 1
+vim.g.nvim_tree_group_empty = 1
+vim.g.nvim_tree_lsp_diagnostics = 1
+vim.g.nvim_tree_disable_window_picker = 1
+vim.g.nvim_tree_hijack_cursor = 0
+vim.g.nvim_tree_icon_padding = " "
+vim.g.nvim_tree_update_cwd = 1
+vim.g.nvim_tree_show_icons = {
+	git = 0,
+	folders = 1,
+	files = 1,
+	folder_arrows = 1,
+}
+
+require("config.formatter").setup()
+require("config.compe").setup()
+require("config.treesitter").setup()
+require("config.autopairs").setup()
