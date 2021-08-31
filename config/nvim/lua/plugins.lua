@@ -1,3 +1,5 @@
+local vim = vim
+
 -- Plugin setup, from https://bryankegley.me/posts/nvim-getting-started/
 local execute = vim.api.nvim_command
 local fn = vim.fn
@@ -27,26 +29,10 @@ packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- Theme and visuals
-	use("dracula/vim")
+	-- use("dracula/vim")
 	use("folke/tokyonight.nvim")
 	-- use("sainnhe/edge")
-	use("sainnhe/sonokai")
-	-- use({
-	-- 	"Pocco81/Catppuccino.nvim",
-	-- 	config = function()
-	-- 		local catppuccino = require("catppuccino")
-	-- 		catppuccino.setup({
-	-- 			colorscheme = "neon_latte",
-	-- 			-- transparency = true,
-	-- 			integrations = { indent_blankline = true, barbar = true, telescope = true },
-	-- 		}, {
-	-- 			bg = "#24283b",
-	-- 			green = "#97c374",
-	-- 		})
-
-	-- 		-- catppuccino.load()
-	-- 	end,
-	-- })
+	-- use("sainnhe/sonokai")
 
 	use({
 		"lukas-reineke/indent-blankline.nvim",
@@ -90,6 +76,7 @@ packer.startup(function(use)
 	})
 	use("onsails/lspkind-nvim")
 
+	-- Typing helps
 	use("tpope/vim-commentary")
 	use("tpope/vim-surround")
 
@@ -153,7 +140,7 @@ packer.startup(function(use)
 	use({
 		"lervag/vimtex",
 		config = function()
-			vim.g.vimtex_compiler_latexmk = { build_dir = "build", continuous = true }
+			vim.g.vimtex_compiler_latexmk = { build_dir = "build", continuous = 1 }
 		end,
 	})
 

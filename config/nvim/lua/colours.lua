@@ -1,22 +1,19 @@
+local vim = vim
+
 vim.g.tokyonight_style = "storm"
 vim.g.tokyonight_italic_keywords = false
-vim.g.edge_style = "aura"
-vim.g.sonokai_style = "andromeda"
 vim.cmd("colorscheme tokyonight")
 
--- Custom plugin colours
--- Telescope
-vim.cmd("hi! link TelescopePromptBorder DraculaGreen")
-vim.cmd("hi! link TelescopeResultsBorder DraculaCyan")
-vim.cmd("hi! link TelescopePreviewBorder DraculaPink")
+-- This gets the colours defined by tokyonight
+-- https://github.com/folke/tokyonight.nvim/blob/main/lua/tokyonight/colors.lua#L14
+tc = require("tokyonight.colors").setup()
 
--- NvimTree
-vim.cmd("hi! link NvimTreeRootFolder DraculaPurpleBold")
-vim.cmd("hi! link NvimTreeNormal DraculaFg")
-vim.cmd("hi! link NvimTreeGitDirty DraculaCyan")
-vim.cmd("hi! link NvimTreeGitNew DraculaGreen")
-vim.cmd("hi! link NvimTreeStaged DraculaYellow")
-vim.cmd("hi! link NvimTreeFolderName DraculaFg")
-vim.cmd("hi! link NvimTreeEmptyFolderName DraculaComment")
-vim.cmd("hi! link NvimTreeOpenedFolderName DraculaFgBold")
-vim.cmd("hi! link NvimTreeExecFile DraculaFg")
+local hl_set_fg = function(group, colour)
+	vim.cmd("highlight " .. group .. " guifg=" .. colour)
+end
+
+-- TeX syntax colouring
+-- https://github.com/lervag/vimtex/blob/master/doc/vimtex.txt#L4208
+hl_set_fg("texMathZone", tc.magenta)
+hl_set_fg("texCmdItem", tc.orange)
+hl_set_fg("texOpt", tc.orange)

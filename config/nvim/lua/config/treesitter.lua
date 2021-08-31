@@ -6,6 +6,8 @@ M.setup = function()
 		highlight = {
 			enable = true,
 			additional_vim_regex_highlighting = false,
+			-- Disable for LaTeX, since I prefer the Vimtex highlighting
+			disable = { "latex" },
 		},
 		autopairs = { enable = true },
 	})

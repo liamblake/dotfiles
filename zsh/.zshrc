@@ -10,12 +10,6 @@ source "$HOME/.bash_aliases"
 # No globbing when calling pip
 alias pip='noglob pip'
 
-#
-# oh-my-zsh config
-#
-
-export ZSH=$HOME/.oh-my-zsh
-
 # Prompt
 show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
@@ -31,9 +25,3 @@ setopt PROMPT_SUBST ; PS1='%F{123}$(show_virtual_env) %F{171}%B%~ %F{041}$(__git
 # zoxide
 eval "$(zoxide init zsh)"
 
-source $ZSH/oh-my-zsh.sh
-
-# Plugins
-plugins=(zsh-syntax-highlighting)
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

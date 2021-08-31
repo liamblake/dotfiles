@@ -10,4 +10,4 @@ setlocal softtabstop=2
 setlocal shiftwidth=2
 
 " Start continuous compiler
-VimtexCompile
+" execute "lua VimtexCompile"
