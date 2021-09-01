@@ -1,7 +1,6 @@
 # Absolute path of root of dotfiles
 SCRIPT=$(readlink -f "$0")
 DOTFILES_ROOT=$(dirname "$SCRIPT")/../..
-echo $DOTFILES_ROOT
 
 create_home_symlink() {
   SRC=$1
@@ -17,46 +16,33 @@ loop_dir_symlink() {
   done
 }
 
+# Create links in home
+for dir in "bash" "system" "zsh" "formatting" "tmux"; do
+	loop_dir_symlink $dir/ .	
+done
+
 # Make .config dir if it doesn't already exist
 mkdir -p "$HOME/.config"
 
-# Create links in .config/dir
+# Create links in ~/.config/dir
 # TODO: Move more files to .config, will reduce repetition in this file.
 for dir in "git" "tmuxinator" "nvim" "alacritty" "ranger" "i3" "i3status"; do
     create_home_symlink config/$dir .config/
 done
-
-### The following symlinks behave differently ###
-# Bash configs
-loop_dir_symlink bash/ .
-
-# .inputrc
-create_home_symlink config/system/.inputrc .
-
-# zsh
-create_home_symlink zsh/.zshrc .
-create_home_symlink zsh/.zshenv .
-
-# Link plugins to oh-my-zsh dir
-mkdir -p "$HOME"/.config/zsg/plugins
-loop_dir_symlink zsh/plugins/ .oh-my-zsh/plugins/
 
 # VSCode setup
 mkdir -p "$HOME"/.config/Code/User/
 loop_dir_symlink config/vscode/ .config/Code/User/
 
 # TeX style files
+# TODO: Fix this
 mkdir -p "$HOME/.miktex/texmfs/install/tex/latex/"
 create_home_symlink tex/latex/* .miktex/texmfs/install/tex/latex/
-# Only symlinking the files and not the full directory prevents any clutter from locally installed packages.
 
-# tmux setup
 # TPM setup
 if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
-
-create_home_symlink tmux/tmux.conf .tmux.conf
 
 # Taken from https://github.com/samoshkin/tmux-config/blob/master/install.sh
 tmux new -d -s __noop >/dev/null 2>&1 || true

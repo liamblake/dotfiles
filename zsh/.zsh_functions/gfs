@@ -1,5 +1,0 @@
-#!/bin/sh
-
-gfs () {
-    git fetch && git status
-}
