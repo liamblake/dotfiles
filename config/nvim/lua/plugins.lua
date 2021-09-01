@@ -141,6 +141,8 @@ packer.startup(function(use)
 		"lervag/vimtex",
 		config = function()
 			vim.g.vimtex_compiler_latexmk = { build_dir = "build", continuous = 1 }
+			-- Only automatically open the quickfix window after compilation if there are errors.
+			vim.g.vimtex_quickfix_open_on_warning = 0
 		end,
 	})
 

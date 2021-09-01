@@ -7,8 +7,7 @@ endglobal
 snippet article "Document class" b
 \documentclass[12pt]{article}
 
-\usepackage{amsmath}
-\usepackage{lb_base}
+\usepackage[]{lb_base}
 
 \title{$2}
 \author{${3:Liam Blake}}
@@ -20,12 +19,49 @@ $0
 \end{document}
 endsnippet
 
+# Environments
+snippet bfigure "Floating figure" b
+\begin{figure}
+	\begin{center}
+		\includegraphics[]{$1}
+		\caption{$2}
+		\label{fig:$3}
+	\end{center}
+\end{figure}
+endsnippet
+
+snippet table "Floating table" b
+\begin{table}
+	
+	\caption{}
+	\label{tab:}
+\end{table}
+endsnippet
+
+snippet itemize "Itemize env" b
+\begin{itemize}
+	\item $1
+\end{itemize}
+endsnippet
+
+snippet eqnn "Numbered equation" b
+\begin{equation}
+	$1
+	\label{eqn:$2}
+\end{equation}
+endsnippet
+
+snippet figure "Figure reference" b
+Figure \ref{fig:$1}
+endsnippet
+
 context "math()"
-snippet bm "Bold math" i
-\bm{$1}
+snippet  "Bold math" wA
+\bm{${1:${VISUAL}}}
 endsnippet
 
 context "not math()"
-snippet bf "Bold text" i
-\textbf{$1}
+snippet  "Bold text" wA
+\textbf{${1:${VISUAL}}}
 endsnippet
+ 

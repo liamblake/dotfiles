@@ -4,6 +4,7 @@ vim.o.syntax = "on"
 
 vim.o.number = true
 vim.opt.signcolumn = "yes:1"
+vim.g.noshowmode = true
 
 -- Set spacebar to be map leader
 vim.g.mapleader = " "

@@ -7,3 +7,8 @@ config/vscode/workspaceStorage
 
 # Spelling files
 *.spl
+
+# Files for testing configurations
+scratchpad/
+
+*.log

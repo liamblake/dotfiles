@@ -7,6 +7,9 @@ M.setup = function()
 
 	pairs.setup({ disable_filetype = { "TelescopePrompt" }, ignored_next_char = "[%w%.]" })
 
+	-- Integrate with compe
+	require("nvim-autopairs.completion.compe").setup({})
+
 	-- Pair definitions
 	pairs.add_rules({
 		-- LaTeX
