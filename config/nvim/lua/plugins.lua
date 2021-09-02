@@ -162,6 +162,13 @@ packer.startup(function(use)
 
 	-- Typing helps
 	use({ "windwp/nvim-autopairs" })
+
+	use({
+		"akinsho/toggleterm.nvim",
+		config = function()
+			require("toggleterm").setup({})
+		end,
+	})
 end)
 
 -- Symbols outline
