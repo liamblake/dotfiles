@@ -3,22 +3,18 @@ SCRIPT=$(readlink -f "$0")
 DOTFILES_ROOT=$(dirname "$SCRIPT")/../..
 
 create_home_symlink() {
-  SRC=$1
-  TARGET=$2
-  ln -si $DOTFILES_ROOT/$SRC $HOME/$TARGET
-}
+  SRC=$DOTFILES_ROOT/$1
+  TARGET=$HOME/$2
 
-loop_dir_symlink() {
-  DIR=$1
-  TARGET=$2
-  for f in $(ls $DOTFILES_ROOT/$DIR); do
-    create_home_symlink $DIR/$f $TARGET
-  done
+  ln -si $SRC $TARGET
 }
 
 # Create links in home
 for dir in "bash" "system" "zsh" "formatting" "tmux"; do
-	loop_dir_symlink $dir/ .	
+	echo $(ls $DOTFILES_ROOT/$dir)
+	for f in $(ls -a $DOTFILES_ROOT/$dir); do
+		create_home_symlink $dir/$f .
+	done
 done
 
 # Make .config dir if it doesn't already exist
@@ -34,10 +30,7 @@ done
 mkdir -p "$HOME"/.config/Code/User/
 loop_dir_symlink config/vscode/ .config/Code/User/
 
-# TeX style files
-# TODO: Fix this
-mkdir -p "$HOME/.miktex/texmfs/install/tex/latex/"
-create_home_symlink tex/latex/* .miktex/texmfs/install/tex/latex/
+# TODO: TeX style files
 
 # TPM setup
 if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
