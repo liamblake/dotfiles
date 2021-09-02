@@ -143,6 +143,7 @@ packer.startup(function(use)
 			vim.g.vimtex_compiler_latexmk = { build_dir = "build", continuous = 1 }
 			-- Only automatically open the quickfix window after compilation if there are errors.
 			vim.g.vimtex_quickfix_open_on_warning = 0
+			vim.g.vimtex_view_general_viewer = "Zathura"
 		end,
 	})
 

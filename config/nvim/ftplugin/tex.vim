@@ -10,4 +10,7 @@ setlocal softtabstop=2
 setlocal shiftwidth=2
 
 " Start continuous compiler
-" execute "lua VimtexCompile"
+:VimtexCompile<CR>
+
+" Overwrite SymbolOutline key with Vimtex table of contents
+nnoremap <C-x> :VimtexToc<CR>
