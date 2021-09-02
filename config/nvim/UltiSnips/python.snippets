@@ -1,19 +1,12 @@
-# TODO:
+snippet GIVEN "GIVEN WHEN THEN docstring for test" b
+"""
+GIVEN: $1
+WHEN: $2
+THEN: $3
+"""
+endsnippet
 
-snippet "class" "Class with docstring" b
-class $1:
-    """$2
-
-    Args:
-        
-
-    Examples:
-        
-    >>> 
-
-    """
-
-    def __init__(self):
-        pass
-
+snippet ifmain "if namespace main" b
+if __name__ == "__main__":
+	$0
 endsnippet
