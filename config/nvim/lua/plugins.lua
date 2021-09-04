@@ -88,8 +88,16 @@ packer.startup(function(use)
 
 	-- Tabline
 	use({
-		"romgrk/barbar.nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
+		"akinsho/bufferline.nvim",
+		config = function()
+			require("bufferline").setup({
+				options = {
+					offsets = { { filetype = "NvimTree", text = "Explorer" } },
+					show_buffer_close_icons = false,
+					show_close_icons = false,
+				},
+			})
+		end,
 	})
 
 	-- Directory tree
@@ -126,23 +134,39 @@ packer.startup(function(use)
 	})
 
 	-- Autocompletions
-	use({
-		"hrsh7th/nvim-compe",
-	})
+	use({ "hrsh7th/nvim-compe" })
 
 	-- Snippets
-	use("sirver/ultisnips")
+	use({
+		"sirver/ultisnips",
+		config = function()
+			vim.g.UltiSnipsExpandTrigger = "<tab>"
+		end,
+	})
 
 	-- Additional linters
-	use("mfussenegger/nvim-lint")
+	use({
+		"mfussenegger/nvim-lint",
+		config = function()
+			require("lint").linters_by_ft = {
+				python = { "flake8" },
+			}
+			vim.api.nvim_exec(
+				[[
+		au BufWritePost <buffer> lua require('lint').try_lint()
+	]],
+				true
+			)
+		end,
+	})
 
 	-- Language-specific support
 	use({
 		"lervag/vimtex",
 		config = function()
-			vim.g.vimtex_compiler_latexmk = { build_dir = "build", continuous = 1 }
+			vim.g.vimtex_compiler_latexmk = { build_dir = "build", continuous = true }
 			-- Only automatically open the quickfix window after compilation if there are errors.
-			vim.g.vimtex_quickfix_open_on_warning = 0
+			vim.g.vimtex_quickfix_open_on_warning = false
 			vim.g.vimtex_view_general_viewer = "Zathura"
 		end,
 	})
@@ -172,127 +196,12 @@ packer.startup(function(use)
 	})
 end)
 
--- Symbols outline
-vim.g.symbols_outline = {
-	highlight_hovered_item = true,
-	show_guides = true,
-	auto_preview = true,
-	position = "right",
-	width = 25,
-	show_numbers = false,
-	show_relative_numbers = false,
-	show_symbol_details = true,
-	keymaps = { -- These keymaps can be a string or a table for multiple keys
-		close = { "<Esc>", "q" },
-		goto_location = "<Cr>",
-		focus_location = "o",
-		hover_symbol = "<C-space>",
-		rename_symbol = "r",
-		code_actions = "a",
-	},
-	lsp_blacklist = {},
-	symbol_blacklist = {},
-	symbols = {
-		File = { icon = "", hl = "TSURI" },
-		Module = { icon = "", hl = "TSNamespace" },
-		Namespace = { icon = "", hl = "TSNamespace" },
-		Package = { icon = "", hl = "TSNamespace" },
-		Class = { icon = "𝓒", hl = "TSType" },
-		Method = { icon = "ƒ", hl = "TSMethod" },
-		Property = { icon = "", hl = "TSMethod" },
-		Field = { icon = "", hl = "TSField" },
-		Constructor = { icon = "", hl = "TSConstructor" },
-		Enum = { icon = "ℰ", hl = "TSType" },
-		Interface = { icon = "ﰮ", hl = "TSType" },
-		Function = { icon = "", hl = "TSFunction" },
-		Variable = { icon = "", hl = "TSConstant" },
-		Constant = { icon = "", hl = "TSConstant" },
-		String = { icon = "𝓐", hl = "TSString" },
-		Number = { icon = "#", hl = "TSNumber" },
-		Boolean = { icon = "⊨", hl = "TSBoolean" },
-		Array = { icon = "", hl = "TSConstant" },
-		Object = { icon = "⦿", hl = "TSType" },
-		Key = { icon = "🔐", hl = "TSType" },
-		Null = { icon = "NULL", hl = "TSType" },
-		EnumMember = { icon = "", hl = "TSField" },
-		Struct = { icon = "𝓢", hl = "TSType" },
-		Event = { icon = "🗲", hl = "TSType" },
-		Operator = { icon = "+", hl = "TSOperator" },
-		TypeParameter = { icon = "𝙏", hl = "TSParameter" },
-	},
-}
-
--- Status line
-require("lualine").setup({
-	options = { theme = "tokyonight", section_separators = { "", "" }, component_separators = { "|", "|" } },
-	sections = {
-		lualine_a = { "mode" },
-		lualine_b = { "branch", "diff" },
-		lualine_c = { { "filename", path = 1 } },
-		lualine_x = {
-			{
-				"diagnostics",
-				sources = { "nvim_lsp" },
-				-- displays diagnostics from defined severity
-				sections = { "error", "warn", "info", "hint" },
-			},
-		},
-		lualine_y = { "filetype" },
-		lualine_z = { "location" },
-	},
-	tabline = {
-		lualine_a = { "filename" },
-	},
-	extensions = { "nvim-tree" },
-})
--- Snippets
-vim.g.UltiSnipsExpandTrigger = "<tab>"
-
--- Linters
-require("lint").linters_by_ft = {
-	python = { "flake8" },
-}
-vim.api.nvim_exec(
-	[[
-		au BufWritePost <buffer> lua require('lint').try_lint()
-	]],
-	true
-)
-
--- NvimTree
-vim.g.nvim_tree_side = "left"
-vim.g.nvim_tree_width = 40
-vim.g.nvim_tree_ignore = { ".git", "$null" }
-vim.g.nvim_tree_gitignore = 1
-vim.g.nvim_tree_auto_open = 0
-vim.g.nvim_tree_auto_close = 0
-vim.g.nvim_tree_quit_on_open = 1
-vim.g.nvim_tree_follow = 1
-vim.g.nvim_tree_indent_markers = 1
-vim.g.nvim_tree_hide_dotfiles = 0
-vim.g.nvim_tree_git_hl = 1
-vim.g.nvim_tree_highlight_opened_files = 1
-vim.g.nvim_tree_root_folder_modifier = ":~"
-vim.g.nvim_tree_tab_open = 1
-vim.g.nvim_tree_auto_resize = 0
-vim.g.nvim_tree_disable_netrw = 0
-vim.g.nvim_tree_hijack_netrw = 0
-vim.g.nvim_tree_add_trailing = 1
-vim.g.nvim_tree_group_empty = 1
-vim.g.nvim_tree_lsp_diagnostics = 1
-vim.g.nvim_tree_disable_window_picker = 1
-vim.g.nvim_tree_hijack_cursor = 0
-vim.g.nvim_tree_icon_padding = " "
-vim.g.nvim_tree_update_cwd = 1
-vim.g.nvim_tree_show_icons = {
-	git = 0,
-	folders = 1,
-	files = 1,
-	folder_arrows = 1,
-}
-
+-- TODO: Get these working in use
 require("config.formatter").setup()
 require("config.compe").setup()
 require("config.treesitter").setup()
 require("config.autopairs").setup()
 require("config.telescope").setup()
+require("config.tree").setup()
+require("config.lualine").setup()
+require("config.symbols-outline").setup()

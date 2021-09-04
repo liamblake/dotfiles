@@ -13,3 +13,7 @@
     cam = "commit -a -m"
     sc = "switch -c"
     cp = "cherry-pick"
+
+[user]
+	email = liamlemblake@gmail.com
+	name = LiamBlake

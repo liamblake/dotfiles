@@ -5,7 +5,7 @@ M.setup = function()
 	local Rule = require("nvim-autopairs.rule")
 	local cond = require("nvim-autopairs.conds")
 
-	pairs.setup({ disable_filetype = { "TelescopePrompt" }, ignored_next_char = "[%w%.]" })
+	pairs.setup({ disable_filetype = { "TelescopePrompt" }, ignored_next_char = '[%w%."]' })
 
 	-- Integrate with compe
 	require("nvim-autopairs.completion.compe").setup({})
