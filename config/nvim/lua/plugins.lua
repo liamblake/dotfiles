@@ -71,7 +71,7 @@ packer.startup(function(use)
 	use({
 		"ray-x/lsp_signature.nvim",
 		config = function()
-			require("lsp_signature").setup()
+			require("lsp_signature").setup({ hint_enable = false, floating_window_above_first = false })
 		end,
 	})
 	use("onsails/lspkind-nvim")
@@ -92,9 +92,11 @@ packer.startup(function(use)
 		config = function()
 			require("bufferline").setup({
 				options = {
+					numbers = "buffer_id",
 					offsets = { { filetype = "NvimTree", text = "Explorer" } },
 					show_buffer_close_icons = false,
 					show_close_icons = false,
+					diagnostics = "nvim_lsp",
 				},
 			})
 		end,

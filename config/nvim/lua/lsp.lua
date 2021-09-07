@@ -1,3 +1,5 @@
+-- TODO: This is inconsistent and messy. In need of a clean up.
+
 local lspconfig = require("lspconfig")
 local completion = require("completion")
 local lspinstall = require("lspinstall")

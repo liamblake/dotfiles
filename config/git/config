@@ -3,7 +3,7 @@
 	autocrlf = input
 
 [merge]
-    tool = code
+    tool = nvim
 
 [alias]
     st = "status -s -b"

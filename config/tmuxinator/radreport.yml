@@ -49,7 +49,7 @@ windows:
       layout: tiled
       panes:
         - cd radreport-backend
-        - cd radreport-frontend
+        - cd radreport-backend && direnv exec . radreport shell
         - git fetch && git status
   - servers:
       layout: tiled
@@ -60,8 +60,10 @@ windows:
         - cd radreport-backend && direnv exec . flask run
         - cd radreport-backend && echo "run jupyter-lab to start"
         - cd radreport-frontend && npm start
+        # TODO: Fix this one
         - cd ~/elasticsearch-7.13.2 && bin/elasticsearch
-  - monitor:
-      layout: main-horizontal
+  - dotfiles:
+      layout: tiled
+      root: ~/dev/dotfiles
       panes:
-        - btm
+        - nvim
