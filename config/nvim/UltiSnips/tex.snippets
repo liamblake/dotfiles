@@ -51,8 +51,16 @@ snippet eqnn "Numbered equation" b
 \end{equation}
 endsnippet
 
-snippet figure "Figure reference" b
+snippet figure "Figure reference" i
 Figure \ref{fig:$1}
+endsnippet
+
+snippet equation "Equation reference" i
+Equation \eqref{eqn:$1}
+endsnippet
+
+snippet table "Table reference" i
+Table \ref{tab:$1}
 endsnippet
 
 context "math()"
@@ -66,7 +74,19 @@ snippet  "Bold text" iA
 endsnippet
 
 context "math()"
-snippet set "Set" i
-\set{${1:${VISUAL}}}
+snippet seq "Sequence set notation" i
+\set{${1:${VISUAL}}}_{$2}^{$3}
 endsnippet
 
+# Math delimeters with ctrl+\
+context "not math()"
+snippet  "Inline math" iA
+\($1\)
+endsnippet
+
+context "not math()"
+snippet  "Display math" bA
+\[
+$1
+\]
+endsnippet

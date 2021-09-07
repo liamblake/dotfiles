@@ -26,8 +26,5 @@ vim.o.updatetime = 300
 vim.o.spelllang = "en_au"
 
 require("plugins")
-require("lsp")
 require("keymappings")
-
-vim.opt.termguicolors = true
 require("colours")

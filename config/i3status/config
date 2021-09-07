@@ -1,5 +1,4 @@
 general {
-        output_format = "dzen2"
         colors = true
         interval = 5
 }
@@ -7,14 +6,11 @@ general {
 order += "disk /"
 order += "run_watch DHCP"
 order += "run_watch VPNC"
-order += "path_exists VPN"
 order += "wireless wlan0"
-order += "ethernet eth0"
-order += "cpu_temperature 0"
 order += "memory"
 order += "load"
+order += "battery"
 order += "tztime local"
-order += "tztime berlin"
 
 wireless wlan0 {
         format_up = "W: (%quality at %essid, %bitrate) %ip"

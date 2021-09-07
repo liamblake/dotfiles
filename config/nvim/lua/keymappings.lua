@@ -17,7 +17,7 @@ key_mapper("n", "<leader>af", ":lua vim.lsp.buf.code_action()<CR>")
 key_mapper("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
 
 -- Telescope searches
-key_mapper("n", "<C-p>", ':lua require"config.telescope".project_files()<CR>')
+key_mapper("n", "<C-p>", ':lua require"plugin-config.telescope".project_files()<CR>')
 key_mapper("n", "<leader>fs", ':lua require"telescope.builtin".live_grep()<CR>')
 key_mapper("n", "<leader>fh", ':lua require"telescope.builtin".help_tags()<CR>')
 key_mapper("n", "<C-i>", ':lua require"telescope.builtin".buffers()<CR>')

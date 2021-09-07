@@ -1,5 +1,7 @@
 local vim = vim
 
+vim.opt.termguicolors = true
+
 vim.g.tokyonight_style = "storm"
 vim.g.tokyonight_italic_keywords = false
 vim.cmd("colorscheme tokyonight")

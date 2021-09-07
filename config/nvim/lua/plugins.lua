@@ -1,5 +1,3 @@
-local vim = vim
-
 -- Plugin setup, from https://bryankegley.me/posts/nvim-getting-started/
 local execute = vim.api.nvim_command
 local fn = vim.fn
@@ -15,13 +13,6 @@ local util = require("packer.util")
 packer.init({
 	package_root = util.join_paths(vim.fn.stdpath("data"), "site", "pack"),
 })
-
--- Language servers
-install_lsp_servers = function()
-	for lang in { "cmake", "cpp", "html", "latex", "lua", "python", "typescript" } do
-		require("lspinstall").install_server(lang)
-	end
-end
 
 -- - startup and add configure plugins
 packer.startup(function(use)
@@ -65,13 +56,13 @@ packer.startup(function(use)
 	use({
 		"kabouzeid/nvim-lspinstall",
 		config = function()
-			vim.cmd([[command! InstallLspServers execute 'lua install_lsp_servers()']])
+			vim.cmd([[command! InstallLspServers execute 'lua require("plugin-config.lsp").install_lsp_servers()']])
 		end,
 	})
 	use({
 		"ray-x/lsp_signature.nvim",
 		config = function()
-			require("lsp_signature").setup({ hint_enable = false, floating_window_above_first = false })
+			require("lsp_signature").setup({ hint_enable = false, floating_window_above_curr_line = false })
 		end,
 	})
 	use("onsails/lspkind-nvim")
@@ -134,6 +125,12 @@ packer.startup(function(use)
 			})
 		end,
 	})
+	use({
+		"sindrets/diffview.nvim",
+		config = function()
+			require("diffview").setup({})
+		end,
+	})
 
 	-- Autocompletions
 	use({ "hrsh7th/nvim-compe" })
@@ -166,10 +163,10 @@ packer.startup(function(use)
 	use({
 		"lervag/vimtex",
 		config = function()
-			vim.g.vimtex_compiler_latexmk = { build_dir = "build", continuous = true }
+			vim.g.vimtex_compiler_latexmk = { build_dir = "build", continuous = 1 }
 			-- Only automatically open the quickfix window after compilation if there are errors.
-			vim.g.vimtex_quickfix_open_on_warning = false
-			vim.g.vimtex_view_general_viewer = "Zathura"
+			vim.g.vimtex_quickfix_open_on_warning = 0
+			vim.g.vimtex_view_method = "zathura"
 		end,
 	})
 
@@ -199,11 +196,15 @@ packer.startup(function(use)
 end)
 
 -- TODO: Get these working in use
-require("config.formatter").setup()
-require("config.compe").setup()
-require("config.treesitter").setup()
-require("config.autopairs").setup()
-require("config.telescope").setup()
-require("config.tree").setup()
-require("config.lualine").setup()
-require("config.symbols-outline").setup()
+require("plugin-config.formatter").setup()
+require("plugin-config.compe").setup()
+require("plugin-config.treesitter").setup()
+require("plugin-config.autopairs").setup()
+require("plugin-config.telescope").setup()
+require("plugin-config.tree").setup()
+require("plugin-config.lualine").setup()
+require("plugin-config.symbols-outline").setup()
+require("plugin-config.lsp").lspkind_setup()
+
+-- Setup LSP servers
+require("plugin-config.lsp").setup_servers()
