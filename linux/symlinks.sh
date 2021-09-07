@@ -1,6 +1,6 @@
 # Absolute path of root of dotfiles
 SCRIPT=$(readlink -f "$0")
-DOTFILES_ROOT=$(dirname "$SCRIPT")/../..
+DOTFILES_ROOT=$(dirname "$SCRIPT")/..
 
 create_home_symlink() {
   SRC=$DOTFILES_ROOT/$1
