@@ -10,18 +10,21 @@ source "$HOME/.bash_aliases"
 # No globbing when calling pip
 alias pip='noglob pip'
 
-# Prompt
+# Show venv in prompt
 show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
     echo "($(basename $VIRTUAL_ENV))"
   fi
 }
-
-source ~/dev/dotfiles/bin/.git-prompt.sh
 eval "$(direnv hook zsh)"
 
-setopt PROMPT_SUBST ; PS1='%F{123}$(show_virtual_env) %F{171}%B%~ %F{041}$(__git_ps1 "(%s)")%F{123}> %f%b'
+# Show git branch in prompt
+# TODO: More information here, e.g. when merging, cherrypicking
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats '(%b)'
+
+setopt PROMPT_SUBST ; PS1='%F{123}$(show_virtual_env) %F{171}%B%~ %F{041}${vcs_info_msg_0_}%F{123}> %f%b'
 
 # zoxide
 eval "$(zoxide init zsh)"
-
