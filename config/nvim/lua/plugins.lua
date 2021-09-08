@@ -168,8 +168,20 @@ packer.startup(function(use)
 			vim.g.vimtex_quickfix_open_on_warning = 0
 			vim.g.vimtex_view_method = "zathura"
 		end,
+		ft = { "tex", "bib" },
 	})
-	use({ "JuliaEditorSupport/julia-vim" })
+	use({
+		"JuliaEditorSupport/julia-vim",
+		-- TODO: This causes the error "Unknown function: LaTeXtoUnicode#Refresh"
+		-- ft = "julia"
+	})
+	use({
+		"kdheepak/JuliaFormatter.vim",
+		ft = "julia",
+		config = function()
+			vim.g.JuliaFormatter_always_launch_server = true
+		end,
+	})
 
 	-- Focus
 	use({

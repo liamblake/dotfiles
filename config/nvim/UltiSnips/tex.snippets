@@ -8,6 +8,7 @@ snippet article "Document class" b
 \documentclass[12pt]{article}
 
 \usepackage[]{lb_base}
+\usepackage[top=1cm,bottom=1cm,left=1cm,right=1cm]{geometry}
 
 \title{$2}
 \author{${3:Liam Blake}}
@@ -89,4 +90,10 @@ snippet  "Display math" bA
 \[
 $1
 \]
+endsnippet
+
+# Bibliography (bibtex)
+snippet references "Reference list" b
+\bibliographystyle{${1:plain}}
+\biblography{$2}
 endsnippet

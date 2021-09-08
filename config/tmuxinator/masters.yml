@@ -54,6 +54,6 @@ windows:
         - nvim
   - code:
       layout: main-vertical
-      root: ~/Dropbox/masters/src
+      root: ~/Dropbox/masters
       panes:
-        - 
+        - julia --project=.

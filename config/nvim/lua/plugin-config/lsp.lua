@@ -1,7 +1,7 @@
 local M = {}
 
 M.install_servers = function()
-	for lang in { "cmake", "cpp", "html", "latex", "lua", "python", "typescript", "jul10ia" } do
+	for lang in { "cmake", "cpp", "html", "latex", "lua", "python", "typescript", "julials" } do
 		require("lspinstall").install_server(lang)
 	end
 end

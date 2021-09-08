@@ -11,9 +11,15 @@ create_home_symlink() {
 
 # Create links in home
 for dir in "bash" "system" "zsh" "formatting" "tmux"; do
-	echo $(ls $DOTFILES_ROOT/$dir)
 	for f in $(ls -a $DOTFILES_ROOT/$dir); do
 		create_home_symlink $dir/$f .
+	done
+done
+
+# These files are placed in other hidden directories in home
+for dir in "julia"; do
+	for f in $(ls -a $DOTFILES_ROOT/$dir); do
+		create_home_symlink $dir/$f .$dir/
 	done
 done
 

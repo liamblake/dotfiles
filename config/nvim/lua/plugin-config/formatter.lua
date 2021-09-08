@@ -89,6 +89,7 @@ vim.api.nvim_exec(
 augroup FormatAutogroup
   autocmd!
   autocmd BufWritePost *.py,*.cpp,*.hpp,*.h,*.lua,*.tex,*.bib,*.sty,*.ts FormatWrite
+  autocmd BufWritePost *.jl JuliaFormatterFormat
 augroup END
 ]],
 	true
