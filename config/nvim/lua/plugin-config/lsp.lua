@@ -1,7 +1,7 @@
 local M = {}
 
 M.install_servers = function()
-	for lang in { "cmake", "cpp", "html", "latex", "lua", "python", "typescript" } do
+	for lang in { "cmake", "cpp", "html", "latex", "lua", "python", "typescript", "jul10ia" } do
 		require("lspinstall").install_server(lang)
 	end
 end
@@ -13,6 +13,9 @@ M.setup_servers = function()
 	for _, server in pairs(servers) do
 		require("lspconfig")[server].setup({})
 	end
+
+	-- Additional language servers not supported by lsp-install
+	require("lspconfig").julials.setup({})
 end
 
 -- Symbols
