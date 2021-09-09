@@ -28,3 +28,12 @@ setopt PROMPT_SUBST ; PS1='%F{123}$(show_virtual_env) %F{171}%B%~ %F{041}${vcs_i
 
 # zoxide
 eval "$(zoxide init zsh)"
+
+# Oh my zsh
+export ZSH=$HOME/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+# Plugins
+plugins=(zsh-syntax-highlighting)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
