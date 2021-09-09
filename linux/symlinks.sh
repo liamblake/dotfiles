@@ -17,7 +17,7 @@ for dir in "bash" "system" "zsh" "formatting" "tmux"; do
 done
 
 # These files are placed in other hidden directories in home
-for dir in "julia"; do
+for dir in "julia" "ipython"; do
 	for f in $(ls -a $DOTFILES_ROOT/$dir); do
 		create_home_symlink $dir/$f .$dir/
 	done
