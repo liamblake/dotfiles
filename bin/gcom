@@ -1,0 +1,2 @@
+# Attempt to checkout the "main" branch. If this does not exist, then try "master".
+git checkout main || git checkout master

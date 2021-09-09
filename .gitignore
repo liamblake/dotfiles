@@ -12,3 +12,5 @@ config/vscode/workspaceStorage
 scratchpad/
 
 *.log
+
+history.*
