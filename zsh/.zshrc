@@ -35,5 +35,3 @@ source $ZSH/oh-my-zsh.sh
 
 # Plugins
 plugins=(zsh-syntax-highlighting)
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

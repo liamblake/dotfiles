@@ -1,2 +1,9 @@
 # Attempt to checkout the "main" branch. If this does not exist, then try "master".
-git checkout main || git checkout master
+# # TODO: Look for remotes.
+if [ `git branch | egrep "^\*?[[:space:]]+main"` ]; then
+	git checkout main
+elif [ `git branch | egrep "^\*?[[:space:]]+master"` ]; then
+	git checkout master
+else
+	echo "No branch named main or master was found"
+fi

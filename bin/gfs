@@ -1,0 +1,3 @@
+# Fetch git origin and print status, handy to run when opening a project
+echo "Fetching remote branches..."
+git fetch && git status

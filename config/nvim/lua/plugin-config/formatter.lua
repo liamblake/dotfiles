@@ -17,18 +17,18 @@ M.setup = function()
 		logging = false,
 		filetype = {
 			python = {
-				-- black
-				function()
-					return {
-						exe = "black",
-						args = {},
-						stdin = false,
-					}
-				end,
 				-- isort
 				function()
 					return {
 						exe = "isort",
+						args = {},
+						stdin = false,
+					}
+				end,
+				-- black
+				function()
+					return {
+						exe = "black",
 						args = {},
 						stdin = false,
 					}
