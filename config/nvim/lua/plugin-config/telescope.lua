@@ -1,5 +1,7 @@
 local M = {}
 
+local trouble = require("trouble.providers.telescope")
+
 M.setup = function()
 	require("telescope").setup({
 		defaults = {

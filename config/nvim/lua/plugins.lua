@@ -143,6 +143,13 @@ packer.startup(function(use)
 		end,
 	})
 
+	use({
+		"folke/trouble.nvim",
+		config = function()
+			require("trouble").setup({ auto_open = false, auto_preview = false })
+		end,
+	})
+
 	-- Additional linters
 	use({
 		"mfussenegger/nvim-lint",
@@ -164,9 +171,18 @@ packer.startup(function(use)
 		"lervag/vimtex",
 		config = function()
 			vim.g.vimtex_compiler_latexmk = { build_dir = "build", continuous = 1 }
-			-- Only automatically open the quickfix window after compilation if there are errors.
-			vim.g.vimtex_quickfix_open_on_warning = 0
+			-- Trouble will be opened automatically instead
+			vim.g.vimtex_quickfix_mode = 0
 			vim.g.vimtex_view_method = "zathura"
+			-- Start compilation automatically
+			-- Automatically open trouble if compilation failed
+			vim.cmd([[
+				augroup vimtex_events
+					au!
+					au user VimtexEventInitPost VimtexCompile
+					au user VimtexEventCompileFailed Trouble quickfix
+					au user VimtexEventCompileSuccess TroubleClose
+			]])
 		end,
 		ft = { "tex", "bib" },
 	})
@@ -206,13 +222,6 @@ packer.startup(function(use)
 			require("toggleterm").setup({})
 		end,
 	})
-	use({
-		"folke/trouble.nvim",
-		cmd = { "TroubleToggle", "Trouble" },
-		config = function()
-		  require("trouble").setup({ auto_open = false })
-		end,
-	  })
 end)
 
 -- TODO: Get these working in use

@@ -9,7 +9,6 @@ key_mapper("n", "gD", ":lua vim.lsp.buf.declaration()<CR>")
 key_mapper("n", "gi", ":lua vim.lsp.buf.implementation()<CR>")
 key_mapper("n", "gw", ":lua vim.lsp.buf.document_symbol()<CR>")
 key_mapper("n", "gW", ":lua vim.lsp.buf.workspace_symbol()<CR>")
-key_mapper("n", "gr", ":lua vim.lsp.buf.references()<CR>")
 key_mapper("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>")
 key_mapper("n", "K", ":lua vim.lsp.buf.hover()<CR>")
 key_mapper("n", "<c-k>", ":lua vim.lsp.buf.signature_help()<CR>")
@@ -18,7 +17,7 @@ key_mapper("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
 
 -- Telescope searches
 key_mapper("n", "<C-p>", ':lua require"plugin-config.telescope".project_files()<CR>')
-key_mapper("n", "<leader>fr", ':lua require"telescope.builtin".lsp_references()<CR>')
+key_mapper("n", "<leader>gr", ':lua require"telescope.builtin".lsp_references()<CR>')
 key_mapper("n", "<leader>fs", ':lua require"telescope.builtin".live_grep()<CR>')
 key_mapper("n", "<C-i>", ':lua require"telescope.builtin".buffers()<CR>')
 key_mapper("n", "<C-s>", ':lua require"telescope.builtin".treesitter()<CR>')
@@ -28,6 +27,12 @@ key_mapper("n", "<C-b>", ':lua require"nvim-tree".toggle()<CR>')
 
 -- Toggle symbol outline
 key_mapper("n", "<C-x>", ":SymbolsOutline<CR>")
+
+-- Toggle trouble view
+key_mapper("n", "<leader>xx", "<cmd>TroubleToggle<cr>")
+key_mapper("n", "<leader>xw", "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>")
+key_mapper("n", "<leader>xd", "<cmd>TroubleToggle lsp_document_diagnostics<cr>")
+key_mapper("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
 
 -- Cycle through options with tab and shift-tab when the window is open.
 -- From https://github.com/hrsh7th/nvim-compe#how-to-use-tab-to-navigate-completion-menu

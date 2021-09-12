@@ -1,6 +1,15 @@
 global !p
+from snippet_helpers import complete
+
 def math():
 	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+
+# In-built bibtex styles
+BIBTEX_STYLES = [
+	"plain",
+	"abbrv",
+	"Nabbrv",
+]
 
 endglobal
 
@@ -94,6 +103,6 @@ endsnippet
 
 # Bibliography (bibtex)
 snippet references "Reference list" b
-\bibliographystyle{${1:plain}}
+\bibliographystyle{${1:plain}`!p snip.rv = complete(t[1], BIBTEX_STYLES)`}
 \biblography{$2}
 endsnippet
