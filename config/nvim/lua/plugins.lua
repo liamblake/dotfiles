@@ -206,6 +206,13 @@ packer.startup(function(use)
 			require("toggleterm").setup({})
 		end,
 	})
+	use({
+		"folke/trouble.nvim",
+		cmd = { "TroubleToggle", "Trouble" },
+		config = function()
+		  require("trouble").setup({ auto_open = false })
+		end,
+	  })
 end)
 
 -- TODO: Get these working in use

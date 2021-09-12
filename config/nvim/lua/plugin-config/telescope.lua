@@ -6,7 +6,9 @@ M.setup = function()
 			mappings = {
 				i = {
 					["<esc>"] = require("telescope.actions").close,
+					["<c-t>"] = trouble.open_with_trouble,
 				},
+				n = { ["<c-t>"] = trouble.open_with_trouble },
 			},
 		},
 		pickers = {

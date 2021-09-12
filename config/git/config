@@ -14,6 +14,7 @@
     sc = "switch -c"
     cp = "cherry-pick"
     f = "fetch"
+    pl = "log --graph --oneline --decorate"
 
 [user]
 	email = liamlemblake@gmail.com
