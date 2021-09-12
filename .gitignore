@@ -12,5 +12,7 @@ config/vscode/workspaceStorage
 scratchpad/
 
 *.log
-
 history.*
+
+# Python related
+__pycache__/

@@ -4,6 +4,7 @@ vim.opt.termguicolors = true
 
 vim.g.tokyonight_style = "storm"
 vim.g.tokyonight_italic_keywords = false
+vim.g.tokyonight_lualine_bold = true
 vim.cmd("colorscheme tokyonight")
 
 -- This gets the colours defined by tokyonight

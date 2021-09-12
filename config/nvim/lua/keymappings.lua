@@ -34,6 +34,18 @@ key_mapper("n", "<leader>xw", "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>"
 key_mapper("n", "<leader>xd", "<cmd>TroubleToggle lsp_document_diagnostics<cr>")
 key_mapper("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
 
+-- Toggle light and dark themes
+toggle_light_dark_colour = function()
+	if vim.o.background == "dark" then
+		vim.o.background = "light"
+	else
+		vim.o.background = "dark"
+	end
+	vim.cmd("redraw!")
+	vim.cmd("colorscheme tokyonight")
+end
+key_mapper("n", "<leader>cs", ":lua toggle_light_dark_colour()<CR>")
+
 -- Cycle through options with tab and shift-tab when the window is open.
 -- From https://github.com/hrsh7th/nvim-compe#how-to-use-tab-to-navigate-completion-menu
 local t = function(str)
