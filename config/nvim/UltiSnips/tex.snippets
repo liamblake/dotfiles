@@ -9,6 +9,7 @@ BIBTEX_STYLES = [
 	"plain",
 	"abbrv",
 	"Nabbrv",
+	"siam",
 ]
 
 endglobal
@@ -30,6 +31,12 @@ $0
 endsnippet
 
 # Environments
+snippet \begin "General environment with end" i
+\begin{$1}
+$0
+\end{$1}
+endsnippet
+
 snippet bfigure "Floating figure" b
 \begin{figure}
 	\begin{center}

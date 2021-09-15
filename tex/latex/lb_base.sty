@@ -60,3 +60,10 @@
 
 % Transpose operator with \T
 \newcommand{\T}{^{\intercal}}
+
+% Enumerate environment with alphabetic labels
+\newenvironment{alpharate}{
+	\begin{enumerate}[label=\alph*)]
+		}{
+	\end{enumerate}
+}

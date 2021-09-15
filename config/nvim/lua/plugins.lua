@@ -176,12 +176,14 @@ packer.startup(function(use)
 			vim.g.vimtex_view_method = "zathura"
 			-- Start compilation automatically
 			-- Automatically open trouble if compilation failed
+			-- Clean auxillary files on close
 			vim.cmd([[
 				augroup vimtex_events
 					au!
 					au user VimtexEventInitPost VimtexCompile
 					au user VimtexEventCompileFailed Trouble quickfix
 					au user VimtexEventCompileSuccess TroubleClose
+					au User VimtexEventQuit VimtexClean
 			]])
 		end,
 		ft = { "tex", "bib" },

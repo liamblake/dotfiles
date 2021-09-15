@@ -25,13 +25,13 @@ M.setup = function()
 
 		source = {
 			path = true,
-			buffer = true,
+			buffer = false,
 			calc = true,
 			nvim_lsp = true,
 			nvim_lua = true,
-			vsnip = true,
+			vsnip = false,
 			ultisnips = true,
-			luasnip = true,
+			luasnip = false,
 		},
 	})
 end
