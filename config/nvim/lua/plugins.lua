@@ -24,7 +24,6 @@ packer.startup(function(use)
 	use("folke/tokyonight.nvim")
 	-- use("sainnhe/edge")
 	-- use("sainnhe/sonokai")
-
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
@@ -35,7 +34,6 @@ packer.startup(function(use)
 			})
 		end,
 	})
-
 	use({
 		"folke/todo-comments.nvim",
 		requires = "nvim-lua/plenary.nvim",
@@ -47,6 +45,12 @@ packer.startup(function(use)
 				},
 				search = { pattern = [[\b(KEYWORDS)]] },
 			})
+		end,
+	})
+	use({
+		"sunjon/Shade.nvim",
+		config = function()
+			require("shade").setup()
 		end,
 	})
 
@@ -131,6 +135,7 @@ packer.startup(function(use)
 			require("diffview").setup({})
 		end,
 	})
+	use({ "tpope/vim-fugitive" })
 
 	-- Autocompletions
 	use({ "hrsh7th/nvim-compe" })
@@ -224,6 +229,15 @@ packer.startup(function(use)
 			require("toggleterm").setup({})
 		end,
 	})
+
+	-- Scrollbar
+	-- use({
+	-- 	"LiamBlake/nvim-scrollview",
+	-- 	branch = "minimal",
+	-- 	config = function()
+	-- 		require("scrollview").setup({ auto_mouse = 0 })
+	-- 	end,
+	-- })
 end)
 
 -- TODO: Get these working in use

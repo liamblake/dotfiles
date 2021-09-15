@@ -16,3 +16,6 @@ history.*
 
 # Python related
 __pycache__/
+
+# TeX related
+tex/latex/build/

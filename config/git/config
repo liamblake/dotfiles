@@ -1,5 +1,5 @@
 [core]
-    editor = code
+	editor = nvim
 	autocrlf = input
 
 [mergetool "nvim"]
@@ -12,15 +12,15 @@
 	prompt = false
 
 [alias]
-    st = "status -s -b"
-    co = "checkout"
-    cb = "checkout -b"
-    cm = "commit -m"
-    cam = "commit -a -m"
-    sc = "switch -c"
-    cp = "cherry-pick"
-    f = "fetch"
-    pl = "log --graph --oneline --decorate"
+	st = "status -s -b"
+	co = "checkout"
+	cb = "checkout -b"
+	cm = "commit -m"
+	cam = "commit -a -m"
+	sc = "switch -c"
+	cp = "cherry-pick"
+	f = "fetch"
+	pl = "log --graph --oneline --decorate"
 
 [user]
 	email = liamlemblake@gmail.com
