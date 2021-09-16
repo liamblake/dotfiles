@@ -1,9 +1,5 @@
 local M = {}
 
-M.fmt_prettier = function()
-	return { exe = "prettier --write", args = {}, stdin = false }
-end
-
 M.fmt_latexindent = function()
 	return {
 		exe = "latexindent",
@@ -67,18 +63,6 @@ M.setup = function()
 				-- latexindent
 				M.fmt_latexindent,
 			},
-			typescript = {
-				-- Prettier
-				M.fmt_prettier,
-			},
-			html = {
-				-- Prettier
-				M.fmt_prettier,
-			},
-			css = {
-				-- Prettier
-				M.fmt_prettier,
-			},
 		},
 	})
 end
@@ -88,7 +72,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.py,*.cpp,*.hpp,*.h,*.lua,*.tex,*.bib,*.sty,*.ts FormatWrite
+  autocmd BufWritePost *.py,*.cpp,*.hpp,*.h,*.lua,*.tex,*.bib,*.sty FormatWrite
   autocmd BufWritePost *.jl JuliaFormatterFormat
 augroup END
 ]],

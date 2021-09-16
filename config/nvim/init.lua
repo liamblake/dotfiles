@@ -18,7 +18,7 @@ vim.o.scrolloff = 5
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
--- vim.o.mouse = "a"
+vim.o.mouse = "a"
 
 vim.o.updatetime = 300
 
