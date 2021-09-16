@@ -82,20 +82,20 @@ packer.startup(function(use)
 	})
 
 	-- Tabline
-	use({
-		"akinsho/bufferline.nvim",
-		config = function()
-			require("bufferline").setup({
-				options = {
-					numbers = "buffer_id",
-					offsets = { { filetype = "NvimTree", text = "Explorer" } },
-					show_buffer_close_icons = false,
-					show_close_icons = false,
-					diagnostics = "nvim_lsp",
-				},
-			})
-		end,
-	})
+	-- use({
+	-- 	"akinsho/bufferline.nvim",
+	-- 	config = function()
+	-- 		require("bufferline").setup({
+	-- 			options = {
+	-- 				numbers = "buffer_id",
+	-- 				offsets = { { filetype = "NvimTree", text = "Explorer" } },
+	-- 				show_buffer_close_icons = false,
+	-- 				show_close_icons = false,
+	-- 				diagnostics = "nvim_lsp",
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- })
 
 	-- Directory tree
 	use({ "kyazdani42/nvim-tree.lua" })
@@ -231,13 +231,15 @@ packer.startup(function(use)
 	})
 
 	-- Scrollbar
-	-- use({
-	-- 	"LiamBlake/nvim-scrollview",
-	-- 	branch = "minimal",
-	-- 	config = function()
-	-- 		require("scrollview").setup({ auto_mouse = 0 })
-	-- 	end,
-	-- })
+	use({
+		"LiamBlake/nvim-scrollview",
+		branch = "main", -- "minimal",
+		config = function()
+			vim.g.scrollview_auto_mouse = 0
+			vim.g.scrollview_character = "|"
+			-- require("scrollview").setup({ auto_mouse = 0 })
+		end,
+	})
 end)
 
 -- TODO: Get these working in use
