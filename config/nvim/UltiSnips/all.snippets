@@ -1,0 +1,16 @@
+global !p
+from snippet_helpers import complete
+
+ENV_TYPES = [
+	"bash",
+	"zsh",
+	"sh",
+	"env python",
+	"env julia",
+]
+
+endglobal
+
+snippet !# "!#"
+!#/usr/bin/${1:sh}`!p snip.rv = complete(t[1], ENV_TYPES)`}
+endsnippet

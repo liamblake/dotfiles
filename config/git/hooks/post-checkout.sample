@@ -3,11 +3,16 @@
 
 Adapted from https://gist.github.com/tkaemming/732873
 """
+# TODO: Optimise this
 
-import os, git, sys
+import os
+import sys
+
+import git
+
 previous, current, branch = sys.argv[1:4]
 
-WATCH_FILES = ('LIST FILES HERE',)
+WATCH_FILES = [("FILENAME", "MESSAGE")]
 
 if branch:
     repository = git.Repo(os.getcwd())
@@ -15,7 +20,7 @@ if branch:
     current_commit = repository.commit(current)
 
     changed = []
-    for diff in previous_commit.diff(current_commit).iter_change_type('M'):
+    for diff in previous_commit.diff(current_commit).iter_change_type("M"):
         for WATCH_FILE in WATCH_FILES:
             try:
                 if diff.a_blob.path == WATCH_FILE or diff.b_blob.path == WATCH_FILE:
@@ -24,7 +29,6 @@ if branch:
                 pass
 
     if changed:
-        print "\nWARNING: The following watched files have changed!"
+        print("\nWARNING: The following watched files have changed!")
         for change in changed:
-            print "  * %s" % change
-        print ""
+            print("  * {change[0]}: {change[1]}\n")

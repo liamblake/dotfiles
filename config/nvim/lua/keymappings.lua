@@ -16,17 +16,15 @@ key_mapper("n", "<leader>af", ":lua vim.lsp.buf.code_action()<CR>")
 key_mapper("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
 
 -- Telescope searches
-key_mapper("n", "<C-p>", ':lua require"plugin-config.telescope".project_files()<CR>')
+key_mapper("n", "<leader>ff", ':lua require"plugin-config.telescope".project_files()<CR>')
 key_mapper("n", "<leader>fr", ':lua require"telescope.builtin".lsp_references()<CR>')
-key_mapper("n", "<leader>fs", ':lua require"telescope.builtin".live_grep()<CR>')
+key_mapper("n", "<leader>fg", ':lua require"telescope.builtin".live_grep()<CR>')
 key_mapper("n", "<C-i>", ':lua require"telescope.builtin".buffers()<CR>')
-key_mapper("n", "<C-s>", ':lua require"telescope.builtin".treesitter()<CR>')
+key_mapper("n", "<leader>fs", ':lua require"telescope.builtin".treesitter()<CR>')
 
--- Toggle tree
-key_mapper("n", "<C-b>", ':lua require"nvim-tree".toggle()<CR>')
-
--- Toggle symbol outline
-key_mapper("n", "<C-x>", ":SymbolsOutline<CR>")
+-- Toggle sidebars
+key_mapper("n", "<leader>st", ':lua require"nvim-tree".toggle()<CR>')
+key_mapper("n", "<leader>ss", ":SymbolsOutline<CR>")
 
 -- Toggle trouble view
 key_mapper("n", "<leader>xx", "<cmd>TroubleToggle<cr>")
@@ -45,6 +43,11 @@ toggle_light_dark_colour = function()
 	vim.cmd("colorscheme tokyonight")
 end
 key_mapper("n", "<leader>cs", ":lua toggle_light_dark_colour()<CR>")
+
+-- Completion
+key_mapper("i", "<C-Space>", "compe#complete()")
+-- key_mapper("i", "<CR>", "compe#confirm(\"require'nvim-autopairs'.autopairs_cr()\")")
+key_mapper("i", "<C-e>", 'compe#close("<C-e>")')
 
 -- Cycle through options with tab and shift-tab when the window is open.
 -- From https://github.com/hrsh7th/nvim-compe#how-to-use-tab-to-navigate-completion-menu

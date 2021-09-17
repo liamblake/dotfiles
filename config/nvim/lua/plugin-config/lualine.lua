@@ -10,6 +10,7 @@ M.setup = function()
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = { "branch", "diff" },
+			lualine_c = { { "filename", path = 1 } },
 			lualine_x = {
 				{
 					"diagnostics",
@@ -20,9 +21,6 @@ M.setup = function()
 			},
 			lualine_y = { "filetype" },
 			lualine_z = { "location" },
-		},
-		tabline = {
-			lualine_c = { { "filename", path = 1 } },
 		},
 		extensions = { "nvim-tree", "fugitive" },
 	})
