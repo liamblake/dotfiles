@@ -230,6 +230,9 @@ packer.startup(function(use)
 		end,
 	})
 
+	-- Play nice with TMUX
+	use({ "christoomey/vim-tmux-navigator" })
+
 	-- Scrollbar
 	use({
 		"LiamBlake/nvim-scrollview",
