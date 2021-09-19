@@ -16,6 +16,9 @@ M.setup_servers = function()
 
 	-- Additional language servers not supported by lsp-install
 	require("lspconfig").julials.setup({})
+
+	-- null-ls
+	require("lspconfig")["null-ls"].setup({})
 end
 
 -- Symbols

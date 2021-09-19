@@ -23,6 +23,11 @@ M.setup = function()
 			lualine_z = { "location" },
 		},
 		extensions = { "nvim-tree", "fugitive" },
+		--{ sections = { lualine_b = {
+		--	function()
+		--		return "Table of Contents"
+		--	end,
+		--} }, filetypes= } },
 	})
 end
 

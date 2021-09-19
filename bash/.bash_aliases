@@ -15,4 +15,6 @@ alias mux=tmuxinator
 
 # Commonly used commands
 alias g="git"
-alias r="ranger"
+
+# Neovim with startup time logged
+alias nvimst="nvim --startuptime startup.log"

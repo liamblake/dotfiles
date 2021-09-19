@@ -22,9 +22,10 @@ key_mapper("n", "<leader>fg", ':lua require"telescope.builtin".live_grep()<CR>')
 key_mapper("n", "<C-i>", ':lua require"telescope.builtin".buffers()<CR>')
 key_mapper("n", "<leader>fs", ':lua require"telescope.builtin".treesitter()<CR>')
 
--- Toggle sidebars
+-- Toggle extension windows
 key_mapper("n", "<leader>st", ':lua require"nvim-tree".toggle()<CR>')
 key_mapper("n", "<leader>ss", ":SymbolsOutline<CR>")
+key_mapper("n", "<leader>sg", ":Git<CR>")
 
 -- Toggle trouble view
 key_mapper("n", "<leader>xx", "<cmd>TroubleToggle<cr>")
@@ -45,9 +46,11 @@ end
 key_mapper("n", "<leader>cs", ":lua toggle_light_dark_colour()<CR>")
 
 -- Completion
-key_mapper("i", "<C-Space>", "compe#complete()")
--- key_mapper("i", "<CR>", "compe#confirm(\"require'nvim-autopairs'.autopairs_cr()\")")
-key_mapper("i", "<C-e>", 'compe#close("<C-e>")')
+vim.cmd([[inoremap <silent><expr> <C-Space> compe#complete()]])
+vim.cmd([[inoremap <silent><expr> <CR>      compe#confirm(luaeval("require 'nvim-autopairs'.autopairs_cr()"))]])
+vim.cmd([[inoremap <silent><expr> <C-e>     compe#close('<C-e>')]])
+vim.cmd([[inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })]])
+vim.cmd([[inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })]])
 
 -- Cycle through options with tab and shift-tab when the window is open.
 -- From https://github.com/hrsh7th/nvim-compe#how-to-use-tab-to-navigate-completion-menu

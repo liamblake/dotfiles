@@ -9,5 +9,5 @@ setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2
 
-" Overwrite SymbolOutline key with Vimtex table of contents
-nnoremap <C-x> <cmd>VimtexToc<CR>
+" Toggle table of contents
+nnoremap <localleader>sc <cmd>VimtexTocToggle<CR>

@@ -20,10 +20,7 @@ packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- Theme and visuals
-	-- use("dracula/vim")
 	use("folke/tokyonight.nvim")
-	-- use("sainnhe/edge")
-	-- use("sainnhe/sonokai")
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
@@ -56,11 +53,10 @@ packer.startup(function(use)
 
 	-- LSP
 	use("neovim/nvim-lspconfig")
-	use("nvim-lua/completion-nvim")
 	use({
 		"kabouzeid/nvim-lspinstall",
 		config = function()
-			vim.cmd([[command! InstallLspServers execute 'lua require("plugin-config.lsp").install_lsp_servers()']])
+			vim.cmd([[command! InstallLspServers execute 'lua require("plugin-config.lsp").install_servers()']])
 		end,
 	})
 	use({
@@ -70,6 +66,7 @@ packer.startup(function(use)
 		end,
 	})
 	use("onsails/lspkind-nvim")
+	use({ "jose-elias-alvarez/null-ls.nvim" })
 
 	-- Typing helps
 	use("tpope/vim-commentary")
@@ -110,9 +107,6 @@ packer.startup(function(use)
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
 
-	-- Formatting
-	use({ "mhartington/formatter.nvim" })
-
 	-- Git integration
 	use({
 		"lewis6991/gitsigns.nvim",
@@ -127,12 +121,6 @@ packer.startup(function(use)
 					virt_text_post = "right_align",
 				},
 			})
-		end,
-	})
-	use({
-		"sindrets/diffview.nvim",
-		config = function()
-			require("diffview").setup({})
 		end,
 	})
 	use({ "tpope/vim-fugitive" })
@@ -155,22 +143,6 @@ packer.startup(function(use)
 		end,
 	})
 
-	-- Additional linters
-	use({
-		"mfussenegger/nvim-lint",
-		config = function()
-			require("lint").linters_by_ft = {
-				python = { "flake8" },
-			}
-			vim.api.nvim_exec(
-				[[
-		au BufWritePost <buffer> lua require('lint').try_lint()
-	]],
-				true
-			)
-		end,
-	})
-
 	-- Language-specific support
 	use({
 		"lervag/vimtex",
@@ -179,6 +151,12 @@ packer.startup(function(use)
 			-- Trouble will be opened automatically instead
 			vim.g.vimtex_quickfix_mode = 0
 			vim.g.vimtex_view_method = "zathura"
+			vim.g.vimtex_toc_config = {
+				show_help = 0,
+				fold_enabled = 1,
+				indent_levels = 1,
+				split_pos = "vert rightbelow",
+			}
 			-- Start compilation automatically
 			-- Automatically open trouble if compilation failed
 			-- Clean auxillary files on close
@@ -243,10 +221,12 @@ packer.startup(function(use)
 			-- require("scrollview").setup({ auto_mouse = 0 })
 		end,
 	})
+
+	-- For debugging slow startup
+	use({ "dstein64/vim-startuptime" })
 end)
 
 -- TODO: Get these working in use
-require("plugin-config.formatter").setup()
 require("plugin-config.compe").setup()
 require("plugin-config.treesitter").setup()
 require("plugin-config.autopairs").setup()
@@ -257,4 +237,5 @@ require("plugin-config.symbols-outline").setup()
 require("plugin-config.lsp").lspkind_setup()
 
 -- Setup LSP servers
+require("plugin-config.null-ls").setup()
 require("plugin-config.lsp").setup_servers()

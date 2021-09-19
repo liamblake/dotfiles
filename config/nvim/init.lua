@@ -8,6 +8,7 @@ vim.g.noshowmode = true
 
 -- Set spacebar to be map leader
 vim.g.mapleader = " "
+vim.g.maplocalleader = ";"
 
 vim.o.completeopt = "menuone,noselect,preview"
 
