@@ -6,19 +6,27 @@ M.install_servers = function()
 	end
 end
 
+local on_attach = function(client)
+	-- Format on save
+	if client.resolved_capabilities.document_formatting then
+		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+	end
+end
+
 -- Install language servers
 M.setup_servers = function()
 	require("lspinstall").setup()
 	local servers = require("lspinstall").installed_servers()
 	for _, server in pairs(servers) do
-		require("lspconfig")[server].setup({})
+		require("lspconfig")[server].setup({on_attach = on_attach})
 	end
 
 	-- Additional language servers not supported by lsp-install
+	-- Note: Formatting of Julia is handled by a Vim command, so the custom on_attach is not needed.
 	require("lspconfig").julials.setup({})
 
 	-- null-ls
-	require("lspconfig")["null-ls"].setup({})
+	require("lspconfig")["null-ls"].setup({ on_attach = on_attach })
 end
 
 -- Symbols

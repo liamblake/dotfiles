@@ -29,21 +29,9 @@ M.setup = function()
 			formatting.stylua,
 			indentlatex,
 			-- Diagnostics/linting
-			linting.flake8,
+			-- linting.flake8,
 		},
 	})
 end
-
--- Format on save
-vim.api.nvim_exec(
-	[[
-augroup FormatAutogroup
-  autocmd!
-  autocmd BufWritePost *.py,*.cpp,*.hpp,*.h,*.lua,*.tex,*.bib,*.sty lua vim.lsp.buf.formatting_sync()
-  autocmd BufWritePost *.jl JuliaFormatterFormat
-augroup END
-]],
-	true
-)
 
 return M
