@@ -7,9 +7,6 @@ M.setup = function()
 
 	pairs.setup({ disable_filetype = { "TelescopePrompt" }, ignored_next_char = '[%w%."]' })
 
-	-- Integrate with compe
-	require("nvim-autopairs.completion.compe").setup({})
-
 	-- Pair definitions
 	pairs.add_rules({
 		-- LaTeX
@@ -23,15 +20,6 @@ M.setup = function()
 	})
 
 	-- Play nice with completion
-	require("nvim-autopairs.completion.compe").setup({
-		map_cr = true, --  map <CR> on insert mode
-		map_complete = true, -- it will auto insert `(` (map_char) after select function or method item
-		auto_select = false, -- auto select first item
-		map_char = { -- modifies the function or method delimiter by filetypes
-			all = "(",
-			tex = "{",
-		},
-	})
 end
 
 return M

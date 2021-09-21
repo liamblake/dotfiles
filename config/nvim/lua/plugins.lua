@@ -51,14 +51,21 @@ packer.startup(function(use)
 		end,
 	})
 
+	-- Completions
+	use({
+		"hrsh7th/nvim-cmp",
+		requires = {
+			-- Sources
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "ray-x/cmp-treesitter" },
+			{ "hrsh7th/cmp-path" },
+			{ "quangnguyen30192/cmp-nvim-ultisnips" },
+		},
+	})
+
 	-- LSP
 	use("neovim/nvim-lspconfig")
-	use({
-		"kabouzeid/nvim-lspinstall",
-		config = function()
-			vim.cmd([[command! InstallLspServers execute 'lua require("plugin-config.lsp").install_servers()']])
-		end,
-	})
+	use({ "kabouzeid/nvim-lspinstall" })
 	use({
 		"ray-x/lsp_signature.nvim",
 		config = function()
@@ -71,6 +78,7 @@ packer.startup(function(use)
 	-- Typing helps
 	use("tpope/vim-commentary")
 	use("tpope/vim-surround")
+	use("tpope/vim-unimpaired")
 
 	-- Telescope
 	use({
@@ -124,9 +132,6 @@ packer.startup(function(use)
 		end,
 	})
 	use({ "tpope/vim-fugitive" })
-
-	-- Autocompletions
-	use({ "hrsh7th/nvim-compe" })
 
 	-- Snippets
 	use({
@@ -227,7 +232,7 @@ packer.startup(function(use)
 end)
 
 -- TODO: Get these working in use
-require("plugin-config.compe").setup()
+require("plugin-config.completion").setup()
 require("plugin-config.treesitter").setup()
 require("plugin-config.autopairs").setup()
 require("plugin-config.telescope").setup()

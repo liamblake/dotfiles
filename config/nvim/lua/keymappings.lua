@@ -45,12 +45,8 @@ toggle_light_dark_colour = function()
 end
 key_mapper("n", "<leader>cs", ":lua toggle_light_dark_colour()<CR>")
 
--- Completion
-vim.cmd([[inoremap <silent><expr> <C-Space> compe#complete()]])
-vim.cmd([[inoremap <silent><expr> <CR>      compe#confirm(luaeval("require 'nvim-autopairs'.autopairs_cr()"))]])
-vim.cmd([[inoremap <silent><expr> <C-e>     compe#close('<C-e>')]])
-vim.cmd([[inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })]])
-vim.cmd([[inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })]])
+-- Turn off hlsearch with two ESCAPEs
+key_mapper("n", "<esc><esc>", "<cmd>nohls<CR>")
 
 -- Cycle through options with tab and shift-tab when the window is open.
 -- From https://github.com/hrsh7th/nvim-compe#how-to-use-tab-to-navigate-completion-menu

@@ -10,7 +10,7 @@ vim.g.noshowmode = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = ";"
 
-vim.o.completeopt = "menuone,noselect,preview"
+vim.o.completeopt = "menu,menuone,noselect,preview"
 
 vim.o.relativenumber = true
 vim.o.scrolloff = 5

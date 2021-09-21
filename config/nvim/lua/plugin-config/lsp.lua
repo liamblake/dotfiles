@@ -6,6 +6,8 @@ M.install_servers = function()
 	end
 end
 
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 local on_attach = function(client)
 	-- Format on save
 	if client.resolved_capabilities.document_formatting then
@@ -13,12 +15,12 @@ local on_attach = function(client)
 	end
 end
 
--- Install language servers
+-- Set up language servers
 M.setup_servers = function()
 	require("lspinstall").setup()
 	local servers = require("lspinstall").installed_servers()
 	for _, server in pairs(servers) do
-		require("lspconfig")[server].setup({ on_attach = on_attach })
+		require("lspconfig")[server].setup({ capabilities = capabilities, on_attach = on_attach })
 	end
 
 	-- Additional language servers not supported by lsp-install
@@ -26,7 +28,7 @@ M.setup_servers = function()
 	require("lspconfig").julials.setup({})
 
 	-- null-ls
-	require("lspconfig")["null-ls"].setup({ on_attach = on_attach })
+	require("lspconfig")["null-ls"].setup({ capabilities = capabilities, on_attach = on_attach })
 end
 
 -- Symbols
