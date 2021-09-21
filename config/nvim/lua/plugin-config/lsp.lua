@@ -9,7 +9,7 @@ end
 local on_attach = function(client)
 	-- Format on save
 	if client.resolved_capabilities.document_formatting then
-		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)")
 	end
 end
 
@@ -18,7 +18,7 @@ M.setup_servers = function()
 	require("lspinstall").setup()
 	local servers = require("lspinstall").installed_servers()
 	for _, server in pairs(servers) do
-		require("lspconfig")[server].setup({on_attach = on_attach})
+		require("lspconfig")[server].setup({ on_attach = on_attach })
 	end
 
 	-- Additional language servers not supported by lsp-install
