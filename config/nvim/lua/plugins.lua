@@ -188,6 +188,15 @@ packer.startup(function(use)
 			vim.g.JuliaFormatter_always_launch_server = true
 		end,
 	})
+	use({
+		"jalvesaq/Nvim-R",
+		-- TODO: Get R filetypes working
+		-- ft = "r",
+		config = function()
+			vim.g.R_external_term = 1
+			vim.g.R_notmuxconf = 1
+		end,
+	})
 
 	-- Focus
 	use({

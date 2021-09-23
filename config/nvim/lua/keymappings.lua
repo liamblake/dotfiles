@@ -3,6 +3,11 @@ function key_mapper(mode, key, result)
 	vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
 end
 
+key_mapper("n", "Y", "y$")
+
+-- Cycle through tabs
+key_mapper("n", "<C-i>", ":bn<CR>")
+
 -- LSP
 key_mapper("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
 key_mapper("n", "gD", ":lua vim.lsp.buf.declaration()<CR>")
@@ -19,7 +24,6 @@ key_mapper("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
 key_mapper("n", "<leader>ff", ':lua require"plugin-config.telescope".project_files()<CR>')
 key_mapper("n", "<leader>fr", ':lua require"telescope.builtin".lsp_references()<CR>')
 key_mapper("n", "<leader>fg", ':lua require"telescope.builtin".live_grep()<CR>')
-key_mapper("n", "<C-i>", ':lua require"telescope.builtin".buffers()<CR>')
 key_mapper("n", "<leader>fs", ':lua require"telescope.builtin".treesitter()<CR>')
 key_mapper("n", "<leader>fd", ':lua require"plugin-config.telescope".search_dotfiles()<CR>')
 
