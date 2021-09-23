@@ -21,6 +21,7 @@ key_mapper("n", "<leader>fr", ':lua require"telescope.builtin".lsp_references()<
 key_mapper("n", "<leader>fg", ':lua require"telescope.builtin".live_grep()<CR>')
 key_mapper("n", "<C-i>", ':lua require"telescope.builtin".buffers()<CR>')
 key_mapper("n", "<leader>fs", ':lua require"telescope.builtin".treesitter()<CR>')
+key_mapper("n", "<leader>fd", ':lua require"plugin-config.telescope".search_dotfiles()<CR>')
 
 -- Toggle extension windows
 key_mapper("n", "<leader>st", ':lua require"nvim-tree".toggle()<CR>')

@@ -54,12 +54,6 @@ windows:
       # synchronize: after
       panes:
         - cd radreport-backend && flask run
-        - cd radreport-backend && echo "run jupyter-lab to start"
+        - direnv exec . jupyter-lab
         - cd radreport-frontend && npm start
-        # TODO: Fix this one
-        - cd ~/elasticsearch-7.13.2 && bin/elasticsearch
-  - dotfiles:
-      layout: tiled
-      root: ~/dev/dotfiles
-      panes:
-        - nvim
+        - elasticsearch

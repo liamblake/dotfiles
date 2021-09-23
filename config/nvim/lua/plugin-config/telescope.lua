@@ -57,4 +57,7 @@ M.project_files = function()
 	end
 end
 
+M.search_dotfiles = function()
+	require("telescope.builtin").find_files({ prompt_tile = "dotfiles", cwd = "~/dev/dotfiles", hidden = true })
+end
 return M
