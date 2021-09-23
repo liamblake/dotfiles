@@ -18,3 +18,6 @@ alias g="git"
 
 # Neovim with startup time logged
 alias nvimst="nvim --startuptime startup.log"
+
+# Create all required directories with mkdir
+alias mkdir="mkdir -p"

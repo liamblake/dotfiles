@@ -2,10 +2,10 @@
 path+=("$HOME/dev/dotfiles/bin")
 path+=("$HOME/.local/bin")
 path+=("$HOME/.cargo/bin")
-
 export PATH
+
 # Aliases - use bash aliases
-source "$HOME/.bash_aliases"
+source "$HOME/aliases.zsh"
 
 # No globbing when calling pip
 alias pip='noglob pip'
