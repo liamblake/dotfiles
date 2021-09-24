@@ -190,8 +190,7 @@ packer.startup(function(use)
 	})
 	use({
 		"jalvesaq/Nvim-R",
-		-- TODO: Get R filetypes working
-		-- ft = "r",
+		ft = "r",
 		config = function()
 			vim.g.R_external_term = 1
 			vim.g.R_notmuxconf = 1

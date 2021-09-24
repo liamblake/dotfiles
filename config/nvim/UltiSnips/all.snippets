@@ -11,6 +11,6 @@ ENV_TYPES = [
 
 endglobal
 
-snippet !# "!#"
-!#/usr/bin/${1:sh}`!p snip.rv = complete(t[1], ENV_TYPES)`}
+snippet #! "#!"
+#!/usr/bin/${1}`!p snip.rv = complete(t[1], ENV_TYPES)`}
 endsnippet

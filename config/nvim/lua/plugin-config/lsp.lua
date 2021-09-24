@@ -6,6 +6,17 @@ M.install_servers = function()
 	end
 end
 
+-- Only show diagnostics detail on hover
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+-- 	virtual_text = false,
+-- 	underline = true,
+-- 	signs = true,
+-- })
+-- vim.cmd([[
+-- 	autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+-- 	autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()
+-- ]])
+
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local on_attach = function(client)
