@@ -15,6 +15,7 @@
 	st = "status -s -b"
 	co = "checkout"
 	cb = "checkout -b"
+	col = "checkout -"
 	cm = "commit -m"
 	cam = "commit -a -m"
 	sc = "switch -c"
