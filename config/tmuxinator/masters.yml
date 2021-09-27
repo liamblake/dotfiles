@@ -51,4 +51,4 @@ windows:
       layout: main-vertical
       root: ~/Dropbox/masters
       panes:
-        - julia --project=.
+        - julia 

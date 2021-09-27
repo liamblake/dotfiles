@@ -41,18 +41,11 @@ startup_pane: 1
 
 windows:
   - editor:
-      layout: main-horizontal
+      layout: 49e7,213x53,0,0[213x40,0,0,0,213x12,0,41{106x12,0,41,3,106x12,107,41,4}]
       panes:
-        - nvim
-  - repo:
-      layout: tiled
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - cd build
+        - source venv/bin/activate && nvim
         - source venv/bin/activate
-        - git fetch && git status
+        - cd build
   - testing:
       layout: main-horizontal
       panes:
