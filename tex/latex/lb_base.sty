@@ -9,6 +9,8 @@
 \RequirePackage{commath}
 \RequirePackage{enumitem}
 
+\RequirePackage{xparse}
+
 %% OPTIONS %%
 
 % Option for serif font
@@ -67,3 +69,41 @@
 		}{
 	\end{enumerate}
 }
+
+% Todo notes, annotations, etc.
+\RequirePackage[colorinlistoftodos,prependcaption,textsize=scriptsize]{todonotes}
+
+\newcommandx{\note}[2][1=]{
+	\todo[inline,linecolor=black,backgroundcolor=violet!5,bordercolor=violet,#1]{
+		NOTE: #2
+	}
+}
+\newcommandx{\td}[2][1=]{
+	\todo[inline,linecolor=orange,backgroundcolor=orange!5,bordercolor=orange,#1]{
+		TODO: #2
+	}
+}
+\newcommandx{\lb}[2][1=]{
+	\todo[linecolor=teal,backgroundcolor=teal!5,bordercolor=teal,#1]{
+		#2
+	}
+}
+
+
+% Neat trick to access environment variables
+% From https://tex.stackexchange.com/a/62032
+
+\ExplSyntaxOn
+\NewDocumentCommand{\getenv}{om}
+{
+	\sys_get_shell:nnN { kpsewhich ~ --var-value ~ #2 } { } \l_tmpa_tl
+	\tl_trim_spaces:N \l_tmpa_tl
+	\IfNoValueTF { #1 }
+	{
+		\tl_use:N \l_tmpa_tl
+	}
+	{
+		\tl_set_eq:NN #1 \l_tmpa_tl
+	}
+}
+\ExplSyntaxOff
