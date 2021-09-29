@@ -30,6 +30,7 @@ M.setup = function()
 			indentlatex,
 			-- Diagnostics/linting
 			-- linting.flake8,
+			linting.chktex.with({ from_stderr = true }),
 		},
 	})
 end
