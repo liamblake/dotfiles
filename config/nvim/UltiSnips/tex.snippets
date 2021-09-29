@@ -80,6 +80,10 @@ snippet table "Table reference" i
 Table \ref{tab:$1}
 endsnippet
 
+snippet cite "Citation" i
+~\cite{$1}
+endsnippet
+
 context "math()"
 snippet  "Bold math" iA
 \bm{${1:${VISUAL}}}
@@ -112,4 +116,13 @@ endsnippet
 snippet references "Reference list" b
 \bibliographystyle{${1:plain}`!p snip.rv = complete(t[1], BIBTEX_STYLES)`}
 \biblography{$2}
+endsnippet
+
+# Append todo with TODO comment, for highlighting by todo-comments.nvim
+snippet todo "Todo note" i
+\td{${1:${VISUAL}}} % TODO
+endsnippet
+
+snippet note "Note note" i
+\note{${1:${VISUAL}}} % NOTE
 endsnippet

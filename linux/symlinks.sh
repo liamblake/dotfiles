@@ -37,6 +37,7 @@ mkdir -p "$HOME"/.config/Code/User/
 loop_dir_symlink config/vscode/ .config/Code/User/
 
 # TODO: TeX style files
+create_home_symlink tex .miktex/texmfs/install/lb/te
 
 # TPM setup
 if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
