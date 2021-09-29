@@ -26,6 +26,9 @@ vim.o.updatetime = 300
 -- Spelling local
 vim.o.spelllang = "en_au"
 
+-- Highlight on yank
+vim.cmd("au TextYankPost * lua vim.highlight.on_yank {}")
+
 require("plugins")
 require("keymappings")
 require("colours")
