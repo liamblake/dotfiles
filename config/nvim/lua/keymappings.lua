@@ -26,9 +26,9 @@ key_mapper("n", "<leader>fr", ':lua require"telescope.builtin".lsp_references()<
 key_mapper("n", "<leader>fg", ':lua require"telescope.builtin".live_grep()<CR>')
 key_mapper("n", "<leader>fs", ':lua require"telescope.builtin".treesitter()<CR>')
 key_mapper("n", "<leader>fd", ':lua require"plugin-config.telescope".search_dotfiles()<CR>')
+key_mapper("n", "<leader>fb", ':lua require"telescope.builtin".file_browser()<CR>')
 
 -- Toggle extension windows
-key_mapper("n", "<leader>st", ':lua require"nvim-tree".toggle()<CR>')
 key_mapper("n", "<leader>ss", ":SymbolsOutline<CR>")
 key_mapper("n", "<leader>sg", ":Git<CR>")
 

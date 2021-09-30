@@ -50,6 +50,7 @@ packer.startup(function(use)
 			require("shade").setup()
 		end,
 	})
+	use("kyazdani42/nvim-web-devicons")
 
 	-- Completions
 	use({
@@ -102,10 +103,6 @@ packer.startup(function(use)
 			})
 		end,
 	})
-
-	-- Directory tree
-	use({ "kyazdani42/nvim-tree.lua" })
-	use("kyazdani42/nvim-web-devicons")
 
 	-- Symbol outline
 	use("simrat39/symbols-outline.nvim")
@@ -245,7 +242,6 @@ require("plugin-config.completion").setup()
 require("plugin-config.treesitter").setup()
 require("plugin-config.autopairs").setup()
 require("plugin-config.telescope").setup()
-require("plugin-config.tree").setup()
 require("plugin-config.lualine").setup()
 require("plugin-config.symbols-outline").setup()
 require("plugin-config.lsp").lspkind_setup()
