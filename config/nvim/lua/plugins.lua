@@ -100,6 +100,7 @@ packer.startup(function(use)
 					show_close_icons = false,
 					diagnostics = "nvim_lsp",
 				},
+				highlights = { buffer_selected = { gui = "bold" } },
 			})
 		end,
 	})

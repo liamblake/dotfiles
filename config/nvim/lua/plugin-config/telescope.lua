@@ -50,11 +50,17 @@ M.setup = function()
 end
 
 M.project_files = function()
-	local opts = {} -- define here if you want to define something
+	local opts = { hidden = true }
 	local ok = pcall(require("telescope.builtin").git_files, opts)
 	if not ok then
 		require("telescope.builtin").find_files(opts)
 	end
+end
+
+M.matching_files = function()
+	-- Find files with the same name, but a different filetype.
+	-- e.g. convienient for jumping between the header class.hpp and the implementation class.cpp.
+	require("telescope.builtin").find_files({})
 end
 
 M.search_dotfiles = function()

@@ -4,8 +4,9 @@ path+=("$HOME/.local/bin")
 path+=("$HOME/.cargo/bin")
 export PATH
 
-# Aliases - use bash aliases
+# Aliases
 source "$HOME/aliases.zsh"
+source "$HOME/local_aliases.zsh"
 
 # No globbing when calling pip
 alias pip='noglob pip'

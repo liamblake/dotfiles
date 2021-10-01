@@ -54,6 +54,6 @@ windows:
       # synchronize: after
       panes:
         - cd radreport-backend && flask run
-        - direnv exec . jupyter-lab
+        - cd radreport-backend && python -m radreport.dicom.scp --log=DEBUG
         - cd radreport-frontend && npm start
         - elasticsearch
