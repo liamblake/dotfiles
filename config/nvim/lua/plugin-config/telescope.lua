@@ -1,31 +1,6 @@
 local M = {}
 
 local trouble = require("trouble.providers.telescope")
-local previewers = require("telescope.previewers")
-local Job = require("plenary.job")
-
--- No preview of binary files
--- From https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#dont-preview-binaries
-local maker_no_bin = function(filepath, bufnr, opts)
-	filepath = vim.fn.expand(filepath)
-	Job
-		:new({
-			command = "file",
-			args = { "--mime-type", "-b", filepath },
-			on_exit = function(j)
-				local mime_type = vim.split(j:result()[1], "/")[1]
-				if mime_type == "text" then
-					previewers.buffer_previewer_maker(filepath, bufnr, opts)
-				else
-					-- maybe we want to write something to the buffer here
-					vim.schedule(function()
-						vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "Binary file, no preview available." })
-					end)
-				end
-			end,
-		})
-		:sync()
-end
 
 M.setup = function()
 	require("telescope").setup({
@@ -37,7 +12,8 @@ M.setup = function()
 				},
 				n = { ["<c-t>"] = trouble.open_with_trouble },
 			},
-			buffer_previewer_maker = maker_no_bin,
+			-- Ignore binary files, e.g. PDFs
+			file_ignore_patterns = { "%.pdf" },
 		},
 		pickers = {
 			buffers = {
