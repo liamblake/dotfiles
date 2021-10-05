@@ -106,7 +106,7 @@ packer.startup(function(use)
 	})
 
 	-- Symbol outline
-	use("simrat39/symbols-outline.nvim")
+	-- use("simrat39/symbols-outline.nvim")
 
 	-- Status line
 	use({
@@ -196,14 +196,6 @@ packer.startup(function(use)
 		end,
 	})
 
-	-- Focus
-	use({
-		"folke/zen-mode.nvim",
-		config = function()
-			require("zen-mode").setup({ window = { width = 0.85, height = 1 }, plugins = { tmux = { enabled = true } } })
-		end,
-	})
-
 	-- Zoxide integration
 	use("nanotee/zoxide.vim")
 
@@ -224,15 +216,15 @@ packer.startup(function(use)
 	use({ "christoomey/vim-tmux-navigator" })
 
 	-- Scrollbar
-	use({
-		"LiamBlake/nvim-scrollview",
-		branch = "main", -- "minimal",
-		config = function()
-			vim.g.scrollview_auto_mouse = 0
-			vim.g.scrollview_character = "|"
-			-- require("scrollview").setup({ auto_mouse = 0 })
-		end,
-	})
+	-- use({
+	-- 	"LiamBlake/nvim-scrollview",
+	-- 	branch = "main", -- "minimal",
+	-- 	config = function()
+	-- 		vim.g.scrollview_auto_mouse = 0
+	-- 		vim.g.scrollview_character = "|"
+	-- 		-- require("scrollview").setup({ auto_mouse = 0 })
+	-- 	end,
+	-- })
 
 	-- For debugging slow startup
 	use({ "dstein64/vim-startuptime" })

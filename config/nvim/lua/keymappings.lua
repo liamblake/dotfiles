@@ -23,13 +23,15 @@ key_mapper("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
 -- Telescope searches
 key_mapper("n", "<leader>ff", ':lua require"plugin-config.telescope".project_files()<CR>')
 key_mapper("n", "<leader>fr", ':lua require"telescope.builtin".lsp_references()<CR>')
-key_mapper("n", "<leader>fg", ':lua require"telescope.builtin".live_grep()<CR>')
+key_mapper("n", "<leader>ft", ':lua require"telescope.builtin".live_grep()<CR>')
 key_mapper("n", "<leader>fs", ':lua require"telescope.builtin".treesitter()<CR>')
 key_mapper("n", "<leader>fd", ':lua require"plugin-config.telescope".search_dotfiles()<CR>')
 key_mapper("n", "<leader>fb", ':lua require"telescope.builtin".file_browser()<CR>')
+key_mapper("n", "<leader>fgs", ':lua require"telescope.builtin".git_stash()<CR>')
+key_mapper("n", "<leader>fgb", ':lua require"telescope.builtin".git_branches()<CR>')
 
 -- Toggle extension windows
-key_mapper("n", "<leader>ss", ":SymbolsOutline<CR>")
+-- key_mapper("n", "<leader>ss", ":SymbolsOutline<CR>")
 key_mapper("n", "<leader>sg", ":Git<CR>")
 
 -- Toggle trouble view
