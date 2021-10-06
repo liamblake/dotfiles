@@ -196,6 +196,15 @@ packer.startup(function(use)
 		end,
 	})
 
+	-- Markdown links and navigation
+	use({
+		"jakewvincent/mkdnflow.nvim",
+		ft = { "md", "rmd", "markdown" },
+		config = function()
+			require("mkdnflow").setup({})
+		end,
+	})
+
 	-- Zoxide integration
 	use("nanotee/zoxide.vim")
 

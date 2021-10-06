@@ -23,7 +23,10 @@ vim.o.mouse = "a"
 
 vim.o.updatetime = 300
 
--- Spelling local
+-- Autosave buffer when navigating away from it
+vim.o.autowriteall = true
+
+-- Spelling locale
 vim.o.spelllang = "en_au"
 
 -- Highlight on yank
