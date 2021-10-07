@@ -79,7 +79,6 @@ packer.startup(function(use)
 	-- Typing helps
 	use("tpope/vim-commentary")
 	use("tpope/vim-surround")
-	use("tpope/vim-unimpaired")
 	use("LandonSchropp/vim-stamp")
 
 	-- Telescope
