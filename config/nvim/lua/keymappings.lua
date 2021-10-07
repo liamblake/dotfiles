@@ -26,7 +26,11 @@ key_mapper("n", "<leader>fr", ':lua require"telescope.builtin".lsp_references()<
 key_mapper("n", "<leader>ft", ':lua require"telescope.builtin".live_grep()<CR>')
 key_mapper("n", "<leader>fs", ':lua require"telescope.builtin".treesitter()<CR>')
 key_mapper("n", "<leader>fd", ':lua require"plugin-config.telescope".search_dotfiles()<CR>')
-key_mapper("n", "<leader>fb", ':lua require"telescope.builtin".file_browser()<CR>')
+key_mapper(
+	"n",
+	"<leader>fb",
+	':lua require"telescope.builtin".file_browser({ cwd = require"telescope.utils".buffer_dir() })<CR>'
+)
 key_mapper("n", "<leader>fgs", ':lua require"telescope.builtin".git_stash()<CR>')
 key_mapper("n", "<leader>fgb", ':lua require"telescope.builtin".git_branches()<CR>')
 
