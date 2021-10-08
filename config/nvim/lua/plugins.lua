@@ -92,6 +92,7 @@ packer.startup(function(use)
 	use("tpope/vim-commentary")
 	use("tpope/vim-surround")
 	use("LandonSchropp/vim-stamp")
+	use("tpope/vim-repeat")
 
 	-- Telescope
 	use({
@@ -212,7 +213,7 @@ packer.startup(function(use)
 		"jakewvincent/mkdnflow.nvim",
 		ft = { "md", "rmd", "markdown" },
 		config = function()
-			require("mkdnflow").setup({})
+			require("mkdnflow").setup({ new_file_prefix = [['']] })
 		end,
 	})
 
