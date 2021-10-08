@@ -65,7 +65,19 @@ packer.startup(function(use)
 	})
 
 	-- LSP
-	use("neovim/nvim-lspconfig")
+	use({
+		"neovim/nvim-lspconfig",
+		config = function()
+			-- Use custom signs for diagnostics
+			-- TODO: Move this to plugins-config/lsp.lua
+			local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+
+			for type, icon in pairs(signs) do
+				local hl = "DiagnosticSign" .. type
+				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+			end
+		end,
+	})
 	use({ "kabouzeid/nvim-lspinstall" })
 	use({
 		"ray-x/lsp_signature.nvim",
