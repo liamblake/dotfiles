@@ -24,7 +24,7 @@ M.setup = function()
 			formatting.black,
 			formatting.clang_format,
 			formatting.isort,
-			formatting.prettier,
+			formatting.prettierd,
 			formatting.styler,
 			formatting.stylua,
 			indentlatex,

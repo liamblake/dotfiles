@@ -24,10 +24,15 @@ local on_attach = function(client)
 	if client.resolved_capabilities.document_formatting then
 		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)")
 	end
+end
+
+local on_attach_null_ls_formatting = function(client)
+	-- Extend the base function
+	on_attach(client)
 
 	-- Only use null-ls for formatting
-	-- client.resolved_capabilities.document_formatting = false
-	-- client.resolved_capabilities.document_range_formatting = false
+	client.resolved_capabilities.document_formatting = false
+	client.resolved_capabilities.document_range_formatting = false
 end
 
 -- Set up language servers
@@ -35,7 +40,16 @@ M.setup_servers = function()
 	require("lspinstall").setup()
 	local servers = require("lspinstall").installed_servers()
 	for _, server in pairs(servers) do
-		require("lspconfig")[server].setup({ capabilities = capabilities, on_attach = on_attach })
+		local lang_on_attach = on_attach
+		-- These languages have their own built-in formatting, which needs to be overwritten
+		-- because null-ls is used instead.
+		for _, form_lang in pairs({ "html", "typescript" }) do
+			if server == form_lang then
+				lang_on_attach = on_attach_null_ls_formatting
+			end
+		end
+
+		require("lspconfig")[server].setup({ capabilities = capabilities, on_attach = lang_on_attach })
 	end
 
 	-- Additional language servers not supported by lsp-install
