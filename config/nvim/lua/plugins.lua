@@ -51,6 +51,42 @@ packer.startup(function(use)
 		end,
 	})
 	use("kyazdani42/nvim-web-devicons")
+	use({
+		"onsails/lspkind-nvim",
+		config = function()
+			require("lspkind").init({
+				with_text = false,
+				preset = "codicons",
+				symbol_map = {
+					Text = "",
+					Method = "",
+					Function = "",
+					Constructor = "",
+					Field = "ﰠ",
+					Variable = "",
+					Class = "ﴯ",
+					Interface = "",
+					Module = "",
+					Property = "ﰠ",
+					Unit = "塞",
+					Value = "",
+					Enum = "",
+					Keyword = "",
+					Snippet = "",
+					Color = "",
+					File = "",
+					Reference = "",
+					Folder = "",
+					EnumMember = "",
+					Constant = "",
+					Struct = "פּ",
+					Event = "",
+					Operator = "",
+					TypeParameter = "",
+				},
+			})
+		end,
+	})
 
 	-- Completions
 	use({
@@ -82,10 +118,13 @@ packer.startup(function(use)
 	use({
 		"ray-x/lsp_signature.nvim",
 		config = function()
-			require("lsp_signature").setup({ hint_enable = false, floating_window_above_curr_line = false })
+			require("lsp_signature").setup({
+				hint_enable = false,
+				floating_window_above_curr_line = false,
+				handler_opts = { border },
+			})
 		end,
 	})
-	use("onsails/lspkind-nvim")
 	use({ "jose-elias-alvarez/null-ls.nvim" })
 
 	-- Typing helps
@@ -116,9 +155,6 @@ packer.startup(function(use)
 			})
 		end,
 	})
-
-	-- Symbol outline
-	-- use("simrat39/symbols-outline.nvim")
 
 	-- Status line
 	use({
@@ -176,6 +212,7 @@ packer.startup(function(use)
 			-- Start compilation automatically
 			-- Automatically open trouble if compilation failed
 			-- Clean auxillary files on close
+			-- TODO: Do not attempt to compile .sty or .cls files
 			vim.cmd([[
 				augroup vimtex_events
 					au!
@@ -226,13 +263,6 @@ packer.startup(function(use)
 	-- Typing helps
 	use({ "windwp/nvim-autopairs" })
 
-	use({
-		"akinsho/toggleterm.nvim",
-		config = function()
-			require("toggleterm").setup({})
-		end,
-	})
-
 	-- Play nice with TMUX
 	use({ "christoomey/vim-tmux-navigator" })
 
@@ -258,7 +288,6 @@ require("plugin-config.autopairs").setup()
 require("plugin-config.telescope").setup()
 require("plugin-config.lualine").setup()
 require("plugin-config.symbols-outline").setup()
-require("plugin-config.lsp").lspkind_setup()
 
 -- Setup LSP servers
 require("plugin-config.null-ls").setup()

@@ -10,3 +10,18 @@ snippet ifmain "if namespace main" b
 if __name__ == "__main__":
 	$0
 endsnippet
+
+snippet setup "setup.py" b
+from setuptools import setup, find_packages
+
+setup(
+    name="$1",
+    version="${2:0.1.0}",
+    url="https://github.com/$3.git",
+    author="$4",
+    description="$5",
+    packages=find_packages(),    
+    install_requires=[$6],
+    extra_requires = {$7}
+)
+endsnippet

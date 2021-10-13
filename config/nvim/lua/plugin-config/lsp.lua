@@ -7,15 +7,15 @@ M.install_servers = function()
 end
 
 -- Only show diagnostics detail on hover
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
--- 	virtual_text = false,
--- 	underline = true,
--- 	signs = true,
--- })
--- vim.cmd([[
--- 	autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
--- 	autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()
--- ]])
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+	virtual_text = false,
+	underline = true,
+	signs = true,
+})
+vim.cmd([[
+	autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})
+	autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()
+]])
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -60,40 +60,6 @@ M.setup_servers = function()
 	require("lspconfig")["null-ls"].setup({ capabilities = capabilities, on_attach = on_attach })
 end
 
--- Symbols
-M.lspkind_setup = function()
-	require("lspkind").init({
-		with_text = false,
-		preset = "codicons",
-		symbol_map = {
-			Text = "",
-			Method = "",
-			Function = "",
-			Constructor = "",
-			Field = "ﰠ",
-			Variable = "",
-			Class = "ﴯ",
-			Interface = "",
-			Module = "",
-			Property = "ﰠ",
-			Unit = "塞",
-			Value = "",
-			Enum = "",
-			Keyword = "",
-			Snippet = "",
-			Color = "",
-			File = "",
-			Reference = "",
-			Folder = "",
-			EnumMember = "",
-			Constant = "",
-			Struct = "פּ",
-			Event = "",
-			Operator = "",
-			TypeParameter = "",
-		},
-	})
-end
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
 require("lspinstall").post_install_hook = function()
 	setup_servers() -- reload installed servers
