@@ -41,7 +41,10 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
+
+# Start browser (Firefox)
+bindsym $mod+f exec firefox
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -84,7 +87,7 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+# bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -177,12 +180,26 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-        status_command i3status
-}
+# Lock screen
+bindsym $mod+Shift+s exec i3lock
 
 for_window [class="^.*"] border pixel 2
                           # class                 border  backgr. text    indicator child_border
 for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
+
+# i3status-rust
+bar {
+    font pango:DejaVu Sans Mono, FontAwesome 12
+    position top
+    status_command ~/.cargo/bin/i3status-rs ~/.config/i3status-rust/config.toml
+    colors {
+        separator #666666
+        background #000000
+        statusline #dddddd
+        focused_workspace #0088CC #0088CC #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
+}
+
