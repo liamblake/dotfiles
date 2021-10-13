@@ -9,5 +9,8 @@ setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2
 
+" Do not split words when wrapping
+setlocal linebreak
+
 " Toggle table of contents
 nnoremap <localleader>sc <cmd>VimtexTocToggle<CR>

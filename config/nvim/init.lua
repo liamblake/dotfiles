@@ -21,7 +21,7 @@ vim.o.smartcase = true
 
 vim.o.mouse = "a"
 
-vim.o.updatetime = 300
+vim.o.updatetime = 400
 
 -- Autosave buffer when navigating away from it
 vim.o.autowriteall = true
