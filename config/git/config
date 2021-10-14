@@ -22,6 +22,7 @@
 	cp = "cherry-pick"
 	f = "fetch"
 	pl = "log --graph --oneline --decorate"
+	fs = "!git fetch && git status"
 
 [user]
 	email = liamlemblake@gmail.com
