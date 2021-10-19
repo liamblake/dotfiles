@@ -2,9 +2,8 @@ theme = "plain"
 icons = "awesome"
 
 [[block]]
-block = "music"
-player = "spotify"
-buttons = ["play", "next"]
+block = "sound"
+step_width = 3
 
 [[block]]
 block = "memory"

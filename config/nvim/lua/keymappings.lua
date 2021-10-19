@@ -5,8 +5,9 @@ end
 
 key_mapper("n", "Y", "y$")
 
--- Cycle through tabs
-key_mapper("n", "<C-i>", ":bn<CR>")
+-- Bufferline
+key_mapper("n", "[b", ":BufferLineCycleNext<CR>")
+key_mapper("n", "]b", ":BufferLineCyclePrev<CR>")
 
 -- LSP
 key_mapper("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
@@ -21,11 +22,12 @@ key_mapper("n", "<leader>af", ":lua vim.lsp.buf.code_action()<CR>")
 key_mapper("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
 
 -- Telescope searches
-key_mapper("n", "<leader>ff", ':lua require"plugin-config.telescope".project_files()<CR>')
+key_mapper("n", "<leader>ff", ':lua require"conf.telescope".project_files()<CR>')
 key_mapper("n", "<leader>fr", ':lua require"telescope.builtin".lsp_references()<CR>')
 key_mapper("n", "<leader>ft", ':lua require"telescope.builtin".live_grep()<CR>')
 key_mapper("n", "<leader>fs", ':lua require"telescope.builtin".treesitter()<CR>')
-key_mapper("n", "<leader>fd", ':lua require"plugin-config.telescope".search_dotfiles()<CR>')
+key_mapper("n", "<leader>fd", ':lua require"conf.telescope".search_dotfiles()<CR>')
+key_mapper("n", "<leader>fn", ':lua require"conf.telescope".search_notes()<CR>')
 key_mapper(
 	"n",
 	"<leader>fb",

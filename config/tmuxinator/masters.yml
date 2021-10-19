@@ -47,8 +47,8 @@ windows:
       # synchronize: after
       panes:
         - nvim
-  - code:
-      layout: main-vertical
-      root: ~/Dropbox/masters
+  - notes:
+      layout: main-horizontal
+      root: ~/Dropbox/notes
       panes:
-        - julia 
+        - nvim

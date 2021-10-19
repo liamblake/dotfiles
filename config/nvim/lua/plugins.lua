@@ -1,12 +1,14 @@
 -- Plugin setup, from https://bryankegley.me/posts/nvim-getting-started/
 local execute = vim.api.nvim_command
 local fn = vim.fn
+
 -- ensure that packer is installed
 local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
 	execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
 	execute("packadd packer.nvim")
 end
+
 vim.cmd("packadd packer.nvim")
 local packer = require("packer")
 local util = require("packer.util")
@@ -21,12 +23,13 @@ packer.startup(function(use)
 
 	-- Theme and visuals
 	use("folke/tokyonight.nvim")
+	use("sainnhe/sonokai")
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
 			require("indent_blankline").setup({
 				char = "│",
-				buftype_exclude = { "terminal" },
+				buftype_exclude = { "terminal", "help" },
 				use_treesitter = true,
 			})
 		end,
@@ -88,6 +91,33 @@ packer.startup(function(use)
 		end,
 	})
 
+	-- LSP
+	use({
+		"neovim/nvim-lspconfig",
+		setup = function()
+			require("conf.lsp").setup()
+		end,
+		config = function()
+			require("conf.lsp").config()
+		end,
+	})
+
+	use({ "williamboman/nvim-lsp-installer" })
+	use({
+		"ray-x/lsp_signature.nvim",
+		config = function()
+			require("lsp_signature").setup({
+				hint_enable = false,
+				floating_window_above_curr_line = false,
+				handler_opts = { border = "shadow" },
+			})
+		end,
+	})
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
+		-- Configured alongside the LSP
+	})
+
 	-- Completions
 	use({
 		"hrsh7th/nvim-cmp",
@@ -98,34 +128,10 @@ packer.startup(function(use)
 			{ "hrsh7th/cmp-path" },
 			{ "quangnguyen30192/cmp-nvim-ultisnips" },
 		},
-	})
-
-	-- LSP
-	use({
-		"neovim/nvim-lspconfig",
 		config = function()
-			-- Use custom signs for diagnostics
-			-- TODO: Move this to plugins-config/lsp.lua
-			local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-
-			for type, icon in pairs(signs) do
-				local hl = "DiagnosticSign" .. type
-				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-			end
+			require("conf.completion").config()
 		end,
 	})
-	use({ "kabouzeid/nvim-lspinstall" })
-	use({
-		"ray-x/lsp_signature.nvim",
-		config = function()
-			require("lsp_signature").setup({
-				hint_enable = false,
-				floating_window_above_curr_line = false,
-				handler_opts = { border },
-			})
-		end,
-	})
-	use({ "jose-elias-alvarez/null-ls.nvim" })
 
 	-- Typing helps
 	use("tpope/vim-commentary")
@@ -137,6 +143,9 @@ packer.startup(function(use)
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
+		config = function()
+			require("conf.telescope").config()
+		end,
 	})
 
 	-- Tabline
@@ -160,6 +169,9 @@ packer.startup(function(use)
 	use({
 		"shadmansaleh/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+		config = function()
+			require("conf.lualine").config()
+		end,
 	})
 
 	-- Git integration
@@ -236,14 +248,15 @@ packer.startup(function(use)
 			vim.g.JuliaFormatter_always_launch_server = true
 		end,
 	})
-	use({
-		"jalvesaq/Nvim-R",
-		ft = "r",
-		config = function()
-			vim.g.R_external_term = 1
-			vim.g.R_notmuxconf = 1
-		end,
-	})
+	-- No use case for R just yet, but will be in the future
+	-- use({
+	-- 	"jalvesaq/Nvim-R",
+	-- 	ft = "r",
+	-- 	config = function()
+	-- 		vim.g.R_external_term = 1
+	-- 		vim.g.R_notmuxconf = 1
+	-- 	end,
+	-- })
 
 	-- Markdown links and navigation
 	use({
@@ -258,37 +271,24 @@ packer.startup(function(use)
 	use("nanotee/zoxide.vim")
 
 	-- Syntax highlightings
-	use({ "nvim-treesitter/nvim-treesitter" })
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		config = function()
+			require("conf.treesitter").config()
+		end,
+	})
 
 	-- Typing helps
-	use({ "windwp/nvim-autopairs" })
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("conf.autopairs").config()
+		end,
+	})
 
 	-- Play nice with TMUX
 	use({ "christoomey/vim-tmux-navigator" })
 
-	-- Scrollbar
-	-- use({
-	-- 	"LiamBlake/nvim-scrollview",
-	-- 	branch = "main", -- "minimal",
-	-- 	config = function()
-	-- 		vim.g.scrollview_auto_mouse = 0
-	-- 		vim.g.scrollview_character = "|"
-	-- 		-- require("scrollview").setup({ auto_mouse = 0 })
-	-- 	end,
-	-- })
-
 	-- For debugging slow startup
 	use({ "dstein64/vim-startuptime" })
 end)
-
--- TODO: Get these working in use
-require("plugin-config.completion").setup()
-require("plugin-config.treesitter").setup()
-require("plugin-config.autopairs").setup()
-require("plugin-config.telescope").setup()
-require("plugin-config.lualine").setup()
-require("plugin-config.symbols-outline").setup()
-
--- Setup LSP servers
-require("plugin-config.null-ls").setup()
-require("plugin-config.lsp").setup_servers()

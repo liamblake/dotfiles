@@ -1,6 +1,6 @@
 local M = {}
 
-M.setup = function()
+M.config = function()
 	vim.g.symbols_outline = {
 		highlight_hovered_item = true,
 		show_guides = true,

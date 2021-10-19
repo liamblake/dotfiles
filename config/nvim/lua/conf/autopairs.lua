@@ -1,6 +1,6 @@
 local M = {}
 
-M.setup = function()
+M.config = function()
 	local pairs = require("nvim-autopairs")
 	local Rule = require("nvim-autopairs.rule")
 	local cond = require("nvim-autopairs.conds")

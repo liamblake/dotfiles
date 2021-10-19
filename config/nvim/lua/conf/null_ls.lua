@@ -1,11 +1,10 @@
 local M = {}
 
-local formatting = require("null-ls").builtins.formatting
-local linting = require("null-ls").builtins.diagnostics
-
 M.setup = function()
 	local null_ls = require("null-ls")
 	local nl_utils = require("null-ls.helpers")
+	local formatting = require("null-ls").builtins.formatting
+	local linting = require("null-ls").builtins.diagnostics
 
 	local indentlatex = {
 		method = require("null-ls.methods").FORMATTING,

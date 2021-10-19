@@ -1,8 +1,8 @@
 local M = {}
 
-local trouble = require("trouble.providers.telescope")
+M.config = function()
+	local trouble = require("trouble.providers.telescope")
 
-M.setup = function()
 	require("telescope").setup({
 		defaults = {
 			mappings = {
@@ -26,10 +26,11 @@ M.setup = function()
 end
 
 M.project_files = function()
+	local builtin = require("telescope.builtin")
 	local opts = { hidden = true }
-	local ok = pcall(require("telescope.builtin").git_files, opts)
+	local ok = pcall(builtin.git_files, opts)
 	if not ok then
-		require("telescope.builtin").find_files(opts)
+		builtin.find_files(opts)
 	end
 end
 
@@ -40,6 +41,10 @@ M.matching_files = function()
 end
 
 M.search_dotfiles = function()
-	require("telescope.builtin").git_files({ prompt_tile = "dotfiles", cwd = "~/dev/dotfiles", hidden = true })
+	require("telescope.builtin").git_files({ prompt_title = "dotfiles", cwd = "~/dev/dotfiles", hidden = true })
+end
+
+M.search_notes = function()
+	require("telescope.builtin").git_files({ prompt_title = "notes", cwd = "~/Dropbox/notes", hidden = false })
 end
 return M

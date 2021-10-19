@@ -1,6 +1,6 @@
 local M = {}
 
-M.setup = function()
+M.config = function()
 	local cmp = require("cmp")
 
 	cmp.setup({
@@ -21,7 +21,13 @@ M.setup = function()
 				end
 			end,
 		},
-		sources = { { name = "nvim_lsp" }, { name = "ultisnips" }, { name = "path" }, { name = "treesitter" } },
+		sources = {
+			{ name = "nvim_lsp" },
+			{ name = "ultisnips" },
+			{ name = "path" },
+			{ name = "treesitter" },
+			{ name = "neorg" },
+		},
 		formatting = {
 			-- TODO: We should be able to use the built-in LSP completion kinds:
 			-- https://github.com/hrsh7th/nvim-cmp/issues/39

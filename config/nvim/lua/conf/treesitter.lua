@@ -1,6 +1,6 @@
 local M = {}
 
-M.setup = function()
+M.config = function()
 	require("nvim-treesitter.configs").setup({
 		ensure_installed = { "bash", "c", "cpp", "python", "julia", "latex", "rust", "typescript", "lua", "html" },
 		highlight = {
