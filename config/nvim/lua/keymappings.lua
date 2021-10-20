@@ -6,8 +6,8 @@ end
 key_mapper("n", "Y", "y$")
 
 -- Bufferline
-key_mapper("n", "[b", ":BufferLineCycleNext<CR>")
-key_mapper("n", "]b", ":BufferLineCyclePrev<CR>")
+key_mapper("n", "]b", ":BufferLineCycleNext<CR>")
+key_mapper("n", "[b", ":BufferLineCyclePrev<CR>")
 
 -- LSP
 key_mapper("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
