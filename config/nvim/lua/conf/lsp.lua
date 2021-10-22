@@ -3,6 +3,8 @@
 -- https://github.com/disrupted/dotfiles/blob/master/.config/nvim/lua/conf/lsp.lua
 local M = {}
 
+require("util")
+
 M.setup = function()
 	-- Only show diagnostics detail on hover
 	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -28,6 +30,9 @@ M.config = function()
 	local lspconfig = require("lspconfig")
 	local lsp_installer = require("nvim-lsp-installer")
 
+	-- Set the log level, for debugging
+	vim.lsp.set_log_level("debug")
+
 	local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 	local custom_on_attach = function(client)
@@ -35,6 +40,20 @@ M.config = function()
 		if client.resolved_capabilities.document_formatting then
 			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)")
 		end
+
+		--Keybindings
+		KeyMapper("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
+		KeyMapper("n", "gD", ":lua vim.lsp.buf.declaration()<CR>")
+		KeyMapper("n", "gi", ":lua vim.lsp.buf.implementation()<CR>")
+		KeyMapper("n", "gw", ":lua vim.lsp.buf.document_symbol()<CR>")
+		KeyMapper("n", "gW", ":lua vim.lsp.buf.workspace_symbol()<CR>")
+		KeyMapper("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>")
+		KeyMapper("n", "K", ":lua vim.lsp.buf.hover()<CR>")
+		KeyMapper("n", "<c-k>", ":lua vim.lsp.buf.signature_help()<CR>")
+		KeyMapper("n", "<leader>af", ":lua vim.lsp.buf.code_action()<CR>")
+		KeyMapper("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
+		KeyMapper("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
+		KeyMapper("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
 	end
 
 	-- Runtime path, for Lua development

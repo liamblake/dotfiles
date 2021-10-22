@@ -23,6 +23,8 @@
 	f = "fetch"
 	pl = "log --graph --oneline --decorate"
 	fs = "!git fetch && git status"
+	ul = "reset HEAD~"
+	stashall = "stash --include-untracked"
 
 [user]
 	email = liamlemblake@gmail.com

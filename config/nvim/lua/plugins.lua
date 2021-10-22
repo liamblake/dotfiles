@@ -1,3 +1,5 @@
+require("util")
+
 -- Plugin setup, from https://bryankegley.me/posts/nvim-getting-started/
 local execute = vim.api.nvim_command
 local fn = vim.fn
@@ -22,8 +24,7 @@ packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- Theme and visuals
-	use("folke/tokyonight.nvim")
-	use("sainnhe/sonokai")
+	use({ "folke/tokyonight.nvim" })
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
@@ -145,6 +146,21 @@ packer.startup(function(use)
 		requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
 		config = function()
 			require("conf.telescope").config()
+
+			-- TODO: These should be in conf/telescope.lua
+			KeyMapper("n", "<leader>ff", ':lua require"conf.telescope".project_files()<CR>')
+			KeyMapper("n", "<leader>fr", ':lua require"telescope.builtin".lsp_references()<CR>')
+			KeyMapper("n", "<leader>ft", ':lua require"telescope.builtin".live_grep()<CR>')
+			KeyMapper("n", "<leader>fs", ':lua require"telescope.builtin".treesitter()<CR>')
+			KeyMapper("n", "<leader>fd", ':lua require"conf.telescope".search_dotfiles()<CR>')
+			KeyMapper("n", "<leader>fn", ':lua require"conf.telescope".search_notes()<CR>')
+			KeyMapper(
+				"n",
+				"<leader>fb",
+				':lua require"telescope.builtin".file_browser({ cwd = require"telescope.utils".buffer_dir() })<CR>'
+			)
+			KeyMapper("n", "<leader>fgs", ':lua require"telescope.builtin".git_stash()<CR>')
+			KeyMapper("n", "<leader>fgb", ':lua require"telescope.builtin".git_branches()<CR>')
 		end,
 	})
 
@@ -162,6 +178,9 @@ packer.startup(function(use)
 				},
 				highlights = { buffer_selected = { gui = "bold" } },
 			})
+
+			KeyMapper("n", "]b", ":BufferLineCycleNext<CR>")
+			KeyMapper("n", "[b", ":BufferLineCyclePrev<CR>")
 		end,
 	})
 
@@ -190,7 +209,12 @@ packer.startup(function(use)
 			})
 		end,
 	})
-	use({ "tpope/vim-fugitive" })
+	use({
+		"tpope/vim-fugitive",
+		config = function()
+			KeyMapper("n", "<leader>sg", ":Git<CR>")
+		end,
+	})
 
 	-- Snippets
 	use({
@@ -204,6 +228,11 @@ packer.startup(function(use)
 		"folke/trouble.nvim",
 		config = function()
 			require("trouble").setup({ auto_open = false, auto_preview = false })
+
+			KeyMapper("n", "<leader>xx", "<cmd>TroubleToggle<cr>")
+			KeyMapper("n", "<leader>xw", "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>")
+			KeyMapper("n", "<leader>xd", "<cmd>TroubleToggle lsp_document_diagnostics<cr>")
+			KeyMapper("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
 		end,
 	})
 

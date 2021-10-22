@@ -45,7 +45,7 @@ windows:
       root: ~/dev/radreport
       panes:
         - direnv exec . nvim
-        - gfs
+        - g fs
         - cd radreport-backend
   - servers:
       layout: tiled

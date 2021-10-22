@@ -32,6 +32,15 @@ vim.o.spelllang = "en_au"
 -- Highlight on yank
 vim.cmd("au TextYankPost * lua vim.highlight.on_yank {}")
 
+-- Keybindings
+require("util")
+
+-- Use Y to yank to end of line
+KeyMapper("n", "Y", "y$")
+
+-- Turn off hlsearch with two ESCs
+KeyMapper("n", "<esc><esc>", "<cmd>nohls<CR>")
+
+-- Other configuration
 require("plugins")
-require("keymappings")
 require("colours")
