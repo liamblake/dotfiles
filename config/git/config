@@ -25,6 +25,7 @@
 	fs = "!git fetch && git status"
 	ul = "reset HEAD~"
 	stashall = "stash --include-untracked"
+	update-url = "remote set-url origin"
 
 [user]
 	email = liamlemblake@gmail.com
