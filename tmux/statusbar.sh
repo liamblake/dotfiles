@@ -26,7 +26,7 @@ separator="#[fg=$INACTIVE_FG_COLOR]｜#[default]"
 search_icon="#{?window_active,#{?window_zoomed_flag,#[fg=blue],},} "
 
 pane_count="#{?window_active,#[fg=white#,noitalics](#{window_panes}),}"
- 
+
 status_items="#{?window_bell_flag,#[fg=red] ,}$search_icon"
 
 # see: https://github.com/tmux-plugins/tmux-battery
@@ -40,7 +40,7 @@ set -g status-left-length 80
 set -g status-left "#{?client_prefix,#[fg=#ffffff bg=#22252B],#[fg=#e5c07b]} #S "
 set -g status-right-length 70
 # alternate date format "%a %d %b"
-set -g status-right " #[fg=blue]%H:%M $separator $cpu  $ram  $battery "
+set -g status-right "$cpu  $ram  $battery $separator  #[fg=blue]%H:%M "
 
 set-window-option -g window-status-current-style "bold"
 set-window-option -g window-status-current-format " #I: #[bold]#W $status_items"
