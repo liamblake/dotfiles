@@ -8,6 +8,9 @@ export PATH
 source "$HOME/aliases.zsh"
 source "$HOME/local_aliases.zsh"
 
+# Enable vi mode
+bindkey -v
+
 # No globbing when calling pip
 alias pip='noglob pip'
 
@@ -23,9 +26,9 @@ eval "$(direnv hook zsh)"
 # TODO: More information here, e.g. when merging, cherrypicking
 autoload -Uz vcs_info
 precmd() { vcs_info }
-zstyle ':vcs_info:git:*' formats '(%b)'
+zstyle ':vcs_info:git:*' formats '%F{999}on %F{041}%B%b '
 
-setopt PROMPT_SUBST ; PS1='%F{123}$(show_virtual_env) %F{171}%B%~ %F{041}${vcs_info_msg_0_}%F{123}> %f%b'
+setopt PROMPT_SUBST ; PS1='%F{123}$(show_virtual_env) %F{171}%B%~%b ${vcs_info_msg_0_}%F{123}> %f%b'
 
 # zoxide
 eval "$(zoxide init zsh)"
