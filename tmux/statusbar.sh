@@ -40,7 +40,7 @@ set -g status-left-length 80
 set -g status-left "#{?client_prefix,#[fg=#ffffff bg=#22252B],#[fg=#e5c07b]} #S "
 set -g status-right-length 70
 # alternate date format "%a %d %b"
-set -g status-right "$cpu  $ram  $battery $separator  #[fg=blue]%H:%M "
+set -g status-right "$cpu  $ram  $battery $separator  #[fg=blue]%H:%M  #[default]%a %d %b "
 
 set-window-option -g window-status-current-style "bold"
 set-window-option -g window-status-current-format " #I: #[bold]#W $status_items"
