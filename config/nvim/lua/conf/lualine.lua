@@ -3,7 +3,7 @@ local M = {}
 M.config = function()
 	require("lualine").setup({
 		options = {
-			theme = "tokyonight",
+			theme = "onenord",
 			section_separators = { left = "", right = "" },
 			component_separators = { left = "|", right = "|" },
 		},

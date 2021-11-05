@@ -31,7 +31,7 @@ M.config = function()
 	local lsp_installer = require("nvim-lsp-installer")
 
 	-- Set the log level, for debugging
-	vim.lsp.set_log_level("debug")
+	-- vim.lsp.set_log_level("debug")
 
 	local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -92,6 +92,12 @@ M.config = function()
 		elseif server.name == "pyright" then
 			opts.settings = { python = { analysis = { typeCheckingMode = "off" } } }
 		elseif server.name == "tsserver" then
+			opts.on_attach = function(client)
+				custom_on_attach(client)
+				client.resolved_capabilities.document_formatting = false
+				client.resolved_capabilities.document_range_formatting = false
+			end
+		elseif server.name == "jsonls" then
 			opts.on_attach = function(client)
 				custom_on_attach(client)
 				client.resolved_capabilities.document_formatting = false

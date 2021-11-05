@@ -6,6 +6,8 @@ vim.o.number = true
 vim.opt.signcolumn = "yes:1"
 vim.g.noshowmode = true
 
+vim.o.cursorline = true
+
 -- Set spacebar to be map leader
 vim.g.mapleader = " "
 vim.g.maplocalleader = ";"
@@ -13,7 +15,7 @@ vim.g.maplocalleader = ";"
 vim.o.completeopt = "menu,menuone,noselect,preview"
 
 vim.o.relativenumber = true
-vim.o.scrolloff = 5
+vim.o.scrolloff = 10
 
 -- Search options
 vim.o.ignorecase = true

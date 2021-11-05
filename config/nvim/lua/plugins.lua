@@ -26,6 +26,12 @@ packer.startup(function(use)
 	-- Theme and visuals
 	use({ "folke/tokyonight.nvim" })
 	use({
+		"rmehri01/onenord.nvim",
+		config = function()
+			require("onenord").setup({ italics = { comments = true, keywords = false } })
+		end,
+	})
+	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
 			require("indent_blankline").setup({
@@ -110,7 +116,7 @@ packer.startup(function(use)
 			require("lsp_signature").setup({
 				hint_enable = false,
 				floating_window_above_curr_line = false,
-				handler_opts = { border = "shadow" },
+				handler_opts = { border = "single" },
 			})
 		end,
 	})
@@ -152,6 +158,7 @@ packer.startup(function(use)
 			KeyMapper("n", "<leader>fr", ':lua require"telescope.builtin".lsp_references()<CR>')
 			KeyMapper("n", "<leader>ft", ':lua require"telescope.builtin".live_grep()<CR>')
 			KeyMapper("n", "<leader>fs", ':lua require"telescope.builtin".treesitter()<CR>')
+			KeyMapper("n", "<leader>fws", ':lua require"telescope.builtin".lsp_workspace_symbols()<CR>')
 			KeyMapper("n", "<leader>fd", ':lua require"conf.telescope".search_dotfiles()<CR>')
 			KeyMapper("n", "<leader>fn", ':lua require"conf.telescope".search_notes()<CR>')
 			KeyMapper(
@@ -171,7 +178,6 @@ packer.startup(function(use)
 			require("bufferline").setup({
 				options = {
 					numbers = "buffer_id",
-					offsets = { { filetype = "NvimTree", text = "Explorer" } },
 					show_buffer_close_icons = false,
 					show_close_icons = false,
 					diagnostics = "nvim_lsp",
