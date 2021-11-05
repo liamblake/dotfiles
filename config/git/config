@@ -24,7 +24,7 @@
 	pl = "log --graph --oneline --decorate"
 	fs = "!git fetch && git status"
 	ul = "reset HEAD~"
-	stashall = "stash --include-untracked"
+	stashall = "stash save --include-untracked"
 	update-url = "remote set-url origin"
 
 [user]
