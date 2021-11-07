@@ -230,6 +230,15 @@ packer.startup(function(use)
 		end,
 	})
 
+	-- Annotation generation
+	use({
+		"danymat/neogen",
+		config = function()
+			require("conf.neogen").config()
+		end,
+		requires = "nvim-treesitter/nvim-treesitter",
+	})
+
 	use({
 		"folke/trouble.nvim",
 		config = function()

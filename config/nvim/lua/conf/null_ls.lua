@@ -17,7 +17,7 @@ M.setup = function()
 		factory = nl_utils.formatter_factory,
 	}
 
-	require("null-ls").config({
+	null_ls.config({
 		sources = {
 			-- Formatters
 			formatting.black,
