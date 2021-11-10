@@ -14,12 +14,18 @@ set-option -g status-fg default
 set -g status-justify left
 set -g status-interval 1
 
-# ------------------------------------------------------------------------------
-# components
-# ------------------------------------------------------------------------------
 # NOTE: these use nested conditionals and "," and "}" must be escaped
 set -g @batt_remain_short 'true'
 
+# Set the battery colours to match the other monitors
+set -g @batt_color_charge_secondary_tier8 "[fg=@cpu_low_fg_color]"
+set -g @batt_color_charge_secondary_tier7 @cpu_low_fg_color
+set -g @batt_color_charge_secondary_tier6 @cpu_medium_fg_color
+set -g @batt_color_charge_secondary_tier5 @cpu_medium_fg_color
+set -g @batt_color_charge_secondary_tier4 @cpu_medium_fg_color
+set -g @batt_color_charge_secondary_tier3 @cpu_high_fg_color
+set -g @batt_color_charge_secondary_tier2 @cpu_high_fg_color
+set -g @batt_color_charge_secondary_tier1 @cpu_high_fg_color
 
 separator="#[fg=$INACTIVE_FG_COLOR]｜#[default]"
 
@@ -29,10 +35,10 @@ pane_count="#{?window_active,#[fg=white#,noitalics](#{window_panes}),}"
 
 status_items="#{?window_bell_flag,#[fg=red] ,}$search_icon"
 
-# see: https://github.com/tmux-plugins/tmux-battery
-battery="#[bold]BAT: #[default]#{battery_fg_color,$BACKGROUND_COLOR}#{battery_percentage}#[default]"
+battery="#[bold]BAT: #[default]#{battery_status_fg}#{battery_percentage}#[default]"
 
 cpu="#[bold]CPU: #[default]#{cpu_fg_color}#{cpu_percentage}#[default]"
+
 ram="#[bold]RAM: #[default]#{ram_fg_color}#{ram_percentage}#[default]"
 
 set -g status-left-length 80
@@ -40,7 +46,7 @@ set -g status-left-length 80
 set -g status-left "#{?client_prefix,#[fg=#ffffff bg=#22252B],#[fg=#e5c07b]} #S "
 set -g status-right-length 70
 # alternate date format "%a %d %b"
-set -g status-right "$cpu  $ram  $battery $separator  #[fg=blue]%H:%M  #[default]%a %d %b "
+set -g status-right "$separator $cpu  $ram  $battery $separator  #[fg=blue]%H:%M  #[default]%a %d %b "
 
 set-window-option -g window-status-current-style "bold"
 set-window-option -g window-status-current-format " #I: #[bold]#W $status_items"
@@ -51,11 +57,6 @@ set-window-option -g window-status-style "fg=$INACTIVE_FG_COLOR dim"
 # TODO: consider adding window name #{=20:window_name} if #T is empty
 set-window-option -g window-status-format "#[none] #I: #W $status_items"
 set-window-option -g window-status-separator "$separator"
-
-# Styling when in command mode i.e. vi or emacs mode in tmux command line
-set -g message-command-style 'fg=green bg=default blink'
-# Regular tmux commandline styling
-set -g message-style "fg=default bg=$BACKGROUND_COLOR"
 
 # Set window notifications
 set-option -g monitor-activity on
