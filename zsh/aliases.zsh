@@ -1,4 +1,4 @@
-alias codehere="code -n ."
+alias la="ls -a"
 
 # Commonly used directories - assumes dev dir is in home
 alias dev="cd $HOME/dev"
@@ -21,3 +21,6 @@ alias nvimst="nvim --startuptime startup.log"
 
 # Create all required directories with mkdir
 alias mkdir="mkdir -p"
+
+# Reload .zshrc
+alias zshrc="source ~/.zshrc"
