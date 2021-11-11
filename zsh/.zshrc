@@ -64,7 +64,7 @@ _vbe_vcs_info() {
 	print ${vcs_info_msg_0_}
 }
 
-# Use the zsh-async plugin 
+# Use the zsh-async plugin
 # TODO: Move away from this eventually
 source $PLUGINS_DIR/zsh-async/async.zsh
 async_init
@@ -95,7 +95,7 @@ autoload -Uz _fill_line && _fill_line
 # TODO: This is quite buggy
 show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-	  echo "(%B%F{yellow}$(basename $VIRTUAL_ENV)%b%F{white} active)"
+	  echo "(%B%F{yellow} $(basename $VIRTUAL_ENV)%b%F{white})"
   fi
 }
 
@@ -104,7 +104,7 @@ zstyle ':vcs_info:git:*' formats '%F{999}on %F{green}שׂ %B%b'
 zstyle ':vcs_info:git:*' actionformats '%F{999}on %F{green}שׂ %B%b (%a%u%c)'
 
 # Define the prompt itself
-PROMPT=$(_fill_line ' %B%F{blue}%(!..) %n%b %F{white}in %F{yellow} %F{magenta}%B%~%b ${vcs_info_msg_0_}%b' ' $(show_virtual_env)')$'\n'' %F{cyan}%f%b '
+PROMPT=$'\n'$(_fill_line ' %B%F{blue}%(!..) %n%b %F{white}in %F{yellow} %F{magenta}%B%~%b ${vcs_info_msg_0_}%b' ' $(show_virtual_env)')$'\n'' %F{cyan}%f%b '
 
 ###############
 # Keymappings #
