@@ -146,6 +146,14 @@ packer.startup(function(use)
 	use("LandonSchropp/vim-stamp")
 	use("tpope/vim-repeat")
 
+	-- Treesitter-powered spellchecking
+	use({
+		"lewis6991/spellsitter.nvim",
+		config = function()
+			require("spellsitter").setup({ captures = { "comment", "string" } })
+		end,
+	})
+
 	-- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -331,7 +339,12 @@ packer.startup(function(use)
 	})
 
 	-- Play nice with TMUX
-	use({ "christoomey/vim-tmux-navigator" })
+	use({
+		"christoomey/vim-tmux-navigator",
+		cond = function()
+			return vim.api.nvim_eval('exists("$TMUX")')
+		end,
+	})
 
 	-- For debugging slow startup
 	use({ "dstein64/vim-startuptime" })

@@ -11,6 +11,9 @@
 [mergetool]
 	prompt = false
 
+[pull]
+	rebase = true
+
 [alias]
 	st = "status -s -b"
 	co = "checkout"
@@ -26,6 +29,11 @@
 	ul = "reset HEAD~"
 	stashall = "stash save --include-untracked"
 	update-url = "remote set-url origin"
+
+	# When rebasing
+	rc = "rebase --continue"
+	ra = "rebase --abort"
+	rs = "rebase --skip"
 
 [user]
 	email = liamlemblake@gmail.com
