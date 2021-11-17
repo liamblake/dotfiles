@@ -34,6 +34,9 @@ vim.o.spelllang = "en_au"
 -- Highlight on yank
 vim.cmd("au TextYankPost * lua vim.highlight.on_yank {}")
 
+-- Hide mode at bottom, since this is already shown by the statusline
+vim.o.showmode = false
+
 -- Keybindings
 require("util")
 
