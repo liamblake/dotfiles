@@ -26,7 +26,10 @@ M.setup = function()
 			formatting.prettierd,
 			formatting.styler,
 			formatting.stylua,
-			indentlatex,
+			formatting.rustfmt,
+			formatting.shfmt,
+			-- TODO: Fix this, perhaps something is missing in the above table
+			-- indentlatex,
 			-- Diagnostics/linting
 			-- linting.flake8,
 			linting.chktex.with({ from_stderr = true }),
