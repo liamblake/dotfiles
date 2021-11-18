@@ -131,7 +131,6 @@ packer.startup(function(use)
 		requires = {
 			-- Sources
 			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "ray-x/cmp-treesitter" },
 			{ "hrsh7th/cmp-path" },
 			{ "quangnguyen30192/cmp-nvim-ultisnips" },
 		},
