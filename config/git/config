@@ -29,6 +29,7 @@
 	ul = "reset HEAD~"
 	stashall = "stash save --include-untracked"
 	update-url = "remote set-url origin"
+	sync = "!git pull && git push"
 
 	# When rebasing
 	rc = "rebase --continue"
