@@ -69,17 +69,14 @@ M.config = function()
 			opts.settings = {
 				Lua = {
 					runtime = {
-						-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
 						version = "LuaJIT",
-						-- Setup your lua path
 						path = runtime_path,
 					},
 					diagnostics = {
-						-- Get the language server to recognize the `vim` global
+						-- Recognise the 'vim' global
 						globals = { "vim" },
 					},
 					workspace = {
-						-- Make the server aware of Neovim runtime files
 						library = vim.api.nvim_get_runtime_file("", true),
 					},
 					-- Do not send telemetry data containing a randomized but unique identifier
@@ -96,7 +93,7 @@ M.config = function()
 				client.resolved_capabilities.document_formatting = false
 				client.resolved_capabilities.document_range_formatting = false
 			end
-		elseif server.name == "jsonls" then
+		elseif server.name == "rust_analyzer" then
 			opts.on_attach = function(client)
 				custom_on_attach(client)
 				client.resolved_capabilities.document_formatting = false
@@ -111,10 +108,6 @@ M.config = function()
 	-- Julia (julials), not supported by lsp-installer
 	-- TODO: Configure some formatting for Julia via null-ls
 	lspconfig.julials.setup({ capabilities = capabilities, on_attach = custom_on_attach })
-
-	-- null-ls, mainly for linting and formatting
-	require("conf.null_ls").setup()
-	lspconfig["null-ls"].setup({ capabilities = capabilities, on_attach = custom_on_attach })
 end
 
 return M

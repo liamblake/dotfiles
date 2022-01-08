@@ -16,8 +16,9 @@ M.setup = function()
 		},
 		factory = nl_utils.formatter_factory,
 	}
+	null_ls.register(indentlatex)
 
-	null_ls.config({
+	null_ls.setup({
 		sources = {
 			-- Formatters
 			formatting.black,
@@ -28,12 +29,17 @@ M.setup = function()
 			formatting.stylua,
 			formatting.rustfmt,
 			formatting.shfmt,
-			-- TODO: Fix this, perhaps something is missing in the above table
 			-- indentlatex,
 			-- Diagnostics/linting
 			-- linting.flake8,
 			linting.chktex.with({ from_stderr = true }),
 		},
+		-- Format on save
+		on_attach = function(client)
+			if client.resolved_capabilities.document_formatting then
+				vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+			end
+		end,
 	})
 end
 

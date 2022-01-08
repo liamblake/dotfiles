@@ -86,7 +86,9 @@ packer.startup(function(use)
 	})
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
-		-- Configured alongside the LSP
+		config = function()
+			require("conf.null_ls").setup()
+		end,
 	})
 
 	-- Completions
@@ -170,6 +172,27 @@ packer.startup(function(use)
 		end,
 	})
 
+	-- Scrollbar
+	use({
+		"petertriho/nvim-scrollbar",
+		config = function()
+			local colors = require("tokyonight.colors").setup()
+			require("scrollbar").setup({
+				handle = {
+					color = colors.bg_highlight,
+				},
+				marks = {
+					Search = { color = colors.orange },
+					Error = { color = colors.error },
+					Warn = { color = colors.warning },
+					Info = { color = colors.info },
+					Hint = { color = colors.hint },
+					Misc = { color = colors.purple },
+				},
+			})
+		end,
+	})
+
 	-- Git integration
 	use({
 		"lewis6991/gitsigns.nvim",
@@ -217,7 +240,7 @@ packer.startup(function(use)
 
 			KeyMapper("n", "<leader>xx", "<cmd>TroubleToggle<cr>")
 			KeyMapper("n", "<leader>xw", "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>")
-			KeyMapper("n", "<leader>xd", "<cmd>TroubleToggle lsp_document_diagnostics<cr>")
+			KeyMapper("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")
 			KeyMapper("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
 		end,
 	})
@@ -273,7 +296,13 @@ packer.startup(function(use)
 	-- 	end,
 	-- })
 
-	-- Markdown links and navigation
+	-- Markdown
+	use({
+		"iamcco/markdown-preview.nvim",
+		config = function()
+			vim.g.mkdp_browser = "firefox"
+		end,
+	})
 	use({
 		"jakewvincent/mkdnflow.nvim",
 		ft = { "md", "rmd", "markdown" },

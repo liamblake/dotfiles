@@ -14,3 +14,6 @@ setlocal linebreak
 
 " Toggle table of contents
 nnoremap <localleader>sc <cmd>VimtexTocToggle<CR>
+
+" Toggle preview
+nnoremap <localleader>sp <cmd>VimtexView<CR>
