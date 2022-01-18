@@ -5,6 +5,9 @@
 % Conditional probability
 \newcommand{\conp}[2]{P\left(#1\,\middle|\,#2\right)}
 
+% Conditional density notation, i.e. p(x|y). Used in Bayesian statistics for denoting conditional density/probabilities.
+\newcommand{\denp}[2]{p\left(#1\,\middle|\,#2\right)}
+
 % Statistical operators
 \newcommand{\var}[1]{\operatorname{var} \left(#1\right)}
 \newcommand{\avg}[1]{\mathbb{E}\left[#1\right]}
@@ -18,6 +21,9 @@
 \newcommand{\loglik}[2]{\ell\left(#1\,;\,#2\right)}
 \newcommand{\score}[2]{\mathcal{U}\left(#1\,;\,#2\right)}
 \newcommand{\finfo}[1]{\mathcal{I}\left(#1\right)}
+
+% Cumulative distribution function of the standard normal distribution
+\newcommand{\qnorm}[1]{\Phi\left(#1\right)}
 
 
 % Distributions
@@ -39,6 +45,8 @@
 \newcommand{\Cauchy}[1]{\Dist{\mathrm{Cauchy}}{#1}}
 \newcommand{\Trinom}[1]{\Dist{\mathrm{Tri}}{#1}}
 \newcommand{\Dir}[1]{\Dist{\mathrm{Dir}}{#1}}
+\newcommand{\LogNorm}[1]{\Dist{\text{log-}\mathcal{N}}{#1}}
+\newcommand{\InvChiSq}[1]{\Dist{\text{inv-}\chi^2}{#1}}
 
 % With \sim
 \newcommand{\isBern}[1]{\sim\Bern{#1}}
@@ -55,6 +63,8 @@
 \newcommand{\isCauchy}[1]{\sim\Cauchy{#1}}
 \newcommand{\isTrinom}[1]{\sim\Trinom{#1}}
 \newcommand{\isDir}[1]{\sim\Dir{#1}}
+\newcommand{\isLogNorm}[1]{\sim\LogNorm{#1}}
+\newcommand{\isInvChiSq}[1]{\sim\InvChiSq{#1}}
 
 % Weirder notation using subscripts
 \newcommand{\ChiSq}[1]{\chi^2_{#1}}
@@ -71,7 +81,7 @@
 
 % Hypothesis tests
 \newcommand{\hypothesis}[1]{%
-    \[
-    H_0\,:\, #1
-    \]
+	\[
+		H_0\,:\, #1
+	\]
 }

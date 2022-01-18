@@ -1,0 +1,162 @@
+\ProvidesPackage{lb}[30/03/2021]
+
+% Packages which I almost always find useful
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}
+\RequirePackage{bm}
+\RequirePackage{commath}
+\RequirePackage{enumitem}
+% For more powerful command argument parsing
+\RequirePackage{xparse, xargs}
+\RequirePackage{color, xcolor}
+
+%% OPTIONS %%
+
+% Optionally include the other style files. This saves having to include each of them individually.
+% \RequirePackage cannot be used in \DeclareOption, so instead we need to use boolean flags.
+% TODO: Could this be a function (WTF even is a function in TeX? A command?) to avoid repetition
+\newif\if@statistics\@statisticsfalse
+\DeclareOption{notes}{\RequirePackage{lb_notes}}
+\DeclareOption{statistics}{\@statisticstrue}
+\if@statistics
+	\RequirePackage{lb_statistics}
+\fi
+
+\newif\if@theory\@theoryfalse
+\DeclareOption{theory}{\@theorytrue}
+\if@theory
+	\RequirePackage{lb_theory}
+\fi
+
+\newif\if@notes\@notesfalse
+\DeclareOption{notes}{\@notestrue}
+\if@notes
+	\RequirePackage{lb_notes}
+\fi
+
+
+% Option for sans serif font
+\DeclareOption{sans}{\renewcommand{\familydefault}{\sfdefault}}
+
+% Option indicating whether the style file is being used in RMarkdown
+% This introduces some changes to certain commands, e.g. enumerate
+\newif\if@rmarkdown\@rmarkdownfalse
+\DeclareOption{rmarkdown}{\@rmarkdowntrue}
+
+\ProcessOptions\relax
+
+% Provides warnings if labels are unused
+\RequirePackage{refcheck}
+\norefnames
+\nocitenames
+
+
+% Allow numbering of individuals lines in an align env
+\newcommand{\numberthis}{\addtocounter{equation}{1}\tag{\theequation}}
+
+
+% Numeric sets
+\newcommand{\R}{\mathbb{R}}		% Real numbers
+\newcommand{\Z}{\mathbb{Z}}		% Integers
+\newcommand{\N}{\mathbb{N}}		% Natural numbers
+\newcommand{\Q}{\mathbb{Q}}		% Rational numbers
+\newcommand{\C}{\mathbb{C}}		% Complex numbers
+
+% Set with a condition
+\newcommand{\setc}[2]{\left\{#1\,\middle|\,#2\right\}}
+
+% Bracketed fractions
+\newcommand{\bfrac}[2]{\left(\frac{#1}{#2}\right)}
+
+% Smaller dot operator for dot product, etc.
+\makeatletter
+\newcommand*{\dotp}{\mathpalette\dotp@{.5}}
+\newcommand*{\dotp@}[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+% Vector calculus operators
+\newcommand{\vder}{\nabla}					% Gradient
+\newcommand{\vdiv}{\vder \dotp}			% Divergence
+\newcommand{\curl}{\vder \times}    % Curl
+
+% Vector integrals
+% TODO as required
+
+% Material derivative, in a fluid dynamics context 
+\newcommand{\dmat}[2]{\frac{\text{D}#1}{\text{D}#2}}
+
+% A sequence of the form a_1,...,a_n, where a is passed as an argument. The second and third arguments are optional and specify the two subscript values to include.
+\NewDocumentCommand{\seq}{O{1} O{n} m}{#3_{#1},\hdots,#3_{#2}}
+
+% Provide reasoning in a \text env alongside a line of maths
+\newcommand{\rea}[1]{\qquad \qquad \left(\text{#1}\right)}
+
+% argmax and argmin
+\DeclareMathOperator{\argmax}{argmax}
+\DeclareMathOperator{\argmin}{argmin}
+
+% Transpose operator with \T
+\newcommand{\T}{^{\intercal}}
+
+% Enumerate environment with alphabetic labels
+\newenvironment{alpharate}{
+	\begin{enumerate}[label=\alph*)]
+		}{
+	\end{enumerate}
+}
+
+% Todo notes, annotations, etc.
+% Thanks JM
+\RequirePackage[colorinlistoftodos,prependcaption,textsize=scriptsize]{todonotes}
+
+% TODO: Optional args seems to not be working
+\newcommandx{\note}[2][1=]{
+	\todo[inline,linecolor=black,backgroundcolor=violet!5,bordercolor=violet,#1]{
+		NOTE: #2
+	}
+}
+\newcommandx{\td}[2][1=]{
+	\todo[inline,linecolor=orange,backgroundcolor=orange!5,bordercolor=orange,tickmarkheight=2cm,#1]{
+		TODO: #2
+	}
+}
+\newcommandx{\lb}[2][1=]{
+	\todo[linecolor=teal,backgroundcolor=teal!5,bordercolor=teal,#1]{
+		#2
+	}
+}
+
+
+% Neat trick to access environment variables
+% From https://tex.stackexchange.com/a/62032
+
+\ExplSyntaxOn
+\NewDocumentCommand{\getenv}{om}
+{
+	\sys_get_shell:nnN { kpsewhich ~ --var-value ~ #2 } { } \l_tmpa_tl
+	\tl_trim_spaces:N \l_tmpa_tl
+	\IfNoValueTF { #1 }
+	{
+		\tl_use:N \l_tmpa_tl
+	}
+	{
+		\tl_set_eq:NN #1 \l_tmpa_tl
+	}
+}
+\ExplSyntaxOff
+
+% Modifications for RMarkdown
+% \if@rmarkdown
+% Including code blocks in an enumerate environment causes knitr to fail, 
+% so instead we delimit the environment with these new commands.
+% See https://tex.stackexchange.com/a/244996
+% TODO (formatting): latexindent is confused by the begin and ends here.
+\newcommand{\benum}{\begin{enumerate}}
+		\newcommand{\eenum}{\end{enumerate}}
+\newcommand{\balph}{\begin{alpharate}}
+		\newcommand{\ealph}{\end{alpharate}}
+
+% \fi
+

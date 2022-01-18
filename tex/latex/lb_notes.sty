@@ -1,0 +1,24 @@
+% A consistent style for typed lecture-style notes.
+% Includes variations on some of the environments defined in lb_theory, e.g. example, proof.
+% 
+
+\ProvidesPackage{lb_notes}[30/03/2021]
+
+\RequirePackage{mdframed}
+
+\mdtheorem{theorem}{Theorem}
+\mdtheorem{defn}{Definition}
+\mdtheorem{corollary}{Corollary}
+\mdtheorem{example}{Example}
+\mdtheorem{lemma}{Lemma}
+\mdtheorem{result}{Result}
+
+\DeclareOption*{\OptionNotUsed}
+\ProcessOptions\relax
+
+% Answer environment, in red
+\newcommand{\answer}[1]{{\color{red}#1}}
+
+% No indents on new paragraphs, these are the work of the devil
+\setlength\parindent{0pt}
+
