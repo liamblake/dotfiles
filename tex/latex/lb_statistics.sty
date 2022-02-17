@@ -8,6 +8,9 @@
 % Conditional density notation, i.e. p(x|y). Used in Bayesian statistics for denoting conditional density/probabilities.
 \newcommand{\denp}[2]{p\left(#1\,\middle|\,#2\right)}
 
+% Conditional distribution, i.e. x | y. Similar to above but without the delimiters.
+\newcommand{\cond}[2]{\left.\,#1\,\middle|\,#2\right.}
+
 % Statistical operators
 \newcommand{\var}[1]{\operatorname{var} \left(#1\right)}
 \newcommand{\avg}[1]{\mathbb{E}\left[#1\right]}
@@ -35,7 +38,7 @@
 \newcommand{\Geom}[1]{\Dist{\mathrm{Geom}}{#1}}
 \newcommand{\Bern}[1]{\Dist{\mathrm{Bern}}{#1}}
 \newcommand{\Exp}[1]{\Dist{\mathrm{Exp}}{#1}}
-\newcommand{\Pois}[1]{\Dist{\mathrm{Po}}{#1}}
+\newcommand{\Pois}[1]{\Dist{\mathrm{Poisson}}{#1}}
 \newcommand{\HypGeo}[1]{\Dist{\mathrm{Hypergeometric}}{#1}}
 \newcommand{\Uniform}[1]{\Dist{\mathrm{U}}{#1}}
 \newcommand{\StdGauss}{\Gauss{0,1}}
@@ -44,7 +47,7 @@
 \newcommand{\BetaDist}[1]{\Dist{\mathrm{Beta}}{#1}}
 \newcommand{\Cauchy}[1]{\Dist{\mathrm{Cauchy}}{#1}}
 \newcommand{\Trinom}[1]{\Dist{\mathrm{Tri}}{#1}}
-\newcommand{\Dir}[1]{\Dist{\mathrm{Dir}}{#1}}
+\newcommand{\Dir}[1]{\Dist{\mathrm{Dirichlet}}{#1}}
 \newcommand{\LogNorm}[1]{\Dist{\text{log-}\mathcal{N}}{#1}}
 \newcommand{\InvChiSq}[1]{\Dist{\text{inv-}\chi^2}{#1}}
 
