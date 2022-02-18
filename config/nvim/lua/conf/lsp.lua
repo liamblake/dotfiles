@@ -13,7 +13,7 @@ M.setup = function()
 		signs = true,
 	})
 	vim.cmd([[
-		autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})
+		autocmd CursorHold * lua vim.diagnostic.open_float({focusable=false})
 		autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()
 	]])
 	-- Use custom signs for diagnostics

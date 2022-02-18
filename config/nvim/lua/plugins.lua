@@ -99,6 +99,7 @@ packer.startup(function(use)
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-path" },
 			{ "quangnguyen30192/cmp-nvim-ultisnips" },
+			{ "kdheepak/cmp-latex-symbols" },
 		},
 		config = function()
 			require("conf.completion").config()
@@ -122,9 +123,14 @@ packer.startup(function(use)
 	-- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",
-		requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
+		requires = {
+			{ "nvim-lua/popup.nvim" },
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-telescope/telescope-file-browser.nvim" },
+		},
 		config = function()
 			require("conf.telescope").config()
+			require("telescope").load_extension("file_browser")
 
 			-- TODO: These should be in conf/telescope.lua
 			KeyMapper("n", "<leader>ff", ':lua require"conf.telescope".project_files()<CR>')
@@ -134,11 +140,7 @@ packer.startup(function(use)
 			KeyMapper("n", "<leader>fws", ':lua require"telescope.builtin".lsp_workspace_symbols()<CR>')
 			KeyMapper("n", "<leader>fd", ':lua require"conf.telescope".search_dotfiles()<CR>')
 			KeyMapper("n", "<leader>fn", ':lua require"conf.telescope".search_notes()<CR>')
-			KeyMapper(
-				"n",
-				"<leader>fb",
-				':lua require"telescope.builtin".file_browser({ cwd = require"telescope.utils".buffer_dir() })<CR>'
-			)
+			KeyMapper("n", "<leader>fb", ':lua require"telescope".extensions.file_browser.file_browser()<CR>')
 			KeyMapper("n", "<leader>fgs", ':lua require"telescope.builtin".git_stash()<CR>')
 			KeyMapper("n", "<leader>fgb", ':lua require"telescope.builtin".git_branches()<CR>')
 		end,
@@ -274,27 +276,6 @@ packer.startup(function(use)
 		end,
 		ft = { "tex", "bib" },
 	})
-	use({
-		"JuliaEditorSupport/julia-vim",
-		-- TODO: This causes the error "Unknown function: LaTeXtoUnicode#Refresh"
-		-- ft = "julia"
-	})
-	use({
-		"kdheepak/JuliaFormatter.vim",
-		ft = "julia",
-		config = function()
-			vim.g.JuliaFormatter_always_launch_server = true
-		end,
-	})
-	-- No use case for R just yet, but will be in the future
-	-- use({
-	-- 	"jalvesaq/Nvim-R",
-	-- 	ft = "r",
-	-- 	config = function()
-	-- 		vim.g.R_external_term = 1
-	-- 		vim.g.R_notmuxconf = 1
-	-- 	end,
-	-- })
 
 	-- Markdown
 	use({

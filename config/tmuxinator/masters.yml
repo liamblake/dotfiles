@@ -31,7 +31,7 @@ root: ~/Dropbox/masters
 # tmux_command: byobu
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-startup_window: editor
+startup_window: typing
 
 # Specifies (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
 # startup_pane: 1
@@ -40,15 +40,20 @@ startup_window: editor
 # attach: false
 
 windows:
-  - editor:
+  - typing:
       layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
       panes:
         - nvim
+  - coding:
+      layout: main-vertical
+      root: ~/Dropbox/masters/code
+      panes:
+        - nvim
+        - julia
   - notes:
       layout: main-horizontal
       root: ~/Dropbox/notes
       panes:
         - nvim
+        # This script will automatically update the index files upon change
+        - ./autoindex.sh

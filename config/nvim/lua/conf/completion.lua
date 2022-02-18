@@ -53,6 +53,7 @@ M.config = function()
 			{ name = "nvim_lsp" },
 			{ name = "ultisnips" },
 			{ name = "path" },
+			{ name = "latex_symbols" },
 		}),
 
 		formatting = {

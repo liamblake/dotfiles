@@ -3,10 +3,10 @@ SCRIPT=$(readlink -f "$0")
 DOTFILES_ROOT=$(dirname "$SCRIPT")/..
 
 create_home_symlink() {
-  SRC=$DOTFILES_ROOT/$1
-  TARGET=$HOME/$2
+	SRC=$DOTFILES_ROOT/$1
+	TARGET=$HOME/$2
 
-  ln -si $SRC $TARGET
+	ln -si $SRC $TARGET
 }
 
 # Create links in home
@@ -28,20 +28,20 @@ mkdir -p "$HOME/.config"
 
 # Create links in ~/.config/dir
 # TODO: Move more files to .config, will reduce repetition in this file.
-for dir in "git" "tmuxinator" "nvim" "alacritty" "ranger" "i3" "i3status"; do
-    create_home_symlink config/$dir .config/
+for dir in "git" "tmuxinator" "nvim" "alacritty" "ranger" "i3" "i3status-rust"; do
+	create_home_symlink config/$dir .config/
 done
 
 # VSCode setup
 mkdir -p "$HOME"/.config/Code/User/
-loop_dir_symlink config/vscode/ .config/Code/User/
+create_home_symlink config/vscode/settings.json .config/Code/User
 
 # TODO: TeX style files
 create_home_symlink tex .miktex/texmfs/install/lb/te
 
 # TPM setup
 if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
 # Taken from https://github.com/samoshkin/tmux-config/blob/master/install.sh
@@ -52,5 +52,5 @@ tmux kill-session -t __noop >/dev/null 2>&1 || true
 
 # If dev isn't already in home, add a symlink
 if [ ! -d "$HOME"/dev ]; then
-  create_home_symlink /../../dev/ .
+	create_home_symlink /../../dev/ .
 fi

@@ -17,8 +17,8 @@ endglobal
 snippet article "Document class" b
 \documentclass[12pt]{article}
 
-\usepackage[]{lb_base}
-\usepackage[top=1cm,bottom=1cm,left=1cm,right=1cm]{geometry}
+\usepackage[]{lb}
+\usepackage[top=2cm,bottom=2cm,left=1.5cm,right=1.5cm]{geometry}
 
 \title{$2}
 \author{${3:Liam Blake}}
@@ -130,4 +130,10 @@ endsnippet
 
 snippet note "Note note" i
 \note{${1:${VISUAL}}} % NOTE
+endsnippet
+
+# TODO: This should be handled by the pairs plugin
+context "math()"
+snippet ( "Parentheses pair" i
+\left($1\right)
 endsnippet

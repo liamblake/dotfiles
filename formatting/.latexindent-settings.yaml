@@ -120,6 +120,7 @@ noIndentBlock:
     noindent: 1
     cmhtest: 1
 
+
 # \begin{document} and \end{document} are treated differently
 # by latexindent within filecontents environments
 fileContentsEnvironments:

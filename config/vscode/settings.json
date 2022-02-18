@@ -82,4 +82,8 @@
     },
     "editor.fontSize": 15,
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+    ],
+    "julia.symbolCacheDownload": true,
 }
