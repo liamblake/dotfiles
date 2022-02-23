@@ -319,6 +319,9 @@ packer.startup(function(use)
 		end,
 	})
 
+	-- REPL support
+	use({ "jpalardy/vim-slime", config = function() end })
+
 	-- For debugging slow startup
 	use({ "dstein64/vim-startuptime" })
 end)

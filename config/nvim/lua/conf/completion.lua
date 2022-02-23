@@ -53,7 +53,6 @@ M.config = function()
 			{ name = "nvim_lsp" },
 			{ name = "ultisnips" },
 			{ name = "path" },
-			{ name = "latex_symbols" },
 		}),
 
 		formatting = {
@@ -67,6 +66,16 @@ M.config = function()
 			end,
 		},
 		documentation = { zindex = 50 },
+	})
+
+	-- Only enable LaTeX symbol completion for certain filetypes.
+	cmp.setup.filetype({ "julia" }, {
+		sources = {
+			{ name = "nvim_lsp" },
+			{ name = "ultisnips" },
+			{ name = "path" },
+			{ name = "latex_symbols" },
+		},
 	})
 end
 
