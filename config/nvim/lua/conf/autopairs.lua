@@ -15,6 +15,7 @@ M.config = function()
 		Rule("(", ")"):with_pair(cond.not_after_regex_check("//")),
 		Rule("[", "]"):with_pair(cond.not_after_regex_check("//")),
 		Rule("\\left(", "\\right)", { "tex", "latex" }):with_cr(cond.none()),
+		Rule("``", "''", { "tex", "latex" }):with_cr(cond.none()),
 		-- Python
 		Rule('"""', '"""', { "python" }),
 	})

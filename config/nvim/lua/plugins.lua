@@ -254,7 +254,6 @@ packer.startup(function(use)
 			vim.g.vimtex_compiler_latexmk = { build_dir = "build", continuous = 1 }
 			-- Trouble will be opened automatically instead
 			vim.g.vimtex_quickfix_mode = 0
-			vim.g.vimtex_view_method = "zathura"
 			vim.g.vimtex_toc_config = {
 				show_help = 0,
 				fold_enabled = 1,

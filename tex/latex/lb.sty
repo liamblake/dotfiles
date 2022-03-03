@@ -82,6 +82,9 @@
 \newcommand*{\dotp@}[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
 \makeatother
 
+% Inner product, simply langle and rangle
+\newcommand{\iprod}[2]{\langle #1\,,\,#2 \rangle}
+
 % Vector calculus operators
 \newcommand{\vder}{\nabla}					% Gradient
 \newcommand{\vdiv}{\vder \dotp}			% Divergence
@@ -92,6 +95,9 @@
 
 % Material derivative, in a fluid dynamics context
 \newcommand{\dmat}[2]{\frac{\text{D}#1}{\text{D}#2}}
+
+% Matrix trace
+\newcommand{\trace}[1]{\mathrm{tr}\left(#1\right)}
 
 % A sequence of the form a_1,...,a_n, where a is passed as an argument. The second and third arguments are optional and specify the two subscript values to include.
 \NewDocumentCommand{\seq}{O{1} O{n} m}{#3_{#1},\hdots,#3_{#2}}
@@ -109,6 +115,13 @@
 % Enumerate environment with alphabetic labels
 \newenvironment{alpharate}{
 	\begin{enumerate}[label=\alph*)]
+		}{
+	\end{enumerate}
+}
+
+% Enumerate environment with Roman numbers
+\newenvironment{romanate}{
+	\begin{enumerate}[label=(\roman*)]
 		}{
 	\end{enumerate}
 }
