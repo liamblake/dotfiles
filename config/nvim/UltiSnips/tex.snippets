@@ -118,9 +118,9 @@ snippet int "Integral" i
 endsnippet
 
 # Bibliography (bibtex)
-snippet references "Reference list" b
+snippet biblio "BibTeX bibliography" b
 \bibliographystyle{${1:plain}`!p snip.rv = complete(t[1], BIBTEX_STYLES)`}
-\biblography{$2}
+\bibliography{$2}
 endsnippet
 
 # Append todo with TODO comment, for highlighting by todo-comments.nvim
@@ -144,3 +144,10 @@ snippet lim "Limit" i
 \lim_{$1 \to $2}{$0}
 endsnippet
 
+# Definition
+context "not math()"
+snippet defn "Definition" i
+\begin{defn}[$1]
+$0
+\end{defn}
+endsnippet

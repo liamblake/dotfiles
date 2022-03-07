@@ -260,14 +260,14 @@ packer.startup(function(use)
 				indent_levels = 1,
 				split_pos = "vert rightbelow",
 			}
-			-- Start compilation automatically
+			-- Call VimtexView automatically on open
 			-- Automatically open trouble if compilation failed
 			-- Clean auxillary files on close
 			-- TODO: Do not attempt to compile .sty or .cls files
 			vim.cmd([[
 				augroup vimtex_events
 					au!
-					au user VimtexEventInitPost VimtexCompile
+					au user VimtexEventInitPost VimtexView
 					au user VimtexEventCompileFailed Trouble quickfix
 					au user VimtexEventCompileSuccess TroubleClose
 					au User VimtexEventQuit VimtexClean
