@@ -16,6 +16,7 @@ M.config = function()
 			file_ignore_patterns = { "%.pdf" },
 		},
 		pickers = {
+			git_files = {theme = "dropdown", previewer = false},
 			buffers = {
 				sort_lastused = true,
 				theme = "dropdown",
@@ -27,7 +28,7 @@ end
 
 M.project_files = function()
 	local builtin = require("telescope.builtin")
-	local opts = { hidden = true }
+	local opts = { prompt_title = "project files", hidden = true, theme = "dropdown", previewer = false}
 	local ok = pcall(builtin.git_files, opts)
 	if not ok then
 		builtin.find_files(opts)
