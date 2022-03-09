@@ -6,3 +6,5 @@ startup.log
 # Direnv files
 .direnv
 .envrc
+
+.DS_Store
