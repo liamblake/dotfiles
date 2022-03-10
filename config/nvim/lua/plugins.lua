@@ -260,6 +260,8 @@ packer.startup(function(use)
 				indent_levels = 1,
 				split_pos = "vert rightbelow",
 			}
+			-- Conceal options
+			vim.g.vimtex_syntax_conceal = {accents = true}
 			-- Call VimtexView automatically on open
 			-- Automatically open trouble if compilation failed
 			-- Clean auxillary files on close
