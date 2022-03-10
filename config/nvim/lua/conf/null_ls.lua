@@ -29,10 +29,8 @@ M.setup = function()
 			formatting.stylua,
 			formatting.rustfmt,
 			formatting.shfmt,
-			-- indentlatex,
 			-- Diagnostics/linting
 			-- linting.flake8,
-			linting.chktex.with({ from_stderr = true }),
 		},
 		-- Format on save
 		on_attach = function(client)

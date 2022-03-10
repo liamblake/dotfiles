@@ -251,29 +251,7 @@ packer.startup(function(use)
 	use({
 		"lervag/vimtex",
 		config = function()
-			vim.g.vimtex_compiler_latexmk = { build_dir = "build", continuous = 1 }
-			-- Trouble will be opened automatically instead
-			vim.g.vimtex_quickfix_mode = 0
-			vim.g.vimtex_toc_config = {
-				show_help = 0,
-				fold_enabled = 1,
-				indent_levels = 1,
-				split_pos = "vert rightbelow",
-			}
-			-- Conceal options
-			vim.g.vimtex_syntax_conceal = {accents = true}
-			-- Call VimtexView automatically on open
-			-- Automatically open trouble if compilation failed
-			-- Clean auxillary files on close
-			-- TODO: Do not attempt to compile .sty or .cls files
-			vim.cmd([[
-				augroup vimtex_events
-					au!
-					au user VimtexEventInitPost VimtexView
-					au user VimtexEventCompileFailed Trouble quickfix
-					au user VimtexEventCompileSuccess TroubleClose
-					au User VimtexEventQuit VimtexClean
-			]])
+			require("conf.vimtex").setup()
 		end,
 		ft = { "tex", "bib" },
 	})

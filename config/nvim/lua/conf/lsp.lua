@@ -99,23 +99,22 @@ M.config = function()
 				client.resolved_capabilities.document_formatting = false
 				client.resolved_capabilities.document_range_formatting = false
 			end
-		elseif server.name == "texlab" then 
+		elseif server.name == "texlab" then
 			opts.settings = {
 				texlab = {
 					auxDirectory = "build",
-				build = {
-          args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "-outdir=build", "%f" },
-          executable = "latexmk",
-          forwardSearchAfter = true,
-          onSave = true
-        },
-	diagnosticsDelay = 50
-			},
-chktex = {
-          onEdit = false,
-          onOpenAndSave = true
-        }
-		}
+					build = {
+						args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "-outdir=build", "%f" },
+						executable = "latexmk",
+						forwardSearchAfter = false,
+						onSave = false,
+					},
+				},
+				chktex = {
+					onEdit = false,
+					onOpenAndSave = true,
+				},
+			}
 		end
 
 		server:setup(opts)
