@@ -174,27 +174,6 @@ packer.startup(function(use)
 		end,
 	})
 
-	-- Scrollbar
-	use({
-		"petertriho/nvim-scrollbar",
-		config = function()
-			local colors = require("tokyonight.colors").setup()
-			require("scrollbar").setup({
-				handle = {
-					color = colors.bg_highlight,
-				},
-				marks = {
-					Search = { color = colors.orange },
-					Error = { color = colors.error },
-					Warn = { color = colors.warning },
-					Info = { color = colors.info },
-					Hint = { color = colors.hint },
-					Misc = { color = colors.purple },
-				},
-			})
-		end,
-	})
-
 	-- Git integration
 	use({
 		"lewis6991/gitsigns.nvim",
@@ -258,21 +237,12 @@ packer.startup(function(use)
 
 	-- Markdown
 	use({
-		"iamcco/markdown-preview.nvim",
-		config = function()
-			vim.g.mkdp_browser = "firefox"
-		end,
-	})
-	use({
 		"jakewvincent/mkdnflow.nvim",
 		ft = { "md", "rmd", "markdown" },
 		config = function()
 			require("mkdnflow").setup({ new_file_prefix = [['']] })
 		end,
 	})
-
-	-- Zoxide integration
-	use("nanotee/zoxide.vim")
 
 	-- Syntax highlightings
 	use({
@@ -297,9 +267,6 @@ packer.startup(function(use)
 			return vim.api.nvim_eval('exists("$TMUX")')
 		end,
 	})
-
-	-- REPL support
-	use({ "jpalardy/vim-slime", config = function() end })
 
 	-- For debugging slow startup
 	use({ "dstein64/vim-startuptime" })

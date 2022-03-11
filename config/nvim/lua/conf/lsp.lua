@@ -110,6 +110,7 @@ M.config = function()
 						onSave = false,
 					},
 				},
+				diagnosticsDelay = 50,
 				chktex = {
 					onEdit = false,
 					onOpenAndSave = true,

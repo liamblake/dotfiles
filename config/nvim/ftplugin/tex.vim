@@ -12,6 +12,32 @@ setlocal shiftwidth=2
 " Do not split words when wrapping
 setlocal linebreak
 
+" Determine the appropriate action when pressing ctrl+enter based on the environment.
+" e.g. in an itemize environment, start a new line with \item
+"      in an align environment, end the current line with \\
+function! AutoItem()
+    let env_name = vimtex#env#get_inner()["name"]
+    if match(env_name, '\(itemize\|enumerate\|description\)') != -1
+        return '\item '
+    elseif match(env_name, '\(align\|align*\|bmatrix\|pmatrix\)') != -1
+	return '\\'
+    else
+        return ''
+    endif
+endfunction
+
+" Return either 'textbf' or 'bm' depending on whether the cursor is in a math
+" environment or not.
+function! SmartBold()
+	if vimtex#syntax#in_mathzone() == 1 
+		return 'bm'
+	else
+		return 'textbf'
+	endif
+endfunction
+
+" Insert bold environment
+
 " Toggle table of contents
 nnoremap <localleader>sc <cmd>VimtexTocToggle<CR>
 

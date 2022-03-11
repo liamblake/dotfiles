@@ -30,14 +30,13 @@ M.setup = function()
 	}
 	-- Conceal options
 	vim.g.vimtex_syntax_conceal = { accents = true }
-	-- Call VimtexView automatically on open
-	-- Automatically open trouble if compilation failed
+	-- Start compilation automatically on open
 	-- Clean auxillary files on close
 	-- TODO: Do not attempt to compile .sty or .cls files
 	vim.cmd([[
 				augroup vimtex_events
 					au!
-					au user VimtexEventInitPost VimtexView
+					au user VimtexEventInitPost VimtexCompile
 					au user VimtexEventQuit VimtexClean
 					au user VimtexEventCompileSuccess :lua diagnostics_from_qf()
 					au user VimtexEventCompileFailed :lua diagnostics_from_qf()

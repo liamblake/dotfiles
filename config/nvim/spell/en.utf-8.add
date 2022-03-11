@@ -82,3 +82,7 @@ bijective
 Schwarz
 stepsize
 pairwise
+elementwise
+Ornstein
+Uhlenbeck
+isometry
