@@ -1,0 +1,2 @@
+# Ignore jlcode.sty when calculating language percentages, since I did not write this file.
+tex/latex/jlcode.sty linguist-vendored
