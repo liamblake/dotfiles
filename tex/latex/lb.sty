@@ -10,7 +10,7 @@
 \RequirePackage{enumitem}
 % For more powerful command argument parsing
 \RequirePackage{xparse, xargs}
-\RequirePackage{color, xcolor}
+\RequirePackage[usenames,dvipsnames]{color, xcolor}
 % For more \mathbb support
 \RequirePackage{bbm}
 
@@ -39,9 +39,6 @@
 \fi
 
 
-% Option for sans serif font
-\DeclareOption{sans}{\renewcommand{\familydefault}{\sfdefault}}
-
 % Option indicating whether the style file is being used in RMarkdown
 % This introduces some changes to certain commands, e.g. enumerate
 \newif\if@rmarkdown\@rmarkdownfalse
@@ -65,7 +62,7 @@
 \newcommand{\N}{\mathbb{N}}		% Natural numbers
 \newcommand{\Q}{\mathbb{Q}}		% Rational numbers
 % TODO: RMarkdown on Windows dislikes this
-%\newcommand{\C}{\mathbb{C}}		% Complex numbers
+\newcommand{\C}{\mathbb{C}}		% Complex numbers
 
 % Set with a condition
 \newcommand{\setc}[2]{\left\{#1\,\middle|\,#2\right\}}
