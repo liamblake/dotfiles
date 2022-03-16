@@ -1,27 +1,27 @@
 local M = {}
 
 -- Show the vimtex compile status
-M.compile_status = function() 
-    if vim.bo.filetype == "tex" then
-        -- Status: not started or stopped
-        if vim.b.vimtex["compiler"]["status"] == -1 or vim.b.vimtex["compiler"]["status"] == 0 then
-            return ""
-        end
+M.compile_status = function()
+	if vim.bo.filetype == "tex" then
+		-- Status: not started or stopped
+		if vim.b.vimtex["compiler"]["status"] == -1 or vim.b.vimtex["compiler"]["status"] == 0 then
+			return ""
+		end
 
-        -- Status: running
-        if vim.b.vimtex["compiler"]["status"] == 1 then
-            return " (⋯)"
-            -- Status: compile success
-        elseif vim.b.vimtex["compiler"]["status"] == 2 then
-            return " ()"
-            -- Status: compile failed
-        elseif vim.b.vimtex["compiler"]["status"] == 3 then
-            return " ()"
-        end
-    else
-        return ""
-    end
-end 
+		-- Status: running
+		if vim.b.vimtex["compiler"]["status"] == 1 then
+			return " (⋯)"
+			-- Status: compile success
+		elseif vim.b.vimtex["compiler"]["status"] == 2 then
+			return " ()"
+			-- Status: compile failed
+		elseif vim.b.vimtex["compiler"]["status"] == 3 then
+			return " ()"
+		end
+	else
+		return ""
+	end
+end
 
 M.config = function()
 	require("lualine").setup({
@@ -33,7 +33,7 @@ M.config = function()
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = { "branch", "diff" },
-			lualine_c = { { "filename", path = 1, separator = "" }, {M.compile_status} },
+			lualine_c = { { "filename", path = 0, separator = "" }, { M.compile_status } },
 			lualine_x = {
 				{
 					"diagnostics",

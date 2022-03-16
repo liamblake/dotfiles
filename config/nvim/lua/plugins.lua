@@ -146,25 +146,6 @@ packer.startup(function(use)
 		end,
 	})
 
-	-- Tabline
-	use({
-		"akinsho/bufferline.nvim",
-		config = function()
-			require("bufferline").setup({
-				options = {
-					numbers = "buffer_id",
-					show_buffer_close_icons = false,
-					show_close_icons = false,
-					diagnostics = "nvim_lsp",
-				},
-				highlights = { buffer_selected = { gui = "bold" } },
-			})
-
-			KeyMapper("n", "]b", ":BufferLineCycleNext<CR>")
-			KeyMapper("n", "[b", ":BufferLineCyclePrev<CR>")
-		end,
-	})
-
 	-- Status line
 	use({
 		"nvim-lualine/lualine.nvim",

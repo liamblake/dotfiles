@@ -19,7 +19,7 @@ diagnostics_from_qf = function()
 end
 
 M.setup = function()
-	vim.g.vimtex_compiler_latexmk = { build_dir = "build", continuous = 1, options = {"-xelatex"} }
+	vim.g.vimtex_compiler_latexmk = { build_dir = "build", continuous = 1, options = { "-xelatex" } }
 	-- Trouble will be opened automatically instead
 	vim.g.vimtex_quickfix_mode = 0
 	vim.g.vimtex_toc_config = {
