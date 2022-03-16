@@ -33,7 +33,10 @@ M.config = function()
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = { "branch", "diff" },
-			lualine_c = { { "filename", path = 0, separator = "" }, { M.compile_status } },
+			lualine_c = {
+				{ "filename", path = 1, separator = "", symbols = { modified = " ●", readonly = " ", noname = "" } },
+				{ M.compile_status },
+			},
 			lualine_x = {
 				{
 					"diagnostics",
