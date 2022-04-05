@@ -14,10 +14,33 @@ BIBTEX_STYLES = [
 
 endglobal
 
+# TODO: Proper keymappinbg in ftplugin/tex.vim
+context "math()"
+snippet  "Bold math" iA
+\bm{${1:${VISUAL}}}
+endsnippet
+
+context "not math()"
+snippet  "Bold text" iA
+\textbf{${1:${VISUAL}}}
+endsnippet
+
+# Bibliography (bibtex)
+snippet biblio "BibTeX bibliography" b
+\bibliographystyle{${1:plain}`!p snip.rv = complete(t[1], BIBTEX_STYLES)`}
+\bibliography{$2}
+endsnippet
+
+############################
+# Document class templates #
+############################
+
 snippet article "Document class" b
 \documentclass[12pt]{article}
 
 \usepackage[]{lb}
+\usepackage{lb_style}
+
 \usepackage[top=2cm,bottom=2cm,left=1.5cm,right=1.5cm]{geometry}
 
 \title{$2}
@@ -30,7 +53,10 @@ $0
 \end{document}
 endsnippet
 
-# Environments
+########################
+# General environments #
+########################
+
 snippet \begin "General environment with end" i
 \begin{$1}
 $0
@@ -54,6 +80,36 @@ snippet table "Floating table" b
 	\label{tab:}
 \end{table}
 endsnippet
+
+snippet align "Align environment" b
+\begin{align*}
+	$1 & = $2 \\
+\end{align*}
+endsnippet
+
+snippet cases "Cases" i
+\begin{cases}
+	$1, & \text{if } $2, \\ 
+	$3, & $4
+\end{cases}
+endsnippet
+
+###############################
+# Theorems, definitions, etc. #
+###############################
+
+# Definition
+context "not math()"
+snippet defn "Definition" i
+\begin{defn}[$1]
+$0
+\end{defn}
+endsnippet
+
+
+#####################
+# Item environments #
+#####################
 
 snippet itemize "Itemize env" b
 \begin{itemize}
@@ -79,12 +135,9 @@ snippet romanate "Romanate env" b
 \end{romanate}
 endsnippet
 
-snippet eqnn "Numbered equation" b
-\begin{equation}
-	$1
-	\label{eqn:$2}
-\end{equation}
-endsnippet
+##########################
+# Citations & References #
+##########################
 
 snippet figure "Figure reference" i
 Figure \ref{fig:$1}
@@ -102,14 +155,55 @@ snippet cite "Citation" i
 ~\cite{$1}
 endsnippet
 
+# Single line numbering
 context "math()"
-snippet  "Bold math" iA
-\bm{${1:${VISUAL}}}
+snippet num "numberthis" i
+\numberthis\label{eqn:$1}
+endsnippet
+
+###############################
+# Sections, subsections, etc. #
+###############################
+
+context "not math()"
+snippet sec "Section" b
+\section{$1}\label{sec:$2}
+$0
 endsnippet
 
 context "not math()"
-snippet  "Bold text" iA
-\textbf{${1:${VISUAL}}}
+snippet subsec "Subsection" b
+\subsection{$1}\label{subsec:$2}
+$0
+endsnippet
+
+context "not math()"
+snippet subsub "Subsubsection" b
+\subsubsection{$1}\label{subsub:$2}
+$0
+endsnippet
+
+
+#################
+# Common maths #
+#################
+
+# Limit
+context "math()"
+snippet lim "Limit" i
+\lim_{$1 \to $2}{$0}
+endsnippet
+
+# Summation 
+context "math()"
+snippet sum "Summation" i
+\sum_{${1:i} = $2}^{$3}{$4}
+endsnippet
+
+# Implies
+context "math()"
+snippet => "Implies" i
+\implies
 endsnippet
 
 context "math()"
@@ -117,29 +211,64 @@ snippet seq "Sequence set notation" i
 \set{${1:${VISUAL}}}_{$2}^{$3}
 endsnippet
 
-# Math delimeters with ctrl+\
-context "not math()"
-snippet  "Inline math" iA
-\($1\)
+# hdots 
+context "math()"
+snippet ... "..." i
+\hdots
 endsnippet
 
-context "not math()"
-snippet  "Display math" bA
-\[
-$1
-\]
+# Transpose
+context "math()"
+snippet T "Transpose" i
+^{\T}
 endsnippet
 
+#############
+# Integrals #
+#############
+
+# Indefinite scalar integral
 context "math()"
 snippet int "Integral" i
 \int{$1\dd $2}
 endsnippet
 
-# Bibliography (bibtex)
-snippet biblio "BibTeX bibliography" b
-\bibliographystyle{${1:plain}`!p snip.rv = complete(t[1], BIBTEX_STYLES)`}
-\bibliography{$2}
+# Definite integral
+context "math()"
+snippet dint "Definite integral" i
+\int_{$1}^{$2}{$3\dd $4}
 endsnippet
+
+
+#################
+# Bracket pairs #
+#################
+# Ongoing debate about whether to handle these with autopairs or snippets.
+# I quite like them being a snippet.
+
+context "math()"
+snippet ( "\left(...\right)" i
+\left($1\right)
+endsnippet
+
+context "math()"
+snippet [ "\left[...\right]" i
+\left[$1\right]
+endsnippet
+
+context "math()"
+snippet | "Middle bar" i
+\,\middle|\,
+endsnippet
+
+context "math()"
+snippet P( "P\left(...\right)" i
+P\left($1\right)$0
+endsnippet
+
+############################
+# Annotations / meta stuff #
+############################
 
 # Append todo with TODO comment, for highlighting by todo-comments.nvim
 snippet todo "Todo note" i
@@ -150,22 +279,10 @@ snippet note "Note note" i
 \note{${1:${VISUAL}}} % NOTE
 endsnippet
 
-# TODO: This should be handled by the pairs plugin
-context "math()"
-snippet ( "Parentheses pair" i
-\left($1\right)
+snippet eqnn "Numbered equation" b
+\begin{equation}
+	$1
+	\label{eqn:$2}
+\end{equation}
 endsnippet
 
-# Limit
-context "math()"
-snippet lim "Limit" i
-\lim_{$1 \to $2}{$0}
-endsnippet
-
-# Definition
-context "not math()"
-snippet defn "Definition" i
-\begin{defn}[$1]
-$0
-\end{defn}
-endsnippet
