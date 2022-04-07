@@ -42,10 +42,21 @@ M.matching_files = function()
 end
 
 M.search_dotfiles = function()
-	require("telescope.builtin").git_files({ prompt_title = "dotfiles", cwd = "~/dev/dotfiles", hidden = true })
+	cwd = "~/dev/dotfiles"
+	-- Windows has a different filesystem :(
+	-- TODO: Might be able to place a symlink in a clever spot
+	if vim.fn.has("win64") then
+		cwd = "D:\\dev\\dotfiles"
+	end
+
+	require("telescope.builtin").git_files({ prompt_title = "dotfiles", cwd = cwd, hidden = true })
 end
 
 M.search_notes = function()
-	require("telescope.builtin").git_files({ prompt_title = "notes", cwd = "~/Dropbox/notes", hidden = false })
+	-- TODO: Windows
+	if not vim.fn.has("win64") then
+		require("telescope.builtin").git_files({ prompt_title = "notes", cwd = "~/Dropbox/notes", hidden = false })
+	end
 end
+
 return M

@@ -11,6 +11,10 @@ M.config = function()
 		},
 		autopairs = { enable = true },
 	})
+
+	if vim.fn.has("win64") then
+		require("nvim-treesitter.install").compilers = { "clang" }
+	end
 end
 
 return M

@@ -1,9 +1,8 @@
 # Packer compiled
 config/nvim/plugin
 
-# VSCode
-config/vscode/globalStorage
-config/vscode/workspaceStorage
+# VSCode, only use this on my Windows machine
+config/vscode
 
 # Spelling files
 *.spl
