@@ -18,26 +18,16 @@
 
 % Optionally include the other style files. This saves having to include each of them individually.
 % \RequirePackage cannot be used in \DeclareOption, so instead we need to use boolean flags.
-% TODO: Could this be a function (WTF even is a function in TeX? A command?) to avoid repetition
+% This means that you only need \usepackage[...]{lb} in your preamble, with the specified extras as
+% options.
 \newif\if@statistics\@statisticsfalse
-\DeclareOption{notes}{\RequirePackage{lb_notes}}
 \DeclareOption{statistics}{\@statisticstrue}
-\if@statistics
-	\RequirePackage{lb_statistics}
-\fi
-
-\newif\if@theory\@theoryfalse
-\DeclareOption{theory}{\@theorytrue}
-\if@theory
-	\RequirePackage{lb_theory}
-\fi
 
 \newif\if@notes\@notesfalse
 \DeclareOption{notes}{\@notestrue}
-\if@notes
-	\RequirePackage{lb_notes}
-\fi
 
+\newif\if@linearalgebra\@linearalgebrafalse
+\DeclareOption{linearalgebra}{\@linearalgebratrue}
 
 % Option indicating whether the style file is being used in RMarkdown
 % This introduces some changes to certain commands, e.g. enumerate
@@ -45,6 +35,19 @@
 \DeclareOption{rmarkdown}{\@rmarkdowntrue}
 
 \ProcessOptions\relax
+
+% Additional package inclusions
+\if@statistics
+	\RequirePackage{lb_statistics}
+\fi
+
+\if@notes
+	\RequirePackage{lb_notes}
+\fi
+
+\if@linearalgebra
+	\RequirePackage{lb_linear_algebra}
+\fi
 
 % Provides warnings if labels are unused
 \RequirePackage{refcheck}
@@ -172,14 +175,14 @@
 \ExplSyntaxOff
 
 % Modifications for RMarkdown
-% \if@rmarkdown
-% Including code blocks in an enumerate environment causes knitr to fail,
-% so instead we delimit the environment with these new commands.
-% See https://tex.stackexchange.com/a/244996
-% TODO (formatting): latexindent is confused by the begin and ends here.
-\newcommand{\benum}{\begin{enumerate}}
-		\newcommand{\eenum}{\end{enumerate}}
-\newcommand{\balph}{\begin{alpharate}}
-		\newcommand{\ealph}{\end{alpharate}}
+\if@rmarkdown
+	% Including code blocks in an enumerate environment causes knitr to fail,
+	% so instead we delimit the environment with these new commands.
+	% See https://tex.stackexchange.com/a/244996
+	% TODO (formatting): latexindent is confused by the begin and ends here.
+	\newcommand{\benum}{\begin{enumerate}}
+	\newcommand{\eenum}{\end{enumerate}}
+	\newcommand{\balph}{\begin{alpharate}}
+	\newcommand{\ealph}{\end{alpharate}}
 
-% \fi
+\fi
