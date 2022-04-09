@@ -26,9 +26,10 @@ end
 M.config = function()
 	require("lualine").setup({
 		options = {
-			theme = "onenord",
+			theme = "tokyonight",
 			section_separators = { left = "", right = "" },
 			component_separators = { left = "|", right = "|" },
+			disabled_filetypes = { "toggleterm" },
 		},
 		sections = {
 			lualine_a = { "mode" },

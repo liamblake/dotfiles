@@ -18,19 +18,19 @@ packer.init({
 	package_root = util.join_paths(vim.fn.stdpath("data"), "site", "pack"),
 })
 
--- - startup and add configure plugins
-packer.startup(function(use)
+-- Start up and add configure plugins
+packer.startup({ function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
 
 	-- Theme and visuals
 	use({ "folke/tokyonight.nvim" })
-	use({
-		"rmehri01/onenord.nvim",
-		config = function()
-			require("onenord").setup({ italics = { comments = true, keywords = false } })
-		end,
-	})
+	-- use({
+	-- 	"rmehri01/onenord.nvim",
+	-- 	config = function()
+	-- 		require("onenord").setup({ italics = { comments = true, keywords = false } })
+	-- 	end,
+	-- })
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
@@ -186,6 +186,14 @@ packer.startup(function(use)
 		end,
 	})
 
+	-- Terminals
+	use({
+		"akinsho/toggleterm.nvim",
+		config = function()
+			require("toggleterm").setup({})
+		end,
+	})
+
 	-- Annotation generation
 	use({
 		"danymat/neogen",
@@ -251,4 +259,11 @@ packer.startup(function(use)
 
 	-- For debugging slow startup
 	use({ "dstein64/vim-startuptime" })
-end)
+end,
+config = {
+  display = {
+    open_fn = function()
+      return require('packer.util').float({ border = 'single' })
+    end
+  }
+}})

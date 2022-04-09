@@ -20,6 +20,11 @@ end
 
 M.setup = function()
 	vim.g.vimtex_compiler_latexmk = { build_dir = "build", continuous = 1, options = { "-xelatex", "-shell-escape" } }
+	-- Use SumatraPDF on Windows for previewing
+	if vim.fn.has("win64") then
+		vim.g.vimtex_view_general_viewer = "SumatraPDF"
+		vim.g.vimtex_view_general_options = "-reuse-instance -forward-search @tex @line @pdf"
+	end
 	-- Trouble will be opened automatically instead
 	vim.g.vimtex_quickfix_mode = 0
 	vim.g.vimtex_toc_config = {

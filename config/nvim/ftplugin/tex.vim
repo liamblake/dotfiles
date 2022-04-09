@@ -18,9 +18,9 @@ setlocal linebreak
 function! AutoItem()
     let env_name = vimtex#env#get_inner()["name"]
     if match(env_name, '\(itemize\|enumerate\|description\)') != -1
-        return '\item '
-    elseif match(env_name, '\(align\|align*\|bmatrix\|pmatrix\)') != -1
-	return '\\'
+        return '<CR>\item '
+    elseif match(env_name, '\(align\|align*\|bmatrix\|pmatrix|tabular\)') != -1
+	return '\\<CR>'
     else
         return ''
     endif
@@ -29,14 +29,12 @@ endfunction
 " Return either 'textbf' or 'bm' depending on whether the cursor is in a math
 " environment or not.
 function! SmartBold()
-	if vimtex#syntax#in_mathzone() == 1 
+	if vimtex#syntax#in_mathzone() == 1
 		return 'bm'
 	else
 		return 'textbf'
 	endif
 endfunction
-
-" Insert bold environment
 
 " Toggle table of contents
 nnoremap <localleader>sc <cmd>VimtexTocToggle<CR>
@@ -46,3 +44,15 @@ nnoremap <localleader>sp <cmd>VimtexView<CR>
 
 " Restart compiler
 nnoremap <localleader>lr <cmd>VimtexStop<CR><cmd>VimtexCompile<CR>
+
+" Insert display math environment
+inoremap <M-M> \[<CR><CR>\]<ESC>ki
+
+" Insert inline math environment
+inoremap <M-m> \(\)<ESC>2hi
+
+" Insert bold environment
+" inoremap <C-b> \:call SmartBold
+
+" Auto item on ctrl_enter
+inoremap <C-Enter> AutoItem()
