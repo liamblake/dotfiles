@@ -49,7 +49,7 @@ nnoremap <localleader>lr <cmd>VimtexStop<CR><cmd>VimtexCompile<CR>
 inoremap <M-M> \[<CR><CR>\]<ESC>ki
 
 " Insert inline math environment
-inoremap <M-m> \(\)<ESC>2hi
+inoremap <M-m> \(\)<ESC>hi
 
 " Insert bold environment
 " inoremap <C-b> \:call SmartBold
