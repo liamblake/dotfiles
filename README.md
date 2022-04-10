@@ -1,6 +1,6 @@
 ## Hello There
 I'm a Master of Philosophy (MPhil) student in applied mathematics and statistics.
-My research is exploring using stochastic differential equations to model uncertainty in Lagrangian data assimilation
+My research is exploring using stochastic differential equations to model uncertainty in Lagrangian data assimilation.
 There is a bit of jargon there, but I'm basically looking at ways in which we can improve predictions of where objects or quantities, such as heat or pollution, end up when pushed around by a fluid, such as the ocean.
 
 I've been learning and using Julia in my research. 
