@@ -1,3 +1,4 @@
+
 local M = {}
 
 M.config = function()
@@ -16,6 +17,7 @@ M.config = function()
 			file_ignore_patterns = { "%.pdf" },
 		},
 		pickers = {
+			find_files = {theme = "dropdown", previewer = false},
 			git_files = {theme = "dropdown", previewer = false},
 			buffers = {
 				sort_lastused = true,
@@ -24,6 +26,21 @@ M.config = function()
 			},
 		},
 	})
+
+	require("telescope").load_extension("file_browser")
+
+	-- Keymappings
+	KeyMapper("n", "<leader>ff", ':lua require"conf.telescope".project_files()<CR>')
+	KeyMapper("n", "<leader>fa", ':lua require"telescope.builtin".find_files({ prompt_title = "all files", no_ignore = true, hidden = true})<CR>')
+	KeyMapper("n", "<leader>fr", ':lua require"telescope.builtin".lsp_references()<CR>')
+	KeyMapper("n", "<leader>ft", ':lua require"telescope.builtin".live_grep()<CR>')
+	KeyMapper("n", "<leader>fs", ':lua require"telescope.builtin".treesitter()<CR>')
+	KeyMapper("n", "<leader>fws", ':lua require"telescope.builtin".lsp_workspace_symbols()<CR>')
+	KeyMapper("n", "<leader>fd", ':lua require"conf.telescope".search_dotfiles()<CR>')
+	KeyMapper("n", "<leader>fn", ':lua require"conf.telescope".search_notes()<CR>')
+	KeyMapper("n", "<leader>fb", ':lua require"telescope".extensions.file_browser.file_browser()<CR>')
+	KeyMapper("n", "<leader>fgs", ':lua require"telescope.builtin".git_stash()<CR>')
+	KeyMapper("n", "<leader>fgb", ':lua require"telescope.builtin".git_branches()<CR>')
 end
 
 M.project_files = function()
