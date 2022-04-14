@@ -65,7 +65,13 @@ M.config = function()
 		local opts = { on_attach = custom_on_attach, capabilities = capabilities }
 
 		-- Some additional configuration for these servers
-		if server.name == "lua" then
+		if server.name == "sumneko_lua" then
+			-- Handled by stylua and null-ls
+			opts.on_attach = function(client)
+				custom_on_attach(client)
+				client.resolved_capabilities.document_formatting = false
+				client.resolved_capabilities.document_range_formatting = false
+			end
 			opts.settings = {
 				Lua = {
 					runtime = {
@@ -88,6 +94,14 @@ M.config = function()
 		elseif server.name == "pyright" then
 			opts.settings = { python = { analysis = { typeCheckingMode = "off" } } }
 		elseif server.name == "tsserver" then
+			-- Handled by prettier and null-ls
+			opts.on_attach = function(client)
+				custom_on_attach(client)
+				client.resolved_capabilities.document_formatting = false
+				client.resolved_capabilities.document_range_formatting = false
+			end
+		elseif server.name == "html" then
+			-- Handled by prettier and null-ls
 			opts.on_attach = function(client)
 				custom_on_attach(client)
 				client.resolved_capabilities.document_formatting = false
