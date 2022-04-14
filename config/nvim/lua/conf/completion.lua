@@ -3,31 +3,31 @@ local M = {}
 M.config = function()
 	local cmp = require("cmp")
 	local symbol_map = {
-		  Text = "",
-  Method = "",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "ﴯ",
-  Interface = "",
-  Module = "",
-  Property = "ﰠ",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = ""
+		Text = "",
+		Method = "",
+		Function = "",
+		Constructor = "",
+		Field = "",
+		Variable = "",
+		Class = "ﴯ",
+		Interface = "",
+		Module = "",
+		Property = "ﰠ",
+		Unit = "",
+		Value = "",
+		Enum = "",
+		Keyword = "",
+		Snippet = "",
+		Color = "",
+		File = "",
+		Reference = "",
+		Folder = "",
+		EnumMember = "",
+		Constant = "",
+		Struct = "",
+		Event = "",
+		Operator = "",
+		TypeParameter = "",
 		-- Text = "  ",
 		-- Method = "  ",
 		-- Function = "  ",
@@ -79,7 +79,6 @@ M.config = function()
 			{ name = "ultisnips" },
 			{ name = "path" },
 		}),
-
 		formatting = {
 			-- TODO: We should be able to use the built-in LSP completion kinds:
 			-- https://github.com/hrsh7th/nvim-cmp/issues/39
@@ -90,7 +89,6 @@ M.config = function()
 				return vim_item
 			end,
 		},
-		documentation = { zindex = 50 },
 	})
 
 	-- Only enable LaTeX symbol completion for certain filetypes.
