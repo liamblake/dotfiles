@@ -75,9 +75,11 @@ endsnippet
 
 snippet table "Floating table" b
 \begin{table}
-	
-	\caption{}
-	\label{tab:}
+	\begin{tabular}{$1}
+		$0
+	\end{tabular}
+	\caption{$2}
+	\label{tab:$3}
 \end{table}
 endsnippet
 
@@ -92,6 +94,13 @@ snippet cases "Cases" i
 	$1, & \text{if } $2, \\ 
 	$3, & $4
 \end{cases}
+endsnippet
+
+snippet subfig "Subfigure" b
+\begin{subfigure}{$1\textwidth}
+	\includegraphics[width=\textwidth]{$2}
+	\caption{$3}
+\end{subfigure}
 endsnippet
 
 ###############################
@@ -245,15 +254,16 @@ endsnippet
 #################
 # Ongoing debate about whether to handle these with autopairs or snippets.
 # I quite like them being a snippet.
+# Note the missing right delimiter - to play nice with autopairs
 
 context "math()"
 snippet ( "\left(...\right)" i
-\left($1\right)
+\left($1\right
 endsnippet
 
 context "math()"
 snippet [ "\left[...\right]" i
-\left[$1\right]
+\left[$1\right
 endsnippet
 
 context "math()"
@@ -263,7 +273,7 @@ endsnippet
 
 context "math()"
 snippet P( "P\left(...\right)" i
-P\left($1\right)$0
+P\left($1\right$0
 endsnippet
 
 ############################
