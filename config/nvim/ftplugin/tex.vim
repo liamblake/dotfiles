@@ -18,9 +18,9 @@ setlocal linebreak
 function! AutoItem()
     let env_name = vimtex#env#get_inner()["name"]
     if match(env_name, '\(itemize\|enumerate\|description\)') != -1
-        return '<CR>\item '
+        return "\<CR>\\item "
     elseif match(env_name, '\(align\|align*\|bmatrix\|pmatrix|tabular\)') != -1
-	return '\\<CR>'
+	return "\\\\\<CR>"
     else
         return ''
     endif
@@ -52,7 +52,8 @@ inoremap <M-M> \[<CR><CR>\]<ESC>ki
 inoremap <M-m> \(\)<ESC>hi
 
 " Insert bold environment
+" TODO
 " inoremap <C-b> \:call SmartBold
 
 " Auto item on ctrl_enter
-inoremap <C-Enter> AutoItem()
+inoremap <buffer><expr> <C-CR> AutoItem()
