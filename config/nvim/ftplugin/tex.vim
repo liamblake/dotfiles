@@ -17,7 +17,7 @@ setlocal linebreak
 "      in an align environment, end the current line with \\
 function! AutoItem()
     let env_name = vimtex#env#get_inner()["name"]
-    if match(env_name, '\(itemize\|enumerate\|description\)') != -1
+    if match(env_name, '\(itemize\|enumerate\|description\|alpharate\|romanate\)') != -1
         return "\<CR>\\item "
     elseif match(env_name, '\(align\|align*\|bmatrix\|pmatrix|tabular\)') != -1
 	return "\\\\\<CR>"

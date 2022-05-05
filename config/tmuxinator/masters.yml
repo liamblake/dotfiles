@@ -57,13 +57,13 @@ windows:
         - nvim
   - notes:
       layout: 5906,269x63,0,0[269x48,0,0,12,269x14,0,49,17]
-      root: ~/Dropbox/notes 
+      root: ~/Dropbox/notes
       panes:
         - nvim
         # This script will automatically update the index files upon change
         - cd ~/Dropbox/notes && ./autoindex.sh
   - dotfiles:
       layout: main-horizontal
-      root: ~/dev/dotfiles 
+      root: ~/dev/dotfiles
       panes:
         - nvim

@@ -19,7 +19,11 @@ diagnostics_from_qf = function()
 end
 
 M.setup = function()
-	vim.g.vimtex_compiler_latexmk = { build_dir = "build", continuous = 1, options = { "-xelatex", "-shell-escape" } }
+	vim.g.vimtex_compiler_latexmk = {
+		build_dir = "build",
+		continuous = 1,
+		options = { "-bibtex", "-xelatex", "-shell-escape" },
+	}
 	-- Defaults to Preview on MacOS, SumatraPDF on Windows.
 	vim.g.vimtex_view_method = "general"
 	-- Trouble will be opened automatically instead

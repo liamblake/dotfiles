@@ -114,3 +114,7 @@ monotonicity
 i.i.d.
 PF
 linearised
+measurability
+overfitting
+overfit
+regulariser

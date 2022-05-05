@@ -107,11 +107,21 @@ endsnippet
 # Theorems, definitions, etc. #
 ###############################
 
+# Thereom
+context "not math()"
+snippet theorem "Theorem" b
+\begin{theorem}[$1]
+$0
+\label{thm:$2}
+\end{theorem}
+endsnippet
+
 # Definition
 context "not math()"
-snippet defn "Definition" i
+snippet defn "Definition" b
 \begin{defn}[$1]
 $0
+\label{def:$2}
 \end{defn}
 endsnippet
 
@@ -230,6 +240,25 @@ endsnippet
 context "math()"
 snippet T "Transpose" i
 ^{\T}
+endsnippet
+
+#############
+# Ornaments #
+#############
+
+context "math()"
+snippet ^ "Hat" i
+\hat{$1}$0
+endsnippet
+
+context "math()"
+snippet ~ "Tilde" i
+\tilde{$1}$0
+endsnippet
+
+context "math()"
+snippet - "Bar" i
+\bar{$1}$0
 endsnippet
 
 #############
