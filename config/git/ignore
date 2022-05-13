@@ -8,3 +8,6 @@ startup.log
 .envrc
 
 .DS_Store
+
+# VSCode workspace config
+.vscode/

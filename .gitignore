@@ -4,6 +4,7 @@ config/nvim/plugin
 # VSCode related
 config/vscode/globalStorage
 config/vscode/workspaceStorage
+config/vscode/History
 
 # Spelling files
 *.spl

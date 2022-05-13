@@ -1,89 +1,114 @@
 {
-    // General settings
-    "git.autofetch": true,
-    "editor.formatOnSave": true,
-    // Theme
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Tokyo Night Storm",
-    // Eliminate those pesky Windows line endings
-    "files.eol": "\n",
-    // Python settings
-    "python.formatting.provider": "black",
-    "[python]": {
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": true
+  // General settings
+  "git.autofetch": true,
+  "editor.formatOnSave": true,
+  // Theme
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Tokyo Night Storm",
+  // Eliminate those pesky Windows line endings
+  "files.eol": "\n",
+  // Python settings
+  "python.formatting.provider": "black",
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "python.linting.flake8Enabled": true,
+  // Extension settings
+  "gitlens.codeLens.enabled": false,
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "editor.minimap.enabled": false,
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  // LaTeX Workshop
+  "[latex]": {
+    "editor.formatOnSave": false
+  },
+  "latex-workshop.latex.outDir": "./build",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": ["support.class.math.block.environment.latex"],
+        "settings": {
+          "foreground": "#6affff"
         }
+      }
+    ]
+  },
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "pdfLaTeX",
+      "tools": ["pdflatex"]
     },
-    "python.linting.flake8Enabled": true,
-    // Extension settings
-    "gitlens.codeLens.enabled": false,
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
+    {
+      "name": "latexmk",
+      "tools": ["latexmk"]
     },
-    "editor.minimap.enabled": false,
-    "notebook.cellToolbarLocation": {
-        "default": "right",
-        "jupyter-notebook": "left"
+    {
+      "name": "pdflatex ➞ bibtex ➞ pdflatex`×2",
+      "tools": ["pdflatex", "bibtex", "pdflatex", "pdflatex"]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-bibtex",
+        "-xelatex",
+        "-shell-escape",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "-outdir=build/"
+      ],
+      "env": {}
     },
-    // LaTeX Workshop
-    "[latex]": {
-        "editor.formatOnSave": false,
-    },
-    "latex-workshop.latex.outDir": "./build",
-    "latex-workshop.view.pdf.viewer": "tab",
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            {
-                "scope": [
-                    "support.class.math.block.environment.latex",
-                ],
-                "settings": {
-                    "foreground": "#6affff"
-                }
-            }
-        ]
-    },
-    "latex-workshop.latex.recipes": [
-        {
-            "name": "pdfLaTeX",
-            "tools": [
-                "pdflatex"
-            ],
-        },
-        {
-            "name": "pdflatex ➞ bibtex ➞ pdflatex`×2",
-            "tools": [
-                "pdflatex",
-                "bibtex",
-                "pdflatex",
-                "pdflatex"
-            ]
-        }
-    ],
-    "latex-workshop.latex.tools": [
-        {
-            "name": "pdflatex",
-            "command": "pdflatex",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "-aux-directory=build",
-                "-output-directory=build",
-                "%DOC%"
-            ]
-        }
-    ],
-    "[html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "editor.fontSize": 15,
-    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
-    "terminal.integrated.commandsToSkipShell": [
-        "language-julia.interrupt"
-    ],
-    "julia.symbolCacheDownload": true,
+    {
+      "name": "pdflatex",
+      "command": "pdflatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-aux-directory=build",
+        "-output-directory=build"
+      ]
+    }
+  ],
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.fontSize": 16,
+  "terminal.integrated.commandsToSkipShell": ["language-julia.interrupt"],
+  "julia.symbolCacheDownload": true,
+  "editor.fontFamily": "'MesloLGS NF', Monaco, 'Courier New', monospace",
+  "terminal.integrated.fontSize": 15,
+  "editor.inlineSuggest.enabled": true,
+  "workbench.editor.showTabs": false,
+  "editor.scrollbar.vertical": "hidden",
+  "editor.wordWrap": "on",
+  "problems.decorations.enabled": false,
+  "problems.showCurrentInStatus": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.lineNumbers": "relative",
+  "vim.highlightedyank.enable": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": true
+  }
 }
