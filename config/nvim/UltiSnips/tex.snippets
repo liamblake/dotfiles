@@ -53,6 +53,25 @@ $0
 \end{document}
 endsnippet
 
+snippet beamer "Beamer" b
+\documentclass{beamer}
+
+\title{$1}
+\author{${2:Liam Blake}}
+\institute{${3:The University of Adelaide}}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+	$0
+\end{frame}
+
+\end{document}
+endsnippet
+
+
 ########################
 # General environments #
 ########################
@@ -303,6 +322,17 @@ endsnippet
 context "math()"
 snippet P( "P\left(...\right)" i
 P\left($1\right$0
+endsnippet
+
+#################
+# Beamer things #
+#################
+
+context "not math()"
+snippet frame "Frame" b
+\begin{frame}
+	$0
+\end{frame}
 endsnippet
 
 ############################
