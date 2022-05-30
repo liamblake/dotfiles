@@ -1,7 +1,8 @@
 # /home/liam/.config/tmuxinator/masters.yml
 
 name: masters
-root: ~/Dropbox/masters
+# TODO: I think this path is MacOS specific...
+root: ~/Library/CloudStorage/Box-Box/masters
 
 # Optional tmux socket
 # socket_name: foo
