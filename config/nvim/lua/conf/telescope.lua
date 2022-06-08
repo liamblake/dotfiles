@@ -45,7 +45,7 @@ end
 
 M.project_files = function()
 	local builtin = require("telescope.builtin")
-	local opts = { prompt_title = "project files", hidden = true, theme = "dropdown", previewer = false}
+	local opts = { prompt_title = "project files", hidden = true, theme = "dropdown", previewer = false, file_ignore_patterns = { "venv/.*", "venv%_linux/.*" }}
 	local ok = pcall(builtin.git_files, opts)
 	if not ok then
 		builtin.find_files(opts)
@@ -55,6 +55,7 @@ end
 M.matching_files = function()
 	-- Find files with the same name, but a different filetype.
 	-- e.g. convienient for jumping between the header class.hpp and the implementation class.cpp.
+	-- TODO: Actually implement this.
 	require("telescope.builtin").find_files({})
 end
 
