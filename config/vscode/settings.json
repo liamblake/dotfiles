@@ -43,17 +43,18 @@
   },
   "latex-workshop.latex.recipes": [
     {
-      "name": "pdfLaTeX",
-      "tools": ["pdflatex"]
-    },
-    {
       "name": "latexmk",
       "tools": ["latexmk"]
     },
     {
+      "name": "pdfLaTeX",
+      "tools": ["pdflatex"]
+    },
+    {
       "name": "pdflatex ➞ bibtex ➞ pdflatex`×2",
       "tools": ["pdflatex", "bibtex", "pdflatex", "pdflatex"]
-    }
+    },
+    { "name": "lualatex", "tools": ["lualatex"] }
   ],
   "latex-workshop.latex.tools": [
     {
@@ -74,6 +75,17 @@
     {
       "name": "pdflatex",
       "command": "pdflatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-aux-directory=build",
+        "-output-directory=build"
+      ]
+    },
+    {
+      "name": "lualatex",
+      "command": "lualatex",
       "args": [
         "-synctex=1",
         "-interaction=nonstopmode",
@@ -110,5 +122,6 @@
     "yaml": false,
     "plaintext": false,
     "markdown": true
-  }
+  },
+  "terminal.integrated.defaultProfile.osx": "zsh"
 }
