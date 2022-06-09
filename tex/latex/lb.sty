@@ -190,3 +190,15 @@
 			\newcommand{\ealph}{\end{alpharate}}
 
 \fi
+
+% This is needed to use a .bib file outside of the same directory as the TeX file via a relative 
+% path, when using an output directory (e.g. /build).
+% Include the bibliography as 
+%		\bibliography{\mainabsdir/the/relative/path}
+% From https://tex.stackexchange.com/a/383143
+% BibTeX is fucking stupid and this is a stupid hack.
+\RequirePackage{currfile-abspath}
+\getmainfile
+\getabspath{\themainfile}
+\let\mainabsdir\theabsdir
+\let\mainabspath\theabspath
