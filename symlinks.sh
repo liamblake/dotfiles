@@ -1,6 +1,8 @@
 # Absolute path of root of dotfiles
-SCRIPT=$(readlink -f "$0")
-DOTFILES_ROOT=$(dirname "$SCRIPT")/..
+DOTFILES_ROOT=$(cd "$(dirname "$0")"; pwd -P)
+
+Echo $SCRIPT
+echo $DOTFILES_ROOT 
 
 create_home_symlink() {
 	SRC=$DOTFILES_ROOT/$1
@@ -10,14 +12,14 @@ create_home_symlink() {
 }
 
 # Create links in home
-for dir in "system" "zsh" "formatting" "tmux"; do
+for dir in "zsh" "formatting" "tmux"; do
 	for f in $(ls -a $DOTFILES_ROOT/$dir); do
 		create_home_symlink $dir/$f .
 	done
 done
 
 # These files are placed in other hidden directories in home
-for dir in "julia" "ipython"; do
+for dir in "julia"; do
 	for f in $(ls -a $DOTFILES_ROOT/$dir); do
 		create_home_symlink $dir/$f .$dir/
 	done
@@ -28,7 +30,7 @@ mkdir -p "$HOME/.config"
 
 # Create links in ~/.config/dir
 # TODO: Move more files to .config, will reduce repetition in this file.
-for dir in "git" "tmuxinator" "nvim" "alacritty" "ranger" "i3" "i3status-rust"; do
+for dir in "git" "tmuxinator" "nvim" "alacritty"; do
 	create_home_symlink config/$dir .config/
 done
 
@@ -37,7 +39,7 @@ mkdir -p "$HOME"/.config/Code/User/
 create_home_symlink config/vscode/settings.json .config/Code/User
 
 # TODO: TeX style files
-create_home_symlink tex .miktex/texmfs/install/lb/te
+# create_home_symlink tex .miktex/texmfs/install/lb/te
 
 # TPM setup
 if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
