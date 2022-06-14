@@ -194,6 +194,14 @@ packer.startup({
 			requires = "nvim-treesitter/nvim-treesitter",
 		})
 
+		-- Bufferline
+		use({
+		"akinsho/bufferline.nvim",
+		config = function()
+			require("conf.bufferline").config()
+		end,
+		})
+
 		use({
 			"folke/trouble.nvim",
 			config = function()
