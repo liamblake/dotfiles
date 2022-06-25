@@ -36,7 +36,7 @@ M.config = function()
 
 	local custom_on_attach = function(client)
 		-- Format on save
-		if client.resolved_capabilities.document_formatting then
+		if client.server_capabilities.document_formatting then
 			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)")
 		end
 
@@ -69,8 +69,8 @@ M.config = function()
 			-- Handled by stylua and null-ls
 			opts.on_attach = function(client)
 				custom_on_attach(client)
-				client.resolved_capabilities.document_formatting = false
-				client.resolved_capabilities.document_range_formatting = false
+				client.server_capabilities.document_formatting = false
+				client.server_capabilities.document_range_formatting = false
 			end
 			opts.settings = {
 				Lua = {
@@ -97,21 +97,21 @@ M.config = function()
 			-- Handled by prettier and null-ls
 			opts.on_attach = function(client)
 				custom_on_attach(client)
-				client.resolved_capabilities.document_formatting = false
-				client.resolved_capabilities.document_range_formatting = false
+				client.server_capabilities.document_formatting = false
+				client.server_capabilities.document_range_formatting = false
 			end
 		elseif server.name == "html" then
 			-- Handled by prettier and null-ls
 			opts.on_attach = function(client)
 				custom_on_attach(client)
-				client.resolved_capabilities.document_formatting = false
-				client.resolved_capabilities.document_range_formatting = false
+				client.server_capabilities.document_formatting = false
+				client.server_capabilities.document_range_formatting = false
 			end
 		elseif server.name == "rust_analyzer" then
 			opts.on_attach = function(client)
 				custom_on_attach(client)
-				client.resolved_capabilities.document_formatting = false
-				client.resolved_capabilities.document_range_formatting = false
+				client.server_capabilities.document_formatting = false
+				client.server_capabilities.document_range_formatting = false
 			end
 		elseif server.name == "texlab" then
 			opts.settings = {
