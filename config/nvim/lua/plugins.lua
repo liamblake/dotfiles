@@ -55,12 +55,6 @@ packer.startup({
 				})
 			end,
 		})
-		use({
-			"sunjon/Shade.nvim",
-			config = function()
-				require("shade").setup()
-			end,
-		})
 		use("kyazdani42/nvim-web-devicons")
 
 		-- LSP
@@ -231,6 +225,9 @@ packer.startup({
 				require("mkdnflow").setup({ new_file_prefix = [['']] })
 			end,
 		})
+
+		-- R 
+		use("jalvesaq/Nvim-R")
 
 		-- Syntax highlightings
 		use({
