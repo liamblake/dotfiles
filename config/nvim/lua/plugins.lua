@@ -190,10 +190,10 @@ packer.startup({
 
 		-- Bufferline
 		use({
-		"akinsho/bufferline.nvim",
-		config = function()
-			require("conf.bufferline").config()
-		end,
+			"akinsho/bufferline.nvim",
+			config = function()
+				require("conf.bufferline").config()
+			end,
 		})
 
 		use({
@@ -226,8 +226,8 @@ packer.startup({
 			end,
 		})
 
-		-- R 
-		use("jalvesaq/Nvim-R")
+		-- R
+		use({ "jalvesaq/Nvim-R", ft = { "r", "rmd" } })
 
 		-- Syntax highlightings
 		use({
