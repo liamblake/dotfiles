@@ -34,25 +34,22 @@ M.config = function()
 
 	local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-	local custom_on_attach = function(client)
-		-- Format on save
-		if client.server_capabilities.document_formatting then
-			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)")
-		end
+	local custom_on_attach = function(client, bufnr)
+		local opts = { buffer = bufnr }
 
 		--Keybindings
-		KeyMapper("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
-		KeyMapper("n", "gD", ":lua vim.lsp.buf.declaration()<CR>")
-		KeyMapper("n", "gi", ":lua vim.lsp.buf.implementation()<CR>")
-		KeyMapper("n", "gw", ":lua vim.lsp.buf.document_symbol()<CR>")
-		KeyMapper("n", "gW", ":lua vim.lsp.buf.workspace_symbol()<CR>")
-		KeyMapper("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>")
-		KeyMapper("n", "K", ":lua vim.lsp.buf.hover()<CR>")
-		KeyMapper("n", "<c-k>", ":lua vim.lsp.buf.signature_help()<CR>")
-		KeyMapper("n", "<leader>af", ":lua vim.lsp.buf.code_action()<CR>")
-		KeyMapper("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
-		KeyMapper("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
-		KeyMapper("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+		vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
+
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+
+		vim.keymap.set("n", "[d", vim.lsp.diagnostic.goto_prev, opts)
+		vim.keymap.set("n", "]d", vim.lsp.diagnostic.goto_prev, opts)
+
+		-- Formatting
+		vim.keymap.set("n", "<leader>sf", vim.lsp.buf.formatting, opts)
 	end
 
 	-- Runtime path, for Lua development
@@ -67,8 +64,8 @@ M.config = function()
 		-- Some additional configuration for these servers
 		if server.name == "sumneko_lua" then
 			-- Handled by stylua and null-ls
-			opts.on_attach = function(client)
-				custom_on_attach(client)
+			opts.on_attach = function(client, bufnr)
+				custom_on_attach(client, bufnr)
 				client.server_capabilities.document_formatting = false
 				client.server_capabilities.document_range_formatting = false
 			end
@@ -95,21 +92,22 @@ M.config = function()
 			opts.settings = { python = { analysis = { typeCheckingMode = "off" } } }
 		elseif server.name == "tsserver" then
 			-- Handled by prettier and null-ls
-			opts.on_attach = function(client)
-				custom_on_attach(client)
+			-- TODO: Currently doesn't work. A fix for v0.8: https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
+			opts.on_attach = function(client, bufnr)
+				custom_on_attach(client, bufnr)
 				client.server_capabilities.document_formatting = false
 				client.server_capabilities.document_range_formatting = false
 			end
 		elseif server.name == "html" then
 			-- Handled by prettier and null-ls
-			opts.on_attach = function(client)
-				custom_on_attach(client)
+			opts.on_attach = function(client, bufnr)
+				custom_on_attach(client, bufnr)
 				client.server_capabilities.document_formatting = false
 				client.server_capabilities.document_range_formatting = false
 			end
 		elseif server.name == "rust_analyzer" then
-			opts.on_attach = function(client)
-				custom_on_attach(client)
+			opts.on_attach = function(client, bufnr)
+				custom_on_attach(client, bufnr)
 				client.server_capabilities.document_formatting = false
 				client.server_capabilities.document_range_formatting = false
 			end
@@ -135,10 +133,6 @@ M.config = function()
 		server:setup(opts)
 		vim.cmd([[ do User LspAttachBuffers ]])
 	end)
-
-	-- Julia (julials), not supported by lsp-installer
-	-- TODO: Configure some formatting for Julia via null-ls
-	lspconfig.julials.setup({ capabilities = capabilities, on_attach = custom_on_attach })
 end
 
 return M
