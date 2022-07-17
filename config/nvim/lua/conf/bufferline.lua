@@ -4,6 +4,8 @@ M.config = function()
 	require("bufferline").setup({
 		-- TODO: Tabs
 		options = {
+			debug = {logging = true},
+			mode = "buffer",
 			numbers = "ordinal",
 			show_buffer_close_icons = false,
 			show_close_icons = false,
@@ -15,13 +17,11 @@ M.config = function()
 		-- Currently only useful for uni-related work, e.g. having TeX files and Python or Julia code open.
 		groups = {
 		  options = {
-		    toggle_hidden_on_enter = true 
+		    toggle_hidden_on_enter = true
 		  },
 		  items = {
 			  {
 				  name = "Writing",
-				  priority = 1,
-				  autoclose = false,
 				  icon = "",
 				  matcher = function(buf)
 					  return buf.name:match('%.tex') or buf.name:match('%.bib') or buf.name:match("%.md") or buf.name:match("%.rmd")
@@ -29,8 +29,6 @@ M.config = function()
 			  },
 			  {
 				name = "Code",
-				priority = 2,
-				autoclose = false,
 				icon = "",
 				matcher = function(buf)
 					return buf.name:match('%.py') or buf.name:match('%.jl')

@@ -208,6 +208,13 @@ packer.startup({
 			end,
 		})
 
+		use({
+			"folke/which-key.nvim",
+			config = function()
+				require("conf.whichkey").setup()
+			end,
+		})
+
 		-- Language-specific support
 		use({
 			"lervag/vimtex",

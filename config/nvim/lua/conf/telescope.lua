@@ -1,4 +1,3 @@
-
 local M = {}
 
 M.config = function()
@@ -17,8 +16,8 @@ M.config = function()
 			file_ignore_patterns = { "%.pdf" },
 		},
 		pickers = {
-			find_files = {theme = "dropdown", previewer = false},
-			git_files = {theme = "dropdown", previewer = false},
+			find_files = { theme = "dropdown", previewer = false },
+			git_files = { theme = "dropdown", previewer = false },
 			buffers = {
 				sort_lastused = true,
 				theme = "dropdown",
@@ -30,22 +29,42 @@ M.config = function()
 	require("telescope").load_extension("file_browser")
 
 	-- Keymappings
-	KeyMapper("n", "<leader>ff", ':lua require"conf.telescope".project_files()<CR>')
-	KeyMapper("n", "<leader>fa", ':lua require"telescope.builtin".find_files({ prompt_title = "all files", no_ignore = true, hidden = true})<CR>')
-	KeyMapper("n", "<leader>fr", ':lua require"telescope.builtin".lsp_references()<CR>')
-	KeyMapper("n", "<leader>ft", ':lua require"telescope.builtin".live_grep()<CR>')
-	KeyMapper("n", "<leader>fs", ':lua require"telescope.builtin".treesitter()<CR>')
-	KeyMapper("n", "<leader>fws", ':lua require"telescope.builtin".lsp_workspace_symbols()<CR>')
-	KeyMapper("n", "<leader>fd", ':lua require"conf.telescope".search_dotfiles()<CR>')
-	KeyMapper("n", "<leader>fn", ':lua require"conf.telescope".search_notes()<CR>')
-	KeyMapper("n", "<leader>fb", ':lua require"telescope".extensions.file_browser.file_browser()<CR>')
-	KeyMapper("n", "<leader>fgs", ':lua require"telescope.builtin".git_stash()<CR>')
-	KeyMapper("n", "<leader>fgb", ':lua require"telescope.builtin".git_branches()<CR>')
+	require("which-key").register({
+		["<leader>f"] = {
+			name = "+telescope",
+			f = { ':lua require"conf.telescope".project_files()<CR>', "find project file" },
+			a = {
+				':lua require"telescope.builtin".find_files({ prompt_title = "all files", no_ignore = true, hidden = true})<CR>',
+				"find file",
+			},
+			r = { ':lua require"telescope.builtin".lsp_references()<CR>', "find symbol reference" },
+			t = { ':lua require"telescope.builtin".live_grep()<CR>', "live grep" },
+			s = { ':lua require"telescope.builtin".treesitter()<CR>', "find treesitter symbol" },
+			l = {
+				name = "+lsp",
+				s = { ':lua require"telescope.builtin".lsp_workspace_symbols()<CR>', "find workspace symbol" },
+			},
+			d = { ':lua require"conf.telescope".search_dotfiles()<CR>', "find dotfile" },
+			n = { ':lua require"conf.telescope".search_notes()<CR>', "find notes" },
+			b = { ':lua require"telescope".extensions.file_browser.file_browser()<CR>', "file browser" },
+			g = {
+				name = "+git",
+				s = { ':lua require"telescope.builtin".git_stash()<CR>', "find git stash" },
+				b = { ':lua require"telescope.builtin".git_branches()<CR>', "find git branch" },
+			},
+		},
+	})
 end
 
 M.project_files = function()
 	local builtin = require("telescope.builtin")
-	local opts = { prompt_title = "project files", hidden = true, theme = "dropdown", previewer = false, file_ignore_patterns = { "venv/.*", "venv%_linux/.*" }}
+	local opts = {
+		prompt_title = "project files",
+		hidden = true,
+		theme = "dropdown",
+		previewer = false,
+		file_ignore_patterns = { "venv/.*", "venv%_linux/.*" },
+	}
 	local ok = pcall(builtin.git_files, opts)
 	if not ok then
 		builtin.find_files(opts)
