@@ -201,10 +201,15 @@ packer.startup({
 			config = function()
 				require("trouble").setup({ auto_open = false, auto_preview = false })
 
-				KeyMapper("n", "<leader>xx", "<cmd>TroubleToggle<cr>")
-				KeyMapper("n", "<leader>xw", "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>")
-				KeyMapper("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")
-				KeyMapper("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
+				require("which-key").register({
+					["<leader>x"] = {
+						name = "+trouble",
+						x = { "<cmd>TroubleToggle<cr>", "toggle" },
+						w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "toggle workspace diagnostics" },
+						d = { "<cmd>TroubleToggle document_diagnostics<cr>", "toggle document diagnostics" },
+						q = { "<cmd>TroubleToggle quickfix<cr>", "toggle quickfix" },
+					},
+				})
 			end,
 		})
 

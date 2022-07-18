@@ -36,12 +36,6 @@ function! SmartBold()
 	endif
 endfunction
 
-" Toggle table of contents
-nnoremap <localleader>sc <cmd>VimtexTocToggle<CR>
-
-" Toggle preview
-nnoremap <localleader>sp <cmd>VimtexView<CR>
-
 " Restart compiler
 nnoremap <localleader>lr <cmd>VimtexStop<CR><cmd>VimtexCompile<CR>
 

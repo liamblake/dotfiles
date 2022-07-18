@@ -47,6 +47,16 @@ M.setup = function()
 					au user VimtexEventCompileSuccess :lua diagnostics_from_qf()
 					au user VimtexEventCompileFailed :lua diagnostics_from_qf()
 			]])
+
+	require("which-key").register({
+		["<localleader>l"] = {
+			name = "+VimTeX",
+			l = "toggle compiler",
+			v = "view compiled document",
+			q = "view log",
+			T = "toggle outline",
+		},
+	})
 end
 
 return M

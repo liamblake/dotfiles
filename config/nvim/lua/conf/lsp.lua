@@ -49,7 +49,8 @@ M.config = function()
 		vim.keymap.set("n", "]d", vim.lsp.diagnostic.goto_prev, opts)
 
 		-- Formatting
-		vim.keymap.set("n", "<leader>sf", vim.lsp.buf.formatting, opts)
+		vim.keymap.set("n", "<leader>df", vim.lsp.buf.formatting, opts)
+		
 	end
 
 	-- Runtime path, for Lua development
