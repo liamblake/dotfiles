@@ -28,8 +28,11 @@ M.setup = function()
 	if vim.loop.os_uname().sysname == "Darwin" then
 		-- Use Skim on Mac
 		vim.g.vimtex_view_method = "skim"
+	elseif vim.loop.os_uname().sysname == "Windows_NT" then
+		-- Use SumatraPDF on Windows
+		vim.g.vimtex_view_method = "SumatraPDF"
 	end
-	
+
 	vim.g.vimtex_quickfix_mode = 0
 	vim.g.vimtex_toc_config = {
 		show_help = 0,
