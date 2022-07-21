@@ -24,9 +24,12 @@ M.setup = function()
 		continuous = 1,
 		options = { "-bibtex", "-xelatex", "-shell-escape" },
 	}
-	-- Defaults to Preview on MacOS, SumatraPDF on Windows.
-	vim.g.vimtex_view_method = "general"
-	-- Trouble will be opened automatically instead
+
+	if vim.loop.os_uname().sysname == "Darwin" then
+		-- Use Skim on Mac
+		vim.g.vimtex_view_method = "skim"
+	end
+	
 	vim.g.vimtex_quickfix_mode = 0
 	vim.g.vimtex_toc_config = {
 		show_help = 0,

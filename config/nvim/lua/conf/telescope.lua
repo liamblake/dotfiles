@@ -61,6 +61,7 @@ M.project_files = function()
 	local opts = {
 		prompt_title = "project files",
 		hidden = true,
+		show_untracked = true,
 		theme = "dropdown",
 		previewer = false,
 		file_ignore_patterns = { "venv/.*", "venv%_linux/.*" },
