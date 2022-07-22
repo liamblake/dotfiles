@@ -32,7 +32,7 @@ root: ~/Library/CloudStorage/Box-Box/masters
 # tmux_command: byobu
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-startup_window: research
+startup_window: writing
 
 # Specifies (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
 startup_pane: 1
@@ -52,9 +52,14 @@ windows:
         - nvim
         - julia
         - jupyter-lab
-  - sem:
+  - nonlinear:
       layout: main-horizontal
-      root: ~/Dropbox/stochastic-epidemic-modelling
+      root: ~/Dropbox/nonlinear-analysis-of-dynamical-systems/
+      panes: 
+        - nvim
+  - bayes:
+      layout: main-horizontal
+      root: ~/Dropbox/computational-bayesian-statistics/
       panes:
         - nvim
   - notes:
@@ -71,4 +76,4 @@ windows:
       layout: main-horizontal
       root: ~/dev/dotfiles
       panes:
-        - nvim
+        - 
