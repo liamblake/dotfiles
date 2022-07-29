@@ -4,15 +4,15 @@
 
 \ProvidesPackage{lb_notes}[30/03/2021]
 
-\RequirePackage{mdframed}
+% \RequirePackage{mdframed}
 
-\mdtheorem{theorem}{Theorem}
-\mdtheorem{defn}{Definition}
-\mdtheorem{corollary}{Corollary}
-\mdtheorem{example}{Example}
-\mdtheorem{lemma}{Lemma}
-\mdtheorem{result}{Result}
-\mdtheorem{hypo}{Hypothesis}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{defn}{Definition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{result}{Result}[section]
+\newtheorem{hypo}{Hypothesis}[section]
 
 % Proof environment, ended with box
 \newenvironment{proof}{%
