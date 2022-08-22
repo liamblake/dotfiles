@@ -94,6 +94,10 @@
 % Inner product, simply langle and rangle
 \newcommand{\iprod}[2]{\langle #1\,,\,#2 \rangle}
 
+% Hyperbolic functions 
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+
 % Vector calculus operators
 \newcommand{\vder}{\nabla}					% Gradient
 \newcommand{\vdiv}{\vder \cdot}			% Divergence
@@ -173,7 +177,6 @@
 
 % Neat trick to access environment variables
 % From https://tex.stackexchange.com/a/62032
-
 \ExplSyntaxOn
 \NewDocumentCommand{\getenv}{om}
 {

@@ -142,3 +142,8 @@ subgrid
 multiscale
 Cholesky
 componentwise
+multivariable
+Stieltjes
+Maruyama
+supremum
+undamped
