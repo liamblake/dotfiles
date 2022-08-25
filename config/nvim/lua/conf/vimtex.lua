@@ -1,23 +1,5 @@
 local M = {}
 
-diagnostics_from_qf = function()
-	-- Find the LSP client corresponding to texlab
-	-- TODO: Surely a better way to do this
-	texlab_id = 0
-	for i, v in pairs(vim.lsp.get_active_clients()) do
-		if v["name"] == "texlab" then
-			texlab_id = i
-			break
-		end
-	end
-
-	-- Get the corresponding namespace
-	local texlab_namespace = vim.lsp.diagnostic.get_namespace(texlab_id)
-
-	-- Grab the quickfix list and use these to set diagnostics
-	vim.diagnostic.set(texlab_namespace, vim.fn.bufnr("%"), vim.diagnostic.fromqflist(vim.fn.getqflist()))
-end
-
 M.setup = function()
 	vim.g.vimtex_compiler_latexmk = {
 		build_dir = "build",
@@ -50,15 +32,13 @@ M.setup = function()
 					au!
 					au user VimtexEventInitPost VimtexCompile
 					au user VimtexEventQuit VimtexClean
-					au user VimtexEventCompileSuccess :lua diagnostics_from_qf()
-					au user VimtexEventCompileFailed :lua diagnostics_from_qf()
 			]])
 
 	require("which-key").register({
 		["<localleader>l"] = {
 			name = "+VimTeX",
 			l = "toggle compiler",
-			v = "view compiled document",
+			v = "forward search",
 			q = "view log",
 			T = "toggle outline",
 		},
