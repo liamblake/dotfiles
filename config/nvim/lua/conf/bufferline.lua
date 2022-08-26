@@ -17,7 +17,7 @@ M.config = function()
 				items = {
 					{
 						name = "Writing",
-						icon = "",
+						icon = "",
 						matcher = function(buf)
 							return buf.name:match("%.tex")
 								or buf.name:match("%.bib")
@@ -27,7 +27,7 @@ M.config = function()
 					},
 					{
 						name = "Code",
-						icon = "",
+						icon = "",
 						matcher = function(buf)
 							return buf.name:match("%.py") or buf.name:match("%.jl")
 						end,

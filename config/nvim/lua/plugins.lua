@@ -168,6 +168,7 @@ packer.startup({
 			"sirver/ultisnips",
 			config = function()
 				vim.g.UltiSnipsExpandTrigger = "<tab>"
+				vim.g.UltiSnipsSnippetDirectories = {"ultisnips"}
 			end,
 		})
 
