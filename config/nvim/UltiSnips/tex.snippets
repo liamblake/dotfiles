@@ -26,9 +26,16 @@ snippet  "Bold text" iA
 endsnippet
 
 # Bibliography (bibtex)
+context "not math()"
 snippet biblio "BibTeX bibliography" b
 \bibliographystyle{${1:plain}`!p snip.rv = complete(t[1], BIBTEX_STYLES)`}
 \bibliography{$2}
+endsnippet
+
+# Use package
+context "not math()"
+snippet use "\usepackage"
+\usepackage{$1}
 endsnippet
 
 ############################
@@ -76,7 +83,7 @@ endsnippet
 # General environments #
 ########################
 
-snippet \begin "General environment with end" i
+snippet be "General environment with end" i
 \begin{$1}
 $0
 \end{$1}
@@ -85,9 +92,9 @@ endsnippet
 snippet bfigure "Floating figure" b
 \begin{figure}
 	\begin{center}
-		\includegraphics[]{$1}
-		\caption{$2}
-		\label{fig:$3}
+		\includegraphics[width=${1:\textwidth}]{$2}
+		\caption{$3}
+		\label{fig:$4}
 	\end{center}
 \end{figure}
 endsnippet
@@ -177,21 +184,21 @@ endsnippet
 # Citations & References #
 ##########################
 
-snippet figure "Figure reference" i
-Figure \ref{fig:$1}
-endsnippet
+# snippet figure "Figure reference" i
+# Figure \ref{fig:$1}
+# endsnippet
 
-snippet equation "Equation reference" i
-Equation \eqref{eqn:$1}
-endsnippet
+# snippet equation "Equation reference" i
+# Equation \eqref{eqn:$1}
+# endsnippet
 
-snippet table "Table reference" i
-Table \ref{tab:$1}
-endsnippet
+# snippet table "Table reference" i
+# Table \ref{tab:$1}
+# endsnippet
 
-snippet cite "Citation" i
-~\cite{$1}
-endsnippet
+# snippet cite "Citation" i
+# ~\cite{$1}
+# endsnippet
 
 # Single line numbering
 context "math()"
@@ -266,15 +273,15 @@ context "math()"
 snippet m[ "[ matrix" i
 \begin{bmatrix}
 	$1
-\end{matrix}$0
+\end{bmatrix}$0
 endsnippet
 
 # Round bracket matrice
 context "math()"
 snippet m( "( matrix" i
-\begin{bmatrix}
+\begin{pmatrix}
 	$1
-\end{matrix}$0
+\end{pmatrix}$0
 endsnippet
 
 # Ordinary derivative

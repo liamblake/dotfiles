@@ -25,12 +25,12 @@ M.setup = function()
 
 	-- Do not automatically open quickfix menu on compilation - use Trouble instead
 	vim.g.vimtex_quickfix_mode = 0
-	
-	-- Disable indentation 
+
+	-- Disable indentation
 	vim.g.vimtex_indent_enabled = 0
 
 	-- Disable syntax conceal
-	vim.g.vimtex_syntax_conceal_disable = 1  
+	vim.g.vimtex_syntax_conceal_disable = 1
 
 	-- Start compilation automatically on open
 	-- Clean auxillary files on close
@@ -41,6 +41,10 @@ M.setup = function()
 					au user VimtexEventInitPost VimtexCompile
 					au user VimtexEventQuit VimtexClean
 			]])
+
+	-- Stylisation of document/part tiles
+	vim.api.nvim_set_hl(0, "texTitleArg", { bold = true })
+	vim.api.nvim_set_hl(0, "texPartArgTitle", { bold = true })
 
 	require("which-key").register({
 		["<localleader>l"] = {

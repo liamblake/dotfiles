@@ -123,5 +123,7 @@
     "plaintext": false,
     "markdown": true
   },
-  "terminal.integrated.defaultProfile.osx": "zsh"
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "r.rpath.mac": "/usr/local/bin/R",
+  "r.rterm.mac": "/usr/local/bin/R"
 }

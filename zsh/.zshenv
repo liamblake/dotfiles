@@ -12,3 +12,4 @@ path+=("$HOME/.local/bin")
 path+=("$HOME/.cargo/bin")
 path+=("$HOME/bin")
 export PATH
+. "$HOME/.cargo/env"

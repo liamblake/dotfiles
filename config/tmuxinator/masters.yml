@@ -41,13 +41,18 @@ startup_pane: 1
 # attach: false
 
 windows:
+  - thesis:
+      layout: main-horizontal
+      root: ~/Library/CloudStorage/Box-Box/masters/submodules/mphil-thesis/
+      panes:
+        - nvim
   - writing:
       layout: main-horizontal
       panes: 
         - nvim
   - code:
       layout: b95b,269x69,0,0[269x50,0,0,0,269x18,0,51{134x18,0,51,4,134x18,135,51,6}]
-      root: ~/Library/CloudStorage/Box-Box/masters/code
+      root: ~/Library/CloudStorage/Box-Box/masters/code/
       panes:
         - nvim
         - julia

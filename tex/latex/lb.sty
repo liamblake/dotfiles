@@ -216,3 +216,9 @@
 \getabspath{\themainfile}
 \let\mainabsdir\theabsdir
 \let\mainabspath\theabspath
+
+% Mainly a temporary change for masters
+% Replace \epsilon with \varepsilon. Use \oldepsilon to access the old symbol.
+\newcommand{\oldepsilon}{\epsilon}
+\renewcommand{\epsilon}{\varepsilon}
+

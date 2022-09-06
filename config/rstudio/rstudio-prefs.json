@@ -10,5 +10,6 @@
     "latex_shell_escape": true,
     "show_indent_guides": true,
     "rainbow_parentheses": true,
-    "save_workspace": "never"
+    "save_workspace": "never",
+    "blinking_cursor": false
 }

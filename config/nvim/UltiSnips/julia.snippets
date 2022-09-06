@@ -1,3 +1,11 @@
+snippet nvec "Uninitialised vector" b
+Vector{${1:Float64}}(${2:undef}, $3)
+endsnippet
+
+snippet narr "Uninitialised array" b
+Array{${1:Float64}}(${2:undef}, ($3, $4))
+endsnippet
+
 snippet script "Julia script" b
 # Called when the script runs 
 function main() 

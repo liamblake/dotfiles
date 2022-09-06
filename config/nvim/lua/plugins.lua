@@ -25,13 +25,19 @@ packer.startup({
 		use("wbthomason/packer.nvim")
 
 		-- Theme and visuals
-		use({ "folke/tokyonight.nvim" })
-		-- use({
-		-- 	"rmehri01/onenord.nvim",
-		-- 	config = function()
-		-- 		require("onenord").setup({ italics = { comments = true, keywords = false } })
-		-- 	end,
-		-- })
+		use({
+			"folke/tokyonight.nvim",
+			config = function()
+				require("tokyonight").setup({
+					style = "storm",
+					styles = { keywords = "NONE" },
+					lualine_bold = true,
+					dim_inactive = true,
+				})
+				vim.cmd("colorscheme tokyonight")
+			end,
+		})
+
 		use({
 			"lukas-reineke/indent-blankline.nvim",
 			config = function()
@@ -168,7 +174,7 @@ packer.startup({
 			"sirver/ultisnips",
 			config = function()
 				vim.g.UltiSnipsExpandTrigger = "<tab>"
-				vim.g.UltiSnipsSnippetDirectories = {"ultisnips"}
+				vim.g.UltiSnipsSnippetDirectories = { "ultisnips" }
 			end,
 		})
 
@@ -247,6 +253,21 @@ packer.startup({
 			"nvim-treesitter/nvim-treesitter",
 			config = function()
 				require("conf.treesitter").config()
+			end,
+		})
+
+		use({
+			"lukas-reineke/headlines.nvim",
+			config = function()
+				require("headlines").setup({ rmd = { headline_highlights = false } })
+			end,
+		})
+
+		-- Color highlights
+		use({
+			"NvChad/nvim-colorizer.lua",
+			config = function()
+				require("colorizer").setup({ user_default_options = { names = false } })
 			end,
 		})
 
