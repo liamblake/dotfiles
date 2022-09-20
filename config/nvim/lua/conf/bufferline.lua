@@ -35,7 +35,7 @@ M.config = function()
 				},
 			},
 		},
-		highlights = { buffer_selected = { bold = true } },
+		highlights = { fill = { bg = "#1e2030" }, buffer_selected = { bold = true } },
 		-- Groups
 		-- Currently only useful for uni-related work, e.g. having TeX files and Python or Julia code open.
 	})

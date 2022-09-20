@@ -29,11 +29,13 @@ vim.api.nvim_set_hl(0, "texCmdBib", { fg = tc.red })
 
 -- Math zone
 vim.api.nvim_set_hl(0, "texMathDelimZone", { fg = tc.fg_dark })
-vim.api.nvim_set_hl(0, "texMathZone", { fg = tc.fg })
-vim.api.nvim_set_hl(0, "texCmd", { fg = tc.blue })
+vim.api.nvim_set_hl(0, "texMathZone", { fg = tc.blue5 })
+vim.api.nvim_set_hl(0, "texCmd", { fg = tc.magenta })
 vim.api.nvim_set_hl(0, "texCmdMath", { fg = tc.magenta })
 
 vim.api.nvim_set_hl(0, "texCmdItem", { fg = tc.purple })
+
+vim.api.nvim_set_hl(0, "texRefArg", { fg = tc.green })
 
 -- Trouble window
 vim.api.nvim_set_hl(0, "TroubleNormal", { bg = tc.bg_dark })

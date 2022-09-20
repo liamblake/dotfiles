@@ -15,7 +15,7 @@
 \RequirePackage{bbm}
 % Hyperlinks are cool
 \RequirePackage{url}
-\RequirePackage{hyperref}
+\RequirePackage[hidelinks]{hyperref}
 % Units
 \RequirePackage{siunitx}
 
@@ -131,6 +131,10 @@
 % Transpose operator with \T
 \newcommand{\T}{^{\intercal}}
 
+% Real and imaginary components
+\renewcommand{\Re}[1]{\mathrm{Re}\left(#1\right)}
+\renewcommand{\Im}[1]{\mathrm{Im}\left(#1\right)}
+
 % Enumerate environment with alphabetic labels
 \newenvironment{alpharate}{
 	\begin{enumerate}[label=\alph*)]
@@ -216,9 +220,4 @@
 \getabspath{\themainfile}
 \let\mainabsdir\theabsdir
 \let\mainabspath\theabspath
-
-% Mainly a temporary change for masters
-% Replace \epsilon with \varepsilon. Use \oldepsilon to access the old symbol.
-\newcommand{\oldepsilon}{\epsilon}
-\renewcommand{\epsilon}{\varepsilon}
 
