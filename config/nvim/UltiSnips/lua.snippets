@@ -7,3 +7,7 @@ end
 
 return M
 endsnippet
+
+snippet hl "Neovim highlight" i 
+vim.api.nvim_set_hl(${1:0}, "$2", {$3})
+endsnippet

@@ -42,9 +42,6 @@ M.setup = function()
 					au user VimtexEventQuit VimtexClean
 			]])
 
-	-- Stylisation of document/part tiles
-	vim.api.nvim_set_hl(0, "texTitleArg", { bold = true })
-	vim.api.nvim_set_hl(0, "texPartArgTitle", { bold = true })
 
 	require("which-key").register({
 		["<localleader>l"] = {
