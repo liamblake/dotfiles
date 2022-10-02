@@ -62,6 +62,13 @@ packer.startup({
 		})
 		use("kyazdani42/nvim-web-devicons")
 
+		use({
+			"folke/zen-mode.nvim",
+			config = function()
+				require("zen-mode").setup({})
+			end,
+		})
+
 		-- LSP
 		use({
 			"neovim/nvim-lspconfig",
