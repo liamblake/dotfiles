@@ -13,7 +13,7 @@ M.setup = function()
 		vim.g.vimtex_view_method = "skim"
 	elseif vim.loop.os_uname().sysname == "Windows_NT" then
 		-- Use SumatraPDF on Windows
-		vim.g.vimtex_view_method = "SumatraPDF"
+		vim.g.vimtex_view_general_viewer = "SumatraPDF"
 	end
 
 	vim.g.vimtex_toc_config = {
