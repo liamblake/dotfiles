@@ -123,9 +123,10 @@ snippet cases "Cases" i
 endsnippet
 
 snippet subfig "Subfigure" b
-\begin{subfigure}{$1\textwidth}
-	\includegraphics[width=\textwidth]{$2}
-	\caption{$3}
+\begin{subfigure}{${1:0.45\textwidth}}
+	\includegraphics[width=${2:\textwidth}]{$3}
+	\caption{$4}
+	\label{fig:$5}
 \end{subfigure}
 endsnippet
 

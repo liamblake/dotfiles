@@ -51,3 +51,10 @@ inoremap <M-m> \(\)<ESC>hi
 
 " Auto item on ctrl_enter
 inoremap <buffer><expr> <C-CR> AutoItem()
+
+" Convert a display math of the form 
+" \[   
+" math
+" \]
+" to an inline \(math\)
+inoremap csi vimtex#

@@ -1,6 +1,7 @@
 \ProvidesPackage{lb_statistics}[30/03/2021]
 
 % Dependencies
+\RequirePackage{dsfont}
 
 % Conditional probability
 \newcommand{\conp}[2]{P\left(#1\,\middle|\,#2\right)}
@@ -12,8 +13,8 @@
 \newcommand{\cond}[2]{\left.\,#1\,\middle|\,#2\right.}
 
 % Statistical operators
-\newcommand{\var}[1]{\mathbb{V}\!\left[#1\right]}
-\newcommand{\avg}[1]{\mathbb{E}\!\left[#1\right]}
+\newcommand{\var}[1]{\mathds{V}\!\left[#1\right]}
+\newcommand{\avg}[1]{\mathds{E}\!\left[#1\right}
 \newcommand{\cov}[1]{\operatorname{cov} \left(#1\right)}
 \newcommand{\sd}[1]{\operatorname{sd} \left(#1\right)}
 \newcommand{\cor}[1]{\operatorname{cor} \left(#1\right)}
