@@ -10,7 +10,6 @@
 \RequirePackage{enumitem}
 % For more powerful command argument parsing
 \RequirePackage{xparse, xargs}
-% \RequirePackage[usenames,dvipsnames]{color, xcolor}
 % For more \mathbb support
 \RequirePackage{bbm}
 % Hyperlinks are cool
@@ -19,7 +18,18 @@
 % Units
 \RequirePackage{siunitx}
 
+
 %% OPTIONS %%
+%
+% notodo: Pass the "disable" option to the todonotes package. This will prevent any annotations
+%					from this package from appearing in the compiled file.
+% statistics: Include lb_statistics.
+% notes: Include lb_notes.
+% rmarkdown: Modifications to work with RMarkdown. See below.
+%
+
+% Pass the disable option to the todonotes package.
+\DeclareOption{notodo}{\PassOptionsToPackage{disable}{todonotes}}
 
 % Optionally include the other style files. This saves having to include each of them individually.
 % \RequirePackage cannot be used in \DeclareOption, so instead we need to use boolean flags.
@@ -30,9 +40,6 @@
 
 \newif\if@notes\@notesfalse
 \DeclareOption{notes}{\@notestrue}
-
-\newif\if@linearalgebra\@linearalgebrafalse
-\DeclareOption{linearalgebra}{\@linearalgebratrue}
 
 % Option indicating whether the style file is being used in RMarkdown
 % This introduces some changes to certain commands, e.g. enumerate
@@ -50,8 +57,16 @@
 	\RequirePackage{lb_notes}
 \fi
 
-\if@linearalgebra
-	\RequirePackage{lb_linear_algebra}
+% Modifications for RMarkdown
+\if@rmarkdown
+	% Including code blocks in an enumerate environment causes knitr to fail,
+	% so instead we delimit the environment with these new commands.
+	% See https://tex.stackexchange.com/a/244996
+	% TODO (formatting): latexindent is confused by the begin and ends here.
+	\newcommand{\benum}{\begin{enumerate}}
+			\newcommand{\eenum}{\end{enumerate}}
+	\newcommand{\balph}{\begin{alpharate}}
+			\newcommand{\ealph}{\end{alpharate}}
 \fi
 
 % Provides warnings if labels are unused
@@ -94,7 +109,7 @@
 % Inner product, simply langle and rangle
 \newcommand{\iprod}[2]{\langle #1\,,\,#2 \rangle}
 
-% Hyperbolic functions 
+% Hyperbolic functions
 \DeclareMathOperator{\sech}{sech}
 \DeclareMathOperator{\csch}{csch}
 \DeclareMathOperator{\arcsinh}{arcsinh}
@@ -141,7 +156,7 @@
 \renewcommand{\Re}[1]{\mathrm{Re}\left(#1\right)}
 \renewcommand{\Im}[1]{\mathrm{Im}\left(#1\right)}
 
-% Big-O notation 
+% Big-O notation
 \newcommand{\bigO}[1]{\mathcal{O}\left(#1\right)}
 
 % Enumerate environment with alphabetic labels
@@ -160,9 +175,9 @@
 
 % Todo notes, annotations, etc.
 % Thanks JM
+% TODO: Optional args seems to not be working
 \RequirePackage[colorinlistoftodos,prependcaption,textsize=scriptsize]{todonotes}
 
-% TODO: Optional args seems to not be working
 \newcommandx{\note}[2][1=]{
 	\todo[inline,linecolor=black,backgroundcolor=violet!5,bordercolor=violet,#1]{
 		NOTE: #2
@@ -205,22 +220,9 @@
 }
 \ExplSyntaxOff
 
-% Modifications for RMarkdown
-\if@rmarkdown
-	% Including code blocks in an enumerate environment causes knitr to fail,
-	% so instead we delimit the environment with these new commands.
-	% See https://tex.stackexchange.com/a/244996
-	% TODO (formatting): latexindent is confused by the begin and ends here.
-	\newcommand{\benum}{\begin{enumerate}}
-			\newcommand{\eenum}{\end{enumerate}}
-	\newcommand{\balph}{\begin{alpharate}}
-			\newcommand{\ealph}{\end{alpharate}}
-
-\fi
-
-% This is needed to use a .bib file outside of the same directory as the TeX file via a relative 
+% This is needed to use a .bib file outside of the same directory as the TeX file via a relative
 % path, when using an output directory (e.g. /build).
-% Include the bibliography as 
+% Include the bibliography as
 %		\bibliography{\mainabsdir/the/relative/path}
 % From https://tex.stackexchange.com/a/383143
 % BibTeX is fucking stupid and this is a stupid hack.
@@ -229,4 +231,3 @@
 \getabspath{\themainfile}
 \let\mainabsdir\theabsdir
 \let\mainabspath\theabspath
-
