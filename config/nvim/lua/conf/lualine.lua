@@ -30,13 +30,18 @@ M.config = function()
 			section_separators = { left = "", right = "" },
 			component_separators = { left = "|", right = "|" },
 			disabled_filetypes = { "toggleterm" },
-			globalstatus = true
+			globalstatus = true,
 		},
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = { "branch", "diff" },
 			lualine_c = {
-				{ "filename", path = 1, separator = "", symbols = { modified = " ●", readonly = " ", noname = "" } },
+				{
+					"filename",
+					path = 1,
+					separator = "",
+					symbols = { modified = " ●", readonly = " ", noname = "" },
+				},
 				{ M.compile_status },
 			},
 			lualine_x = {

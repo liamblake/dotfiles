@@ -42,7 +42,6 @@ M.setup = function()
 					au user VimtexEventQuit VimtexClean
 			]])
 
-
 	require("which-key").register({
 		["<localleader>l"] = {
 			name = "+VimTeX",

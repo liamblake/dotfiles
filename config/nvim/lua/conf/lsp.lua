@@ -32,7 +32,7 @@ M.config = function()
 	-- Set the log level, for debugging
 	-- vim.lsp.set_log_level("debug")
 
-	local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+	local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 	local custom_on_attach = function(client, bufnr)
 		local opts = { buffer = bufnr }
@@ -50,7 +50,6 @@ M.config = function()
 
 		-- Formatting
 		vim.keymap.set("n", "<leader>df", vim.lsp.buf.formatting, opts)
-		
 	end
 
 	-- Runtime path, for Lua development

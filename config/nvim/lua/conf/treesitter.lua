@@ -2,7 +2,19 @@ local M = {}
 
 M.config = function()
 	require("nvim-treesitter.configs").setup({
-		ensure_installed = { "bash", "c", "cpp", "python", "julia", "latex", "rust", "typescript", "lua", "html" },
+		ensure_installed = {
+			"bash",
+			"c",
+			"cpp",
+			"python",
+			"julia",
+			"latex",
+			"rust",
+			"typescript",
+			"lua",
+			"html",
+			"markdown",
+		},
 		highlight = {
 			enable = true,
 			additional_vim_regex_highlighting = false,

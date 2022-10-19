@@ -7,13 +7,13 @@ M.setup = function()
 				enabled = true,
 				suggestions = 10,
 			},
-		presets = {
-			operators = false,
-			motions = false,
-			text_objects = false,
-			g = false,
-			}
-		}
+			presets = {
+				operators = false,
+				motions = false,
+				text_objects = false,
+				g = false,
+			},
+		},
 	})
 end
 
