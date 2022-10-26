@@ -185,21 +185,30 @@ endsnippet
 # Citations & References #
 ##########################
 
-# snippet figure "Figure reference" i
-# Figure \ref{fig:$1}
-# endsnippet
+context "not math()"
+snippet thmref "Theorem reference" i
+Theorem \ref{thm:$1}$0
+endsnippet
 
-# snippet equation "Equation reference" i
-# Equation \eqref{eqn:$1}
-# endsnippet
+context "not math()"
+snippet lemref "Lemma reference" i
+Lemma \ref{lem:$1}$0
+endsnippet
 
-# snippet table "Table reference" i
-# Table \ref{tab:$1}
-# endsnippet
+context "not math()"
+snippet defref "Definition reference" i
+Definition \ref{def:$1}$0
+endsnippet
 
-# snippet cite "Citation" i
-# ~\cite{$1}
-# endsnippet
+context "not math()"
+snippet figref "Figure reference" i
+Figure \ref{fig:$1}$0
+endsnippet
+
+context "not math()"
+snippet lstref "Listing reference" i
+Listing \ref{lst:$1}$0
+endsnippet
 
 # Single line numbering
 context "math()"
