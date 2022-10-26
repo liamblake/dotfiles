@@ -4,7 +4,6 @@
   "editor.formatOnSave": true,
   // Theme
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Tokyo Night Storm",
   // Eliminate those pesky Windows line endings
   "files.eol": "\n",
   // Python settings
@@ -125,5 +124,10 @@
   },
   "terminal.integrated.defaultProfile.osx": "zsh",
   "r.rpath.mac": "/usr/local/bin/R",
-  "r.rterm.mac": "/usr/local/bin/R"
+  "r.rterm.mac": "/usr/local/bin/R",
+  "workbench.colorTheme": "Tokyo Night Storm",
+  "quarto.mathjax.theme": "dark",
+  "quarto.render.renderOnSave": true,
+  "vim.vimrc.enable": true,
+  "vim.vimrc.path": "$HOME/dev/dotfiles/config/vscode/.vimrc"
 }
