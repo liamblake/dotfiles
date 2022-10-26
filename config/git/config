@@ -31,6 +31,12 @@
 	update-url = "remote set-url origin"
 	sync = "!git pull && git push"
 
+	# Stash operations
+	sl = "stash list"
+	ss = "stash save"
+	sp = "stash pop"
+	sa = "stash apply"
+
 	# When rebasing
 	rc = "rebase --continue"
 	ra = "rebase --abort"
