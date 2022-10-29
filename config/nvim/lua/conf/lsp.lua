@@ -45,11 +45,13 @@ M.config = function()
 
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
-		vim.keymap.set("n", "[d", vim.lsp.diagnostic.goto_prev, opts)
-		vim.keymap.set("n", "]d", vim.lsp.diagnostic.goto_prev, opts)
+		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
 		-- Formatting
-		vim.keymap.set("n", "<leader>df", vim.lsp.buf.formatting, opts)
+		if client.supports_method("textDocument/formatting") then
+			vim.keymap.set("n", "<leader>df", vim.lsp.buf.format, opts)
+		end
 	end
 
 	-- Runtime path, for Lua development
@@ -92,7 +94,6 @@ M.config = function()
 			opts.settings = { python = { analysis = { typeCheckingMode = "off" } } }
 		elseif server.name == "tsserver" then
 			-- Handled by prettier and null-ls
-			-- TODO: Currently doesn't work. A fix for v0.8: https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
 			opts.on_attach = function(client, bufnr)
 				custom_on_attach(client, bufnr)
 				client.server_capabilities.document_formatting = false

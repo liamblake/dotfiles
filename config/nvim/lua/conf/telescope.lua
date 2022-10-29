@@ -34,7 +34,7 @@ M.config = function()
 			name = "+telescope",
 			f = { ':lua require"conf.telescope".project_files()<CR>', "find project file" },
 			a = {
-				':lua require"telescope.builtin".find_files({ prompt_title = "all files", no_ignore = true, hidden = true})<CR>',
+				':lua require"telescope.builtin".find_files({ prompt_title = "all files", hidden = true})<CR>',
 				"find file",
 			},
 			r = { ':lua require"telescope.builtin".lsp_references()<CR>', "find symbol reference" },
@@ -57,6 +57,11 @@ M.config = function()
 end
 
 M.project_files = function()
+	-- Originally from
+	-- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#falling-back-to-find_files-if-git_files-cant-find-a-git-directory
+	-- However, this doesn't work anymore. Instead using the workaround
+	-- https://github.com/nvim-telescope/telescope.nvim/issues/2183
+
 	local builtin = require("telescope.builtin")
 	local opts = {
 		prompt_title = "project files",
@@ -66,35 +71,34 @@ M.project_files = function()
 		previewer = false,
 		file_ignore_patterns = { "venv/.*", "venv%_linux/.*" },
 	}
-	local ok = pcall(builtin.git_files, opts)
-	if not ok then
-		builtin.find_files(opts)
-	end
-end
 
-M.matching_files = function()
-	-- Find files with the same name, but a different filetype.
-	-- e.g. convienient for jumping between the header class.hpp and the implementation class.cpp.
-	-- TODO: Actually implement this.
-	require("telescope.builtin").find_files({})
+	-- local ok = pcall(builtin.git_files, opts)
+	-- if not ok then
+	-- 	builtin.find_files(opts)
+	-- end
+
+	local in_git_repo = vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1] == "true"
+	if in_git_repo then
+		require("telescope.builtin").git_files(opts)
+	else
+		require("telescope.builtin").find_files(opts)
+	end
 end
 
 M.search_dotfiles = function()
-	cwd = "~/dev/dotfiles"
+	local cwd = "~/dev/dotfiles"
 	-- Windows has a different filesystem :(
-	-- TODO: Might be able to place a symlink in a clever spot
-	if vim.fn.has("win64") then
-		cwd = "D:\\dev\\dotfiles"
-	end
+	-- TODO: Breaks the finder, even on other operating systems
+	-- if vim.fn.has("win64") then
+	-- 	cwd = "D:\\dev\\dotfiles"
+	-- end
 
-	require("telescope.builtin").git_files({ prompt_title = "dotfiles", cwd = cwd, hidden = true })
-end
-
-M.search_notes = function()
-	-- TODO: Windows
-	if not vim.fn.has("win64") then
-		require("telescope.builtin").git_files({ prompt_title = "notes", cwd = "~/Dropbox/notes", hidden = false })
-	end
+	require("telescope.builtin").git_files({
+		prompt_title = "dotfiles",
+		cwd = cwd,
+		hidden = true,
+		show_untracked = true,
+	})
 end
 
 return M
