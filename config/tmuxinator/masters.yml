@@ -56,16 +56,6 @@ windows:
       panes:
         - nvim
         - julia
-  - nonlinear:
-      layout: main-horizontal
-      root: ~/Dropbox/nonlinear-analysis-of-dynamical-systems/
-      panes: 
-        - nvim
-  - bayes:
-      layout: main-horizontal
-      root: ~/Dropbox/computational-bayesian-statistics/
-      panes:
-        - nvim
   - dotfiles:
       layout: main-horizontal
       root: ~/dev/dotfiles
