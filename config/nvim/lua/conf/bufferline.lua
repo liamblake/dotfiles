@@ -40,9 +40,9 @@ M.config = function()
 		-- Currently only useful for uni-related work, e.g. having TeX files and Python or Julia code open.
 	})
 
-	KeyMapper("n", "]b", ":BufferLineCycleNext<CR>")
-	KeyMapper("n", "[b", ":BufferLineCyclePrev<CR>")
-	KeyMapper("n", "gb", ":BufferLinePick<CR>")
+	vim.keymap.set("n", "]b", ":BufferLineCycleNext<CR>")
+	vim.keymap.set("n", "[b", ":BufferLineCyclePrev<CR>")
+	vim.keymap.set("n", "gb", ":BufferLinePick<CR>")
 end
 
 return M

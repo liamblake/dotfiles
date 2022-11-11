@@ -37,14 +37,13 @@ vim.cmd("au TextYankPost * lua vim.highlight.on_yank {}")
 -- Hide mode at bottom, since this is already shown by the statusline
 vim.o.showmode = false
 
--- Keybindings
-require("util")
-
 -- Use Y to yank to end of line
-KeyMapper("n", "Y", "y$")
+vim.keymap.set("n", "Y", "y$")
 
 -- Turn off hlsearch with two ESCs
-KeyMapper("n", "<esc><esc>", "<cmd>nohls<CR>")
+vim.keymap.set("n", "<esc><esc>", "<cmd>nohls<CR>")
+
+vim.opt.termguicolors = true
 
 -- Other configuration
 require("plugins")

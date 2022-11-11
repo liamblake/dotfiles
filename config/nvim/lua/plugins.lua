@@ -1,5 +1,3 @@
-require("util")
-
 -- Plugin setup, from https://bryankegley.me/posts/nvim-getting-started/
 local execute = vim.api.nvim_command
 local fn = vim.fn
@@ -171,7 +169,7 @@ packer.startup({
 		use({
 			"tpope/vim-fugitive",
 			config = function()
-				KeyMapper("n", "<leader>sg", ":Git<CR>")
+				vim.keymap.set("n", "<leader>sg", ":Git<CR>")
 			end,
 		})
 

@@ -3,8 +3,6 @@
 -- https://github.com/disrupted/dotfiles/blob/master/.config/nvim/lua/conf/lsp.lua
 local M = {}
 
-require("util")
-
 M.setup = function()
 	-- Only show diagnostics detail on hover
 	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
