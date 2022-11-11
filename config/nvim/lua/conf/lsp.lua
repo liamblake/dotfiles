@@ -30,7 +30,7 @@ M.config = function()
 	local lsp_installer = require("nvim-lsp-installer")
 
 	-- Set the log level, for debugging
-	-- vim.lsp.set_log_level("debug")
+	vim.lsp.set_log_level("debug")
 
 	local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -60,6 +60,7 @@ M.config = function()
 	table.insert(runtime_path, "lua/?/init.lua")
 
 	-- Configure servers installed with LSP-Installer
+	-- TODO: Update to use mason, or remove the reliance on LSP installer entirely
 	lsp_installer.on_server_ready(function(server)
 		local opts = { on_attach = custom_on_attach, capabilities = capabilities }
 
@@ -134,6 +135,9 @@ M.config = function()
 		server:setup(opts)
 		vim.cmd([[ do User LspAttachBuffers ]])
 	end)
+
+	-- julials needs to be setup separately - not working otherwise
+	lspconfig.julials.setup({ on_attach = custom_on_attach, capabilities = capabilities })
 end
 
 return M
