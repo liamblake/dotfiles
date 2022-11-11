@@ -18,4 +18,4 @@ alias mkdir="mkdir -p"
 alias python=python3
 
 # Reload .zshrc
-alias zshrc="source ~/.zshrc"
+alias zshrc="source ~/.zshrc && source ~/.zshenv && source ~/aliases.zsh && source ~/local_aliases.zsh"
