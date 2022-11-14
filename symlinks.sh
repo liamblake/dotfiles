@@ -39,6 +39,8 @@ mkdir -p "$HOME"/.config/Code/User/
 create_home_symlink config/vscode/settings.json .config/Code/User
 
 # TODO: TeX style files
+mkdir -p "$HOME"/texmf
+create_home_symlink tex texmf/
 # create_home_symlink tex .miktex/texmfs/install/lb/te
 
 # TPM setup
