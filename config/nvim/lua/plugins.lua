@@ -153,11 +153,9 @@ packer.startup({
 		-- Git integration
 		use({
 			"lewis6991/gitsigns.nvim",
-			requires = {
-				"nvim-lua/plenary.nvim",
-			},
 			config = function()
 				require("gitsigns").setup({
+					signs = { untracked = { text = "│" } },
 					current_line_blame = false,
 					current_line_blame_opts = {
 						delay = 250,
