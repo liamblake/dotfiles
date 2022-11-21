@@ -11,3 +11,11 @@ endsnippet
 snippet hl "Neovim highlight" i 
 vim.api.nvim_set_hl(${1:0}, "$2", {$3})
 endsnippet
+
+snippet wk "which-key register" i
+require("which-key").register({
+	["$1"] = {
+		$0
+	}
+})
+endsnippet

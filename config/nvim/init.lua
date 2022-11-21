@@ -3,6 +3,7 @@ local vim = vim
 vim.o.syntax = "on"
 
 vim.o.number = true
+vim.o.relativenumber = true
 vim.opt.signcolumn = "yes:1"
 vim.g.noshowmode = true
 
@@ -14,14 +15,13 @@ vim.g.maplocalleader = ";"
 
 vim.o.completeopt = "menu,menuone,noselect"
 
-vim.o.relativenumber = true
 vim.o.scrolloff = 10
 
 -- Search options
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
-vim.o.mouse = "a"
+-- vim.o.mouse = "a"
 
 vim.o.updatetime = 400
 

@@ -60,12 +60,20 @@ packer.startup({
 		})
 		use("kyazdani42/nvim-web-devicons")
 
+		-- Distraction-free working
 		use({
-			"folke/zen-mode.nvim",
+			"Pocco81/true-zen.nvim",
 			config = function()
-				require("zen-mode").setup({})
+				require("conf.true_zen").setup()
 			end,
 		})
+		--
+		-- use({
+		-- 	"folke/zen-mode.nvim",
+		-- 	config = function()
+		-- 		require("zen-mode").setup({})
+		-- 	end,
+		-- })
 
 		-- LSP
 		use({

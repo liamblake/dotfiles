@@ -14,7 +14,7 @@ BIBTEX_STYLES = [
 
 endglobal
 
-# TODO: Proper keymappinbg in ftplugin/tex.vim
+# TODO: Proper keymapping in ftplugin/tex.vim
 context "math()"
 snippet  "Bold math" iA
 \bm{${1:${VISUAL}}}
@@ -36,6 +36,12 @@ endsnippet
 context "not math()"
 snippet use "\usepackage"
 \usepackage{$1}
+endsnippet
+
+# tex root
+context "not math()"
+snippet texroot "tex root" b
+%!TEX root = $1
 endsnippet
 
 ############################
@@ -123,7 +129,7 @@ snippet cases "Cases" i
 endsnippet
 
 snippet subfig "Subfigure" b
-\begin{subfigure}{${1:0.45\textwidth}}
+\begin{subfigure}{${1:0.49\textwidth}}
 	\includegraphics[width=${2:\textwidth}]{$3}
 	\caption{$4}
 	\label{fig:$5}
