@@ -4,13 +4,21 @@
 
 \ProvidesPackage{lb_style}[16/03/2021]
 
+\RequirePackage{amsmath}
 % Styling of figure captions
-\usepackage[labelfont=bf]{caption}
+\RequirePackage[labelfont=bf]{caption}
+
+\RequirePackage{setspace}
 
 %% OPTIONS %%
 
 % Option for sans serif font
 \DeclareOption{sans}{\renewcommand{\familydefault}{\sfdefault}}
+
+% Increase spacing between lines for drafting
+\DeclareOption{draft}{
+	\doublespacing
+}
 
 \ProcessOptions\relax
 

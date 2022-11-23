@@ -1,8 +1,7 @@
 # /home/liam/.config/tmuxinator/masters.yml
 
 name: masters
-# This path is MacOS specific... there is no official desktop app for Box on Linux anyways.
-root: ~/Library/CloudStorage/Box-Box/masters
+root: ~/Dropbox/masters/
 
 # Optional tmux socket
 # socket_name: foo
@@ -43,7 +42,7 @@ startup_pane: 1
 windows:
   - thesis:
       layout: main-horizontal
-      root: ~/Library/CloudStorage/Box-Box/masters/submodules/mphil-thesis/
+      root: ~/Dropbox/masters/thesis/
       panes:
         - nvim
   - writing:
@@ -52,7 +51,7 @@ windows:
         - nvim
   - code:
       layout: b95b,269x69,0,0[269x50,0,0,0,269x18,0,51{134x18,0,51,4,134x18,135,51,6}]
-      root: ~/Library/CloudStorage/Box-Box/masters/code/
+      root: ~/Dropbox/masters/code/
       panes:
         - nvim
         - julia
