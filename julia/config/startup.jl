@@ -8,7 +8,14 @@ catch e
 end
 
 # If Julia is started in a directory
-# TODO: Add a custom flag to overwrite this
 if isfile("Project.toml") && isfile("Manifest.toml")
     Pkg.activate(".")
 end
+
+# Include the current project in the prompt
+import OhMyREPL as OMR
+promptfn() = "(" * splitpath(Base.active_project())[end-1] * ") julia> "
+OMR.input_prompt!(promptfn)
+
+ENV["JULIA_EDITOR"] = "nvim"
+
