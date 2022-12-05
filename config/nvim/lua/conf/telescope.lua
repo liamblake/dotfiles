@@ -46,7 +46,7 @@ M.config = function()
 			},
 			d = { ':lua require"conf.telescope".search_dotfiles()<CR>', "find dotfile" },
 			n = { ':lua require"conf.telescope".search_notes()<CR>', "find notes" },
-			b = { ':lua require"telescope".extensions.file_browser.file_browser()<CR>', "file browser" },
+			b = { ':lua require"telescope".extensions.file_browser.file_browser( {hidden = true} )<CR>', "file browser" },
 			g = {
 				name = "+git",
 				s = { ':lua require"telescope.builtin".git_stash()<CR>', "find git stash" },
