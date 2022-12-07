@@ -130,5 +130,8 @@
   "quarto.render.renderOnSave": true,
   "vim.vimrc.enable": true,
   "vim.vimrc.path": "$HOME/dev/dotfiles/config/vscode/.vimrc",
+  "workbench.sideBar.location": "right",
+  "workbench.activityBar.visible": false,
+  "files.trimTrailingWhitespace": true,
   "julia.NumThreads": 4
 }
