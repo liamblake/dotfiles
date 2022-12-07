@@ -17,5 +17,9 @@ import OhMyREPL as OMR
 promptfn() = "(" * splitpath(Base.active_project())[end-1] * ") julia> "
 OMR.input_prompt!(promptfn)
 
+# No syntax highlighting
+OMR.enable_pass!("SyntaxHighlighter", false)
+OMR.enable_pass!("RainbowBrackets", false)
+
 ENV["JULIA_EDITOR"] = "nvim"
 
