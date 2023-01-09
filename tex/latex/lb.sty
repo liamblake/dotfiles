@@ -23,23 +23,11 @@
 %
 % notodo: Pass the "disable" option to the todonotes package. This will prevent any annotations
 %					from this package from appearing in the compiled file.
-% statistics: Include lb_statistics.
-% notes: Include lb_notes.
 % rmarkdown: Modifications to work with RMarkdown. See below.
 %
 
 % Pass the disable option to the todonotes package.
 \DeclareOption{notodo}{\PassOptionsToPackage{disable}{todonotes}}
-
-% Optionally include the other style files. This saves having to include each of them individually.
-% \RequirePackage cannot be used in \DeclareOption, so instead we need to use boolean flags.
-% This means that you only need \usepackage[...]{lb} in your preamble, with the specified extras as
-% options.
-\newif\if@statistics\@statisticsfalse
-\DeclareOption{statistics}{\@statisticstrue}
-
-\newif\if@notes\@notesfalse
-\DeclareOption{notes}{\@notestrue}
 
 % Option indicating whether the style file is being used in RMarkdown
 % This introduces some changes to certain commands, e.g. enumerate
@@ -47,15 +35,6 @@
 \DeclareOption{rmarkdown}{\@rmarkdowntrue}
 
 \ProcessOptions\relax
-
-% Additional package inclusions
-\if@statistics
-	\RequirePackage{lb_statistics}
-\fi
-
-\if@notes
-	\RequirePackage{lb_notes}
-\fi
 
 % Modifications for RMarkdown
 \if@rmarkdown
@@ -234,3 +213,117 @@
 \getabspath{\themainfile}
 \let\mainabsdir\theabsdir
 \let\mainabspath\theabspath
+
+% Statistics
+\RequirePackage{dsfont}
+
+% Conditional probability
+\newcommand{\conp}[2]{P\left(#1\,\middle|\,#2\right)}
+
+% Conditional density notation, i.e. p(x|y). Used in Bayesian statistics for denoting conditional density/probabilities.
+\newcommand{\denp}[2]{p\left(#1\,\middle|\,#2\right)}
+
+% Conditional distribution, i.e. x | y. Similar to above but without the delimiters.
+\newcommand{\cond}[2]{\left.\,#1\,\middle|\,#2\right.}
+
+% Statistical operators
+\newcommand{\var}[1]{\mathds{V}\!\left[#1\right]}
+\newcommand{\avg}[1]{\mathds{E}\!\left[#1\right]}
+\newcommand{\cov}[1]{\operatorname{cov} \left(#1\right)}
+\newcommand{\sd}[1]{\operatorname{sd} \left(#1\right)}
+\newcommand{\cor}[1]{\operatorname{cor} \left(#1\right)}
+\newcommand{\mse}[2]{\operatorname{MSE}_{\,#1} \left(#2\right)}
+\newcommand{\bias}[2]{b_{\,#1}\left(#2\right)}
+
+% Likelihood theory
+\newcommand{\loglik}[2]{\ell\left(#1\,;\,#2\right)}
+\newcommand{\score}[2]{\mathcal{U}\left(#1\,;\,#2\right)}
+\newcommand{\finfo}[1]{\mathcal{I}\left(#1\right)}
+
+% Cumulative distribution function of the standard normal distribution
+\newcommand{\qnorm}[1]{\Phi\left(#1\right)}
+
+% Choose notation more consistent with other commands
+\newcommand{\nCr}[2]{{1\choose #2}}
+
+\newcommand{\alsu}{\,\text{a.s.}}
+
+% Distributions
+\newcommand{\Dist}[2]{#1\left(#2\right)}
+
+% Without \sim
+\newcommand{\Gauss}[1]{\Dist{\mathcal{N}}{#1}}
+\newcommand{\Bin}[1]{\Dist{\mathrm{Bin}}{#1}}
+\newcommand{\Geom}[1]{\Dist{\mathrm{Geom}}{#1}}
+\newcommand{\Bern}[1]{\Dist{\mathrm{Bern}}{#1}}
+\newcommand{\Exp}[1]{\Dist{\mathrm{Exp}}{#1}}
+\newcommand{\Pois}[1]{\Dist{\mathrm{Poisson}}{#1}}
+\newcommand{\HypGeo}[1]{\Dist{\mathrm{Hypergeometric}}{#1}}
+\newcommand{\Uniform}[1]{\Dist{\mathrm{U}}{#1}}
+\newcommand{\StdGauss}{\Gauss{0,1}}
+\newcommand{\NegBin}[1]{\Dist{\mathrm{NB}}{#1}}
+\newcommand{\GamDist}[1]{\Dist{\mathrm{Gamma}}{#1}}
+\newcommand{\BetaDist}[1]{\Dist{\mathrm{Beta}}{#1}}
+\newcommand{\Cauchy}[1]{\Dist{\mathrm{Cauchy}}{#1}}
+\newcommand{\Trinom}[1]{\Dist{\mathrm{Tri}}{#1}}
+\newcommand{\Dir}[1]{\Dist{\mathrm{Dirichlet}}{#1}}
+\newcommand{\LogNorm}[1]{\Dist{\mathrm{log-}\mathcal{N}}{#1}}
+\newcommand{\InvChiSq}[1]{\Dist{\mathrm{inv-}\chi^2}{#1}}
+\newcommand{\InvGam}[1]{\Dist{\mathrm{Inv-Gamma}}{#1}}
+
+% With \sim
+\newcommand{\isBern}[1]{\sim\Bern{#1}}
+\newcommand{\isPois}[1]{\sim\Pois{#1}}
+\newcommand{\isBin}[1]{\sim\Bin{#1}}
+\newcommand{\isGeom}[1]{\sim\Geom{#1}}
+\newcommand{\isGauss}[1]{\sim\Gauss{#1}}
+\newcommand{\isStdGauss}{\sim\StdGauss}
+\newcommand{\isNegBin}[1]{\sim\NegBin{#1}}
+\newcommand{\isUniform}[1]{\sim\Uniform{#1}}
+\newcommand{\isGamma}[1]{\sim\GamDist{#1}}
+\newcommand{\isExp}[1]{\sim\Exp{#1}}
+\newcommand{\isBeta}[1]{\sim\BetaDist{#1}}
+\newcommand{\isCauchy}[1]{\sim\Cauchy{#1}}
+\newcommand{\isTrinom}[1]{\sim\Trinom{#1}}
+\newcommand{\isDir}[1]{\sim\Dir{#1}}
+\newcommand{\isLogNorm}[1]{\sim\LogNorm{#1}}
+\newcommand{\isInvChiSq}[1]{\sim\InvChiSq{#1}}
+\newcommand{\isInvGam}[1]{\sim\InvGam{#1}}
+
+% Weirder notation using subscripts
+\newcommand{\ChiSq}[1]{\chi^2_{#1}}
+\newcommand{\FDist}[1]{F_{#1}}
+\newcommand{\TDist}[2]{t_{#1}\left(#2\right)}
+\newcommand{\StdT}[1]{t_{#1}}
+\newcommand{\Multinom}[2]{\mathrm{Multi}_{r}\left(#2\right)}
+
+\newcommand{\isChiSq}[1]{\sim\ChiSq{#1}}
+\newcommand{\isF}[1]{\sim\FDist{#1}}
+\newcommand{\isT}[2]{\sim\TDist{#1}{#2}}
+\newcommand{\isStdT}[1]{\sim\StdT{#1}}
+\newcommand{\isMultinom}[2]{\sim\Multinom{#1}{#2}}
+
+% Hypothesis tests
+\newcommand{\hypothesis}[1]{%
+	\[
+		H_0\,:\, #1
+	\]
+}
+
+% Theorem-like environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{defn}{Definition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{result}{Result}[section]
+\newtheorem{hypo}{Hypothesis}[section]
+\newtheorem{remark}{Remark}[section]
+
+% Proof environment, ended with box
+\newenvironment{proof}{%
+	\noindent{\bfseries Proof.}\hspace{0.5em}
+}{%
+	\ \null  \hfill $\square$ \par
+}
+

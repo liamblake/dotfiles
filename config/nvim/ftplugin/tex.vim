@@ -39,6 +39,8 @@ endfunction
 " Restart compiler
 nnoremap <localleader>lr <cmd>VimtexStop<CR><cmd>VimtexCompile<CR>
 
+nnoremap <localleader>lw <cmd>VimtexCountWords<CR>
+
 " Insert display math environment
 inoremap <M-M> \[<CR><CR>\]<ESC>ki
 

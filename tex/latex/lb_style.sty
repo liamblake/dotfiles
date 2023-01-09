@@ -8,8 +8,6 @@
 % Styling of figure captions
 \RequirePackage[labelfont=bf]{caption}
 
-\RequirePackage{setspace}
-
 %% OPTIONS %%
 
 % Option for sans serif font
@@ -17,7 +15,8 @@
 
 % Increase spacing between lines for drafting
 \DeclareOption{draft}{
-	\doublespacing
+	% Big fucking spacing
+	\linespread{1.75}
 }
 
 \ProcessOptions\relax
