@@ -92,8 +92,12 @@ snippet mphil_report "MPhil Weekly Report" b
 
 \usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
 
-\title{Supervisor Meeting Report: Week 2, 2023}
+\title{Supervisor Meeting Report: Week `date +"%W, %Y"`}
 \author{Liam Blake}
+
+% Use \varepsilon by default
+\newcommand\oldepsilon\epsilon
+\renewcommand\epsilon\varepsilon
 
 \begin{document}
 \maketitle
