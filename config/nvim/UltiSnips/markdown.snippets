@@ -13,3 +13,34 @@ endsnippet
 snippet  "Bold text" iA
 **${1:${VISUAL}}**
 endsnippet
+
+
+###############################
+#        TeX snippets         #
+###############################
+snippet norm "Lazy norm" i 
+\left|\!\left|$1\right|\!\right|$0
+endsnippet
+
+snippet dpd "Ordinary derivative" i
+\frac{\mathrm{d}$1}{\mathrm{d}$2}$0
+endsnippet 
+
+snippet dpd "Partial derivative" i
+\frac{\partial $1}{\partial $2}$0
+endsnippet 
+
+snippet aligned "Aligned env" b
+\begin{aligned}
+	$1
+\end{aligned}
+endsnippet
+
+snippet avg "Expectation" i
+\mathbb{E}\left[$1\right]
+endsnippet
+
+snippet R "Reals" i
+\mathbb{R}
+endsnippet
+
