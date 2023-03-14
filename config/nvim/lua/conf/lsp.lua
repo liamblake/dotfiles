@@ -28,7 +28,7 @@ M.config = function()
 	local lsp_installer = require("nvim-lsp-installer")
 
 	-- Set the log level, for debugging
-	vim.lsp.set_log_level("debug")
+	-- vim.lsp.set_log_level("debug")
 
 	local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -57,84 +57,86 @@ M.config = function()
 	table.insert(runtime_path, "lua/?.lua")
 	table.insert(runtime_path, "lua/?/init.lua")
 
-	-- Configure servers installed with LSP-Installer
-	-- TODO: Update to use mason, or remove the reliance on LSP installer entirely
-	lsp_installer.on_server_ready(function(server)
-		local opts = { on_attach = custom_on_attach, capabilities = capabilities }
-
-		-- Some additional configuration for these servers
-		if server.name == "sumneko_lua" then
-			-- Handled by stylua and null-ls
-			opts.on_attach = function(client, bufnr)
-				custom_on_attach(client, bufnr)
-				client.server_capabilities.document_formatting = false
-				client.server_capabilities.document_range_formatting = false
-			end
-			opts.settings = {
-				Lua = {
-					runtime = {
-						version = "LuaJIT",
-						path = runtime_path,
-					},
-					diagnostics = {
-						-- Recognise the 'vim' global
-						globals = { "vim" },
-					},
-					workspace = {
-						library = vim.api.nvim_get_runtime_file("", true),
-					},
-					-- Do not send telemetry data containing a randomized but unique identifier
-					telemetry = {
-						enable = false,
-					},
+	-- Configure servers
+	-- local opts = { on_attach = custom_on_attach, capabilities = capabilities }
+	lspconfig.eslint.setup({ on_attach = custom_on_attach, capabilities = capabilities })
+	lspconfig.cssls.setup({ on_attach = custom_on_attach, capabilities = capabilities })
+	lspconfig.vimls.setup({ on_attach = custom_on_attach, capabilities = capabilities })
+	lspconfig.julials.setup({ on_attach = custom_on_attach, capabilities = capabilities })
+	lspconfig.lua_ls.setup({
+		on_attach = custom_on_attach,
+		capabilities = capabilities,
+		settings = {
+			Lua = {
+				runtime = {
+					version = "LuaJIT",
+					path = runtime_path,
 				},
-			}
-		elseif server.name == "pyright" then
-			opts.settings = { python = { analysis = { typeCheckingMode = "off" } } }
-		elseif server.name == "tsserver" then
-			-- Handled by prettier and null-ls
-			opts.on_attach = function(client, bufnr)
-				custom_on_attach(client, bufnr)
-				client.server_capabilities.document_formatting = false
-				client.server_capabilities.document_range_formatting = false
-			end
-		elseif server.name == "html" then
-			-- Handled by prettier and null-ls
-			opts.on_attach = function(client, bufnr)
-				custom_on_attach(client, bufnr)
-				client.server_capabilities.document_formatting = false
-				client.server_capabilities.document_range_formatting = false
-			end
-		elseif server.name == "rust_analyzer" then
-			opts.on_attach = function(client, bufnr)
-				custom_on_attach(client, bufnr)
-				client.server_capabilities.document_formatting = false
-				client.server_capabilities.document_range_formatting = false
-			end
-		elseif server.name == "texlab" then
-			opts.settings = {
-				texlab = {
-					auxDirectory = "build",
-					build = {
-						args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "-outdir=build", "%f" },
-						executable = "latexmk",
-						forwardSearchAfter = false,
-						onSave = false,
-					},
+				diagnostics = {
+					-- Recognise the 'vim' global
+					globals = { "vim" },
 				},
-				diagnosticsDelay = 50,
-				chktex = {
-					onEdit = false,
-					onOpenAndSave = true,
+				workspace = {
+					library = vim.api.nvim_get_runtime_file("", true),
 				},
-			}
-		end
+				-- Do not send telemetry data containing a randomized but unique identifier
+				telemetry = {
+					enable = false,
+				},
+			},
+		},
+	})
+	lspconfig.pyright.setup({
+		on_attach = custom_on_attach,
+		capabilities = capabilities,
+		settings = { python = { analysis = { typeCheckingMode = "off" } } },
+	})
+	-- Formatting handled by prettier and null-ls
+	lspconfig.tsserver.setup({
+		on_attach = function(client, bufnr)
+			custom_on_attach(client, bufnr)
+			client.server_capabilities.document_formatting = false
+			client.server_capabilities.document_range_formatting = false
+		end,
+		capabilities = capabilities,
+	})
+	lspconfig.html.setup({
+		on_attach = function(client, bufnr)
+			custom_on_attach(client, bufnr)
+			client.server_capabilities.document_formatting = false
+			client.server_capabilities.document_range_formatting = false
+		end,
+		capabilities = capabilities,
+	})
+	lspconfig.rust_analyzer.setup({
+		on_attach = function(client, bufnr)
+			custom_on_attach(client, bufnr)
+			client.server_capabilities.document_formatting = false
+			client.server_capabilities.document_range_formatting = false
+		end,
+		capabilities = capabilities,
+	})
+	lspconfig.texlab.setup({
+		on_attach = custom_on_attach,
+		capabilities = capabilities,
+		settings = {
+			texlab = {
+				auxDirectory = "build",
+				build = {
+					args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "-outdir=build", "%f" },
+					executable = "latexmk",
+					forwardSearchAfter = false,
+					onSave = false,
+				},
+			},
+			diagnosticsDelay = 50,
+			chktex = {
+				onEdit = false,
+				onOpenAndSave = true,
+			},
+		},
+	})
 
-		server:setup(opts)
-		vim.cmd([[ do User LspAttachBuffers ]])
-	end)
-
-	-- julials needs to be setup separately - not working otherwise
 	lspconfig.julials.setup({ on_attach = custom_on_attach, capabilities = capabilities })
 end
 
