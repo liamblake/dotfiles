@@ -43,6 +43,12 @@ vim.keymap.set("n", "Y", "y$")
 -- Turn off hlsearch with two ESCs
 vim.keymap.set("n", "<esc><esc>", "<cmd>nohls<CR>")
 
+-- Fold settings
+-- vim.o.foldmethod = "expr"
+-- vim.o.foldexp = [[nvim_treesitter#foldexpr()]]
+-- vim.o.fillchars = [[fold:\\ ]]
+-- vim.o.foldtext = [[getline(v:foldstart).'...'.trim(getline(v:foldend))]]
+
 vim.opt.termguicolors = true
 
 -- Other configuration

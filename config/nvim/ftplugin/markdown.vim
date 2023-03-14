@@ -3,8 +3,15 @@ setlocal spell
 " Do not split words when wrapping
 setlocal linebreak
 
-" Enable syntax highlighting of code blocks
-let g:markdown_fenced_languages = ['python', 'shell=sh']
+" Append tex as the filetype, to enable snippets and vimtex fun
+" https://germaniumhq.com/2019/02/06/2019-02-06-Vim-Ultimate-Editing:-Multiple-File-Types/
+function! Mdtex()
+    if &filetype =~ 'tex'
+        let l:newType = substitute(&filetype, 'tex\.', '', '')
+    else
+        let l:newType =  'tex.' . &filetype
+    endif
 
-" Preview in browswer
-nnoremap <localleader>sp <Plug>MarkdownPreview<CR>>
+    execute 'set filetype=' . l:newType
+endfunction
+command Mdtex call Mdtex()

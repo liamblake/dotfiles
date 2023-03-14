@@ -8,6 +8,7 @@ M.setup = function()
 		options = { "-bibtex", "-xelatex", "-shell-escape", "-synctex=1" },
 	}
 
+	-- PDF viewer depends on OS
 	if vim.loop.os_uname().sysname == "Darwin" then
 		-- Use Skim on Mac
 		vim.g.vimtex_view_method = "skim"
@@ -23,25 +24,22 @@ M.setup = function()
 		split_pos = "vert rightbelow",
 	}
 
-	-- Do not automatically open quickfix menu on compilation - use Trouble instead
+	-- Enable folding
+	vim.g.vimtex_fold_enabled = 1
+
+	-- Do not automatically open quickfix menu on compilation
 	vim.g.vimtex_quickfix_mode = 0
 
-	-- Disable indentation
+	-- Disable indentation. Handled by latexindent.
 	vim.g.vimtex_indent_enabled = 0
 
 	-- Disable syntax conceal
 	vim.g.vimtex_syntax_conceal_disable = 1
 
-	-- Start compilation automatically on open
-	-- Clean auxillary files on close
-	-- TODO: Do not attempt to compile .sty or .cls files
-	vim.cmd([[
-				augroup vimtex_events
-					au!
-					au user VimtexEventInitPost VimtexCompile
-					au user VimtexEventQuit VimtexClean
-			]])
+	-- Disable insert mode mappings
+	vim.g.vimtex_imaps_enabled = 0
 
+	-- Register keybindings to which-key
 	require("which-key").register({
 		["<localleader>l"] = {
 			name = "+VimTeX",
@@ -49,6 +47,7 @@ M.setup = function()
 			v = "forward search",
 			q = "view log",
 			T = "toggle outline",
+			w = "count words",
 		},
 	})
 end

@@ -14,10 +14,11 @@ M.config = function()
 			"lua",
 			"html",
 			"markdown",
+			"markdown_inline",
 		},
 		highlight = {
 			enable = true,
-			additional_vim_regex_highlighting = false,
+			additional_vim_regex_highlighting = { "markdown" },
 			-- Disable for LaTeX, since I prefer the Vimtex highlighting
 			disable = { "latex" },
 		},

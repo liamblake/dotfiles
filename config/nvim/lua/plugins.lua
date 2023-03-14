@@ -67,15 +67,20 @@ packer.startup({
 				require("conf.true_zen").setup()
 			end,
 		})
-		--
-		-- use({
-		-- 	"folke/zen-mode.nvim",
-		-- 	config = function()
-		-- 		require("zen-mode").setup({})
-		-- 	end,
-		-- })
 
-		-- LSP
+		-- LSP - the order of plugins is important
+		use({
+			"williamboman/mason.nvim",
+			config = function()
+				require("mason").setup()
+			end,
+		})
+		use({
+			"williamboman/mason-lspconfig.nvim",
+			config = function()
+				require("mason-lspconfig").setup()
+			end,
+		})
 		use({
 			"neovim/nvim-lspconfig",
 			setup = function()
@@ -86,7 +91,7 @@ packer.startup({
 			end,
 		})
 
-		use({ "williamboman/nvim-lsp-installer" })
+		-- use({ "williamboman/nvim-lsp-installer" })
 		use({
 			"ray-x/lsp_signature.nvim",
 			config = function()
@@ -222,7 +227,10 @@ packer.startup({
 					["<leader>x"] = {
 						name = "+trouble",
 						x = { "<cmd>TroubleToggle<cr>", "toggle" },
-						w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "toggle workspace diagnostics" },
+						w = {
+							"<cmd>TroubleToggle lsp_workspace_diagnostics<cr>",
+							"toggle workspace diagnostics",
+						},
 						d = { "<cmd>TroubleToggle document_diagnostics<cr>", "toggle document diagnostics" },
 						q = { "<cmd>TroubleToggle quickfix<cr>", "toggle quickfix" },
 					},
@@ -246,17 +254,13 @@ packer.startup({
 			ft = { "tex", "bib" },
 		})
 
-		-- Markdown
+		-- Markdown - Obsidian integration
 		use({
-			"jakewvincent/mkdnflow.nvim",
-			ft = { "md", "rmd", "markdown" },
+			"epwalsh/obsidian.nvim",
 			config = function()
-				require("mkdnflow").setup({ new_file_prefix = [['']] })
+				require("conf.obsidian").config()
 			end,
 		})
-
-		-- R
-		use({ "jalvesaq/Nvim-R", ft = { "r", "rmd" } })
 
 		-- Syntax highlightings
 		use({
@@ -266,41 +270,11 @@ packer.startup({
 			end,
 		})
 
+		-- HTML
 		use({
-			"lukas-reineke/headlines.nvim",
+			"windwp/nvim-ts-autotag",
 			config = function()
-				require("headlines").setup({
-					rmd = { headline_highlights = false },
-					quarto = {
-						query = vim.treesitter.parse_query(
-							"markdown",
-							[[
-                (atx_heading [
-                    (atx_h1_marker)
-                    (atx_h2_marker)
-                    (atx_h3_marker)
-                    (atx_h4_marker)
-                    (atx_h5_marker)
-                    (atx_h6_marker)
-                ] @headline)
-
-                (thematic_break) @dash
-
-                (fenced_code_block) @codeblock
-
-                (block_quote_marker) @quote
-                (block_quote (paragraph (inline (block_continuation) @quote)))
-            ]]
-						),
-						treesitter_language = "markdown",
-						headline_highlights = false,
-						codeblock_highlight = "CodeBlock",
-						dash_highlight = "Dash",
-						dash_string = "-",
-						quote_highlight = "Quote",
-						quote_string = "┃",
-					},
-				})
+				require("nvim-ts-autotag").setup()
 			end,
 		})
 

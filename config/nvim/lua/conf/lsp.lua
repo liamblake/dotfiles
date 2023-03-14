@@ -25,7 +25,6 @@ end
 
 M.config = function()
 	local lspconfig = require("lspconfig")
-	local lsp_installer = require("nvim-lsp-installer")
 
 	-- Set the log level, for debugging
 	-- vim.lsp.set_log_level("debug")
