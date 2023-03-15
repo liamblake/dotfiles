@@ -31,7 +31,7 @@ root: ~/Dropbox/masters/
 # tmux_command: byobu
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-startup_window: writing
+startup_window: main
 
 # Specifies (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
 startup_pane: 1
@@ -45,16 +45,21 @@ windows:
       root: ~/Dropbox/masters/thesis/
       panes:
         - nvim
-  - writing:
+  - main:
       layout: main-horizontal
       panes: 
         - nvim
-  - code:
+  - scratchpad:
       layout: b95b,269x69,0,0[269x50,0,0,0,269x18,0,51{134x18,0,51,4,134x18,135,51,6}]
-      root: ~/Dropbox/masters/code/
+      root: ~/Dropbox/masters/repos/scratchpad/
       panes:
         - nvim
         - julia
+  - notes: 
+      layout: main-horizontal
+      root: ~/Dropbox/notes/
+      panes:
+        - nvim
   - dotfiles:
       layout: main-horizontal
       root: ~/dev/dotfiles
