@@ -1,7 +1,6 @@
 {
   // General settings
   "git.autofetch": true,
-  "editor.formatOnSave": true,
   // Theme
   "workbench.iconTheme": "material-icon-theme",
   // Eliminate those pesky Windows line endings
@@ -25,9 +24,6 @@
     "jupyter-notebook": "left"
   },
   // LaTeX Workshop
-  "[latex]": {
-    "editor.formatOnSave": false
-  },
   "latex-workshop.latex.outDir": "./build",
   "latex-workshop.view.pdf.viewer": "tab",
   "editor.tokenColorCustomizations": {
@@ -133,5 +129,11 @@
   "workbench.sideBar.location": "right",
   "workbench.activityBar.visible": false,
   "files.trimTrailingWhitespace": true,
-  "julia.NumThreads": 4
+  "julia.NumThreads": 4,
+  "editor.formatOnSave": true,
+  "julia.enableTelemetry": false,
+  "Lua.workspace.supportScheme": [
+    "file",
+    "default"
+  ],
 }
