@@ -7,7 +7,7 @@ end
 
 M.config = function()
 	require("obsidian").setup({
-		dir = "~/Dropbox/notes/",
+		dir = "~/Dropbox/notes",
 		completion = {
 			nvim_cmp = true,
 		},
