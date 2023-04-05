@@ -129,9 +129,8 @@ packer.startup({
 		use("tpope/vim-surround")
 		use("LandonSchropp/vim-stamp")
 		use("tpope/vim-repeat")
-
-		-- The power of keybindings
 		use("tpope/vim-unimpaired")
+		use("wellle/targets.vim")
 
 		-- Treesitter-powered spellchecking
 		use({
