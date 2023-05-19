@@ -25,7 +25,7 @@ M.setup = function()
 	}
 
 	-- Enable folding
-	vim.g.vimtex_fold_enabled = 1
+	vim.g.vimtex_fold_enabled = 0
 
 	-- Do not automatically open quickfix menu on compilation
 	vim.g.vimtex_quickfix_mode = 0

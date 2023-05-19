@@ -84,6 +84,25 @@ snippet beamer "Beamer" b
 \end{document}
 endsnippet
 
+
+snippet refart "Refart" b 
+\documentclass[a5paper]{refart}
+
+\usepackage[]{lb}
+\usepackage{lb_style}
+
+\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
+
+\title{$2}
+\author{${3:Liam Blake}}
+
+\begin{document}
+\maketitle
+
+$0
+\end{document}
+endsnippet
+
 snippet mphil_report "MPhil Weekly Report" b
 \documentclass[12pt]{article}
 
@@ -159,6 +178,24 @@ snippet subfig "Subfigure" b
 	\label{fig:$5}
 \end{subfigure}
 endsnippet
+
+
+snippet eqnn "Numbered equation" b
+\begin{equation}
+	$1
+	\label{eqn:$2}
+\end{equation}
+endsnippet
+
+snippet subeqnn "Numered subequations" b 
+\begin{subequations}\label{eqn:$3}
+	\begin{align}
+		$1 \label{eqn:$3_$4} \\ 
+		$2 \label{eqn:$3_$5}$0
+	\end{align}
+\end{subequations}
+endsnippet
+
 
 ###############################
 # Theorems, definitions, etc. #
@@ -416,12 +453,5 @@ endsnippet
 
 snippet note "Note note" i
 \note{${1:${VISUAL}}} % NOTE
-endsnippet
-
-snippet eqnn "Numbered equation" b
-\begin{equation}
-	$1
-	\label{eqn:$2}
-\end{equation}
 endsnippet
 

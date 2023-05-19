@@ -4,14 +4,20 @@
 
 \ProvidesPackage{lb_style}[16/03/2021]
 
+
 \RequirePackage{amsmath}
 % Styling of figure captions
 \RequirePackage[labelfont=bf]{caption}
 
+% Font
+\RequirePackage{lmodern}
+\RequirePackage[T1]{fontenc}
+\renewcommand{\familydefault}{\sfdefault}
+
 %% OPTIONS %%
 
 % Option for sans serif font
-\DeclareOption{sans}{\renewcommand{\familydefault}{\sfdefault}}
+% \DeclareOption{sans}{\renewcommand{\familydefault}{\sfdefault}}
 
 % Increase spacing between lines for drafting
 \DeclareOption{draft}{
@@ -28,5 +34,30 @@
 % Number equations by section
 \numberwithin{equation}{section}
 
-% Preferred bibstyle
-% \bibliographystyle{siam}
+% Hyperrefs
+\hypersetup{colorlinks,linkcolor=blue,citecolor=red,urlcolor=magenta,filecolor=magenta,breaklinks,dvips,bookmarks,bookmarksopen}
+
+% Section stylisation
+\RequirePackage{titlesec}
+	\titleformat{\section}[runin]{\color{violet}\normalfont\bfseries}{\thesection.}{0.5em}{}[.\vspace{0.5em}]
+	\titleformat{\subsection}[runin]{\color{violet}\normalfont\bfseries}{\thesubsection.}{0.5em}{}[.\vspace{0.5em}]
+	\titleformat{\subsubsection}[runin]{\color{violet}\normalfont\bfseries}{\thesubsection.}{0.5em}{}[.\vspace{0.5em}]
+
+
+% Class specific adjustments
+\@ifclassloaded{refart}{
+	% Customised version of the title from refart
+  \def\@maketitle{%
+    \newpage
+    \null
+    \let \footnote \thanks
+    {\color{violet}\Large\bfseries \@title \par}%
+    {\normalsize
+      \lineskip .5em%
+      \begin{flushleft}%
+				\color{violet} 
+				\@author \linebreak
+        \@date
+      \end{flushleft}\par
+			\vskip 1.5em \hrule}}%
+}{}
