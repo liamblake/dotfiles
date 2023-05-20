@@ -2,7 +2,7 @@
 DOTFILES_ROOT=$(cd "$(dirname "$0")"; pwd -P)
 
 Echo $SCRIPT
-echo $DOTFILES_ROOT 
+echo $DOTFILES_ROOT
 
 create_home_symlink() {
 	SRC=$DOTFILES_ROOT/$1

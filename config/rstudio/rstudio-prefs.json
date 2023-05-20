@@ -1,15 +1,15 @@
 {
-    "jobs_tab_visibility": "shown",
-    "initial_working_directory": "~",
-    "editor_theme": "Cobalt",
-    "posix_terminal_shell": "zsh",
-    "editor_keybindings": "vim",
-    "font_size_points": 12,
-    "rmd_auto_date": true,
-    "document_author": "Liam Blake (a1742080)",
-    "latex_shell_escape": true,
-    "show_indent_guides": true,
-    "rainbow_parentheses": true,
-    "save_workspace": "never",
-    "blinking_cursor": false
+  "jobs_tab_visibility": "shown",
+  "initial_working_directory": "~",
+  "editor_theme": "Cobalt",
+  "posix_terminal_shell": "zsh",
+  "editor_keybindings": "vim",
+  "font_size_points": 12,
+  "rmd_auto_date": true,
+  "document_author": "Liam Blake (a1742080)",
+  "latex_shell_escape": true,
+  "show_indent_guides": true,
+  "rainbow_parentheses": true,
+  "save_workspace": "never",
+  "blinking_cursor": false
 }

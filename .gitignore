@@ -1,3 +1,6 @@
+# No clue what these are
+*.bak0
+
 # Packer compiled
 config/nvim/plugin
 

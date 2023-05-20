@@ -47,7 +47,7 @@ windows:
         - nvim
   - main:
       layout: main-horizontal
-      panes: 
+      panes:
         - nvim
   - scratchpad:
       layout: b95b,269x69,0,0[269x50,0,0,0,269x18,0,51{134x18,0,51,4,134x18,135,51,6}]
@@ -55,7 +55,7 @@ windows:
       panes:
         - nvim
         - julia
-  - notes: 
+  - notes:
       layout: main-horizontal
       root: ~/Dropbox/notes/
       panes:

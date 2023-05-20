@@ -27,15 +27,16 @@
 	pl = "log --graph --oneline --decorate"
 	fs = "!git fetch && git status"
 	ul = "reset HEAD~"
-	stashall = "stash save --include-untracked"
 	update-url = "remote set-url origin"
 	sync = "!git pull && git push"
+	rmc = "rm --cached"
 
 	# Stash operations
 	sl = "stash list"
 	ss = "stash save"
 	sp = "stash pop"
 	sa = "stash apply"
+	stashall = "stash save --include-untracked"
 
 	# When rebasing
 	rc = "rebase --continue"
@@ -44,4 +45,7 @@
 
 [user]
 	email = liamlemblake@gmail.com
-	name = LiamBlake
+	name = "liamblake"
+
+[init]
+	defaultBranch = "main"

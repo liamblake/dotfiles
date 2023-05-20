@@ -8,7 +8,7 @@ catch e
 end
 
 # If Julia is started in a directory
-if isfile("Project.toml") && isfile("Manifest.toml")
+if isfile("Project.toml")
     Pkg.activate(".")
 end
 
@@ -22,4 +22,3 @@ OMR.enable_pass!("SyntaxHighlighter", false)
 OMR.enable_pass!("RainbowBrackets", false)
 
 ENV["JULIA_EDITOR"] = "nvim"
-

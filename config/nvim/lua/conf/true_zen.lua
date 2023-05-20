@@ -8,7 +8,7 @@ M.setup = function()
 				padding = { left = 13, right = 13 },
 				callbacks = {
 					open_pos = function()
-						-- Ensure numbers are enabled. 
+						-- Ensure numbers are enabled.
 						vim.o.number = true
 						vim.o.relativenumber = true
 					end,

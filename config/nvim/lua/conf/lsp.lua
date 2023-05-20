@@ -27,7 +27,7 @@ M.config = function()
 	local lspconfig = require("lspconfig")
 
 	-- Set the log level, for debugging
-	-- vim.lsp.set_log_level("debug")
+	vim.lsp.set_log_level("debug")
 
 	local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -132,6 +132,10 @@ M.config = function()
 			chktex = {
 				onEdit = false,
 				onOpenAndSave = true,
+			},
+			latexFormatter = "latexindent",
+			latexindent = {
+				modifyLineBreaks = true,
 			},
 		},
 	})

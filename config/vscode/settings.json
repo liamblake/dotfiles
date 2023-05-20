@@ -132,8 +132,8 @@
   "julia.NumThreads": 4,
   "editor.formatOnSave": true,
   "julia.enableTelemetry": false,
-  "Lua.workspace.supportScheme": [
-    "file",
-    "default"
-  ],
+  "Lua.workspace.supportScheme": ["file", "default"],
+  "[julia]": {
+    "editor.defaultFormatter": "julialang.language-julia"
+  }
 }

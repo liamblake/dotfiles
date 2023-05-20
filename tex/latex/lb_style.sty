@@ -39,25 +39,25 @@
 
 % Section stylisation
 \RequirePackage{titlesec}
-	\titleformat{\section}[runin]{\color{violet}\normalfont\bfseries}{\thesection.}{0.5em}{}[.\vspace{0.5em}]
-	\titleformat{\subsection}[runin]{\color{violet}\normalfont\bfseries}{\thesubsection.}{0.5em}{}[.\vspace{0.5em}]
-	\titleformat{\subsubsection}[runin]{\color{violet}\normalfont\bfseries}{\thesubsection.}{0.5em}{}[.\vspace{0.5em}]
+\titleformat{\section}[runin]{\color{violet}\normalfont\bfseries}{\thesection.}{0.5em}{}[.\vspace{0.5em}]
+\titleformat{\subsection}[runin]{\color{violet}\normalfont\bfseries}{\thesubsection.}{0.5em}{}[.\vspace{0.5em}]
+\titleformat{\subsubsection}[runin]{\color{violet}\normalfont\bfseries}{\thesubsection.}{0.5em}{}[.\vspace{0.5em}]
 
 
 % Class specific adjustments
 \@ifclassloaded{refart}{
 	% Customised version of the title from refart
-  \def\@maketitle{%
-    \newpage
-    \null
-    \let \footnote \thanks
-    {\color{violet}\Large\bfseries \@title \par}%
-    {\normalsize
-      \lineskip .5em%
-      \begin{flushleft}%
-				\color{violet} 
+	\def\@maketitle{%
+		\newpage
+		\null
+		\let \footnote \thanks
+		{\color{violet}\Large\bfseries \@title \par}%
+		{\normalsize
+			\lineskip .5em%
+			\begin{flushleft}%
+				\color{violet}
 				\@author \linebreak
-        \@date
-      \end{flushleft}\par
+				\@date
+			\end{flushleft}\par
 			\vskip 1.5em \hrule}}%
 }{}

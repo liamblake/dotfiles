@@ -6,17 +6,17 @@ M.setup = function()
 	local formatting = require("null-ls").builtins.formatting
 	local linting = require("null-ls").builtins.diagnostics
 
-	local indentlatex = {
-		method = require("null-ls.methods").FORMATTING,
-		filetypes = { "latex" },
-		generator = {},
-		generator_opts = {
-			command = "latexindent",
-			to_stdin = true,
-		},
-		factory = nl_utils.formatter_factory,
-	}
-	null_ls.register(indentlatex)
+	-- local indentlatex = {
+	-- 	method = require("null-ls.methods").FORMATTING,
+	-- 	filetypes = { "latex", "tex" },
+	-- 	generator = {},
+	-- 	generator_opts = {
+	-- 		command = "latexindent",
+	-- 		to_stdin = true,
+	-- 	},
+	-- 	factory = nl_utils.formatter_factory,
+	-- }
+	-- null_ls.register(indentlatex)
 
 	null_ls.setup({
 		sources = {
