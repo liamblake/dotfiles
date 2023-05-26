@@ -1,8 +1,6 @@
 {
   // General settings
   "git.autofetch": true,
-  // Theme
-  "workbench.iconTheme": "material-icon-theme",
   // Eliminate those pesky Windows line endings
   "files.eol": "\n",
   // Python settings
@@ -112,16 +110,9 @@
   },
   "editor.lineNumbers": "relative",
   "vim.highlightedyank.enable": true,
-  "github.copilot.enable": {
-    "*": true,
-    "yaml": false,
-    "plaintext": false,
-    "markdown": true
-  },
   "terminal.integrated.defaultProfile.osx": "zsh",
   "r.rpath.mac": "/usr/local/bin/R",
   "r.rterm.mac": "/usr/local/bin/R",
-  "workbench.colorTheme": "Tokyo Night Storm",
   "quarto.mathjax.theme": "dark",
   "quarto.render.renderOnSave": true,
   "vim.vimrc.enable": true,
@@ -132,8 +123,18 @@
   "julia.NumThreads": 4,
   "editor.formatOnSave": true,
   "julia.enableTelemetry": false,
-  "Lua.workspace.supportScheme": ["file", "default"],
   "[julia]": {
     "editor.defaultFormatter": "julialang.language-julia"
-  }
+  },
+  "Lua.workspace.supportScheme": ["file", "default"],
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "julia.persistentSession.shell": "/bin/zsh",
+  "workbench.colorTheme": "Tokyo Night Storm",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.rulers": [
+    100
+  ],
+  "workbench.colorCustomizations": {
+    "editorRuler.foreground": "#3C425F"
+}
 }
