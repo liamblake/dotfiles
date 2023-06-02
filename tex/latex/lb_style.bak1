@@ -47,14 +47,14 @@
 % Class specific adjustments
 \@ifclassloaded{refart}{
 	% Customised version of the title from refart
-	\def\@maketitle{%
-		\newpage
-		\null
-		\let \footnote \thanks
-		{\color{black}\Large\bfseries \@title \par}%
-		{\normalsize
-			\lineskip .5em%
-			\begin{flushleft}%
+  \def\@maketitle{%
+    \newpage
+    \null
+    \let \footnote \thanks
+    {\color{black}\Large\bfseries \@title \par}%
+    {\normalsize
+      \lineskip .5em%
+      \begin{flushleft}%
 				\color{black}
 				\@author \linebreak
 				\@date
