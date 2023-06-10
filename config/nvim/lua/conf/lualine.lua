@@ -30,21 +30,21 @@ M.config = function()
 			section_separators = { left = "", right = "" },
 			component_separators = { left = "|", right = "|" },
 			disabled_filetypes = { "toggleterm" },
-			globalstatus = true,
+			globalstatus = false,
 		},
 		sections = {
 			lualine_a = { "mode" },
-			lualine_b = { "branch", "diff" },
-			lualine_c = {
+			lualine_b = {
 				{
 					"filename",
 					path = 1,
 					separator = "",
 					symbols = { modified = " ●", readonly = " ", noname = "" },
+					color = { bg = "#2A2A37", fg = "#DCD7BA" },
 				},
 				{ M.compile_status },
 			},
-			lualine_x = {
+			lualine_c = {
 				{
 					"diagnostics",
 					sources = { "nvim_diagnostic" },
@@ -52,10 +52,11 @@ M.config = function()
 					sections = { "error", "warn", "info", "hint" },
 				},
 			},
-			lualine_y = { "filetype" },
-			lualine_z = { "location" },
+			lualine_x = {},
+			lualine_y = {},
+			lualine_z = {},
 		},
-		extensions = { "nvim-tree", "fugitive" },
+		extensions = { "fugitive" },
 	})
 end
 

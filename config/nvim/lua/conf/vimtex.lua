@@ -17,10 +17,12 @@ M.setup = function()
 		vim.g.vimtex_view_general_viewer = "SumatraPDF"
 	end
 
+	-- Table of contents
 	vim.g.vimtex_toc_config = {
 		show_help = 0,
 		fold_enabled = 1,
 		indent_levels = 1,
+		layer_status = { content = 1, label = 0, todo = 0, include = 0 },
 		split_pos = "vert rightbelow",
 	}
 
