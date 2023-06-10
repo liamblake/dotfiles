@@ -37,6 +37,7 @@ M.config = function()
 				':lua require"telescope.builtin".find_files({ prompt_title = "all files", hidden = true})<CR>',
 				"find file",
 			},
+			p = { ':lua require"telescope.builtin".buffers({ prompt_title = "open buffers" })<CR>', "find buffer" },
 			r = { ':lua require"telescope.builtin".lsp_references()<CR>', "find symbol reference" },
 			t = { ':lua require"telescope.builtin".live_grep()<CR>', "live grep" },
 			s = { ':lua require"telescope.builtin".treesitter()<CR>', "find treesitter symbol" },
@@ -45,15 +46,16 @@ M.config = function()
 				s = { ':lua require"telescope.builtin".lsp_workspace_symbols()<CR>', "find workspace symbol" },
 			},
 			d = { ':lua require"conf.telescope".search_dotfiles()<CR>', "find dotfile" },
-			n = { ':lua require"conf.telescope".search_notes()<CR>', "find notes" },
-			b = {
-				':lua require"telescope".extensions.file_browser.file_browser( {hidden = true} )<CR>',
-				"file browser",
-			},
 			g = {
 				name = "+git",
 				s = { ':lua require"telescope.builtin".git_stash()<CR>', "find git stash" },
 				b = { ':lua require"telescope.builtin".git_branches()<CR>', "find git branch" },
+			},
+		},
+		["<leader>b"] = {
+			f = {
+				':lua require"telescope".extensions.file_browser.file_browser( {hidden = true} )<CR>',
+				"file browser",
 			},
 		},
 	})
