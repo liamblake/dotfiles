@@ -117,7 +117,6 @@ packer.startup({
 			end,
 		})
 
-		-- use({ "williamboman/nvim-lsp-installer" })
 		use({
 			"ray-x/lsp_signature.nvim",
 			config = function()
@@ -216,23 +215,6 @@ packer.startup({
 				vim.g.UltiSnipsExpandTrigger = "<tab>"
 				vim.g.UltiSnipsSnippetDirectories = { "ultisnips" }
 			end,
-		})
-
-		-- Terminals
-		use({
-			"akinsho/toggleterm.nvim",
-			config = function()
-				require("toggleterm").setup({})
-			end,
-		})
-
-		-- Annotation generation
-		use({
-			"danymat/neogen",
-			config = function()
-				require("conf.neogen").config()
-			end,
-			requires = "nvim-treesitter/nvim-treesitter",
 		})
 
 		use({
