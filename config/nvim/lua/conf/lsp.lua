@@ -15,7 +15,7 @@ M.setup = function()
 		autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()
 	]])
 	-- Use custom signs for diagnostics
-	local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+	local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 
 	for type, icon in pairs(signs) do
 		local hl = "DiagnosticSign" .. type
