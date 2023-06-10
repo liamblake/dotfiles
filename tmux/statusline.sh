@@ -2,8 +2,8 @@
 # Originally stolen and adapted from akinsho
 # https://github.com/akinsho/dotfiles/blob/main/tmux/tmux-status.conf
 
-BACKGROUND_COLOR='#1E2030'
-INACTIVE_FG_COLOR='#5c6370'
+BACKGROUND_COLOR='#2A2A37'
+INACTIVE_FG_COLOR='#54546D'
 
 set-option -g status-style "bg=$BACKGROUND_COLOR"
 

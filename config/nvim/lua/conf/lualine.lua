@@ -26,7 +26,7 @@ end
 M.config = function()
 	require("lualine").setup({
 		options = {
-			theme = "tokyonight",
+			theme = "kanagawa",
 			section_separators = { left = "", right = "" },
 			component_separators = { left = "|", right = "|" },
 			disabled_filetypes = { "toggleterm" },

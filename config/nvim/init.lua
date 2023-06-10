@@ -2,12 +2,13 @@ local vim = vim
 
 vim.o.syntax = "on"
 
-vim.o.number = true
-vim.o.relativenumber = true
-vim.opt.signcolumn = "yes:1"
+vim.opt.signcolumn = "yes:2"
 vim.g.noshowmode = true
 
+-- Cursorline and line numbers
 vim.o.cursorline = true
+vim.o.number = true
+vim.o.relativenumber = true
 
 -- Set spacebar to be map leader
 vim.g.mapleader = " "
@@ -53,4 +54,3 @@ vim.opt.termguicolors = true
 
 -- Other configuration
 require("plugins")
-require("colours")
