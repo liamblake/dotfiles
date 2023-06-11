@@ -10,13 +10,13 @@ M.compile_status = function()
 
 		-- Status: running
 		if vim.b.vimtex["compiler"]["status"] == 1 then
-			return " (⋯)"
+			return " (󰇘)"
 			-- Status: compile success
 		elseif vim.b.vimtex["compiler"]["status"] == 2 then
-			return " ()"
+			return " (󰄬)"
 			-- Status: compile failed
 		elseif vim.b.vimtex["compiler"]["status"] == 3 then
-			return " ()"
+			return " ()"
 		end
 	else
 		return ""
@@ -42,7 +42,7 @@ M.config = function()
 					symbols = { modified = " ●", readonly = " ", noname = "" },
 					color = { bg = "#2A2A37", fg = "#DCD7BA" },
 				},
-				{ M.compile_status },
+				{ M.compile_status, color = { bg = "#2A2A37", fg = "#DCD7BA" } },
 			},
 			lualine_c = {
 				{
