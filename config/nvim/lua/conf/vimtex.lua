@@ -1,6 +1,7 @@
 local M = {}
 
 M.setup = function()
+	-- Compiler options
 	vim.g.vimtex_compiler_latexmk = {
 		build_dir = "build",
 		callback = 1,
@@ -16,6 +17,10 @@ M.setup = function()
 		-- Use SumatraPDF on Windows
 		vim.g.vimtex_view_general_viewer = "SumatraPDF"
 	end
+
+	-- Jump to and highlight current line after compilation
+	vim.g.vimtex_view_skim_sync = 1
+	vim.g.vimtex_view_skim_reading_var = 1
 
 	-- Table of contents
 	vim.g.vimtex_toc_config = {
