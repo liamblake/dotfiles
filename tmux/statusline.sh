@@ -28,7 +28,7 @@ set -g status-right-length 70
 set -g status-right ""
 
 set-window-option -g window-status-current-style "bold"
-set-window-option -g window-status-current-format " #I: #[bold]#W $status_items"
+set-window-option -g window-status-current-format " #I: #W $status_items"
 
 set-window-option -g window-status-style "fg=$INACTIVE_FG_COLOR dim"
 set-window-option -g window-status-format "#[none] #I: #W $status_items"
