@@ -25,7 +25,9 @@ packer.startup({
 		-- Theme and visuals
 		use({
 			"rebelot/kanagawa.nvim",
-			config = require("conf.kanagawa").setup(),
+			config = function() 
+				require("conf.kanagawa").setup()
+			end,
 		})
 
 		use({
@@ -229,6 +231,14 @@ packer.startup({
 			end,
 			ft = { "tex", "bib" },
 		})
+
+		use({
+   "quarto-dev/quarto-vim",
+   requires = {
+      {"vim-pandoc/vim-pandoc-syntax"},
+   },
+   ft = {"quarto"},
+})
 
 		-- Markdown - Obsidian integration
 		use({
