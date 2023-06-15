@@ -40,6 +40,10 @@ HISTSIZE=100000
 SAVEHIST=100000
 HISTFILE=~/.zsh_history
 
+# autocompletion using arrow keys (based on history)
+bindkey '\e[A' history-search-backward
+bindkey '\e[B' history-search-forward
+
 # Tab completing a directory appends the name with a slash
 setopt AUTOPARAMSLASH
 
