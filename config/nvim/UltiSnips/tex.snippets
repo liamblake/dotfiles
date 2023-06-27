@@ -56,6 +56,10 @@ snippet article "Document class" b
 
 \usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
 
+% Bibliography settings - use Natbib
+\RequirePackage[authoryear,sort,comma]{natbib}
+\setcitestyle{authoryear,aysep={}}
+
 \title{$2}
 \author{${3:Liam Blake}}
 
@@ -86,12 +90,16 @@ endsnippet
 
 
 snippet refart "Refart" b 
-\documentclass[a5paper]{refart}
+\documentclass[a4paper]{refart}
 
 \usepackage[]{lb}
 \usepackage{lb_style}
 
-\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
+\usepackage[a4paper]{geometry}
+
+% Bibliography settings - use Natbib
+\RequirePackage[authoryear,sort,comma]{natbib}
+\setcitestyle{authoryear,aysep={}}
 
 \title{$2}
 \author{${3:Liam Blake}}
@@ -399,13 +407,13 @@ endsnippet
 # Indefinite scalar integral
 context "math()"
 snippet int "Integral" i
-\int{$1\dd $2}
+\int{$1\dif $2}
 endsnippet
 
 # Definite integral
 context "math()"
 snippet dint "Definite integral" i
-\int_{$1}^{$2}{$3\dd $4}
+\int_{$1}^{$2}{$3\dif $4}
 endsnippet
 
 
@@ -429,6 +437,16 @@ endsnippet
 context "math()"
 snippet | "Middle bar" i
 \,\middle|\,
+endsnippet
+
+context "math()"
+snippet ceil "Ceil" i 
+\left\lceil $1 \right\rceil$0
+endsnippet
+
+context "math()"
+snippet floor "Floor" i 
+\left\lfloor $1 \right\rfloor$0
 endsnippet
 
 #################
@@ -455,3 +473,9 @@ snippet note "Note note" i
 \note{${1:${VISUAL}}} % NOTE
 endsnippet
 
+#################
+# Miscellaneous #
+#################
+snippet ig "includegraphics" i
+\includegraphics[width=${1:\textwidth}]{$2}
+endsnippet
