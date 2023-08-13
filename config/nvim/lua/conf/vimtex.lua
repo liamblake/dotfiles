@@ -3,7 +3,7 @@ local M = {}
 M.setup = function()
 	-- Compiler options
 	vim.g.vimtex_compiler_latexmk = {
-		build_dir = "build",
+		out_dir = "build",
 		callback = 1,
 		continuous = 1,
 		options = { "-bibtex", "-xelatex", "-shell-escape", "-synctex=1" },
