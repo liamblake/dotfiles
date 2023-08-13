@@ -27,7 +27,7 @@ M.config = function()
 	local lspconfig = require("lspconfig")
 
 	-- Set the log level, for debugging
-	vim.lsp.set_log_level("debug")
+	-- vim.lsp.set_log_level("debug")
 
 	local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -47,6 +47,7 @@ M.config = function()
 
 		-- Formatting
 		if client.supports_method("textDocument/formatting") then
+			opts.timeout_ms = 5000
 			vim.keymap.set("n", "<leader>df", vim.lsp.buf.format, opts)
 		end
 	end
