@@ -34,5 +34,5 @@
     "key": "ctrl+j",
     "command": "workbench.files.action.focusFilesExplorer",
     "when": "sideBarFocus && explorerViewletVisible && !filesExplorerFocus"
-  }
+  },
 ]

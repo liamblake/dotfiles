@@ -35,7 +35,7 @@
     ]
   },
   "latex-workshop.latex.recipes": [
-    {
+      {
       "name": "latexmk",
       "tools": ["latexmk"]
     },
@@ -100,7 +100,6 @@
   "editor.fontFamily": "'MesloLGS NF', Monaco, 'Courier New', monospace",
   "terminal.integrated.fontSize": 15,
   "editor.inlineSuggest.enabled": true,
-  "workbench.editor.showTabs": false,
   "editor.scrollbar.vertical": "hidden",
   "editor.wordWrap": "on",
   "problems.decorations.enabled": false,
@@ -111,6 +110,7 @@
   "editor.lineNumbers": "relative",
   "vim.highlightedyank.enable": true,
   "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.profiles.osx": { "zsh": { "path": "/bin/zsh", "args": [ "-l", "-i"] } },
   "r.rpath.mac": "/usr/local/bin/R",
   "r.rterm.mac": "/usr/local/bin/R",
   "quarto.mathjax.theme": "dark",
@@ -136,5 +136,27 @@
   ],
   "workbench.colorCustomizations": {
     "editorRuler.foreground": "#3C425F"
-}
+    },
+  "window.titleBarStyle": "native",
+  "apc.electron": {
+    "titleBarStyle": "hiddenInset",
+    "trafficLightPosition": {
+      "x": 7,
+      "y": 5
+    }
+  },
+  "window.nativeTabs": true,
+  "apc.font.family": "MesloLGS NF",
+  "breadcrumbs.enabled": false,
+  "julia.enableCrashReporter": false,
+  "github.copilot.enable": {
+    "quarto": false,
+    "julia": true,
+    "latex": true
+  },
+  "latex-workshop.latex.autoBuild.run": "never",
+  "terminal.integrated.automationProfile.osx": {
+    "path": "/bin/zsh"
+  },
+  "terminal.integrated.enablePersistentSessions": false,
 }
