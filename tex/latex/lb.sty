@@ -35,24 +35,7 @@
 % Pass the disable option to the todonotes package.
 \DeclareOption{notodo}{\PassOptionsToPackage{disable}{todonotes}}
 
-% Option indicating whether the style file is being used in RMarkdown
-% This introduces some changes to certain commands, e.g. enumerate
-\newif\if@rmarkdown\@rmarkdownfalse
-\DeclareOption{rmarkdown}{\@rmarkdowntrue}
-
 \ProcessOptions\relax
-
-% Modifications for RMarkdown
-\if@rmarkdown
-	% Including code blocks in an enumerate environment causes knitr to fail,
-	% so instead we delimit the environment with these new commands.
-	% See https://tex.stackexchange.com/a/244996
-	% TODO (formatting): latexindent is confused by the begin and ends here.
-	\newcommand{\benum}{\begin{enumerate}}
-			\newcommand{\eenum}{\end{enumerate}}
-	\newcommand{\balph}{\begin{alpharate}}
-			\newcommand{\ealph}{\end{alpharate}}
-\fi
 
 % Provides warnings if labels are unused
 \RequirePackage{refcheck}
@@ -85,7 +68,6 @@
 \newcommand{\Z}{\mathbb{Z}}		% Integers
 \newcommand{\N}{\mathbb{N}}		% Natural numbers
 \newcommand{\Q}{\mathbb{Q}}		% Rational numbers
-% TODO: RMarkdown on Windows dislikes this
 \newcommand{\C}{\mathbb{C}}		% Complex numbers
 
 % Set with a condition
@@ -119,16 +101,6 @@
 \DeclareMathOperator{\arcsech}{arcsech}
 \DeclareMathOperator{\arccsch}{arccsch}
 \DeclareMathOperator{\arccoth}{arccoth}
-
-% Vector calculus operators
-\newcommand{\vder}{\nabla}					% Gradient
-\newcommand{\vdiv}{\vder \cdot}			% Divergence
-\newcommand{\curl}{\vder \times}    % Curl
-
-\newcommand{\hessian}{\nabla\nabla}
-
-% Vector integrals
-% TODO as required
 
 % Differential form of an SDE
 % TODO: Include an optional parameter for the noise, defaulting to W_t
