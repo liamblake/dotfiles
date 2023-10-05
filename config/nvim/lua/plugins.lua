@@ -33,11 +33,8 @@ packer.startup({
 		use({
 			"lukas-reineke/indent-blankline.nvim",
 			config = function()
-				require("indent_blankline").setup({
-					char = "│",
-					buftype_exclude = { "terminal", "help" },
-					use_treesitter = true,
-					show_first_indent_level = false,
+				require("ibl").setup({
+					indent={char = "│"},
 				})
 			end,
 		})
@@ -232,13 +229,7 @@ packer.startup({
 			ft = { "tex", "bib" },
 		})
 
-		use({
-   "quarto-dev/quarto-vim",
-   requires = {
-      {"vim-pandoc/vim-pandoc-syntax"},
-   },
-   ft = {"quarto"},
-})
+		use({"quarto-dev/quarto-nvim", requires = {"jmbuhr/otter.nvim"}, config = function() require("quarto").setup() end, ft = {"quarto"}})
 
 		-- Markdown - Obsidian integration
 		use({
@@ -290,6 +281,9 @@ packer.startup({
 
 		-- For debugging slow startup
 		use({ "dstein64/vim-startuptime" })
+
+		-- Github copilot, for fun 
+		use({"github/copilot.vim"})
 	end,
 	config = {
 		display = {
