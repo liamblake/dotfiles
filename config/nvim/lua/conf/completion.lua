@@ -53,6 +53,7 @@ M.config = function()
 			{ name = "nvim_lsp" },
 			{ name = "ultisnips" },
 			{ name = "path" },
+			{ name = 'omni' },
 		}),
 		formatting = {
 			-- TODO: We should be able to use the built-in LSP completion kinds:

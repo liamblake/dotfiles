@@ -29,9 +29,6 @@ M.config = function()
 		require("nvim-treesitter.install").compilers = { "clang" }
 	end
 
-	-- Parse Quarto files as RMarkdown, for now.
-	local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
-	ft_to_parser.quarto = "R"
 end
 
 return M

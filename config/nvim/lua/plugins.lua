@@ -35,6 +35,7 @@ packer.startup({
 			config = function()
 				require("ibl").setup({
 					indent={char = "│"},
+					scope = {enabled = false},
 				})
 			end,
 		})
@@ -94,12 +95,6 @@ packer.startup({
 				})
 			end,
 		})
-		use({
-			"jose-elias-alvarez/null-ls.nvim",
-			config = function()
-				require("conf.null_ls").setup()
-			end,
-		})
 
 		-- Completions
 		use({
@@ -121,8 +116,13 @@ packer.startup({
 		use("tpope/vim-surround")
 		use("LandonSchropp/vim-stamp")
 		use("tpope/vim-repeat")
-		use("tpope/vim-unimpaired")
 		use("wellle/targets.vim")
+		use({
+			"windwp/nvim-autopairs",
+			config = function()
+				require("conf.autopairs").config()
+			end,
+		})
 
 		-- Treesitter-powered spellchecking
 		use({
@@ -177,12 +177,6 @@ packer.startup({
 				})
 			end,
 		})
-		use({
-			"tpope/vim-fugitive",
-			config = function()
-				vim.keymap.set("n", "<leader>sg", ":Git<CR>")
-			end,
-		})
 
 		-- Snippets
 		use({
@@ -193,25 +187,25 @@ packer.startup({
 			end,
 		})
 
-		use({
-			"folke/trouble.nvim",
-			config = function()
-				require("trouble").setup({ auto_open = false, auto_preview = false })
+		-- use({
+		-- 	"folke/trouble.nvim",
+		-- 	config = function()
+		-- 		require("trouble").setup({ auto_open = false, auto_preview = false })
 
-				require("which-key").register({
-					["<leader>x"] = {
-						name = "+trouble",
-						x = { "<cmd>TroubleToggle<cr>", "toggle" },
-						w = {
-							"<cmd>TroubleToggle lsp_workspace_diagnostics<cr>",
-							"toggle workspace diagnostics",
-						},
-						d = { "<cmd>TroubleToggle document_diagnostics<cr>", "toggle document diagnostics" },
-						q = { "<cmd>TroubleToggle quickfix<cr>", "toggle quickfix" },
-					},
-				})
-			end,
-		})
+		-- 		require("which-key").register({
+		-- 			["<leader>x"] = {
+		-- 				name = "+trouble",
+		-- 				x = { "<cmd>TroubleToggle<cr>", "toggle" },
+		-- 				w = {
+		-- 					"<cmd>TroubleToggle lsp_workspace_diagnostics<cr>",
+		-- 					"toggle workspace diagnostics",
+		-- 				},
+		-- 				d = { "<cmd>TroubleToggle document_diagnostics<cr>", "toggle document diagnostics" },
+		-- 				q = { "<cmd>TroubleToggle quickfix<cr>", "toggle quickfix" },
+		-- 			},
+		-- 		})
+		-- 	end,
+		-- })
 
 		use({
 			"folke/which-key.nvim",
@@ -229,15 +223,13 @@ packer.startup({
 			ft = { "tex", "bib" },
 		})
 
-		use({"quarto-dev/quarto-nvim", requires = {"jmbuhr/otter.nvim"}, config = function() require("quarto").setup() end, ft = {"quarto"}})
-
-		-- Markdown - Obsidian integration
-		use({
-			"epwalsh/obsidian.nvim",
-			config = function()
-				require("conf.obsidian").config()
-			end,
-		})
+		-- -- Markdown - Obsidian integration
+		-- use({
+		-- 	"epwalsh/obsidian.nvim",
+		-- 	config = function()
+		-- 		require("conf.obsidian").config()
+		-- 	end,
+		-- })
 
 		-- Syntax highlightings
 		use({
@@ -263,14 +255,6 @@ packer.startup({
 			end,
 		})
 
-		-- Typing helps
-		use({
-			"windwp/nvim-autopairs",
-			config = function()
-				require("conf.autopairs").config()
-			end,
-		})
-
 		-- Play nice with TMUX
 		use({
 			"christoomey/vim-tmux-navigator",
@@ -278,12 +262,6 @@ packer.startup({
 				return vim.api.nvim_eval('exists("$TMUX")')
 			end,
 		})
-
-		-- For debugging slow startup
-		use({ "dstein64/vim-startuptime" })
-
-		-- Github copilot, for fun 
-		use({"github/copilot.vim"})
 	end,
 	config = {
 		display = {
