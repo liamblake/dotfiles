@@ -25,7 +25,7 @@ packer.startup({
 		-- Theme and visuals
 		use({
 			"rebelot/kanagawa.nvim",
-			config = function() 
+			config = function()
 				require("conf.kanagawa").setup()
 			end,
 		})
@@ -34,8 +34,8 @@ packer.startup({
 			"lukas-reineke/indent-blankline.nvim",
 			config = function()
 				require("ibl").setup({
-					indent={char = "│"},
-					scope = {enabled = false},
+					indent = { char = "│" },
+					scope = { enabled = false },
 				})
 			end,
 		})
@@ -66,13 +66,13 @@ packer.startup({
 		use({
 			"williamboman/mason.nvim",
 			config = function()
-				require("mason").setup()
+				-- require("mason").setup()
 			end,
 		})
 		use({
 			"williamboman/mason-lspconfig.nvim",
 			config = function()
-				require("mason-lspconfig").setup()
+				-- require("mason-lspconfig").setup()
 			end,
 		})
 		use({
@@ -103,6 +103,7 @@ packer.startup({
 				-- Sources
 				{ "hrsh7th/cmp-nvim-lsp" },
 				{ "hrsh7th/cmp-path" },
+				{ "hrsh7th/cmp-omni" },
 				{ "quangnguyen30192/cmp-nvim-ultisnips" },
 				{ "kdheepak/cmp-latex-symbols" },
 			},
@@ -114,6 +115,7 @@ packer.startup({
 		-- Typing helps
 		use("tpope/vim-commentary")
 		use("tpope/vim-surround")
+		use("tpope/vim-unimpaired")
 		use("LandonSchropp/vim-stamp")
 		use("tpope/vim-repeat")
 		use("wellle/targets.vim")
@@ -154,15 +156,6 @@ packer.startup({
 			end,
 		})
 
-		-- LSP progress
-		use({
-			"j-hui/fidget.nvim",
-			tag = "legacy",
-			config = function()
-				require("fidget").setup({ text = { spinner = "dots", done = "󰄬", completed = "Done" } })
-			end,
-		})
-
 		-- Git integration
 		use({
 			"lewis6991/gitsigns.nvim",
@@ -187,26 +180,6 @@ packer.startup({
 			end,
 		})
 
-		-- use({
-		-- 	"folke/trouble.nvim",
-		-- 	config = function()
-		-- 		require("trouble").setup({ auto_open = false, auto_preview = false })
-
-		-- 		require("which-key").register({
-		-- 			["<leader>x"] = {
-		-- 				name = "+trouble",
-		-- 				x = { "<cmd>TroubleToggle<cr>", "toggle" },
-		-- 				w = {
-		-- 					"<cmd>TroubleToggle lsp_workspace_diagnostics<cr>",
-		-- 					"toggle workspace diagnostics",
-		-- 				},
-		-- 				d = { "<cmd>TroubleToggle document_diagnostics<cr>", "toggle document diagnostics" },
-		-- 				q = { "<cmd>TroubleToggle quickfix<cr>", "toggle quickfix" },
-		-- 			},
-		-- 		})
-		-- 	end,
-		-- })
-
 		use({
 			"folke/which-key.nvim",
 			config = function()
@@ -222,14 +195,6 @@ packer.startup({
 			end,
 			ft = { "tex", "bib" },
 		})
-
-		-- -- Markdown - Obsidian integration
-		-- use({
-		-- 	"epwalsh/obsidian.nvim",
-		-- 	config = function()
-		-- 		require("conf.obsidian").config()
-		-- 	end,
-		-- })
 
 		-- Syntax highlightings
 		use({

@@ -4,6 +4,10 @@
 local M = {}
 
 M.setup = function()
+	-- Set up required plugins first
+	require("mason").setup()
+	require("mason-lspconfig").setup()
+
 	-- Only show diagnostics detail on hover
 	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 		virtual_text = false,
