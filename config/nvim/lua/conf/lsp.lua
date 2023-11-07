@@ -120,30 +120,30 @@ M.config = function()
 		end,
 		capabilities = capabilities,
 	})
-	lspconfig.texlab.setup({
-		on_attach = custom_on_attach,
-		capabilities = capabilities,
-		settings = {
-			texlab = {
-				auxDirectory = "build",
-				build = {
-					args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "-outdir=build", "%f" },
-					executable = "latexmk",
-					forwardSearchAfter = false,
-					onSave = false,
-				},
-			},
-			diagnosticsDelay = 50,
-			chktex = {
-				onEdit = false,
-				onOpenAndSave = true,
-			},
-			latexFormatter = "latexindent",
-			latexindent = {
-				modifyLineBreaks = true,
-			},
-		},
-	})
+	-- lspconfig.texlab.setup({
+	-- 	on_attach = custom_on_attach,
+	-- 	capabilities = capabilities,
+	-- 	settings = {
+	-- 		texlab = {
+	-- 			auxDirectory = "build",
+	-- 			build = {
+	-- 				args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "-outdir=build", "%f" },
+	-- 				executable = "latexmk",
+	-- 				forwardSearchAfter = false,
+	-- 				onSave = false,
+	-- 			},
+	-- 		},
+	-- 		diagnosticsDelay = 50,
+	-- 		chktex = {
+	-- 			onEdit = false,
+	-- 			onOpenAndSave = true,
+	-- 		},
+	-- 		latexFormatter = "latexindent",
+	-- 		latexindent = {
+	-- 			modifyLineBreaks = true,
+	-- 		},
+	-- 	},
+	-- })
 
 	lspconfig.julials.setup({ on_attach = custom_on_attach, capabilities = capabilities })
 end
