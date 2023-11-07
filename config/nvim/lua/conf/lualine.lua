@@ -52,7 +52,7 @@ M.config = function()
 					sections = { "error", "warn", "info", "hint" },
 				},
 			},
-			lualine_x = {},
+			lualine_x = {"location"},
 			lualine_y = {},
 			lualine_z = {},
 		},
