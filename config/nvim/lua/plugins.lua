@@ -126,14 +126,6 @@ packer.startup({
 			end,
 		})
 
-		-- Treesitter-powered spellchecking
-		use({
-			"lewis6991/spellsitter.nvim",
-			config = function()
-				require("spellsitter").setup({ captures = { "comment", "string" } })
-			end,
-		})
-
 		-- Telescope
 		use({
 			"nvim-telescope/telescope.nvim",
