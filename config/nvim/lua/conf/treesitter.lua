@@ -15,6 +15,8 @@ M.config = function()
 			"html",
 			"markdown",
 			"markdown_inline",
+			"vim",
+			"vimdoc",
 		},
 		highlight = {
 			enable = true,
