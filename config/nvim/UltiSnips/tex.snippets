@@ -111,31 +111,6 @@ $0
 \end{document}
 endsnippet
 
-snippet mphil_report "MPhil Weekly Report" b
-\documentclass[12pt]{article}
-
-\usepackage[]{lb}
-\usepackage{lb_style}
-
-\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
-
-\title{Supervisor Meeting Report: Week `date +"%W, %Y"`}
-\author{Liam Blake}
-
-% Use \varepsilon by default
-\newcommand\oldepsilon\epsilon
-\renewcommand\epsilon\varepsilon
-
-\begin{document}
-\maketitle
-
-
-\bibliographystyle{abbrv}
-\bibliography{../../../masters}
-
-\end{document}
-endsnippet
-
 ########################
 # General environments #
 ########################
@@ -188,9 +163,8 @@ endsnippet
 
 
 snippet eqnn "Numbered equation" b
-\begin{equation}
+\begin{equation}\label{eqn:$2}
 	$1
-	\label{eqn:$2}
 \end{equation}
 endsnippet
 
@@ -289,6 +263,18 @@ context "math()"
 snippet num "numberthis" i
 \numberthis\label{eqn:$1}
 endsnippet
+
+# Inline definition of bib file
+context "not math()"
+snippet inlbib "inline bib file" b
+`!p snip.rv = f"""\\begin{{filecontents}}{{ {snip.basename}.bib}}
+	$0
+\\end{{filecontents}}
+
+\\bibliographystyle{{abbrvnat}}
+\\bibliography{{{snip.basename}.bib}}"""`
+endsnippet
+
 
 ###############################
 # Sections, subsections, etc. #

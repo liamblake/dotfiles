@@ -21,14 +21,12 @@ end
 -- Custom callback to narrow on current section in TeX files
 
 -- Keybindings!
-require("which-key").register({
-	["<leader>tz"] = {
-		name = "+true-zen",
-		a = { "<cmd>TZAtaraxis<CR>", "ataraxis" },
-		n = { "<cmd>'<,'>TZNarrow<CR>", "narrow" },
-		m = { "<cmd>TZMinimalist<CR>", "minimalist" },
-		f = { "<cmd>TZFocus<CR>", "focus" },
-	},
+require("which-key").add({
+	{ "<leader>tz", group = "true-zen" },
+	{ "<leader>tza", "<cmd>TZAtaraxis<CR>", desc = "ataraxis" },
+	{ "<leader>tzn", "<cmd>'<,'>TZNarrow<CR>", desc = "narrow" },
+	{ "<leader>tzm", "<cmd>TZMinimalist<CR>", desc = "minimalist" },
+	{ "<leader>tzf", "<cmd>TZFocus<CR>", desc = "focus" },
 })
 
 return M

@@ -47,15 +47,13 @@ M.setup = function()
 	vim.g.vimtex_imaps_enabled = 0
 
 	-- Register keybindings to which-key
-	require("which-key").register({
-		["<localleader>l"] = {
-			name = "+VimTeX",
-			l = "toggle compiler",
-			v = "forward search",
-			q = "view log",
-			T = "toggle outline",
-			w = "count words",
-		},
+	require("which-key").add({
+		{ "<localleader>l", group = "VimTeX" },
+		{ "<localleader>ll", desc = "toggle compiler" },
+		{ "<localleader>lv", desc = "forward search" },
+		{ "<localleader>lq", desc = "view log" },
+		{ "<localleader>lT", desc = "toggle outline" },
+		{ "<localleader>lw", desc = "count words" },
 	})
 end
 
