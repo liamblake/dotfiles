@@ -51,7 +51,6 @@ M.config = function()
 
 		-- Formatting
 		if client.supports_method("textDocument/formatting") then
-			opts.timeout_ms = 5000
 			vim.keymap.set("n", "<leader>df", vim.lsp.buf.format, opts)
 		end
 	end
