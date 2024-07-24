@@ -1,5 +1,4 @@
-# No clue what these are
-*.bak0
+config/zsh/.zsh_sessions/
 
 # Packer compiled
 config/nvim/plugin
