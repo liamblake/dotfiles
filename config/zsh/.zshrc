@@ -8,7 +8,7 @@
 #########################
 
 # Aliases
-source "$HOME/aliases.zsh"
+source "$ZDOTDIR/aliases.zsh"
 source "$HOME/local_aliases.zsh"
 
 # Enable vi mode
@@ -17,10 +17,11 @@ bindkey -v
 # No globbing when calling pip
 alias pip='noglob pip'
 
-fpath+=$DOTFILES/zsh/.zsh_functions
+fpath+=$ZDOTDIR/.zsh_functions
 
-PLUGINS_DIR=$DOTFILES/zsh/plugins
+PLUGINS_DIR=$ZDOTDIR/plugins
 
+# Add homebrew to path
 export PATH="/opt/homebrew/bin:$PATH"
 
 
@@ -127,10 +128,3 @@ bindkey "\eOB" down-line-or-search
 #################
 
 source $PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-chruby ruby-3.1.3 # run chruby to see actual version
