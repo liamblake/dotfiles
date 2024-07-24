@@ -6,7 +6,7 @@
 export EDITOR=nvim
 export DOTFILES=~/dev/dotfiles
 
-export JULIA_DEPOT_PATH="~/.julia:$JULIA_DEPOT_PATH"
+export JULIA_DEPOT_PATH="~/.julia/$JULIA_DEPOT_PATH"
 
 # Path
 path+=("$HOME/dev/dotfiles/bin")
