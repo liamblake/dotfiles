@@ -1,5 +1,7 @@
 config/zsh/.zsh_sessions/
 
+*.bak*
+
 # Packer compiled
 config/nvim/plugin
 
