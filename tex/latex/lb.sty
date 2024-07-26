@@ -45,6 +45,8 @@
 % Hyperlinks and Cleveref
 \RequirePackage{hyperref}
 \RequirePackage[capitalise,nameinlink,noabbrev]{cleveref}
+\crefname{equation}{}{}
+
 % Tell refcheck about cleveref. From:
 % https://tex.stackexchange.com/questions/87610/making-refcheck-work-with-cleveref
 \makeatletter
@@ -246,7 +248,7 @@
 \newcommand{\alsu}{\,\text{a.s.}}
 
 % Distributions
-\newcommand{\Dist}[2]{#1\left(#2\right)}
+\newcommand{\Dist}[2]{#1\!\left(#2\right)}
 
 % Without \sim
 \newcommand{\Gauss}[1]{\Dist{\mathcal{N}}{#1}}
@@ -266,7 +268,8 @@
 \newcommand{\Dir}[1]{\Dist{\mathrm{Dirichlet}}{#1}}
 \newcommand{\LogNorm}[1]{\Dist{\mathrm{log-}\mathcal{N}}{#1}}
 \newcommand{\InvChiSq}[1]{\Dist{\mathrm{inv-}\chi^2}{#1}}
-\newcommand{\InvGam}[1]{\Dist{\mathrm{Inv-Gamma}}{#1}}
+\newcommand{\InvGam}[1]{\Dist{\mathrm{InvGamma}}{#1}}
+\newcommand{\GP}[1]{\Dist{\mathcal{GP}}{#1}}
 
 % With \sim
 \newcommand{\isBern}[1]{\sim\Bern{#1}}
@@ -286,6 +289,7 @@
 \newcommand{\isLogNorm}[1]{\sim\LogNorm{#1}}
 \newcommand{\isInvChiSq}[1]{\sim\InvChiSq{#1}}
 \newcommand{\isInvGam}[1]{\sim\InvGam{#1}}
+\newcommand{\isGP}[1]{\sim\GP{#1}}
 
 % Weirder notation using subscripts
 \newcommand{\ChiSq}[1]{\chi^2_{#1}}
