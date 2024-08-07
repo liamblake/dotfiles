@@ -17,7 +17,10 @@ done
 mkdir -p "$HOME"/.config/Code/User/
 create_home_symlink config/vscode/settings.json .config/Code/User
 
-# TODO: TeX style files
+# TeX style files - this will only work on MacOS
+mkdir -p "$HOME/Library/texmf/tex/latex"
+create_home_symlink tex/latex/lb.sty Library/texmf/tex/latex
+create_home_symlink tex/latex/lb_style.sty Library/texmf/tex/latex
 
 # TPM setup
 if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
