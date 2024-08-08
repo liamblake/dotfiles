@@ -22,6 +22,9 @@ mkdir -p "$HOME/Library/texmf/tex/latex"
 create_home_symlink tex/latex/lb.sty Library/texmf/tex/latex
 create_home_symlink tex/latex/lb_style.sty Library/texmf/tex/latex
 
+# Julia config
+create_home_symlink julia/config .julia/config
+
 # TPM setup
 if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
