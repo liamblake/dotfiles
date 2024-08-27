@@ -1,3 +1,4 @@
+config/nvim/venv/
 config/zsh/.zsh_sessions/
 
 *.bak*

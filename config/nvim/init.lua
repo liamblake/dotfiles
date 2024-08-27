@@ -52,5 +52,8 @@ vim.keymap.set("n", "<esc><esc>", "<cmd>nohls<CR>")
 
 vim.opt.termguicolors = true
 
+-- Python venv
+vim.g.python3_host_prog="~/.config/nvim/venv/bin/python3"
+
 -- Other configuration
 require("plugins")
