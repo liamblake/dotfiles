@@ -72,9 +72,6 @@
 \newcommand{\Q}{\mathbb{Q}}		% Rational numbers
 \newcommand{\C}{\mathbb{C}}		% Complex numbers
 
-% Set with a condition
-\newcommand{\setc}[2]{\left\{#1\,\middle|\,#2\right\}}
-
 % Bracketed fractions
 \newcommand{\bfrac}[2]{\left(\frac{#1}{#2}\right)}
 
@@ -216,18 +213,24 @@
 % Statistics
 \RequirePackage{dsfont}
 
-% Conditional probability
-\newcommand{\conp}[2]{P\left(#1\,\middle|\,#2\right)}
+% Expectation and Variance, with \given option
+\providecommand\given{}
+\newcommand\GivenBar[1][]{
+	\nonscript\:
+	#1\vert
+  \nonscript\:
+  \mathopen{}
+  \allowbreak
+}
+\DeclarePairedDelimiterXPP\avg[1]{\mathds{E}}{[}{]}{}{
+	\renewcommand\given{\GivenBar[\delimsize]} #1
+}
+\DeclarePairedDelimiterXPP\var[1]{\mathds{V}}{[}{]}{}{
+	\renewcommand\given{\GivenBar[\delimsize]} #1
+}
 
-% Conditional density notation, i.e. p(x|y). Used in Bayesian statistics for denoting conditional density/probabilities.
-\newcommand{\denp}[2]{p\left(#1\,\middle|\,#2\right)}
-
-% Conditional distribution, i.e. x | y. Similar to above but without the delimiters.
-\newcommand{\cond}[2]{\left.\,#1\,\middle|\,#2\right.}
-
-% Statistical operators
-\newcommand{\var}[1]{\mathds{V}\!\left[#1\right]}
-\newcommand{\avg}[1]{\mathds{E}\!\left[#1\right]}
+% Other statistical operators
+% TODO: Convert these to paired delimiters
 \newcommand{\cov}[1]{\operatorname{cov} \left(#1\right)}
 \newcommand{\sd}[1]{\operatorname{sd} \left(#1\right)}
 \newcommand{\cor}[1]{\operatorname{cor} \left(#1\right)}
