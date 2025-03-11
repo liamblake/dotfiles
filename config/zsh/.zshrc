@@ -103,16 +103,16 @@ autoload -Uz _fill_line && _fill_line
 # TODO: This is quite buggy
 show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-	  echo "(%B%F{yellow} $(basename $VIRTUAL_ENV)%b%F{white})"
+	  echo "(%B%F{yellow} $(basename $VIRTUAL_ENV)%b%F{white})"
   fi
 }
 
 # Show git information in prompt
-zstyle ':vcs_info:git:*' formats '%F{999}on %F{green}שׂ %B%b'
-zstyle ':vcs_info:git:*' actionformats '%F{999}on %F{green}שׂ %B%b (%a%u%c)'
+zstyle ':vcs_info:git:*' formats '%F{999}on %F{green} %B%b'
+zstyle ':vcs_info:git:*' actionformats '%F{999}on %F{green} %B%b (%a%u%c)'
 
 # Define the prompt itself
-PROMPT=$'\n'$(_fill_line ' %B%F{blue}%(!..) %n%b %F{white}in %F{yellow} %F{magenta}%B%~%b ${vcs_info_msg_0_}%b' ' $(show_virtual_env)')$'\n'' %F{cyan}%f%b '
+PROMPT=$'\n'$(_fill_line ' %F{yellow} %F{magenta}%B%~%b ${vcs_info_msg_0_}%b' ' $(show_virtual_env)')$'\n'' %F{cyan}%f%b '
 
 ###############
 # Keymappings #
@@ -128,3 +128,25 @@ bindkey "\eOB" down-line-or-search
 #################
 
 source $PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+chruby ruby-3.1.3 # run chruby to see actual version
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
