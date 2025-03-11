@@ -95,7 +95,7 @@ M.config = function()
 		settings = { python = { analysis = { typeCheckingMode = "off" } } },
 	})
 	-- Formatting handled by prettier and null-ls
-	lspconfig.tsserver.setup({
+	lspconfig.ts_ls.setup({
 		on_attach = function(client, bufnr)
 			custom_on_attach(client, bufnr)
 			client.server_capabilities.document_formatting = false
