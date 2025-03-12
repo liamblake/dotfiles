@@ -103,7 +103,7 @@ autoload -Uz _fill_line && _fill_line
 # TODO: This is quite buggy
 show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-	  echo "(%B%F{yellow} $(basename $VIRTUAL_ENV)%b%F{white})"
+	  echo "%B%F{yellow}( $(basename $VIRTUAL_ENV))"
   fi
 }
 
