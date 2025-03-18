@@ -13,12 +13,17 @@ if isfile("Project.toml")
 end
 
 # Include the current project in the prompt
-import OhMyREPL as OMR
-promptfn() = "(" * splitpath(Base.active_project())[end-1] * ") julia> "
-OMR.input_prompt!(promptfn)
+try
+	import OhMyREPL as OMR
+catch e
+	@warn "Error initialising OhMyREPL" exception = (e, catch_backtrack())
+else
+	promptfn() = "(" * splitpath(Base.active_project())[end-1] * ") julia> "
+	OMR.input_prompt!(promptfn)
 
-# No syntax highlighting
-OMR.enable_pass!("SyntaxHighlighter", false)
-OMR.enable_pass!("RainbowBrackets", false)
+	# No syntax highlighting
+	OMR.enable_pass!("SyntaxHighlighter", false)
+	OMR.enable_pass!("RainbowBrackets", false)
 
-ENV["JULIA_EDITOR"] = "nvim"
+	ENV["JULIA_EDITOR"] = "nvim"
+end
