@@ -5,7 +5,7 @@
 # Environment variables
 export EDITOR=nvim
 
-export JULIA_DEPOT_PATH="~/.julia/$JULIA_DEPOT_PATH"
+export JULIA_DEPOT_PATH="~/.julia/"
 
 # Path
 path+=("$HOME/dev/dotfiles/bin")
