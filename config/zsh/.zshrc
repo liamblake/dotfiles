@@ -74,24 +74,24 @@ _vbe_vcs_info() {
 
 # Use the zsh-async plugin
 # TODO: Move away from this eventually
-source $PLUGINS_DIR/zsh-async/async.zsh
-async_init
-async_start_worker vcs_info
-async_register_callback vcsinfo _vbe_vcs_info_done
+# source $PLUGINS_DIR/zsh-async/async.zsh
+# async_init
+# async_start_worker vcs_info
+# async_register_callback vcsinfo _vbe_vcs_info_done
 
-_vbe_vcs_info_done() {
-	local stdout=$3
-	vcs_info_msg_0_=$stdout
-	zle reset-prompt
-}
+# _vbe_vcs_info_done() {
+# 	local stdout=$3
+# 	vcs_info_msg_0_=$stdout
+# 	zle reset-prompt
+# }
 
-# Schedule the wrapper in the worker queue before displaying the prompt
-_vbe_vcs_precmd() {
-	async_flush_jobs vcs_info
-	async_job vcs_info _vbe_vcs_info $PWD
-}
+# # Schedule the wrapper in the worker queue before displaying the prompt
+# _vbe_vcs_precmd() {
+# 	async_flush_jobs vcs_info
+# 	async_job vcs_info _vbe_vcs_info $PWD
+# }
 
-add-zsh-hook precmd vcs_info
+# add-zsh-hook precmd vcs_info
 
 ##########
 # Prompt #
