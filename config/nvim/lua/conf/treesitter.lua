@@ -17,6 +17,7 @@ M.config = function()
 			"markdown_inline",
 			"vim",
 			"vimdoc",
+			"fortran"
 		},
 		highlight = {
 			enable = true,
