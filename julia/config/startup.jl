@@ -16,7 +16,7 @@ end
 try
 	import OhMyREPL as OMR
 catch e
-	@warn "Error initialising OhMyREPL" exception = (e, catch_backtrack())
+	@warn "Error initialising OhMyREPL" exception = (e, catch_backtrace())
 else
 	promptfn() = "(" * splitpath(Base.active_project())[end-1] * ") julia> "
 	OMR.input_prompt!(promptfn)
@@ -27,3 +27,12 @@ else
 
 	ENV["JULIA_EDITOR"] = "nvim"
 end
+
+# PkgTemplate 
+function template()
+	@eval begin 
+		using PkgTemplates
+		Template(;)
+	end
+end
+
